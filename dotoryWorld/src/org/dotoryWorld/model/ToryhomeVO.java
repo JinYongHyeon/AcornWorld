@@ -1,12 +1,12 @@
 package org.dotoryWorld.model;
 
 public class ToryhomeVO {
-	private String homeNo;
-	private String homeTitle;
-	private String homeContent;
-	private String homeDate;
-	private String homewriterId;
-	private MemberVO memberVO;
+	private String homeNo; //미니홈피 게시물 번호
+	private String homeTitle; //미니홈피 게시물 머릿말[방명록,다이어리..]
+	private String homeContent;//미니홈피 게시물 내용
+	private String homeDate;//미니홈피 게시물 작성일자
+	private String homewriterId;//미니홈피 게시물 작성자
+	private MemberVO memberVO;//미니홈피 도토리 주인
 
 	public ToryhomeVO() {
 		super();

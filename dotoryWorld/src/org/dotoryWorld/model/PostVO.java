@@ -1,14 +1,14 @@
 package org.dotoryWorld.model;
 
 public class PostVO {
-	private String postNo;
-	private String postTitle;
-	private String postContent;
-	private String postDate;
-	private int postLike;
-	private int viewCount;
-	private BoardVO boardVO;
-	private MemberVO memberVO;
+	private String postNo; //게시물 번호
+	private String postTitle; //게시물 제목
+	private String postContent; //게시물 내용
+	private String postDate; // 작성일자
+	private int postLike; //좋아요
+	private int viewCount; //조회수
+	private BoardVO boardVO; //큰항목 표시[EX/축구]
+	private MemberVO memberVO; //작성자
 
 	public PostVO() {
 		super();

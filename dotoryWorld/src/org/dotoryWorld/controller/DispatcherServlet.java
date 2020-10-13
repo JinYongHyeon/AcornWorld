@@ -1,4 +1,4 @@
-package org.organization.controller;
+package org.dotoryWorld.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

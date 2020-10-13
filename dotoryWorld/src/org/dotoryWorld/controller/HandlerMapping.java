@@ -1,4 +1,4 @@
-package org.organization.controller;
+package org.dotoryWorld.controller;
 
 public class HandlerMapping {
 	private static HandlerMapping instance = new HandlerMapping();

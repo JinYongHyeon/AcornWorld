@@ -1,10 +1,10 @@
 package org.dotoryWorld.model;
 
 public class BookmarkVO {
-	private String bookmarkNo;
-	private String bookmarkLink;
-	private String bookmarkDivide;
-	private MemberVO memberVO;
+	private String bookmarkNo;//번호
+	private String bookmarkLink;//북마크 링크 or 즐겨찾기 링크
+	private String bookmarkDivide;//북마크 or 즐겨찾기 구분
+	private MemberVO memberVO;//도토리
 
 	public BookmarkVO() {
 		super();

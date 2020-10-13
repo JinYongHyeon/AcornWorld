@@ -1,15 +1,15 @@
 package org.dotoryWorld.model;
 
 public class MemberVO {
-	private String id;
-	private String password;
-	private String name;
-	private String address;
-	private String email;
-	private String nickname;
-	private String profileContent;
-	private String profilePhoto;
-	private String grade;
+	private String id; //아이디
+	private String password; //비밀번호
+	private String name; //이름
+	private String address; //주소
+	private String email; //이메일
+	private String nickname; //닉네임
+	private String profileContent; //소개글
+	private String profilePhoto; //프로필
+	private String grade; //등급
 
 	public MemberVO() {
 		super();

@@ -1,11 +1,11 @@
 package org.dotoryWorld.model;
 
 public class BoardVO {
-	private String boardNo;
-	private String boardTitle;
-	private String boardContent;
-	private int boardLike;
-	private CategoryVO categoryVO;
+	private String boardNo;//번호
+	private String boardTitle;//작은항목 제목
+	private String boardContent;//작은항목 소개
+	private int boardLike;//작은항목 좋아요
+	private CategoryVO categoryVO;//큰항목
 
 	public BoardVO() {
 		super();
