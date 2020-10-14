@@ -5,11 +5,10 @@ CREATE TABLE member(
 	address VARCHAR2(300) NOT NULL,
 	email VARCHAR2(300) NOT NULL,
 	nickname VARCHAR2(300) NOT NULL,
-	profile_photo VARCHAR2(300) NOT NULL, /* NULL 설정 */
+	profile_photo VARCHAR2(300), /* NULL 설정 */
 	profile_content VARCHAR2(300) NOT NULL,
 	grade VARCHAR2(300)	NOT NULL
 )
-
 
 CREATE TABLE category(
 	category_no NUMBER PRIMARY KEY,
@@ -94,3 +93,6 @@ CREATE SEQUENCE toryhome_no_seq
 SELECT * FROM USER_SEQUENCES  
 SELECT * FROM TAB;
 /* ON DELETE CASCADE */ 
+
+
+
