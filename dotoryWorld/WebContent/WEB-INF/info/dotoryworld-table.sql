@@ -10,6 +10,10 @@ CREATE TABLE member(
 	grade VARCHAR2(300)	NOT NULL
 )
 
+
+select * from tab
+
+
 CREATE TABLE category(
 	category_no NUMBER PRIMARY KEY,
 	category_name VARCHAR2(300) NOT NULL
@@ -95,4 +99,12 @@ SELECT * FROM TAB;
 /* ON DELETE CASCADE */ 
 
 
+DROP TABLE member
+DROP TABLE category
+DROP TABLE hobbyboard
+DROP TABLE hobby_post
+DROP TABLE bookmark
+DROP TABLE dotorylist
+DROP TABLE photobook
+DROP TABLE toryhome_board
 
