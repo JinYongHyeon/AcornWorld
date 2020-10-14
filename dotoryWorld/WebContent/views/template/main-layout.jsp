@@ -13,7 +13,7 @@
 </head>
 <body>
 	<jsp:include page="/views/template/header.jsp"></jsp:include>
-	<h1>메인</h1>
+	<jsp:include page="${requestScope.url}"></jsp:include>
 	<jsp:include page="/views/template/right.jsp"></jsp:include>
 	<jsp:include page="/views/template/footer.jsp"></jsp:include>
 </body>
