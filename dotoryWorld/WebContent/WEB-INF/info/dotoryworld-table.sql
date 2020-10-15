@@ -10,14 +10,9 @@ CREATE TABLE member(
 	grade VARCHAR2(300)	NOT NULL
 )
 
-<<<<<<< HEAD
-SELECT * FROM member;
-
-=======
 
 select * from tab
 select * from member
->>>>>>> branch 'master' of https://github.com/JinYongHyeon/AcornWorld.git
 
 CREATE TABLE category(
 	category_no NUMBER PRIMARY KEY,
