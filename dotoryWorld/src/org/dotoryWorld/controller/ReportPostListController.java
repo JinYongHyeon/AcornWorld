@@ -3,8 +3,6 @@ package org.dotoryWorld.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.dotoryWorld.model.MemberDAO;
-
 public class ReportPostListController implements Controller {
 
 	@Override

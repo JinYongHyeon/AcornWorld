@@ -5,13 +5,20 @@ $(document).ready(function(){
 		if(!profileFileCheck()){
 			return false;	
 		}
+		var formData = new FormData($('#profileUploadForm')[0]);
+	
 		$.ajax({
-			type : "post",
-			url : "profileUpload",
+			type:"post",
+			enctype: 'multipart/form-data',
+			url:$("#path").val()+"/profileUpload",
 			dataType : "text",
-			data : "id="+$("#profileUploadForm input[name=id]").val()+"&profileImg="+$("#profileUploadForm input[name=profileImg]"),
+			data : formData, //
+			processData: false, // Jquery 내부적으로 query string 방식으로 사용을 안할 때 사용 : 파일 전송때는 사용 안함 - 필수
+			contentType: false, // multipart/form-data 방식으로 하기 위해 설정 - 필수
 			success : function(data){
-				
+				if(data=="성공"){
+					$("#toryProfileImgForm").css("display","none");
+				}
 			}
 		});
 	});
@@ -42,5 +49,5 @@ function profileFileCheck(){
 		flag=false;
 	}
 	return flag;
-	
 }
+

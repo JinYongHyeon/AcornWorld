@@ -13,5 +13,6 @@
 </head>
 <body>
 회원가입 완료
+<a href="${pageContext.request.contextPath}/front?command=main">확인</a>
 </body>
 </html>

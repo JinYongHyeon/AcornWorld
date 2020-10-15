@@ -11,11 +11,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
 </head>
 <body>
 	<jsp:include page="/views/template/header.jsp"></jsp:include>
 	<jsp:include page="${requestScope.url}"></jsp:include>
 	<a href="${pageContext.request.contextPath}/front?command=registerMemberForm">회원가입</a>
+	<a href="${pageContext.request.contextPath}/front?command=updateMemberInfoForm">회원 정보 수정</a>
 	<jsp:include page="/views/template/right.jsp"></jsp:include>
 	<jsp:include page="/views/template/footer.jsp"></jsp:include>
 </body>
