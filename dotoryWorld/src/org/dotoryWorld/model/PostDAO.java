@@ -53,7 +53,7 @@ public class PostDAO {
 			con=getConnection(); 
 			StringBuilder sql=new StringBuilder();		
 			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted,M.id,M.name ");
-			sql.append("FROM(SELECT row_number() over(ORDER BY NO DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount,to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id FROM hobby_post ");
+			sql.append("FROM(SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount,to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id FROM hobby_post ");
 			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ? ");	
 			pstmt=con.prepareStatement(sql.toString());	
 			//start, endRowNumber를 할당한다
