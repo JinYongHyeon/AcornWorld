@@ -7,8 +7,8 @@ public class DeleteMemberFormController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		request.setAttribute("url", "/views/member/delete-confirm-form.jsp");
+		return "/views/home.jsp";
 	}
 
 }
