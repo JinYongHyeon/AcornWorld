@@ -30,6 +30,41 @@ public class MemberDAO {
 			rs.close();
 		closeAll(pstmt, con);
 	}
+	public int deleteMemberConfirm(String id,String password) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result = 0; 
+	    try {
+	    	con=dataSource.getConnection();	        
+	    	String sql = "select count(*) from member where id=? and password=?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        pstmt.setString(2, password);
+	        rs=pstmt.executeQuery();
+	        if(rs.next())
+	            result=rs.getInt(1);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeAll(rs,pstmt, con);
+	    }
+	    return result;
+		
+	}
+	public void deleteMember(String id) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql = "delete from member where id = '"+id+"'";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.executeUpdate();
+		} finally {
+			// TODO: handle finally clause
+			closeAll(pstmt, con);
+		}
+			
+	}
+	}
 	
-	
-}

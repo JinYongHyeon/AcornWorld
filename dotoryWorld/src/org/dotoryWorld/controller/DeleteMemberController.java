@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.dotoryWorld.model.MemberDAO;
-import org.dotoryWorld.model.PostDAO;
 
 public class DeleteMemberController implements Controller {
 
@@ -17,15 +16,14 @@ public class DeleteMemberController implements Controller {
 		}
 		String id=request.getParameter("id");
         String password=request.getParameter("password");
-         MemberDAO.getInstance().
-         
-        /*if(deleteConfirm==0) {
+        int deleteConfirm = MemberDAO.getInstance().deleteMemberConfirm(id, password);
+        if(deleteConfirm==0) {
             return "redirect:views/member/delete-confirm-fail.jsp";
         }else {
             session.invalidate();
-            MemberDAO.getInstance().
+            MemberDAO.getInstance().deleteMember(id);
             return "redirect:views/member/delete-result.jsp";
-        }*/
+        }
 	}
 
 }
