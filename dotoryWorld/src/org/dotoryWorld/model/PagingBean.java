@@ -23,18 +23,20 @@ public class PagingBean {
  /**
   * 페이지당 게시물수
   */
- private int postCountPerPage = 4;
+ private int postCountPerPage=0;
  /**
   * 페이지 그룹당 페이지수
   */
- private int pageCountPerPageGroup = 3;
+ private int pageCountPerPageGroup=0;
  /**
   * database에 저장된 총게시물수
   */
  private int totalPostCount;
 
- public PagingBean(int totalPostCount) {
+ public PagingBean(int totalPostCount, int postCountPerPage, int pageCountPerPageGroup) {
   this.totalPostCount = totalPostCount;
+  this.postCountPerPage = postCountPerPage;
+  this.pageCountPerPageGroup = pageCountPerPageGroup;
  }
   
  public PagingBean(int totalPostCount, int nowPage) {
@@ -42,12 +44,12 @@ public class PagingBean {
   this.nowPage = nowPage;
  }
  
- public PagingBean(int nowPage, int postCountPerPage, int pageCountPerPageGroup, int totalPostCount) {
+ public PagingBean(int totalPostCount, int nowPage, int postCountPerPage, int pageCountPerPageGroup) {
 	super();
+	this.totalPostCount = totalPostCount;
 	this.nowPage = nowPage;
 	this.postCountPerPage = postCountPerPage;
 	this.pageCountPerPageGroup = pageCountPerPageGroup;
-	this.totalPostCount = totalPostCount;
 }
 
 public int getNowPage() {
