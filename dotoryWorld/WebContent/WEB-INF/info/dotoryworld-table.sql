@@ -10,14 +10,14 @@ CREATE TABLE member(
 	grade VARCHAR2(300)	NOT NULL
 )
 
-
-select * from tab
+SELECT * FROM member;
 
 
 CREATE TABLE category(
 	category_no NUMBER PRIMARY KEY,
 	category_name VARCHAR2(300) NOT NULL
 )
+
 
 CREATE SEQUENCE category_no_seq;
 
@@ -79,7 +79,6 @@ CREATE TABLE photobook(
 
 CREATE SEQUENCE photobook_no_seq;
 
-DROP TABLE photobook
 
 CREATE TABLE toryhome_board(
 	toryhome_no NUMBER PRIMARY KEY,
@@ -94,11 +93,11 @@ CREATE TABLE toryhome_board(
 
 CREATE SEQUENCE toryhome_no_seq
 /* 시퀀스 검색*/
-SELECT * FROM USER_SEQUENCES  
+SELECT * FROM USER_SEQUENCES;
 SELECT * FROM TAB;
 /* ON DELETE CASCADE */ 
 
-
+--삭제 테이블
 DROP TABLE member
 DROP TABLE category
 DROP TABLE hobbyboard
@@ -107,6 +106,15 @@ DROP TABLE bookmark
 DROP TABLE dotorylist
 DROP TABLE photobook
 DROP TABLE toryhome_board
+
+--삭제 시퀀스
+DROP SEQUENCE bookmark_no_seq
+DROP SEQUENCE category_no_seq 
+DROP SEQUENCE hobbyboard_no_seq
+DROP SEQUENCE hobbypost_no_seq
+DROP SEQUENCE photobook_no_seq
+DROP SEQUENCE toryhome_no_seq
+
 
 --캐쉬 기능 비활성화(비정상 종료 방지)
 ALTER SEQUENCE bookmark_no_seq NOCACHE;
@@ -130,6 +138,7 @@ ALTER TABLE hobby_post MODIFY(hobby_like DEFAULT 0);
 ALTER TABLE hobby_post MODIFY(hobbypost_viewcount DEFAULT 0);
 
 
+
 --샘플 데이터
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('admin','1234','관리자','판교','admin@gmail.com','다람쥐','관리자입니다','다람쥐');
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user1','1234','사용자1','판교','user1@gmail.com','도토리1','도토리1입니다','도토리');
@@ -147,9 +156,9 @@ INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyb
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'양식',2);
 
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),21,'user4');
+VALUES(hobbypost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user4');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'네이마르는 네이마르다..','네이마르~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),21,'user3');
+VALUES(hobbypost_no_seq.NEXTVAL,'네이마르는 네이마르다..','네이마르~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 
 
 
