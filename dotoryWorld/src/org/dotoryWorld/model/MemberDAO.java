@@ -32,35 +32,15 @@ public class MemberDAO {
 		closeAll(pstmt, con);
 	}
 
-	public int deleteMemberConfirm(String id,String password) throws SQLException{
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		int result = 0; 
-	    try {
-	    	con=dataSource.getConnection();	        
-	    	String sql = "select count(*) from member where id=? and password=?";
-	        pstmt = con.prepareStatement(sql);
-	        pstmt.setString(1, id);
-	        pstmt.setString(2, password);
-	        rs=pstmt.executeQuery();
-	        if(rs.next())
-	            result=rs.getInt(1);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        closeAll(rs,pstmt, con);
-	    }
-	    return result;
-		
-	}
+
 	public void deleteMember(String id) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=dataSource.getConnection();
-			String sql = "delete from member where id = '"+id+"'";
+			String sql = "delete from member where id = ?";
 	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, id);
 	        pstmt.executeUpdate();
 		} finally {
 			// TODO: handle finally clause
@@ -117,21 +97,63 @@ public class MemberDAO {
 	/*
 	 * 프로필 이미지 등록 및 수정기능 : 이미지 주소 Text DB 컬럼에 등록
 	 * 	 * */
-	public void toryProfileImgUpload(String id,String profileImgUrl) throws SQLException {
+	public int toryProfileImgUpload(String id,String profileImgUrl) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt =null;
+		int count = 0;
 		try {
 			con = dataSource.getConnection();
 			String sql = "UPDATE member SET profile_photo=? WHERE id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, profileImgUrl);
 		    pstmt.setString(2, id);
+			count = pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+		return count;
+		
+	}
+	
+	/*
+	 * 프로필 수정 : 소개글 닉네임 수정
+	 * */
+	public void toryProfileUpdate(String ninkName, String profileContent,String id) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE member SET nickname =?,profile_content =? WHERE id =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ninkName);
+			pstmt.setString(2, profileContent);
+			pstmt.setString(3, id);
 			pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt, con);
 		}
-		
 	}
+	/*
+	 * 도토리 추가 : 
+	 * 첫번째 물음표 : 친구
+	 * 두번째 물음표 : 자기자신
+	 * */
+	public void addDotory(String dotoryId,String MyId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "INSERT INTO dotorylist(dotory_id,id) VALUES(?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dotoryId);
+			pstmt.setString(2,MyId);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
+	
 
 }
 

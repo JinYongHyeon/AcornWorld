@@ -3,3 +3,34 @@
 #toryProfileImgMainForm .toryProfileImg img{
 	width:400px;
 }
+
+.footer {
+	position: absolute;
+	text-align: center;
+	background-color: #FFF9C4;
+	padding: 25px;
+	left:50%;
+	bottom: 0px;
+	transform:translate(-50%,0);
+	height: 100px;
+	width: 70%;
+	border-top: 5px solid #F57F17;
+}
+
+.header {
+	border-bottom: 5px solid #F57F17;
+	line-height: 150px;
+	height: 150px;
+	width: 70%;
+	background-color: #FFF9C4;
+	margin: auto;
+}
+
+.main {
+	background-color: #FFF9C4;
+	transform:translate(-50%,0);
+	height: 100%;
+	width: 70%;
+	left:50%;
+	position: absolute;
+}

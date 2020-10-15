@@ -8,7 +8,7 @@ public class DeleteMemberFormController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setAttribute("url", "/views/member/delete-confirm-form.jsp");
-		return "/views/home.jsp";
+		return "/views/template/main-layout.jsp";
 	}
 
 }

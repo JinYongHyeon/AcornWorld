@@ -85,7 +85,7 @@ public class PostDAO {
      * @return
      * @throws SQLException
      */
-	/*public PostVO getPostingByNo(String no) throws SQLException{
+	public PostVO getPostingByNo(String no) throws SQLException{
 		PostVO pvo=null;
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -93,20 +93,20 @@ public class PostDAO {
 		try{
 			con=getConnection();
 			StringBuilder sql=new StringBuilder();
-			sql.append("select b.title,to_char(b.time_posted,'YYYY.MM.DD  HH24:MI:SS') as time_posted");
-			sql.append(",b.content,b.hits,b.id,m.name");
-			sql.append(" from board_paging b,board_member_paging m");
-			sql.append(" where b.id=m.id and b.no=?");		
+			sql.append("select b.hobby_title,to_char(b.hobbypost_date,'YYYY.MM.DD  HH24:MI:SS') as time_posted");
+			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name");
+			sql.append(" from hobby_post b,member m");
+			sql.append(" where b.id=m.id and b.hobbypost_no=?");		
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, no);
 			rs=pstmt.executeQuery();		
 			if(rs.next()){
 				pvo=new PostVO();
-				pvo.setNo(no);
-				pvo.setTitle(rs.getString("title"));
-				pvo.setContent(rs.getString("content"));				
-				pvo.setHits(rs.getInt("hits"));
-				pvo.setTimePosted(rs.getString("time_posted"));
+				pvo.setPostNo(no);
+				pvo.setPostTitle(rs.getString("hobby_title"));
+				pvo.setPostContent(rs.getString("hobby_content"));				
+				pvo.setViewCount(rs.getInt("hobbypost_viewcount"));
+				pvo.setPostDate(rs.getString("time_posted"));
 				MemberVO mvo=new MemberVO();
 				mvo.setId(rs.getString("id"));
 				mvo.setName(rs.getString("name"));
@@ -116,25 +116,25 @@ public class PostDAO {
 			closeAll(rs,pstmt,con);
 		}
 		return pvo;
-	}*/
+	}
 	/**
 	 * 조회수 증가 
 	 * @param no
 	 * @throws SQLException
 	 */
-	/*public void updateHit(String no) throws SQLException{
+	public void updateViewcount(String no) throws SQLException{
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try{
 			con=getConnection(); 
-			String sql="update board_paging set hits=hits+1 where no=?";
+			String sql="UPDATE hobby_post SET hobbypost_viewcount=hobbypost_viewcount+1 where hobbypost_no=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, no);	
 			pstmt.executeUpdate();			
 		}finally{
 			closeAll(pstmt,con);
 		}
-	}*/
+	}
 	/**
 	 * 게시물 등록 메서드  
 	 * 게시물 등록 후 생성된 시퀀스를 BoardVO에 setting 한다. 
@@ -142,29 +142,29 @@ public class PostDAO {
 	 * @param vo
 	 * @throws SQLException
 	 */
-	/*public void posting(PostVO vo) throws SQLException{
+	public void postWrite(PostVO vo) throws SQLException{
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
 			con=getConnection();			
 			StringBuilder sql=new StringBuilder();
-			sql.append("insert into board_paging(no,title,content,id,time_posted) ");
+			sql.append("Insert into hobby_post(hobbypost_no,hobby_title,hobby_content,id,hobbypost_date) ");
 			sql.append("values(board_seq.nextval,?,?,?,sysdate)");			
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1, vo.getTitle());
-			pstmt.setString(2, vo.getContent());
+			pstmt.setString(1, vo.getPostTitle());
+			pstmt.setString(2, vo.getPostContent());
 			pstmt.setString(3, vo.getMemberVO().getId());
 			pstmt.executeUpdate();			
 			pstmt.close();
 			pstmt=con.prepareStatement("select board_seq.currval from dual");
 			rs=pstmt.executeQuery();
 			if(rs.next())
-			vo.setNo(rs.getString(1));			
+			vo.setPostNo(rs.getString(1));			
 		}finally{
 			closeAll(rs,pstmt,con);
 		}
-	}*/	
+	}	
 	/**
 	 * 글번호에 해당하는 게시물을 삭제하는 메서드
 	 * @param no
@@ -201,15 +201,16 @@ public class PostDAO {
 			closeAll(pstmt,con);
 		}
 	}*/
-	public int getTotalPostCount() throws SQLException {
+	public int getTotalPostCount(String hobbyBoardNo) throws SQLException {
 		int totalCount=0;
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 		con=getConnection();
-		String sql="select count(*) from hobby_post";
+		String sql="select count(*) from hobby_post where hobbyboard_no=?";
 		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, hobbyBoardNo);
 		rs=pstmt.executeQuery();
 		if(rs.next())
 		totalCount=rs.getInt(1);
