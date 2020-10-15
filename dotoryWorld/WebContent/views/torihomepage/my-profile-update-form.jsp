@@ -12,9 +12,11 @@
 	href="${pageContext.request.contextPath}/resources/css/myHomecss.css">
 </head>
 <body>
-
-
-	<div class="row">
+<!-- 
+	프로필 이미지 등록 뷰
+ -->
+<input type="hidden" id="path" value="${pageContext.request.contextPath}">
+	<div class="row" id="toryProfileImgForm">
 		<div class="col-sm-8 offset-2">
 
 			<div id="toryProfileImgTilte">
@@ -36,22 +38,38 @@
 				</div>
 				<div class="toryProfileUpload">
 					<form id="profileUploadForm" enctype="multipart/form-data">
-						<input type="hidden" name="id" value="${sessionScope.id}">
+						<input type="hidden" name="id" value="test">
 						<input type="file" name="profileImg" id="profileImg"
 							accept="image/*" onchange="profileFileSee()"> <input
 							type="button" value="등록">
 					</form>
 				</div>
 			</div>
-
 		</div>
 	</div>
+	<!-- 
+	 	미니홈피 -> 프로필 보기(사진 + 소개글 + 닉네임) -> 수정하기(완료) -> 프로필 보기;
+		프로필 닉네임 소개글 수정 뷰
+	 -->
+	 <h1>회원정보 수정</h1>
+		<div class="col-sm-8 offset-2">
+			<form action="${pageContext.request.contextPath}/front" method="post">
+				<input type="hidden" name="command" value="toryProfileUpdate">
+				<input type="hidden" name="id" value="${sessionScope.id}">
+				<span>닉네임</span><input type="text" name="nickName" required="required" placeholder="닉네임을 입력해주세요.">
+				<span>소개글</span><input type="text" name="profileContent" required="required" placeholder="소개글을 입력해주세요.">
+				<input type="submit" value="프로필 수정">
+			</form>
+		</div>
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		
+
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/myHomejs.js"></script>
 </body>

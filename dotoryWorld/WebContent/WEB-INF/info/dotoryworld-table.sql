@@ -138,8 +138,6 @@ ALTER TABLE hobbyboard DROP COLUMN hobbyboard_content;
 ALTER TABLE hobby_post MODIFY(hobby_like DEFAULT 0);
 ALTER TABLE hobby_post MODIFY(hobbypost_viewcount DEFAULT 0);
 
-
-
 --샘플 데이터
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('admin','1234','관리자','판교','admin@gmail.com','다람쥐','관리자입니다','다람쥐');
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user1','1234','사용자1','판교','user1@gmail.com','도토리1','도토리1입니다','도토리');
