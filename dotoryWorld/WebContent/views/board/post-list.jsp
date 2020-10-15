@@ -13,6 +13,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+<!-- 게시물 검색 임시 버튼-->
+<div class="container2">
+	<div class="form-group row pull-right">
+		<div class="col-xs-8">
+			<input class="form-control" type="text" size="20">
+		</div>
+		<div class="col-xs-2">
+			<button class="btn btn-primary" type="button">검색</button>
+		</div>
+	</div>
+	</div>
 <div class="container">
 <!-- 게시판 정보가 들어가는 부분 -->
 <div class="row boardInfo">
