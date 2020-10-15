@@ -14,10 +14,11 @@ public class RegisterMemberController implements Controller {
 		String password=request.getParameter("password");
 		String name=request.getParameter("name");
 		String address=request.getParameter("address");
+		String addressDetail=request.getParameter("addressDetail");
 		String email=request.getParameter("email");
 		String nickname=request.getParameter("nickname");
 		String profileContent=request.getParameter("profileContent");
-		MemberVO memberVO=new MemberVO(id, password, name, address, email, nickname, profileContent, null, "도토리");
+		MemberVO memberVO=new MemberVO(id, password, name, address+" "+addressDetail, email, nickname, profileContent, null, "도토리");
 		MemberDAO.getInstance().registerMember(memberVO);
 		return "redirect:views/member/register-result.jsp";
 	}

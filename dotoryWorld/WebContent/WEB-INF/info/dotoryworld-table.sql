@@ -13,6 +13,7 @@ CREATE TABLE member(
 
 select * from tab
 select * from member
+delete from member where password='a';
 
 CREATE TABLE category(
 	category_no NUMBER PRIMARY KEY,
