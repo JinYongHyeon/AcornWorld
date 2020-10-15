@@ -2,6 +2,6 @@
     pageEncoding="UTF-8"%>
     <div class="main"> 
 	<div class="container text-center">
-		<a href="${pageContext.request.contextPath}/front?command=registerForm">회원가입</a>
+		<a href="${pageContext.request.contextPath}/front?command=registerMemberForm">회원가입</a>
 	</div>
 </div>
