@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
  	function passCheck() {
-		if(${})
+		
 	}
 </script>
 </head>
