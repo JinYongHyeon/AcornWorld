@@ -13,6 +13,7 @@ CREATE TABLE member(
 
 select * from tab
 
+
 CREATE TABLE category(
 	category_no NUMBER PRIMARY KEY,
 	category_name VARCHAR2(300) NOT NULL
@@ -106,3 +107,54 @@ DROP TABLE bookmark
 DROP TABLE dotorylist
 DROP TABLE photobook
 DROP TABLE toryhome_board
+
+--캐쉬 기능 비활성화(비정상 종료 방지)
+ALTER SEQUENCE bookmark_no_seq NOCACHE;
+ALTER SEQUENCE category_no_seq NOCACHE;
+ALTER SEQUENCE hobbyboard_no_seq NOCACHE;
+ALTER SEQUENCE hobbypost_no_seq NOCACHE;
+ALTER SEQUENCE photobook_no_seq NOCACHE;
+ALTER SEQUENCE toryhome_no_seq NOCACHE;
+
+--테이블 변경사항
+
+--카테고리 소개글 생김
+ALTER TABLE category ADD(category_content CLOB NOT NULL); 
+
+--게시판에 좋아요 기본 0 설정, 게시판 소개글 삭제
+ALTER TABLE hobbyboard MODIFY(hobbyboard_like DEFAULT 0);
+ALTER TABLE hobbyboard DROP COLUMN hobbyboard_content;
+
+--게시글 좋아요 기본 0 설정, 게시글 조회수 기본 0 설정
+ALTER TABLE hobby_post MODIFY(hobby_like DEFAULT 0);
+ALTER TABLE hobby_post MODIFY(hobbypost_viewcount DEFAULT 0);
+
+
+--샘플 데이터
+INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('admin','1234','관리자','판교','admin@gmail.com','다람쥐','관리자입니다','다람쥐');
+INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user1','1234','사용자1','판교','user1@gmail.com','도토리1','도토리1입니다','도토리');
+INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user2','1234','사용자2','판교','user2@gmail.com','도토리2','도토리2입니다','도토리');
+INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user3','1234','사용자3','판교','user3@gmail.com','도토리3','도토리3입니다','도토리');
+INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user4','1234','사용자4','판교','user4@gmail.com','도토리4','도토리4입니다','도토리');
+
+INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'운동','운동설명');
+INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
+
+INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'축구',1);
+INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'배드민턴',1);
+
+INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'일식',2);
+INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'양식',2);
+
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),21,'user4');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'네이마르는 네이마르다..','네이마르~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),21,'user3');
+
+
+
+
+
+
+
+,
