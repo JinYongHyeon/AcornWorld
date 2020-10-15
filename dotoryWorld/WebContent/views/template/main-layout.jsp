@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,7 @@
 <body>
 	<jsp:include page="/views/template/header.jsp"></jsp:include>
 	<jsp:include page="${requestScope.url}"></jsp:include>
+	<a href="${pageContext.request.contextPath}/front?command=registerMemberForm">회원가입</a>
 	<jsp:include page="/views/template/right.jsp"></jsp:include>
 	<jsp:include page="/views/template/footer.jsp"></jsp:include>
 </body>
