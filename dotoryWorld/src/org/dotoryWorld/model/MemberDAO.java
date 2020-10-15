@@ -132,6 +132,11 @@ public class MemberDAO {
 		}
 		
 	}
+// 희석 수정 예정
+	public MemberVO login(String id, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
 
