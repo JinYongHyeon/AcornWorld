@@ -16,6 +16,7 @@
 	<jsp:include page="/views/template/header.jsp"></jsp:include>
 	<jsp:include page="${requestScope.url}"></jsp:include>
 	<a href="${pageContext.request.contextPath}/front?command=registerMemberForm">회원가입</a>
+	<a href="${pageContext.request.contextPath}/front?command=updateMemberInfoForm">회원 정보 수정</a>
 	<jsp:include page="/views/template/right.jsp"></jsp:include>
 	<jsp:include page="/views/template/footer.jsp"></jsp:include>
 </body>
