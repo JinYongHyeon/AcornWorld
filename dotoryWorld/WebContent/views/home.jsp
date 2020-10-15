@@ -1,3 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<h1>HOME</h1>
+    <div class="main"> 
+	<div class="container text-center">
+		<a href="${pageContext.request.contextPath}/front?command=registerForm">회원가입</a>
+	</div>
+</div>
