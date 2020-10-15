@@ -13,6 +13,7 @@ CREATE TABLE member(
 
 select * from tab
 select * from member
+delete from member where password='a';
 
 CREATE TABLE category(
 	category_no NUMBER PRIMARY KEY,
@@ -137,8 +138,6 @@ ALTER TABLE hobbyboard DROP COLUMN hobbyboard_content;
 --게시글 좋아요 기본 0 설정, 게시글 조회수 기본 0 설정
 ALTER TABLE hobby_post MODIFY(hobby_like DEFAULT 0);
 ALTER TABLE hobby_post MODIFY(hobbypost_viewcount DEFAULT 0);
-
-
 
 --샘플 데이터
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('admin','1234','관리자','판교','admin@gmail.com','다람쥐','관리자입니다','다람쥐');
