@@ -32,6 +32,43 @@ public class MemberDAO {
 		closeAll(pstmt, con);
 	}
 
+	public int deleteMemberConfirm(String id,String password) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result = 0; 
+	    try {
+	    	con=dataSource.getConnection();	        
+	    	String sql = "select count(*) from member where id=? and password=?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        pstmt.setString(2, password);
+	        rs=pstmt.executeQuery();
+	        if(rs.next())
+	            result=rs.getInt(1);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeAll(rs,pstmt, con);
+	    }
+	    return result;
+		
+	}
+	public void deleteMember(String id) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql = "delete from member where id = '"+id+"'";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.executeUpdate();
+		} finally {
+			// TODO: handle finally clause
+			closeAll(pstmt, con);
+		}
+			
+	}
+
 	// 회원가입 - 지윤
 	public void registerMember(MemberVO memberVO) throws SQLException {
 		Connection con = null;
@@ -54,8 +91,9 @@ public class MemberDAO {
 		} finally {
 			closeAll(pstmt, con);
 		}
+
 	}
-	
+
 	// 아이디 중복체크 - 지윤
 	public boolean idcheck(String id) throws SQLException {
 		boolean flag=false;
@@ -75,4 +113,25 @@ public class MemberDAO {
 		}
 		return flag;
 	}
+	
+	/*
+	 * 프로필 이미지 등록 및 수정기능 : 이미지 주소 Text DB 컬럼에 등록
+	 * 	 * */
+	public void toryProfileImgUpload(String id,String profileImgUrl) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE member SET profile_photo=? WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, profileImgUrl);
+		    pstmt.setString(2, id);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+		
+	}
+
 }
+
