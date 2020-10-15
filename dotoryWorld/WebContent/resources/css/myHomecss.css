@@ -1,1 +1,5 @@
 @charset "UTF-8";
+
+#toryProfileImgMainForm .toryProfileImg img{
+	width:400px;
+}
