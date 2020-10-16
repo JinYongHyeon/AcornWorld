@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.dotoryWorld.model.BoardVO;
 import org.dotoryWorld.model.MemberVO;
 import org.dotoryWorld.model.PostDAO;
 import org.dotoryWorld.model.PostVO;
@@ -22,7 +23,10 @@ public class PostWriteController implements Controller {
 		PostVO pvo=new PostVO();
 		pvo.setPostTitle(title);
 		pvo.setPostContent(content);
-		pvo.setMemberVO((MemberVO)session.getAttribute("mvo"));		
+		pvo.setMemberVO((MemberVO)session.getAttribute("mvo"));
+		BoardVO bvo = new BoardVO();
+		bvo.setBoardNo(request.getParameter("boardNo"));
+		pvo.setBoardVO(bvo);
 		PostDAO.getInstance().postWrite(pvo);		
 		String path="redirect:front?command=PostDetailNoHits&no="+pvo.getPostNo();
 		return path;

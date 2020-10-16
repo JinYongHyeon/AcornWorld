@@ -29,62 +29,10 @@
 	});
 </script>
 </head>
-<!-- 게시물 검색-->
 <body>
-<<<<<<< HEAD
+<!-- 게시물 검색-->
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-=======
-<div class="container">
-<!-- 게시판 정보가 들어가는 부분 -->
-<div class="row boardInfo">
-<div class="col-sm-12">
-	게시판 정보가 들어가는 부분
-</div>
-</div>
-<!-- 게시글 리스트가 나열되는 부분 -->
-<div class="row boardMain">
-<div class="col-sm-1"></div> <!-- 빈공간 -->
-<div class="col-sm-10">
-	<form action="${pageContext.request.contextPath}/front">
-		<input type="hidden" name="command" value="postWriteForm">
-		<input type="submit" value="글쓰기">
-	</form>
-	<table class="table table-bordered  table-hover boardlist">
-	<thead>
-		<tr class="success">
-			<th>번호</th>
-			<th class="title">제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>조회</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach var="pvo" items="${requestScope.lvo.list}">
-			<tr>
-				<td>${pvo.postNo }</td>
-				<td>
-					<c:choose>
-						<c:when test="${sessionScope.mvo!=null}">
-							${pvo.postNo }
-							<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
-						</c:when>
-						<c:otherwise>
-							${pvo.postTitle }
-						</c:otherwise> 
-					</c:choose>
-				</td>
-				<td>${pvo.memberVO.name }</td>
-				<td>${pvo.postDate }</td>
-				<td>${pvo.viewCount }</td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
->>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
-
-<<<<<<< HEAD
 	<input type="hidden" name="searchFiled" value="${postVO.searchFiled }" />
 	<input type="hidden" name="searchValue" value="${postVO.searchValue }" />
 	<form action="post-search-list.jsp" method="post">
@@ -110,101 +58,54 @@
 	</form>
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-
-	<div class="container">
-		<!-- 게시판 정보가 들어가는 부분 -->
-		<div class="row boardInfo">
-			<div class="col-sm-12">게시판 정보가 들어가는 부분</div>
-		</div>
-		<!-- 게시글 리스트가 나열되는 부분 -->
-		<!-- controller 작동을 위해 임시로 만든 버튼 -->
-		<form action="${pageContext.request.contextPath}/front">
-			<input type="hidden" name="command" value="postList"> <input
-				type="hidden" name="hobbyboardNo" value="2"> <input
-				type="submit" value="로딩">
-		</form>
-		<form action="${pageContext.request.contextPath}/front">
-			<input type="hidden" name="command" value="postList"> <input
-				type="hidden" name="hobbyboardNo" value="1"> <input
-				type="submit" value="로딩">
-		</form>
-		<div class="row boardMain">
-			<div class="col-sm-1"></div>
-			<!-- 빈공간 -->
-			<div class="col-sm-10">
-				<form action="${pageContext.request.contextPath}/front">
-					<input type="hidden" name="command" value="postWriteForm">
-					<input type="submit" value="글쓰기">
-				</form>
-				<table class="table table-bordered  table-hover boardlist">
-					<thead>
-						<tr class="success">
-							<th>번호</th>
-							<th class="title">제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>조회</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="pvo" items="${requestScope.lvo.list}">
-							<tr>
-								<td>${pvo.postNo }</td>
-								<td><c:choose>
-										<c:when test="${sessionScope.mvo!=null}">
-							${pvo.postNo }
-							<a
-												href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
-										</c:when>
-										<c:otherwise>
+<div class="container">
+<!-- 게시판 정보가 들어가는 부분 -->
+<div class="row boardInfo">
+<div class="col-sm-12">
+	게시판 정보가 들어가는 부분
+</div>
+</div>
+<!-- 게시글 리스트가 나열되는 부분 -->
+<div class="row boardMain">
+<div class="col-sm-1"></div> <!-- 빈공간 -->
+<div class="col-sm-10">
+	<form action="${pageContext.request.contextPath}/front">
+		<input type="hidden" name="command" value="postWriteForm">
+		<input type="hidden" name="boardNo" value="${requestScope.hobbyBoardNo}">
+		<input type="submit" value="글쓰기">
+	</form>
+	<table class="table table-bordered  table-hover boardlist">
+	<thead>
+		<tr class="success">
+			<th>번호</th>
+			<th class="title">제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>조회</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="pvo" items="${requestScope.lvo.list}">
+			<tr>
+				<td>${pvo.postNo }</td>
+				<td>
+					<c:choose>
+						<c:when test="${sessionScope.mvo!=null}">
+							<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
+						</c:when>
+						<c:otherwise>
 							${pvo.postTitle }
-						</c:otherwise>
-									</c:choose></td>
-								<td>${pvo.memberVO.name }</td>
-								<td>${pvo.postDate }</td>
-								<td>${pvo.viewCount }</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-
-				<%-- paging 처리 --%>
-				<c:set var="pb" value="${requestScope.lvo.pagingBean}" />
-				${pb.startPageOfPageGroup} ${pb.endPageOfPageGroup} ${pb.nowPage }
-				<div class="pagingArea">
-					<ul class="pagination">
-						<c:if test="${pb.previousPageGroup}">
-							<li><a
-								href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a>
-							</li>
-						</c:if>
-						<c:forEach var="i" begin="${pb.startPageOfPageGroup}"
-							end="${pb.endPageOfPageGroup}">
-							<c:choose>
-								<c:when test="${i != pb.nowPage}">
-									<li><a href="front?command=postList&pageNo=${i}">${i}</a></li>
-								</c:when>
-								<c:otherwise>
-									<li class="active"><a href="#">${i}</a></li>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-						<c:if test="${pb.nextPageGroup}">
-							<li><a
-								href="front?command=postList&pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a>
-							</li>
-						</c:if>
-					</ul>
-				</div>
-				<!-- pagingArea -->
-			</div>
-			<!-- col-ms-6 -->
-		</div>
-		<!-- row boardMain -->
-	</div>
-	<!-- container -->
-</body>
-=======
+						</c:otherwise> 
+					</c:choose>
+				</td>
+				<td>${pvo.memberVO.name }</td>
+				<td>${pvo.postDate }</td>
+				
+				<td>${pvo.viewCount }</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
 <%-- paging 처리 --%>
 <c:set var="pb" value="${requestScope.lvo.pagingBean}"/>
 ${pb.startPageOfPageGroup}
@@ -214,13 +115,13 @@ ${pb.nowPage }
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">
 			<li>
-				<a href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}&">&laquo;</a>
+				<a href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}&hobbyBoardNo=${requestScope.hobbyBoardNo}">&laquo;</a>
 			</li>
 		</c:if>
 		<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
 			<c:choose>
 				<c:when test="${i != pb.nowPage}">
-					<li><a href="front?command=postList&pageNo=${i}&hobbyBoardNo=1">${i}</a></li>
+					<li><a href="front?command=postList&pageNo=${i}&hobbyBoardNo=${requestScope.hobbyBoardNo}">${i}</a></li>
 				</c:when>
 				<c:otherwise>
 					<li class="active"><a href="#">${i}</a></li>
@@ -229,7 +130,7 @@ ${pb.nowPage }
 		</c:forEach>
 		<c:if test="${pb.nextPageGroup}">
 			<li>
-				<a href="front?command=postList&pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a>
+				<a href="front?command=postList&pageNo=${pb.endPageOfPageGroup+1}&hobbyBoardNo=${requestScope.hobbyBoardNo}">&raquo;</a>
 			</li>
 		</c:if>
 	</ul>
@@ -238,5 +139,4 @@ ${pb.nowPage }
 </div> <!-- row boardMain -->
 </div> <!-- container -->
 </body> 
->>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 </html>
