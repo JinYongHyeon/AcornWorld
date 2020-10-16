@@ -48,7 +48,7 @@ $(function(){
 </head>
 <body>
   <form action="${pageContext.request.contextPath}/front" id="frm" method="post" >
-  <input type="hidden" name="command" value="writePost">
+  <input type="hidden" name="command" value="postWrite">
   <input type="hidden" name="boardNo" value="${requestScope.boardNo}">
    <table class="table" >
     <tr>
