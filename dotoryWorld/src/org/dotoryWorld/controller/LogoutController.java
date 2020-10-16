@@ -7,13 +7,10 @@ import javax.servlet.http.HttpSession;
 public class LogoutController implements Controller {
 
 	@Override
-	public String execute(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
 		if(session!=null)
 			session.invalidate();
-		// 희석 수정 예정
-		return "redirect:index.jsp";
+		return "front?command=main";
 	}
-
 }

@@ -48,6 +48,27 @@ public class MemberDAO {
 		}
 			
 	}
+	
+	// 로그인
+	public MemberVO login(String id,String password) throws SQLException {
+		MemberVO memberVO=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="SELECT name FROM member WHERE id=? AND password=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				memberVO=new MemberVO(id,password,rs.getString(1));
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return memberVO;
+	}
 
 	// 회원가입 - 지윤
 	public void registerMember(MemberVO memberVO) throws SQLException {
@@ -133,11 +154,7 @@ public class MemberDAO {
 			closeAll(pstmt, con);
 		}
 	}
-// 희석 수정 예정
-	public MemberVO login(String id, String password) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	/*
 	 * 도토리 추가 : 
 	 * 첫번째 물음표 : 친구
