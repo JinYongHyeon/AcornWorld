@@ -167,6 +167,3 @@ INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hob
 
 
 
-
-
-,

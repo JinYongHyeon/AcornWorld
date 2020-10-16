@@ -24,7 +24,7 @@
 		<div class="col-sm-8 offset-2">
 			<div id="toryProfileImgMainForm">
 				<div class="toryProfileImg">
-					<svg width="100px" height="100px" style="color: #999"
+ 					<svg width="100px" height="100px" style="color: #999"
 						viewBox="0 0 16 16" class="bi bi-images" fill="currentColor"
 						xmlns="http://www.w3.org/2000/svg">
 					  <path fill-rule="evenodd"

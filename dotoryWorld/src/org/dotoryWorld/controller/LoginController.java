@@ -1,7 +1,5 @@
 package org.dotoryWorld.controller;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,18 +13,13 @@ public class LoginController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		MemberVO mvo = MemberDAO.getInstance().login(id, password);
-		if (mvo != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("mvo", mvo);	
-				
-			session.setAttribute("noList",new ArrayList<Integer>());
-			return "redirect:index.jsp";
-		} else {			
-			
-			return "redirect:member/login-fail.jsp";
-		
+		MemberVO memberVO = MemberDAO.getInstance().login(id, password);
+		if (memberVO == null) {
+			return "/views/member/login-fail.jsp";
+		} else {
+			HttpSession session=request.getSession();
+			session.setAttribute("memberVO", memberVO);
+			return "redirect:front?command=main";
+		}
 	}
-	}
-
 }

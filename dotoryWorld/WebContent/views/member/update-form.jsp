@@ -54,30 +54,81 @@
             }
         }).open();
 	}
+	
+	// 소개글 글자수 제한
+	$(document).ready(function() {
+		// keyup()은 키보드를 클릭했을 때 동작하는 이벤트 이다.
+		$(".charLimit").keyup(function(e) {
+			//alert("keyup 동작 확인");
+			var charCheck = $(this).val();
+			//alert(charCheck.length);
+			$("#counter").html("("+charCheck.length+" / 최대 100자)");
+		
+			// 0 부터 100번째 문자열까지만 삽입할 수 있도록 제한
+			if(charCheck.length > 100){
+				alert("최대 100자까지 입력 가능!");
+				$(this).val(charCheck.substring(0, 100));
+				$("#counter").html("100 / 최대 100자");
+			}		
+		});
+	})
+	
 </script>
 
 
-
-<form method="post" action="front">
-	<table>
-		<tbody>
-			<tr><td>아이디</td><td>아이디</td></tr>
-			<tr><td>비밀번호</td><td>패스워드</td></tr>
-			<tr><td>이름</td><td>이름</td></tr>
-			<tr>
-				<td rowspan="3" align = "left">주소</td>
-				<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
-			</tr>
-			<tr>
-				<td><input style="width: 300px" type="text" id="sample6_address" placeholder="주소"></td>
-			</tr>
-			<tr>
-				<td><input style="width: 200px" type="text" id="sample6_detailAddress" placeholder="상세주소"></td>
-			</tr>
-			<tr><td>이메일</td><td>메일</td></tr>
-			<tr><td>닉네임</td><td>별명</td></tr>
-			<tr><td>소개글</td><td>별명</td></tr>
-			<tr><td colspan="2" align="right">변경</td></tr>
-		</tbody>
-	</table>
-</form>
+<div class="main">
+	<form method="post" action="front">
+	<input type="hidden" name="command" value="updateMemberInfo">
+		<table>
+			<tbody>
+				<tr>
+					<td>아이디</td>
+					<td><input type="text" name="updateId"></td>				
+				</tr>
+				<tr>
+					<td>비밀번호</td>
+					<td><input type="password" name="updatePassword"></td>
+				</tr>
+				<tr>
+					<td>비밀번호 확인</td>
+					<td><input type="password" name="updatePasswordCheck"></td>
+				</tr>
+				<tr>
+					<td>이름</td>
+					<td><input type="text" name="updateName"></td>
+				</tr>
+				<tr>
+					<td rowspan="3" align = "left">주소</td>
+					<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+				</tr>
+				<tr>
+					<td><input style="width: 300px" type="text" name="updateAddress" id="sample6_address" placeholder="주소"></td>
+				</tr>
+				<tr>
+					<td><input style="width: 200px" type="text" name="updateAddressDetail" id="sample6_detailAddress" placeholder="상세주소"></td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td><input style="width: 250px" type="text" name="updateEmail"></td>
+				</tr>
+				<tr>
+					<td>닉네임</td>
+					<td><input type="text" name="updateNick"></td>
+				</tr>
+				<tr>
+					<td>소개글</td>
+					<td>
+						<textarea class="charLimit" name="updateIntro"></textarea></td>
+				</tr>
+				<tr>
+					<td></td><td><span style="color:#3333ff;" id="counter">(0 / 최대 100자)</span></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<input type="submit" value="수정 완료">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</div>

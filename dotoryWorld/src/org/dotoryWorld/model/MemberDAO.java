@@ -32,7 +32,7 @@ public class MemberDAO {
 		closeAll(pstmt, con);
 	}
 
-
+	// 회원 탈퇴 - 유리
 	public void deleteMember(String id) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -47,6 +47,27 @@ public class MemberDAO {
 			closeAll(pstmt, con);
 		}
 			
+	}
+	
+	// 로그인
+	public MemberVO login(String id,String password) throws SQLException {
+		MemberVO memberVO=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="SELECT name FROM member WHERE id=? AND password=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				memberVO=new MemberVO(id,password,rs.getString(1));
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return memberVO;
 	}
 
 	// 회원가입 - 지윤
@@ -133,11 +154,7 @@ public class MemberDAO {
 			closeAll(pstmt, con);
 		}
 	}
-// 희석 수정 예정
-	public MemberVO login(String id, String password) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	/*
 	 * 도토리 추가 : 
 	 * 첫번째 물음표 : 친구
@@ -157,5 +174,22 @@ public class MemberDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	
+	// id로 profilePhoto 정보 가져오기 - 정재우
+	public String findProfilePhoto(String dotoryId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		try {
+			con = dataSource.getConnection();
+			sql.append("SELECT profile_photo FROM member where id = ?");
+			
+		}finally {
+			closeAll(pstmt, con);
+		}
+		return dotoryId;
+	}
+	
 }
 

@@ -16,6 +16,14 @@ public class MemberVO {
 		// TODO Auto-generated constructor stub
 	}
 
+	public MemberVO(String id, String password, String name) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name = name;
+	}
+
+
 	public MemberVO(String id, String password, String name, String address, String email, String nickname,
 			String profileContent, String profilePhoto, String grade) {
 		super();
