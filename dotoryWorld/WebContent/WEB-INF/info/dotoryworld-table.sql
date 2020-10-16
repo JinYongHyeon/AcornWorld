@@ -162,18 +162,7 @@ INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hob
 VALUES(hobbypost_no_seq.NEXTVAL,'네이마르는 네이마르다..','네이마르~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 
-SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted,M.id,M.name FROM(
-SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount,to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post
-)B, member M WHERE B.id=M.id AND rnum BETWEEN 1 AND 55 AND B.hobbyboard_no = 1 
 
-select count(*) from hobby_post where hobbyboard_no=2
-
-
-commit
-
-SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted,M.id,M.name,B.hobbyboard_no FROM( 
-SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount,to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post
-)B, member M WHERE B.id=M.id AND rnum BETWEEN 1 AND 15 AND B.hobbyboard_no = 2
 
 
 
