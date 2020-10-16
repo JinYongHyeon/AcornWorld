@@ -102,6 +102,7 @@
 			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" value="수정 완료">
+					<button type="button" onclick="location.href='${pageContext.request.contextPath}/front?command=deleteMemberForm'">회원탈퇴</button>
 				</td>
 			</tr>
 		</tbody>

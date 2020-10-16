@@ -18,7 +18,7 @@ public class LoginController implements Controller {
 			return "/views/member/login-fail.jsp";
 		} else {
 			HttpSession session=request.getSession();
-			session.setAttribute("memberVO", memberVO);
+			session.setAttribute("mvo", memberVO);
 			return "redirect:front?command=main";
 		}
 	}
