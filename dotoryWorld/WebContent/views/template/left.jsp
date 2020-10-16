@@ -6,15 +6,15 @@
 		<form method="post" action="${pageContext.request.contextPath}/front">
 			<input type="hidden" name="command" value="login">
 			<div class="form-group">
-				<label for="id">ID:</label> <input type="text" class="form-control"
+				<label for="id">ID:</label> <input type="text" 
 					id="id" placeholder="Enter id" name="id" required="required">
 			</div>
 			<div class="form-group">
 				<label for="password">Password:</label> <input type="password"
-					class="form-control" id="password" placeholder="Enter password"
+					 id="password" placeholder="Enter password"
 					name="password" required="required">
 			</div>
-			<input type="submit" value="Login"> &nbsp&nbsp&nbsp
+			<input type="submit" value="Login">
 		</form>
 		<a
 			href="${pageContext.request.contextPath}/front?command=registerMemberForm">회원가입</a>

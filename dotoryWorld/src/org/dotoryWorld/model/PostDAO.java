@@ -249,23 +249,27 @@ public class PostDAO {
 
 
 	
-	// 카테고리 리스트 불러오는 메서드 - 지윤
-	public ArrayList<String> getCategoryList() throws SQLException {
-		ArrayList<String> categoryList=new ArrayList<String>();
+	// 소카테고리 리스트(운동-축구,복싱 등) 불러오는 메서드 - 지윤
+	public ArrayList<BoardVO> getBoardList(String categoryNo) throws SQLException {
+		ArrayList<BoardVO> boardList=new ArrayList<BoardVO>();
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="SELECT category_name FROM category ORDER BY category_no DESC";
+			String sql="SELECT h.hobbyboard_title,h.hobbyboard_no FROM hobbyboard h, category c WHERE h.category_no=c.category_no AND c.category_no=?";
 			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, categoryNo);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				categoryList.add(rs.getString(1));
+				BoardVO boardVO=new BoardVO();
+				boardVO.setBoardTitle(rs.getString(1));
+				boardVO.setBoardNo(rs.getString(2));
+				boardList.add(boardVO);
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
-		return categoryList;
+		return boardList;
 	}
 }
