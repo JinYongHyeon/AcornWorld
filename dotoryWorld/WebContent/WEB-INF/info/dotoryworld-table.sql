@@ -49,6 +49,8 @@ CREATE TABLE hobby_post(
 	ON DELETE CASCADE
 )
 
+SELECT * FROM hobby_post
+
 CREATE SEQUENCE hobbypost_no_seq;
 
 CREATE TABLE bookmark(
