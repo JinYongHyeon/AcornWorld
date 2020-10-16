@@ -162,8 +162,11 @@ INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hob
 VALUES(hobbypost_no_seq.NEXTVAL,'네이마르는 네이마르다..','네이마르~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 
+-- 내 도토리 목록 데이터
+INSERT INTO dotorylist VALUES('user2','user1');
+INSERT INTO dotorylist VALUES('user3','user1');
+INSERT INTO dotorylist VALUES('user4','user1');
 
-
-
+select * from dotorylist;
 
 

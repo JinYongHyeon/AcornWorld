@@ -71,7 +71,7 @@
 				$("#counter").html("100 / 최대 100자");
 			}		
 		});
-	})
+	});
 	
 </script>
 
@@ -126,7 +126,10 @@
 				<tr>
 					<td colspan="2" align="center">
 						<input type="submit" value="수정 완료">
+						 <button type="button" onclick="location.href='${pageContext.request.contextPath }/views/member/delete-confirm-form.jsp'">탈퇴하기</button>
+						<!-- button 은 type 을 기본값으로 설정해야함! -->
 					</td>
+					
 				</tr>
 			</tbody>
 		</table>

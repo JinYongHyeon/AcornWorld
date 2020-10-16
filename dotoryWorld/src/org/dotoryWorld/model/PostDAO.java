@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 
+
 public class PostDAO {
 	private static PostDAO instance = new PostDAO();
 	private DataSource dataSource;
@@ -241,6 +242,14 @@ public class PostDAO {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1,"%" + postTitle +"%");
 			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				PostVO pvo = new PostVO();
+				pvo.setPostNo(rs.getString(1));
+				pvo.setPostTitle(rs.getString(2));
+				pvo.setPostContent(rs.getString(3));
+				pvo.setPostDate(rs.getString(4));
+				searchList.add(pvo);
+			}
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
