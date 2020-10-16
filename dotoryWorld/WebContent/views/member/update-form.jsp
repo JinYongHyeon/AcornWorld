@@ -55,25 +55,7 @@
         }).open();
 	}
 	
-	// 소개글 글자수 제한
-	$(document).ready(function() {
-		// keyup()은 키보드를 클릭했을 때 동작하는 이벤트 이다.
-		$(".charLimit").keyup(function(e) {
-			//alert("keyup 동작 확인");
-			var charCheck = $(this).val();
-			//alert(charCheck.length);
-			$("#counter").html("("+charCheck.length+" / 최대 100자)");
-		
-			// 0 부터 100번째 문자열까지만 삽입할 수 있도록 제한
-			if(charCheck.length > 100){
-				alert("최대 100자까지 입력 가능!");
-				$(this).val(charCheck.substring(0, 100));
-				$("#counter").html("100 / 최대 100자");
-			}		
-		});
-	})
-	
-	// 패스워드 비교, 아이디 비교, 이메일 비교, 닉네임 비교 코도 작성 할것
+	// 패스워드 비교, 아이디 비교, 이메일 비교 코도 작성 할것
 	
 </script>
 
@@ -117,18 +99,6 @@
 			<tr>
 				<td>이메일</td>
 				<td><input style="width: 250px" type="text" name="updateEmail"></td>
-			</tr>
-			<tr>
-				<td>닉네임</td>
-				<td><input type="text" name="updateNick"></td>
-			</tr>
-			<tr>
-				<td>소개글</td>
-				<td>
-					<textarea class="charLimit" name="updateIntro"></textarea></td>
-			</tr>
-			<tr>
-				<td></td><td><span style="color:#3333ff;" id="counter">(0 / 최대 100자)</span></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
