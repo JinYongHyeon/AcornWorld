@@ -73,62 +73,69 @@
 		});
 	})
 	
+	// 패스워드 비교, 아이디 비교, 이메일 비교, 닉네임 비교 코도 작성 할것
+	
 </script>
 
 
-<div class="main">
-	<form method="post" action="front">
-	<input type="hidden" name="command" value="updateMemberInfo">
-		<table>
-			<tbody>
-				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="updateId"></td>				
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type="password" name="updatePassword"></td>
-				</tr>
-				<tr>
-					<td>비밀번호 확인</td>
-					<td><input type="password" name="updatePasswordCheck"></td>
-				</tr>
-				<tr>
-					<td>이름</td>
-					<td><input type="text" name="updateName"></td>
-				</tr>
-				<tr>
-					<td rowspan="3" align = "left">주소</td>
-					<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
-				</tr>
-				<tr>
-					<td><input style="width: 300px" type="text" name="updateAddress" id="sample6_address" placeholder="주소"></td>
-				</tr>
-				<tr>
-					<td><input style="width: 200px" type="text" name="updateAddressDetail" id="sample6_detailAddress" placeholder="상세주소"></td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td><input style="width: 250px" type="text" name="updateEmail"></td>
-				</tr>
-				<tr>
-					<td>닉네임</td>
-					<td><input type="text" name="updateNick"></td>
-				</tr>
-				<tr>
-					<td>소개글</td>
-					<td>
-						<textarea class="charLimit" name="updateIntro"></textarea></td>
-				</tr>
-				<tr>
-					<td></td><td><span style="color:#3333ff;" id="counter">(0 / 최대 100자)</span></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value="수정 완료">
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</form>
-</div>
+<style>	
+	table {
+		text-align: left;
+		margin: auto;
+	}
+</style>
+<form method="post" action="front">
+<input type="hidden" name="command" value="updateMemberInfo">
+	<table>
+		<tbody>
+			<tr>
+				<td>아이디</td>
+				<td><input type="text" name="updateId"></td>				
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="updatePassword"></td>
+			</tr>
+			<tr>
+				<td>비밀번호 확인</td>
+				<td><input type="password" name="updatePasswordCheck"></td>
+			</tr>
+			<tr>
+				<td>이름</td>
+				<td><input type="text" name="updateName"></td>
+			</tr>
+			<tr>
+				<td rowspan="3" align = "left">주소</td>
+				<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+			</tr>
+			<tr>
+				<td><input style="width: 300px" type="text" name="updateAddress" id="sample6_address" placeholder="주소"></td>
+			</tr>
+			<tr>
+				<td><input style="width: 200px" type="text" name="updateAddressDetail" id="sample6_detailAddress" placeholder="상세주소"></td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td><input style="width: 250px" type="text" name="updateEmail"></td>
+			</tr>
+			<tr>
+				<td>닉네임</td>
+				<td><input type="text" name="updateNick"></td>
+			</tr>
+			<tr>
+				<td>소개글</td>
+				<td>
+					<textarea class="charLimit" name="updateIntro"></textarea></td>
+			</tr>
+			<tr>
+				<td></td><td><span style="color:#3333ff;" id="counter">(0 / 최대 100자)</span></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="수정 완료">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+
