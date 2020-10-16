@@ -17,6 +17,13 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<c:forEach items="${requestScope.boardList}" var="boardList">
+		<form action="${pageContext.request.contextPath}/front">
+			<input type="hidden" name="command" value="postList">
+			<input type="hidden" name="hobbyBoardNo" value="${boardList.boardNo}">
+			<input type="submit" value="${boardList.boardTitle}">
+		</form>
 
+	</c:forEach>
 </body>
 </html>

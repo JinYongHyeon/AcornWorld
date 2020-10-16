@@ -49,6 +49,8 @@ CREATE TABLE hobby_post(
 	ON DELETE CASCADE
 )
 
+SELECT * FROM hobby_post
+
 CREATE SEQUENCE hobbypost_no_seq;
 
 CREATE TABLE bookmark(
@@ -163,7 +165,13 @@ VALUES(hobbypost_no_seq.NEXTVAL,'네이마르는 네이마르다..','네이마�
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 
 
+-- 내 도토리 목록 데이터
+INSERT INTO dotorylist VALUES('user2','user1');
+INSERT INTO dotorylist VALUES('user3','user1');
+INSERT INTO dotorylist VALUES('user4','user1');
 
+SELECT * from HOBBYBOARD
 
+select * from dotorylist;
 
 

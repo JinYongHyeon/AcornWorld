@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 
+
 public class PostDAO {
 	private static PostDAO instance = new PostDAO();
 	private DataSource dataSource;
@@ -166,15 +167,16 @@ public class PostDAO {
 		try {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("Insert into hobby_post(hobbypost_no,hobby_title,hobby_content,id,hobbypost_date) ");
-			sql.append("values(board_seq.nextval,?,?,?,sysdate)");
+			//
+			sql.append("INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id) ");
+			sql.append("VALUES(hobbypost_no_seq.NEXTVAL,?,?,sysdate,1,?)");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, vo.getPostTitle());
 			pstmt.setString(2, vo.getPostContent());
 			pstmt.setString(3, vo.getMemberVO().getId());
 			pstmt.executeUpdate();
 			pstmt.close();
-			pstmt = con.prepareStatement("select board_seq.currval from dual");
+			pstmt = con.prepareStatement("select hobbypost_no_seq.currval from dual");
 			rs = pstmt.executeQuery();
 			if (rs.next())
 				vo.setPostNo(rs.getString(1));
@@ -241,6 +243,14 @@ public class PostDAO {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1,"%" + postTitle +"%");
 			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				PostVO pvo = new PostVO();
+				pvo.setPostNo(rs.getString(1));
+				pvo.setPostTitle(rs.getString(2));
+				pvo.setPostContent(rs.getString(3));
+				pvo.setPostDate(rs.getString(4));
+				searchList.add(pvo);
+			}
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
@@ -249,23 +259,27 @@ public class PostDAO {
 
 
 	
-	// 카테고리 리스트 불러오는 메서드 - 지윤
-	public ArrayList<String> getCategoryList() throws SQLException {
-		ArrayList<String> categoryList=new ArrayList<String>();
+	// 소카테고리 리스트(운동-축구,복싱 등) 불러오는 메서드 - 지윤
+	public ArrayList<BoardVO> getBoardList(String categoryNo) throws SQLException {
+		ArrayList<BoardVO> boardList=new ArrayList<BoardVO>();
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="SELECT category_name FROM category ORDER BY category_no DESC";
+			String sql="SELECT h.hobbyboard_title,h.hobbyboard_no FROM hobbyboard h, category c WHERE h.category_no=c.category_no AND c.category_no=?";
 			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, categoryNo);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				categoryList.add(rs.getString(1));
+				BoardVO boardVO=new BoardVO();
+				boardVO.setBoardTitle(rs.getString(1));
+				boardVO.setBoardNo(rs.getString(2));
+				boardList.add(boardVO);
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
-		return categoryList;
+		return boardList;
 	}
 }

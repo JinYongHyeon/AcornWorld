@@ -27,7 +27,7 @@
     <div class="col-sm-2 sidenav">
        <jsp:include page="/views/template/left.jsp"></jsp:include>
     </div>
-    <div class="col-sm-8 text-center"> 
+    <div class="col-sm-8 main "> 
     	<jsp:include page="${requestScope.url}"></jsp:include>
     </div>
     <div class="col-sm-2 sidenav">
@@ -35,9 +35,10 @@
     </div>
   </div>
 </div>
-		<footer class="container-fluid text-center">
+<div class="wrap">
+	<footer class="container-fluid text-center">
   <jsp:include page="/views/template/footer.jsp"></jsp:include>
 </footer>
-
+</div>
 </body>
 </html>
