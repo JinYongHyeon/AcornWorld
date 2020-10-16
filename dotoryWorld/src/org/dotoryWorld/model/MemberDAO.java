@@ -199,7 +199,7 @@ public class MemberDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql="select id from member ";
+			String sql="select id from dotorylist";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -207,7 +207,9 @@ public class MemberDAO {
 				mvo.setId(rs.getString("id"));
 				list.add(mvo);
 			}
+			System.out.println(list.size());
 		} finally {
+			closeAll(rs, pstmt, con);
 			// TODO: handle finally clause
 		}
 		return list;

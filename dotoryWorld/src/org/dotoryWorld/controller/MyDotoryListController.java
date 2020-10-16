@@ -12,7 +12,7 @@ public class MyDotoryListController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setAttribute("myDotoryList", MemberDAO.getInstance().mydotorylist());
 		request.setAttribute("url","/views/member/mydotory-list.jsp");
-		return "/views/torihomepage/tory-home.jsp";
+		return "/views/member/mydotory-list.jsp";
 	}
 }
 
