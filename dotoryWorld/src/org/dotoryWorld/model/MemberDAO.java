@@ -32,7 +32,7 @@ public class MemberDAO {
 		closeAll(pstmt, con);
 	}
 
-
+	// 회원 탈퇴 - 유리
 	public void deleteMember(String id) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
