@@ -181,14 +181,20 @@ public class MemberDAO {
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
+		String Photo = null;
 		try {
 			con = dataSource.getConnection();
 			sql.append("SELECT profile_photo FROM member where id = ?");
-			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setNString(1, dotoryId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Photo = rs.getString(1);
+			}
 		}finally {
 			closeAll(pstmt, con);
 		}
-		return dotoryId;
+		return Photo;
 	}
 	
 }
