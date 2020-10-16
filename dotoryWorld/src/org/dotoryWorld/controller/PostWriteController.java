@@ -13,16 +13,19 @@ public class PostWriteController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
-		if(session==null||session.getAttribute("mvo")==null||request.getMethod().equals("POST")==false){
+		/*if(session==null||session.getAttribute("mvo")==null||request.getMethod().equals("POST")==false){
 			return "redirect:index.jsp";
-		}
+		}*/
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 				
 		PostVO pvo=new PostVO();
 		pvo.setPostTitle(title);
 		pvo.setPostContent(content);
-		pvo.setMemberVO((MemberVO)session.getAttribute("mvo"));		
+		MemberVO mvo = new MemberVO();
+		mvo.setId("user1");
+		pvo.setMemberVO(mvo);
+		//pvo.setMemberVO((MemberVO)session.getAttribute("mvo"));		
 		PostDAO.getInstance().postWrite(pvo);		
 		String path="redirect:front?command=PostDetailNoHits&no="+pvo.getPostNo();
 		return path;

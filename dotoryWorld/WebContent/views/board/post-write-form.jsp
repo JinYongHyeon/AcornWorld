@@ -39,7 +39,7 @@ $(function(){
       
       //저장버튼 클릭시 form 전송
       $("#postWrite").click(function(){
-          oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+          oEditors.getById["postContent"].exec("UPDATE_CONTENTS_FIELD", []);
           $("#frm").submit();
       });
 });
@@ -48,8 +48,8 @@ $(function(){
 </head>
 <body>
   <form action="${pageContext.request.contextPath}/front" id="frm" method="post" >
-  <input type="hidden" name="command" value="writePost">
-   <table class="table" >
+  <input type="hidden" name="command" value="postWrite">
+   <table class="table" >\
     <tr>
     <td>제목 &nbsp;&nbsp;
      <input type="text" name="title" placeholder="게시글 제목을 입력하세요" required="required">
