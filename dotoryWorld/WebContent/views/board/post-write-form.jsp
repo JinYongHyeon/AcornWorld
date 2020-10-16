@@ -38,7 +38,7 @@ $(function(){
       });
       
       //저장버튼 클릭시 form 전송
-      $("#save").click(function(){
+      $("#postWrite").click(function(){
           oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
           $("#frm").submit();
       });
@@ -47,7 +47,7 @@ $(function(){
   
 </head>
 <body>
-  <form action="${pageContext.request.contextPath}/front" method="post" >
+  <form action="${pageContext.request.contextPath}/front" id="frm" method="post" >
   <input type="hidden" name="command" value="writePost">
    <table class="table" >
     <tr>
@@ -62,7 +62,7 @@ $(function(){
     </tr> 
      </table>    
      <div class="btnArea">
-     <button type="submit" class="btn" >확인</button>  
+     <button type="button" id="postWrite" class="btn" >확인</button>  
      <button type="reset" class="btn" >취소</button>   
     </div>  
   </form>

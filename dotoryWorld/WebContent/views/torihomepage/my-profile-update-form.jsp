@@ -18,11 +18,10 @@
 	<input type="hidden" id="path"
 		value="${pageContext.request.contextPath}">
 	<div class="row" id="toryProfileImgForm">
-		<div class="col-sm-8 offset-2">
-
-			<div id="toryProfileImgTilte">
+			<div class="col-sm-12" id="toryProfileImgTilte">
 				<h1>프로필 사진 선택</h1>
 			</div>
+		<div class="col-sm-8 offset-2">
 			<div id="toryProfileImgMainForm">
 				<div class="toryProfileImg">
 					<svg width="100px" height="100px" style="color: #999"

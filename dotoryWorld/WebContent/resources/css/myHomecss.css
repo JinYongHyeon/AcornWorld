@@ -68,26 +68,44 @@
 #toryProfileImgForm {
 	width: 1000px;
 	height: 700px;
-	border: 1px solid #000;
+	border: 1px solid #f9f9f9;
+	box-shadow:0px 0px 13px 2px #000;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%)
 }
 
+#toryProfileImgForm #toryProfileImgTilte{
+	position: absolute;
+	top:0;
+	padding:30px;
+	border-bottom:1px solid #999;
+}
+
+#toryProfileImgForm #toryProfileImgTilte h1{
+	font-size:24px;
+}
+
+#toryProfileImgMainForm .toryProfileUpload #profileUploadForm input[type=file]{
+	margin-top:15px;
+}
+
 #toryProfileImgForm .toryProfileUploadButton{
 	position: absolute;
 	bottom:0;
 	padding:30px;
+	border-top:1px solid #999;
 }
 #toryProfileImgForm .toryProfileUploadButton input{
 	padding:10px;
 	border-radius:5px;
 }
 #toryProfileImgForm .toryProfileUploadButton input[value='취소']{
-	width:150px;
+	width:110px;
 	padding-left:15px;
 	padding-right:15px;
+	border:none;
 }
 #toryProfileImgForm .toryProfileUploadButton input[value='프로필 사진으로 설정']{
 	background-color:#6ba4ff;
