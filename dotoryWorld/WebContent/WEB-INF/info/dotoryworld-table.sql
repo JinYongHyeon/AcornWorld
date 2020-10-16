@@ -162,7 +162,7 @@ INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hob
 VALUES(hobbypost_no_seq.NEXTVAL,'네이마르는 네이마르다..','네이마르~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 
-
+SELECT category_no,category_name,category_content FROM category WHERE category_no='1';
 
 
 

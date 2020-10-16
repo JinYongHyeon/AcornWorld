@@ -220,6 +220,23 @@ public class PostDAO {
 		return totalCount;
 		}
 	
-
-	
+	// 카테고리 리스트 불러오는 메서드 - 지윤
+	public ArrayList<String> getCategoryList() throws SQLException {
+		ArrayList<String> categoryList=new ArrayList<String>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="SELECT category_name FROM category ORDER BY category_no DESC";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				categoryList.add(rs.getString(1));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return categoryList;
+	}
 }
