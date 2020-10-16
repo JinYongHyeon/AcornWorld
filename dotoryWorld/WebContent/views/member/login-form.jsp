@@ -14,18 +14,18 @@
 </head>
 <body>
 		<c:choose>
-	<c:when test="${sessionScope.mvo==null}">
+	<c:when test="${sessionScope.memberVO==null}">
 	<form method="post" action="${pageContext.request.contextPath}/front">
 	<input type="hidden" name="command" value="login">
-	    <input type="text" name="id"   placeholder="아이디" size="12"> 
-	   <input type="password" name="password"  placeholder="비밀번호" size="12">
+	    <input type="text" name="id"   placeholder="아이디"> 
+	   <input type="password" name="password"  placeholder="비밀번호">
 	    <input type="submit" value="로그인">
 	</form>
 	</c:when>
 	<c:otherwise>
 	<a href="${pageContext.request.contextPath}/index.jsp">홈</a>&nbsp;&nbsp;
 	<a href="${pageContext.request.contextPath}/front?command=WritePostForm">글쓰기</a>&nbsp;&nbsp; 
-	 ${sessionScope.mvo.name}님 &nbsp;&nbsp; 
+	 ${sessionScope.memberVO.name}님 &nbsp;&nbsp; 
 	 <a href="javascript:logout()">로그아웃</a>
 	</c:otherwise>
 	</c:choose>
