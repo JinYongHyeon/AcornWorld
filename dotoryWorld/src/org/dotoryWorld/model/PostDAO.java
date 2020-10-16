@@ -50,18 +50,19 @@ public class PostDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
+			System.out.println(hobbyBoardNo+"번호확인"+pagingBean.getEndRowNumber());
 			con=getConnection(); 
 			StringBuilder sql=new StringBuilder();	
-			System.out.println(hobbyBoardNo); // test용
 			System.out.println("postDAO 실행");
 			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted,M.id,M.name FROM( ");
-			sql.append("SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount,to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post");
-			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ? AND B.hobbyboard_no = ?");	
+			sql.append("SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
+			sql.append("to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post WHERE hobbyboard_no = ? ");
+			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ? ");	
 			pstmt=con.prepareStatement(sql.toString());	
 			//start, endRowNumber를 할당한다
-			pstmt.setInt(1, pagingBean.getStartRowNumber());
-			pstmt.setInt(2, pagingBean.getEndRowNumber());
-			pstmt.setString(3, hobbyBoardNo);
+			pstmt.setString(1, hobbyBoardNo);
+			pstmt.setInt(2, pagingBean.getStartRowNumber());
+			pstmt.setInt(3, pagingBean.getEndRowNumber());
 			rs=pstmt.executeQuery();	
 			//목록에서 게시물 content는 필요없으므로 null로 setting
 			//select no,title,time_posted,hits,id,name
@@ -75,9 +76,10 @@ public class PostDAO {
 				mvo.setId(rs.getString(5));
 				mvo.setName(rs.getString(6));
 				pvo.setMemberVO(mvo);
+				System.out.println(pvo);
 				list.add(pvo);			
 			}
-			//System.out.println(list); // test 용
+			System.out.println(list+"test"); // test 용
 		}finally{
 			closeAll(rs,pstmt,con);
 		}

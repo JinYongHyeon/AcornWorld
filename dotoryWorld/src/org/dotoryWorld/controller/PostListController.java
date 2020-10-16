@@ -17,7 +17,7 @@ public class PostListController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String hobbyBoardNo=request.getParameter("hobbyBoardNo");
-		System.out.println("postListC 실행");
+		System.out.println("postListC 실행-1"); 
 		System.out.println(hobbyBoardNo); // test 용
 		int totalPostCount = PostDAO.getInstance().getTotalPostCount(hobbyBoardNo);
 		System.out.println(totalPostCount); // test 용
