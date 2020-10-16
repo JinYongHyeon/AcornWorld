@@ -45,17 +45,16 @@
 				<div class="w300" style="padding-right: 10px">
 					<input type="text" class="form-control" name="keyWord" id="keyWord">
 				</div>
-
-				<button class="btn btn-primary" type="button" id="btnSearch"
-					onclick="searchFunction()">
-					검색<span class="glyphicon glyphicon-search"> </span>
-				</button>
-				<hr>
-			</div>
-		</div>
-	</form>
-	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <button class="btn btn-primary" type="button" id="btnSearch"
+               onclick="searchFunction()">
+               검색<span class="glyphicon glyphicon-search"> </span>
+            </button>
+            <hr>
+         </div>
+      </div>
+   </form>
+   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <div class="container">
 <!-- 게시판 정보가 들어가는 부분 -->
 <div class="row boardInfo">
@@ -138,3 +137,4 @@ ${pb.nowPage }
 </div> <!-- container -->
 </body> 
 </html>
+

@@ -21,8 +21,9 @@
 			location.href="${pageContext.request.contextPath}/front?command=addDotory"
 		} 
 	}
-		
-		
 	</script>
+	 <button type="button" onclick="location.href='${pageContext.request.contextPath }/front?command=myDotoryList'">내 도토리들 보기</button>
+	
+	
 </body>
 </html>

@@ -35,39 +35,39 @@
 		String dftFilePath = request.getSession().getServletContext().getRealPath("/");
 		//파일 기본경로 _ 상세경로
 		String filePath = dftFilePath + "resources" + File.separator + "img" + File.separator;
-		String filePath2 =  "C:"+File.separator+"Users"+File.separator+"yonghyeon"+File.separator+"DotoryWorld"+File.separator+"dotoryWorld"+File.separator+"WebContent"+File.separator+"resources"+File.separator+"img"+File.separator;
+		//String filePath2 =  "C:"+File.separator+"Users"+File.separator+"yonghyeon"+File.separator+"DotoryWorld"+File.separator+"dotoryWorld"+File.separator+"WebContent"+File.separator+"resources"+File.separator+"img"+File.separator;
 		File file = new File(filePath);
-		File file2 = new File(filePath2);
+		//File file2 = new File(filePath2);
 		if (!file.exists()) {
 			file.mkdirs();
-		}else if(!file2.exists()){
-			file2.mkdirs();
-		}
+		}//else if(!file2.exists()){
+		//	file2.mkdirs();
+	//	}
 		String realFileNm = "";
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
 		String today = formatter.format(new java.util.Date());
 		realFileNm = today + UUID.randomUUID().toString() + filename.substring(filename.lastIndexOf("."));
 		String rlFileNm = filePath + realFileNm;
-		String rlFileNm2 = filePath2 + realFileNm;
+		//String rlFileNm2 = filePath2 + realFileNm;
 		///////////////// 서버에 파일쓰기 ///////////////// 
 		InputStream is = request.getInputStream();
 		OutputStream os = new FileOutputStream(rlFileNm);
-		OutputStream os2 = new FileOutputStream(rlFileNm2);
+		//OutputStream os2 = new FileOutputStream(rlFileNm2);
 		int numRead;
 		byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
 		while ((numRead = is.read(b, 0, b.length)) != -1) {
 			os.write(b, 0, numRead);
-			os2.write(b, 0, numRead);
-		System.out.println(filePath2);
+		//	os2.write(b, 0, numRead);
+		//System.out.println(filePath2);
 			
 		}
 		if (is != null) {
 			is.close();
 		}
 		os.flush();
-		os2.flush();
+		//os2.flush();
 		os.close();
-		os2.close();
+		//os2.close();
 		///////////////// 서버에 파일쓰기 /////////////////
 
 		// 정보 출력

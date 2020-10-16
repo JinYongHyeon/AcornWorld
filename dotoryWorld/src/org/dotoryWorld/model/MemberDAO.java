@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -174,22 +175,57 @@ public class MemberDAO {
 			closeAll(pstmt, con);
 		}
 	}
-	
-	// id로 profilePhoto 정보 가져오기 - 정재우
-	public String findProfilePhoto(String dotoryId) throws SQLException {
+
+	// 회원 정보 수정 - 정재우
+	public void updateMemberInfo(MemberVO updateMember) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt =null;
-		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
 		try {
 			con = dataSource.getConnection();
-			sql.append("SELECT profile_photo FROM member where id = ?");
-			
+			sql.append("update member set password=?,name=?,");
+			sql.append("address=?,email=? where id=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1,updateMember.getPassword());
+			pstmt.setString(2,updateMember.getName());
+			pstmt.setString(3,updateMember.getAddress());
+			pstmt.setString(4,updateMember.getEmail());
+			pstmt.setString(5,updateMember.getId());
+			pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt, con);
 		}
-		return dotoryId;
+		
+	}
+	// 내 도토리들 조회하기 - 배배
+	public ArrayList<MemberVO> mydotorylist() throws SQLException{
+		ArrayList<MemberVO> list= new ArrayList<MemberVO>();
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql="select id from dotorylist";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				MemberVO mvo=new MemberVO();
+				mvo.setId(rs.getString("id"));
+				list.add(mvo);
+			}
+			System.out.println(list.size());
+		} finally {
+			closeAll(rs, pstmt, con);
+			// TODO: handle finally clause
+		}
+		return list;
 	}
 	
 }
+
+
+
+
+
+
 
