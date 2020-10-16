@@ -157,5 +157,22 @@ public class MemberDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	
+	// id로 profilePhoto 정보 가져오기 - 정재우
+	public String findProfilePhoto(String dotoryId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		try {
+			con = dataSource.getConnection();
+			sql.append("SELECT profile_photo FROM member where id = ?");
+			
+		}finally {
+			closeAll(pstmt, con);
+		}
+		return dotoryId;
+	}
+	
 }
 
