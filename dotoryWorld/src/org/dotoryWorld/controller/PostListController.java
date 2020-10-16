@@ -37,7 +37,7 @@ public class PostListController implements Controller {
 		// 세션 의미부여
 		HttpSession session = request.getSession();
 		// 임시 세션 추후 삭제
-		session.setAttribute("mvo", new MemberVO("java","java","java","java","java","java","java","java","java"));
+		session.setAttribute("mvo", new MemberVO("user2","1234","사용자2","판교","user2@gmail.com","도토리2","도토리2입니다",null,"도토리"));
 		session.setAttribute("noList",new ArrayList<String>());
 		//request.setAttribute("url", "/board/list.jsp");		
 		//return "/template/layout.jsp";

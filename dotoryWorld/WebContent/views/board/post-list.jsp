@@ -31,7 +31,6 @@
 </head>
 <body>
 <!-- 게시물 검색-->
-<<<<<<< HEAD
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	<input type="hidden" name="searchFiled" value="${postVO.searchFiled }" />
