@@ -6,26 +6,22 @@
 		<form method="post" action="${pageContext.request.contextPath}/front">
 			<input type="hidden" name="command" value="login">
 			<div class="form-group">
-				<label for="id">ID:</label> <input type="text" 
-					id="id" placeholder="Enter id" name="id" required="required">
+				ID:<input type="text" id="id" placeholder="Enter id" name="id"
+					required="required">
 			</div>
 			<div class="form-group">
-				<label for="password">Password:</label> <input type="password"
-					 id="password" placeholder="Enter password"
-					name="password" required="required">
+				Password:<input type="password" id="password"
+					placeholder="Enter password" name="password" required="required">
 			</div>
 			<input type="submit" value="Login">
 		</form>
-		<a
-			href="${pageContext.request.contextPath}/front?command=registerMemberForm">회원가입</a>
+		<a href="${pageContext.request.contextPath}/front?command=registerMemberForm">회원가입</a>
 		<br>
 	</c:when>
 	<c:otherwise>
-						${sessionScope.memberVO.name}님<br>
+		${sessionScope.memberVO.name}님<br>
 		<a href="${pageContext.request.contextPath}/front?command=logout">로그아웃</a>
 		<br>
-		<a
-			href="${pageContext.request.contextPath}/front?command=updateMemberInfoForm">회원
-			정보 수정</a>
+		<a href="${pageContext.request.contextPath}/front?command=updateMemberInfoForm">회원 정보 수정</a>
 	</c:otherwise>
 </c:choose>

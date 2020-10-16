@@ -166,15 +166,16 @@ public class PostDAO {
 		try {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("Insert into hobby_post(hobbypost_no,hobby_title,hobby_content,id,hobbypost_date) ");
-			sql.append("values(board_seq.nextval,?,?,?,sysdate)");
+			//
+			sql.append("INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id) ");
+			sql.append("VALUES(hobbypost_no_seq.NEXTVAL,?,?,sysdate,1,?)");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, vo.getPostTitle());
 			pstmt.setString(2, vo.getPostContent());
 			pstmt.setString(3, vo.getMemberVO().getId());
 			pstmt.executeUpdate();
 			pstmt.close();
-			pstmt = con.prepareStatement("select board_seq.currval from dual");
+			pstmt = con.prepareStatement("select hobbypost_no_seq.currval from dual");
 			rs = pstmt.executeQuery();
 			if (rs.next())
 				vo.setPostNo(rs.getString(1));

@@ -126,41 +126,42 @@
 		<input type="hidden" name="command" value="registerMember">
 		<div class="form-group">
 			아이디 <input type="text" id="memberId" placeholder="Enter id" name="id"
-				required="required"> <span id="checkResult"></span> <br>
+				class="form-control" required="required"> <span id="checkResult"></span> <br>
 		</div>
+		<div class="line-box"> <div class="line"></div> </div>
 		<div class="form-group">
-			비밀번호 <input type="password" id="memberPass"
+			비밀번호 <input type="password" id="memberPass" class="form-control"
 				placeholder="Enter Password" name="password" required="required">
 		</div>
 		<div class="form-group">
-			비밀번호 확인<input type="password" id="memberPassCheck"
+			비밀번호 확인<input type="password" id="memberPassCheck" class="form-control"
 				name="passwordCheck" required="required"> <span
 				id="checkPassResult"></span> <br>
 		</div>
 		<div class="form-group">
-			이름<input type="text" placeholder="Enter name" name="name"
+			이름<input type="text" placeholder="Enter name" name="name" class="form-control"
 				required="required">
 		</div>
 		<div class="form-group">
-			주소<input type="text" id="address" placeholder="Enter address"
+			주소<input type="text" id="address" placeholder="Enter address" class="form-control"
 				name="address" required="required"> <input type="button"
 				onclick="execDaumPostcode()" value="우편번호 찾기"><br>
 		</div>
 		<div class="form-group">
-			상세주소<input type="text" id="addressDetail" placeholder="Enter address"
+			상세주소<input type="text" id="addressDetail" placeholder="Enter address" class="form-control"
 				name="addressDetail" required="required">
 		</div>
 		<div class="form-group">
-			이메일 <input type="text" placeholder="Enter email" name="email"
+			이메일 <input type="text" placeholder="Enter email" name="email" class="form-control"
 				required="required">
 		</div>
 		<div class="form-group">
-			닉네임 <input type="text" placeholder="Enter nickname" name="nickname"
+			닉네임 <input type="text" placeholder="Enter nickname" name="nickname" class="form-control"
 				required="required"> <span id="checkResult"></span> <br>
 		</div>
 		<div class="form-group">
 			소개글
-			<textarea name="profileContent" required="required"
+			<textarea name="profileContent" required="required" class="form-control" class="form-control"
 				placeholder="소개글을 입력하세요"></textarea>
 			<br>
 		</div>
