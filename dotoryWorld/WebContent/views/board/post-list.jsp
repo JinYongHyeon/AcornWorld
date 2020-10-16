@@ -21,17 +21,6 @@
 </div>
 </div>
 <!-- 게시글 리스트가 나열되는 부분 -->
-<!-- controller 작동을 위해 임시로 만든 버튼 -->
-<form action="${pageContext.request.contextPath}/front">
-	<input type="hidden" name="command" value="postList">
-	<input type="hidden" name="hobbyboardNo" value="2">
-	<input type="submit" value="로딩">
-</form>
-<form action="${pageContext.request.contextPath}/front">
-	<input type="hidden" name="command" value="postList">
-	<input type="hidden" name="hobbyboardNo" value="1">
-	<input type="submit" value="로딩">
-</form>
 <div class="row boardMain">
 <div class="col-sm-1"></div> <!-- 빈공간 -->
 <div class="col-sm-10">
@@ -81,13 +70,13 @@ ${pb.nowPage }
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">
 			<li>
-				<a href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a>
+				<a href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}&">&laquo;</a>
 			</li>
 		</c:if>
 		<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
 			<c:choose>
 				<c:when test="${i != pb.nowPage}">
-					<li><a href="front?command=postList&pageNo=${i}">${i}</a></li>
+					<li><a href="front?command=postList&pageNo=${i}&hobbyBoardNo=1">${i}</a></li>
 				</c:when>
 				<c:otherwise>
 					<li class="active"><a href="#">${i}</a></li>
