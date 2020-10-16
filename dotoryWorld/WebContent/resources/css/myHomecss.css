@@ -1,17 +1,128 @@
 @charset "UTF-8";
 
-#toryProfileImgMainForm .toryProfileImg img{
-	width:400px;
+
+
+/* 미니홈피 프로필 스타일 */
+#toryProfileForm a {
+	text-decoration: none;
+	color: inherit;
+	width: 100%;
+	height: 100px;
+	line-height: 100px;
+	position: relative;
+	float: left;
+	background-color: #FFF9C4;
+	text-align: center;
 }
+
+#toryProfileForm table {
+	width: 100%;
+	text-align: center;
+}
+
+#toryProfileForm table tr td, #toryProfileForm table tr th {
+	border: 1px solid #999;
+}
+
+#toryProfileForm table tr th {
+	width: 25%;
+}
+
+#toryProfileForm table tr td {
+	width: 75%;
+}
+
+#toryProfileForm table tr td img {
+	border-radius: 100%;
+	border: 1px solid #000;
+	padding: 15px;
+	box-shadow: 2px 2px #000;
+}
+
+/* 미니홈피 업데이트 폼 스타일*/
+#toryProfileUpdateForm table {
+	width: 100%;
+	text-align: center;
+	display: none;
+}
+
+#toryProfileUpdateForm table tr td, #toryProfileUpdateForm table tr th {
+	border: 1px solid #999;
+}
+
+#toryProfileUpdateForm table tr td {
+	width: 75%;
+}
+
+#toryProfileUpdateForm table tr th {
+	width: 25%;
+}
+
+#toryProfileUpdateForm table tr td input {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+/* 미니홈피 이미지 등록 폼 */
+#toryProfileImgForm {
+	width: 1000px;
+	height: 700px;
+	border: 1px solid #000;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%)
+}
+
+#toryProfileImgForm .toryProfileUploadButton{
+	position: absolute;
+	bottom:0;
+	padding:30px;
+}
+#toryProfileImgForm .toryProfileUploadButton input{
+	padding:10px;
+	border-radius:5px;
+}
+#toryProfileImgForm .toryProfileUploadButton input[value='취소']{
+	width:150px;
+	padding-left:15px;
+	padding-right:15px;
+}
+#toryProfileImgForm .toryProfileUploadButton input[value='프로필 사진으로 설정']{
+	background-color:#6ba4ff;
+	border:none;
+	color:#fff;
+	font-weight:bold;
+}
+
+
+#toryProfileImgForm #toryProfileImgMainForm {
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+#toryProfileImgForm #toryProfileImgMainForm .toryProfileText {
+	color: #999F
+}
+#toryProfileImgMainForm .toryProfileImg img {
+	width: 400px;
+	height: 400px;
+}
+
 
 .footer {
 	position: absolute;
 	text-align: center;
 	background-color: #FFF9C4;
 	padding: 25px;
-	left:50%;
+	left: 50%;
 	bottom: 0px;
-	transform:translate(-50%,0);
+	transform: translate(-50%, 0);
 	height: 100px;
 	width: 70%;
 	border-top: 5px solid #F57F17;
@@ -28,9 +139,9 @@
 
 .main {
 	background-color: #FFF9C4;
-	transform:translate(-50%,0);
+	transform: translate(-50%, 0);
 	height: 100%;
 	width: 70%;
-	left:50%;
+	left: 50%;
 	position: absolute;
 }

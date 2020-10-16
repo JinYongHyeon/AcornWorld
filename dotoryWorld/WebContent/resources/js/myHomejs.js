@@ -28,6 +28,7 @@ $(document).ready(function(){
 //프로필이미지 보여주기
 function profileFileSee(){
 	$("#toryProfileImgMainForm .toryProfileImg").html("");
+	$("#toryProfileImgMainForm .toryProfileText").html("");
 			var reader = new FileReader();//읽기
 			
 			reader.onload = function(event){

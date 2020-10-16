@@ -9,7 +9,6 @@ public class ToryProfileUpdateController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("여겨옴???");
 		String ninkName = request.getParameter("nickName");
 		String profileContent = request.getParameter("profileContent");
 		//String id = request.getParameter("id");

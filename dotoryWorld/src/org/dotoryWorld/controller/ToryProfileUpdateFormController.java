@@ -7,8 +7,7 @@ public class ToryProfileUpdateFormController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return "redirect:views/torihomepage/my-profile-update-form.jsp";
 	}
 
 }
