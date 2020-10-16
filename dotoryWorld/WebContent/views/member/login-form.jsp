@@ -14,7 +14,9 @@
 </head>
 <body>
 		<c:choose>
-	<c:when test="${sessionScope.mvo==null}">
+	
+	<c:when test="${sessionScope.user==null}">
+		<h1>${sessionScope.user ==null}님 안녕하세요</h1>
 	<form method="post" action="${pageContext.request.contextPath}/front">
 	<input type="hidden" name="command" value="login">
 	    <input type="text" name="id"   placeholder="아이디" size="12"> 
@@ -23,9 +25,10 @@
 	</form>
 	</c:when>
 	<c:otherwise>
+	<h1>${sessionScope.user ==null}님 안녕하세요</h1>
 	<a href="${pageContext.request.contextPath}/index.jsp">홈</a>&nbsp;&nbsp;
 	<a href="${pageContext.request.contextPath}/front?command=WritePostForm">글쓰기</a>&nbsp;&nbsp; 
-	 ${sessionScope.mvo.name}님 &nbsp;&nbsp; 
+	 ${sessionScope.user.name}님 &nbsp;&nbsp; 
 	 <a href="javascript:logout()">로그아웃</a>
 	</c:otherwise>
 	</c:choose>
