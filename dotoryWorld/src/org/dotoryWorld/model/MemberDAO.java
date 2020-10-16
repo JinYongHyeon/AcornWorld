@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -190,6 +191,35 @@ public class MemberDAO {
 		}
 		return dotoryId;
 	}
+	// 내 도토리들 조회하기 - 배배
+	public ArrayList<MemberVO> mydotorylist() throws SQLException{
+		ArrayList<MemberVO> list= new ArrayList<MemberVO>();
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql="select id from dotorylist";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				MemberVO mvo=new MemberVO();
+				mvo.setId(rs.getString("id"));
+				list.add(mvo);
+			}
+			System.out.println(list.size());
+		} finally {
+			closeAll(rs, pstmt, con);
+			// TODO: handle finally clause
+		}
+		return list;
+	}
 	
 }
+
+
+
+
+
+
 
