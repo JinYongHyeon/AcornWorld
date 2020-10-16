@@ -87,7 +87,7 @@
 				<td><input type="text" name="updateName"></td>
 			</tr>
 			<tr>
-				<td rowspan="3" align = "left">주소</td>
+				<td rowspan="3" align ="left">주소</td>
 				<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
 			</tr>
 			<tr>
