@@ -173,5 +173,5 @@ INSERT INTO dotorylist VALUES('user4','user1');
 SELECT * from HOBBYBOARD
 
 select * from dotorylist;
-
-
+select * from member
+delete from member where password='123'

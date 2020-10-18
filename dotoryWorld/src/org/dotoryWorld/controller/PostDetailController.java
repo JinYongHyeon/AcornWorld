@@ -31,9 +31,8 @@ public class PostDetailController implements Controller {
 		}
 		PostVO vo = PostDAO.getInstance().getPostingByNo(no);		
 		request.setAttribute("pvo", vo);
-		//request.setAttribute("url", "/board/post-detail.jsp");
-		//return "/template/layout.jsp";
-		return "/views/board/post-detail-form.jsp";
+		request.setAttribute("url", "/views/board/post-detail-form.jsp");
+		return "/views/template/main-layout.jsp";
 	}
 
 }

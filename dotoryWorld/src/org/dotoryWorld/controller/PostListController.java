@@ -39,9 +39,8 @@ public class PostListController implements Controller {
 		// 임시 세션 추후 삭제
 		//session.setAttribute("mvo", new MemberVO("user2","1234","사용자2","판교","user2@gmail.com","도토리2","도토리2입니다",null,"도토리"));
 		//session.setAttribute("noList",new ArrayList<String>());
-		//request.setAttribute("url", "/board/list.jsp");		
-		//return "/template/layout.jsp";
-		return "/views/board/post-list.jsp";
+		request.setAttribute("url", "/views/board/post-list.jsp");		
+		return "/views/template/main-layout.jsp";
 	}
 
 }
