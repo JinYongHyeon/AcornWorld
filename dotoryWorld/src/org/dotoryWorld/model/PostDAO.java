@@ -108,7 +108,7 @@ public class PostDAO {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append("select b.hobby_title,to_char(b.hobbypost_date,'YYYY.MM.DD  HH24:MI:SS') as time_posted");
-			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name");
+			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name,b.hobbyboard_no");
 			sql.append(" from hobby_post b,member m");
 			sql.append(" where b.id=m.id and b.hobbypost_no=?");
 			pstmt = con.prepareStatement(sql.toString());
@@ -121,6 +121,9 @@ public class PostDAO {
 				pvo.setPostContent(rs.getString("hobby_content"));
 				pvo.setViewCount(rs.getInt("hobbypost_viewcount"));
 				pvo.setPostDate(rs.getString("time_posted"));
+				BoardVO bvo = new BoardVO();
+				bvo.setBoardNo(rs.getString("hobbyboard_no"));
+				pvo.setBoardVO(bvo);
 				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString("id"));
 				mvo.setName(rs.getString("name"));
@@ -206,14 +209,20 @@ public class PostDAO {
 	 * @param vo
 	 * @throws SQLException
 	 */
-	/*
-	 * public void updatePosting(PostVO vo) throws SQLException{ Connection
-	 * con=null; PreparedStatement pstmt=null; try{ con=getConnection(); pstmt=con.
-	 * prepareStatement("update board_paging set title=?,content=? where no=?");
-	 * pstmt.setString(1, vo.getTitle()); pstmt.setString(2, vo.getContent());
-	 * pstmt.setString(3, vo.getNo()); pstmt.executeUpdate(); }finally{
-	 * closeAll(pstmt,con); } }
-	 */
+	
+	public void updatePosting(PostVO vo) throws SQLException{ Connection
+		con=null; PreparedStatement pstmt=null;
+		try{
+			con=getConnection();
+			pstmt=con.prepareStatement("update hobby_post set hobby_title=?,hobby_content=? where hobbypost_no=?");
+			pstmt.setString(1, vo.getPostTitle());
+			pstmt.setString(2, vo.getPostContent());
+			pstmt.setString(3, vo.getPostNo()); pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
+	}
+	
 	public int getTotalPostCount(String hobbyBoardNo) throws SQLException {
 		int totalCount = 0;
 		Connection con = null;
