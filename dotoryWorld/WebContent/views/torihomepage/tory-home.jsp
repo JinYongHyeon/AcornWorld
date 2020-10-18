@@ -10,9 +10,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-	<!-- 로그인 세션 완료 시 미니홈페이지 주인  놀러온 손님이 친구일 경우 안보이게 하기 -->
+	<!-- 삭제해야함  작성일 : 20년 10월 18일 -->
 	<button type="button" onclick="addDotory()">친구추가</button>
 	<script type="text/javascript">
 	//도토리 친구추가	

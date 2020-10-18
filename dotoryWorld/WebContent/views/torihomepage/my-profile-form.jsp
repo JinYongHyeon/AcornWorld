@@ -1,59 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/myHomecss.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<div class="row">
-		<div class="col-sm-8 offset-2" id="toryProfileForm">
-			<table>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-				<tr>
-					<th colspan="2">프로필</th>
-				</tr>
 
-				<tr>
-					<th>프로필 사진</th>
-					<td><div class="toryProfileImg">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/profile/profileDefualt.png">
-						</div></td>
-				</tr>
-				<tr>
-					<th>닉네임</th>
-					<td>
-						<div class="toryProfileNick">
-							<span>네이마르</span>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>소개글</th>
-					<td><div class="toryProfileContent">
-							<span>소개입니다. </span>
-						</div></td>
-				</tr>
-			</table>
-			<a
-				href="${pageContext.request.contextPath}/front?command=toryProfileUpdateForm">프로필
-				수정</a>
-		</div>
+<div class="row">
+	<div class="col-sm-8 offset-2" id="toryProfileForm">
+		<table>
 
+			<tr>
+				<th colspan="2">프로필</th>
+			</tr>
+
+			<tr>
+				<th>프로필 사진</th>
+				<td><div class="toryProfileImg">
+						<c:choose>
+							<c:when test="${sessionScope.mvo.profilePhoto == null}">
+								<img
+									src="${pageContext.request.contextPath}/resources/img/profile/profileDefualt.png">
+							</c:when>
+							<c:otherwise>
+								<img src="${pageContext.request.contextPath}/resources/img/profile/${sessionScope.mvo.profilePhoto}">
+							</c:otherwise>
+						</c:choose>
+
+					</div></td>
+			</tr>
+			<tr>
+				<th>닉네임</th>
+				<td>
+					<div class="toryProfileNick">
+						<span>${sessionScope.mvo.nickname}</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>소개글</th>
+				<td><div class="toryProfileContent">
+						<span>${sessionScope.mvo.profileContent}</span>
+					</div></td>
+			</tr>
+		</table>
+		<a
+			href="${pageContext.request.contextPath}/front?command=toryProfileUpdateForm">프로필
+			수정</a>
 	</div>
 
-</body>
-</html>
+</div>
+

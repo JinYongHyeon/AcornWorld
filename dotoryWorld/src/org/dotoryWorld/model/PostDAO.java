@@ -284,4 +284,90 @@ public class PostDAO {
 		}
 		return boardList;
 	}
+	
+	/**
+	 * 모든 게시물수[어드민 게시물 관리]
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getAllCountPost() throws SQLException {
+		int count=0;
+		Connection con=null;
+		PreparedStatement pstmt= null;
+		ResultSet rs= null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT COUNT(*) FROM hobby_post";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}finally {
+			closeAll(rs,pstmt,con);
+		}
+		return count;
+	}
+	
+	/**
+	 * 어드민 게시물 관리 페이지
+	 * @param paginBean
+	 * @return
+	 * @throws SQLException
+	 */
+	public ArrayList<PostVO> getAllPostList(PagingBean paginBean) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt= null;
+		ResultSet rs = null;
+		ArrayList<PostVO> pvoList = new ArrayList<PostVO>();
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sb= new StringBuilder();
+			sb.append("SELECT rnum,hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount FROM ");
+			sb.append("(SELECT hobbypost_no,ROW_NUMBER() OVER(ORDER BY hobbypost_no ASC) AS rnum,hobby_title,id,TO_CHAR(hobbypost_date,'yyyy-mm-dd') as hobbypost_date,hobbypost_viewcount");
+			sb.append(" FROM hobby_post");
+			sb.append(")h WHERE rnum BETWEEN ? AND ?");
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setInt(1, paginBean.getStartRowNumber());
+			pstmt.setInt(2, paginBean.getEndRowNumber());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				PostVO pvo = new PostVO();
+				pvo.setPostNo(rs.getString("hobbypost_no"));
+				pvo.setPostTitle(rs.getString("hobby_title"));
+				
+				MemberVO mvo = new MemberVO();
+				mvo.setId(rs.getString("id"));
+				pvo.setMemberVO(mvo);
+				
+				pvo.setPostDate(rs.getString("hobbypost_date"));
+				pvo.setViewCount(rs.getInt("hobbypost_viewcount"));
+				
+				pvoList.add(pvo);
+				
+			}
+			}finally {
+			closeAll(rs,pstmt,con);
+		}
+		return pvoList;
+	}
+	
+	/**
+	 * 어드민 게시물 삭제
+	 * @param no
+	 * @throws SQLException
+	 */
+	public void adminManageDelete(int no) throws SQLException {
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql="DELETE FROM hobby_post WHERE hobbypost_no =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 }
