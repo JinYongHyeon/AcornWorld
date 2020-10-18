@@ -72,6 +72,8 @@ public class HandlerMapping {
 			controller = new ReportPostRemoveController();
 		} else if (command.contentEquals("reportPostDetail")) { //신고게시물 상세
 			controller = new ReportPostDetailController();
+		} else if(command.contentEquals("toryProfileForm")) {//미니홈피 내 정보 폼
+			controller = new ToryProfileFormController();
 		} else if (command.contentEquals("toryProfileUpdateForm")) { //미니홈피 내 정보 수정 폼
 			controller = new ToryProfileUpdateFormController();
 		} else if (command.contentEquals("toryProfileUpdate")) { //미니홈피 내 정보 수정
@@ -86,6 +88,8 @@ public class HandlerMapping {
 			controller = new MyDotoryListController();
 		}else if(command.contentEquals("addDotory")) { //친구추가
 			controller = new AddDotoryController();
+		}else if(command.contentEquals("adminManageDelete")) {//어드민 게시물 삭제
+			controller = new AdminManageDeleteController();
 		}
 		return controller;
 	}

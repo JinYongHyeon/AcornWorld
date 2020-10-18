@@ -1,0 +1,228 @@
+* {
+	padding: 0;
+	margin: 0 auto;
+	list-style: none;
+	font-family: "맑은고딕";
+}
+
+body {
+	position: relative;
+	min-height: 100vh;
+}
+
+/* 미니홈피 전체 */
+#toryHomeForm {
+	position: absolute;
+	width: 96%;
+	left: 50.8%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* 미니홈피 왼쪽 폼 */
+#toryHomeLeftForm {
+	width: 100%;
+	height: 900px;
+	background-color: #abd3de;
+	border-radius: 10px;
+}
+
+#toryHomeLeftForm::before {
+	content: "";
+	position: absolute;
+	width: 95%;
+	height: 95%;
+	background-color: #f2f2f2;
+	top: 50%;
+	left: 52%;
+	transform: translate(-50%, -50%);
+	border-radius: 10px;
+	z-index: 1
+}
+
+#toryHomeLeftForm .toryHomeIcon {
+	width: 300px;
+	position: absolute;
+	left: 61%;
+	transform: translate(-50%, 0);
+	z-index: 3;
+	margin-top: 25px;
+}
+
+#toryHomeLeftForm .toryHomeIcon img {
+	width: 270px;
+}
+
+#toryHomeLeftForm .toryHomeLeft {
+	width: 90%;
+	height: 85%;
+	background-color: #fff;
+	position: absolute;
+	top: 52%;
+	left: 52%;
+	transform: translate(-50%, -50%);
+	border-radius: 10px;
+	border: 1px solid #c7c7c7;
+	z-index: 2;
+	text-align: center;
+}
+
+#toryHomeLeftForm .toryHomeLeft .toryHomeLeftProfileImg {
+	width: 100%;
+	height: 40%;
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+#toryHomeLeftForm .toryHomeLeft .toryHomeLeftProfileImg img {
+	width: 300px;
+	overflow: hidden;
+}
+
+#toryHomeLeftForm .toryHomeLeft .toryHomeLeftProfileContent {
+	height: 45%;
+	font-weight: bold;
+}
+
+#toryHomeLeftForm .toryHomeLeft .toryHomeLeftNickName {
+	height: 10%;
+}
+
+#toryHomeLeftForm .toryHomeLeft .toryHomeLeftNickName p {
+	margin: 0;
+}
+
+/* 미니홈피 오른쪽  폼*/
+#toryHomeRightForm {
+	width: 100%;
+	height: 900px;
+	background-color: #abd3de;
+	border-radius: 20px;
+}
+
+#toryHomeRightForm::before {
+	content: "";
+	position: absolute;
+	width: 98.5%;
+	height: 95%;
+	background-color: #f2f2f2;
+	top: 50%;
+	left: 49%;
+	transform: translate(-50%, -50%);
+	border-radius: 20px;
+}
+
+#toryHomeRightForm .toryHomeNickTitle {
+	position: relative;
+	margin-top: 37px;
+	margin-left: 25px;
+	color: #2190b2;
+}
+
+#toryHomeRightForm .toryHomeNickTitle h2 {
+	font-weight: bold;
+}
+
+#toryHomeRightForm .toryHomeRight {
+	width: 88%;
+	height: 85%;
+	background-color: #fff;
+	position: absolute;
+	top: 52%;
+	left: 45%;
+	transform: translate(-50%, -50%);
+	border-radius: 20px;
+	border: 1px solid #c7c7c7;
+	z-index: 2;
+	overflow: auto;
+}
+
+#toryHomeRightForm .toryHomeNav {
+	position: absolute;
+	top: 12%;
+	right: 4%;
+}
+
+#toryHomeRightForm .toryHomeNav ul li {
+	width: 150px;
+	height: 60px;
+	background-color: #2190b2;
+	border: 1px solid #8b8785;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin-bottom: 10px;
+	color: #fff;
+	font-weight: bold;
+	position: relative;
+	z-index: 1;
+	cursor: pointer;
+}
+
+#toryHomeRightForm .toryHomeNav ul li:nth-child(1) {
+	border: none;
+	background-color: #fff;
+	color: #000;
+	z-index: 2;
+}
+
+#toryHomeRightForm .toryHomeNav ul li:hover {
+	border: none;
+	background-color: #fff;
+	color: #000;
+	z-index: 2;
+}
+
+#toryHomeRightForm .toryHomeNav ul li a {
+	text-decoration: none;
+	color: inherit;
+	float: right;
+	line-height: 60px;
+	margin-right: 25px;
+}
+
+#toryHomeRightForm .toryHomeNav ul li:nth-child(4) a {
+	margin-right: 14px;
+}
+
+#toryHomeLeftForm #toryHomeRing {
+	position: absolute;
+	width: 100%;
+	height: 100%; right : 0;
+	z-index: 3;
+	right: 0
+}
+
+#toryHomeLeftForm #toryHomeRing ul {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+#toryHomeLeftForm #toryHomeRing ul li {
+	position: absolute;
+	right:-7%;
+	width: 65px;
+	height: 20px;
+	border-radius: 50px;
+	margin-bottom: 15px;
+	background: rgb(148, 148, 148);
+	background: linear-gradient(121deg, rgba(148, 148, 148, 1) 0%,
+		rgba(255, 255, 255, 1) 100%);
+	border: 1px solid #c7c7c7
+}
+
+#toryHomeLeftForm #toryHomeRing ul li:nth-child(1) {
+	top:18%;
+}
+
+#toryHomeLeftForm #toryHomeRing ul li:nth-child(2) {
+	top:25%;
+}
+
+#toryHomeLeftForm #toryHomeRing ul li:nth-child(3) {
+	bottom: 10%;
+}
+
+#toryHomeLeftForm #toryHomeRing ul li:nth-child(4) {
+	bottom: 17%;
+}
