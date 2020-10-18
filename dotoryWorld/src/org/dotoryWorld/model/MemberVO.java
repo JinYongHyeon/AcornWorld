@@ -23,7 +23,6 @@ public class MemberVO {
 		this.name = name;
 	}
 
-
 	public MemberVO(String id, String password, String name, String address, String email, String nickname,
 			String profileContent, String profilePhoto, String grade) {
 		super();

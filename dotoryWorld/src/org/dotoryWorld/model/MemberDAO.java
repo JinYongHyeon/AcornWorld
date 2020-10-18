@@ -35,21 +35,21 @@ public class MemberDAO {
 
 	// 회원 탈퇴 - 유리
 	public void deleteMember(String id) throws SQLException {
-		Connection con=null;
-		PreparedStatement pstmt=null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
 		try {
-			con=dataSource.getConnection();
+			con = dataSource.getConnection();
 			String sql = "delete from member where id = ?";
-	        pstmt = con.prepareStatement(sql);
-	        pstmt.setString(1, id);
-	        pstmt.executeUpdate();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
 		} finally {
 			// TODO: handle finally clause
 			closeAll(pstmt, con);
 		}
-			
+
 	}
-	
+
 	// 로그인
 	public MemberVO login(String id,String password) throws SQLException {
 		MemberVO memberVO=null;
@@ -58,13 +58,15 @@ public class MemberDAO {
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="SELECT name FROM member WHERE id=? AND password=?";
+			String sql="SELECT name,address,email,nickname,profile_photo,profile_content,grade FROM member WHERE id=? AND password=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
 			rs=pstmt.executeQuery();
 			if(rs.next())
-				memberVO=new MemberVO(id,password,rs.getString(1));
+				memberVO=new MemberVO(id,password,rs.getString("name"),rs.getString("address"),
+			rs.getString("email"),rs.getString("nickname"),rs.getString("profile_content"),rs.getString("profile_photo"),
+			rs.getString("grade"));
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
@@ -98,49 +100,49 @@ public class MemberDAO {
 
 	// 아이디 중복체크 - 지윤
 	public boolean idcheck(String id) throws SQLException {
-		boolean flag=false;
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+		boolean flag = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			con=dataSource.getConnection();
-			String sql="SELECT COUNT(*) FROM member WHERE id=?";
-			pstmt=con.prepareStatement(sql);
+			con = dataSource.getConnection();
+			String sql = "SELECT COUNT(*) FROM member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			rs=pstmt.executeQuery();
-			if(rs.next()&&rs.getInt(1)>0)
-				flag=true;
-		}finally {
+			rs = pstmt.executeQuery();
+			if (rs.next() && rs.getInt(1) > 0)
+				flag = true;
+		} finally {
 			closeAll(rs, pstmt, con);
 		}
 		return flag;
 	}
-	
+
 	/*
-	 * 프로필 이미지 등록 및 수정기능 : 이미지 주소 Text DB 컬럼에 등록
-	 * 	 * */
-	public int toryProfileImgUpload(String id,String profileImgUrl) throws SQLException {
+	 * 프로필 이미지 등록 및 수정기능 : 이미지 주소 Text DB 컬럼에 등록 *
+	 */
+	public int toryProfileImgUpload(String id, String profileImgUrl) throws SQLException {
 		Connection con = null;
-		PreparedStatement pstmt =null;
+		PreparedStatement pstmt = null;
 		int count = 0;
 		try {
 			con = dataSource.getConnection();
 			String sql = "UPDATE member SET profile_photo=? WHERE id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, profileImgUrl);
-		    pstmt.setString(2, id);
+			pstmt.setString(2, id);
 			count = pstmt.executeUpdate();
-		}finally {
+		} finally {
 			closeAll(pstmt, con);
 		}
 		return count;
-		
+
 	}
-	
+
 	/*
 	 * 프로필 수정 : 소개글 닉네임 수정
-	 * */
-	public void toryProfileUpdate(String ninkName, String profileContent,String id) throws SQLException {
+	 */
+	public void toryProfileUpdate(String ninkName, String profileContent, String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -151,27 +153,25 @@ public class MemberDAO {
 			pstmt.setString(2, profileContent);
 			pstmt.setString(3, id);
 			pstmt.executeUpdate();
-		}finally {
+		} finally {
 			closeAll(pstmt, con);
 		}
 	}
-	
+
 	/*
-	 * 도토리 추가 : 
-	 * 첫번째 물음표 : 친구
-	 * 두번째 물음표 : 자기자신
-	 * */
-	public void addDotory(String dotoryId,String MyId) throws SQLException {
+	 * 도토리 추가 : 첫번째 물음표 : 친구 두번째 물음표 : 자기자신
+	 */
+	public void addDotory(String dotoryId, String MyId) throws SQLException {
 		Connection con = null;
-		PreparedStatement pstmt =null;
+		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
 			String sql = "INSERT INTO dotorylist(dotory_id,id) VALUES(?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dotoryId);
-			pstmt.setString(2,MyId);
+			pstmt.setString(2, MyId);
 			pstmt.executeUpdate();
-		}finally {
+		} finally {
 			closeAll(pstmt, con);
 		}
 	}
@@ -179,37 +179,38 @@ public class MemberDAO {
 	// 회원 정보 수정 - 정재우
 	public void updateMemberInfo(MemberVO updateMember) throws SQLException {
 		Connection con = null;
-		PreparedStatement pstmt =null;
+		PreparedStatement pstmt = null;
 		StringBuilder sql = new StringBuilder();
 		try {
 			con = dataSource.getConnection();
 			sql.append("update member set password=?,name=?,");
 			sql.append("address=?,email=? where id=?");
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1,updateMember.getPassword());
-			pstmt.setString(2,updateMember.getName());
-			pstmt.setString(3,updateMember.getAddress());
-			pstmt.setString(4,updateMember.getEmail());
-			pstmt.setString(5,updateMember.getId());
+			pstmt.setString(1, updateMember.getPassword());
+			pstmt.setString(2, updateMember.getName());
+			pstmt.setString(3, updateMember.getAddress());
+			pstmt.setString(4, updateMember.getEmail());
+			pstmt.setString(5, updateMember.getId());
 			pstmt.executeUpdate();
-		}finally {
+		} finally {
 			closeAll(pstmt, con);
 		}
-		
+
 	}
+
 	// 내 도토리들 조회하기 - 배배
-	public ArrayList<MemberVO> mydotorylist() throws SQLException{
-		ArrayList<MemberVO> list= new ArrayList<MemberVO>();
+	public ArrayList<MemberVO> mydotorylist() throws SQLException {
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
 		Connection con = null;
-		PreparedStatement pstmt =null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql="select id from dotorylist";
-			pstmt=con.prepareStatement(sql);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				MemberVO mvo=new MemberVO();
+			String sql = "select id from dotorylist";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString("id"));
 				list.add(mvo);
 			}
@@ -221,11 +222,26 @@ public class MemberDAO {
 		return list;
 	}
 	
+	//미니홈피 정보 가져오기
+	public MemberVO addToryHomeInformation(String id) throws SQLException {
+		MemberVO memberVO=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="SELECT password,name,address,email,nickname,profile_photo,profile_content,grade FROM member WHERE id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				memberVO=new MemberVO(id,rs.getString("password"),rs.getString("name"),rs.getString("address"),
+			rs.getString("email"),rs.getString("nickname"),rs.getString("profile_content"),rs.getString("profile_photo"),
+			rs.getString("grade"));
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return memberVO;
+	}
+
 }
-
-
-
-
-
-
-
