@@ -17,7 +17,11 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
    
 <script type="text/javascript">
-   $(document).ready(function() {
+	function searchFunction() {
+	alert("검색을 누르셨습니다.")
+	}
+	
+  /*  $(document).ready(function() {
       $(document).on('click', '#btnSearch', function(e) {
          e.preventDefault();
          var url = "${pageContext.request.contextPath}/board/post-list";
@@ -26,7 +30,7 @@
          location.href = url;
          console.log(url);
       });
-   });
+   }); */
 </script>
 </head>
 <body>
@@ -46,8 +50,8 @@
 					<input type="text" class="form-control" name="keyWord" id="keyWord">
 				</div>
             <button class="btn btn-primary" type="button" id="btnSearch"
-               onclick="searchFunction()">
-               검색<span class="glyphicon glyphicon-search"> </span>
+               onclick="searchFunction()">검색
+               <span class="glyphicon glyphicon-search"> </span>
             </button>
             <hr>
          </div>
