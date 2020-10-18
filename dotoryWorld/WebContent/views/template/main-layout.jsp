@@ -15,6 +15,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/myHomejs.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
 </head>
