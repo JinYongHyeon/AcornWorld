@@ -173,8 +173,3 @@ INSERT INTO dotorylist VALUES('user4','user1');
 SELECT * from HOBBYBOARD
 
 select * from dotorylist;
-
-
-
-
-

@@ -7,7 +7,7 @@
 	}
 	function deletePost() {
 		if (confirm("게시글을 삭제하시겠습니까?")) {
-			document.deleteForm.submit();
+			document.removeForm.submit();
 		}
 	}
 	function updatePost() {
@@ -32,10 +32,12 @@
 			<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
 				<tr>
 					<td colspan="5" class="btnArea">
-						<form name="deleteForm"
+						<form name="removeForm"
 							action="${pageContext.request.contextPath}/front" method="post">
 							<input type="hidden" name="command" value="postRemove"> <input
 								type="hidden" name="no" value="${requestScope.pvo.postNo}">
+							<input type="hidden" name="command" value="postRemove"> <input
+								type="hidden" name="bno" value="${requestScope.pvo.boardVO.boardNo}">
 						</form>				
 						<form name="updateForm"
 							action="${pageContext.request.contextPath}/front" method="post">

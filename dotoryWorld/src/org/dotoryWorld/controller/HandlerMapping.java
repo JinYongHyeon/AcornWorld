@@ -42,7 +42,7 @@ public class HandlerMapping {
 			controller = new BoardListController();
 		} else if (command.contentEquals("postList")) { //게시물
 			controller = new PostListController();
-		} else if (command.contentEquals("mypostList")) { //내 게시물
+		} else if (command.contentEquals("myPostList")) { //내 게시물
 			controller = new MyPostListController();
 		} else if (command.contentEquals("reportPostList")) { //신고 게시물
 			controller = new ReportPostListController();
