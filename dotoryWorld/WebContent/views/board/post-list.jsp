@@ -1,3 +1,5 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -17,23 +19,27 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
    
 <script type="text/javascript">
-	function searchFunction() {
+/* 	function searchFunction() {
 	alert("검색을 누르셨습니다.")
 	}
-	
-  /*  $(document).ready(function() {
-      $(document).on('click', '#btnSearch', function(e) {
-         e.preventDefault();
-         var url = "${pageContext.request.contextPath}/board/post-list";
-         url = url + "?searchType=" + $('#searchType').val();
-         url = url + "&keyword=" + $('#keyword').val();
-         location.href = url;
-         console.log(url);
-      });
-   }); */
+	 */
+	 /*  $(document).ready(function() {
+          $("#keyword").keyup(function() {
+              var k = $(this).val();
+              $("#user-table > tbody > tr").hide();
+              var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
+
+              $(temp).parent().show();
+          })
+      }) */
+      function searchFunction() {
+		 
+		
+	}
 </script>
 </head>
 <body>
+
 <!-- 게시물 검색-->
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -44,13 +50,13 @@
 			<div class="form-group row justify-content-center">
 				<input type="hidden" name="searchflag" onkeyup="searchFunction()"
 					value="true"> &emsp;&emsp; <select name="keyField">
-					<option value="title">제목</option>
+					<option value="title">title</option>
 				</select>&emsp;
 				<div class="w300" style="padding-right: 10px">
 					<input type="text" class="form-control" name="keyWord" id="keyWord">
 				</div>
             <button class="btn btn-primary" type="button" id="btnSearch"
-               onclick="searchFunction()">검색
+               onclick="searchFunction()">Search!
                <span class="glyphicon glyphicon-search"> </span>
             </button>
             <hr>
