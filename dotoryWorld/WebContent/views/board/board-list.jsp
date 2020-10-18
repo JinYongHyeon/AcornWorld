@@ -32,55 +32,55 @@
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==2}">
 								<img src="resources/img/badminton.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==3}">
 								<img src="resources/img/japan_food.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==4}">
 								<img src="resources/img/italian_food.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==9}">
 								<img src="resources/img/romance.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==10}">
 								<img src="resources/img/thriller.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==13}">
 								<img src="resources/img/dance.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==14}">
 								<img src="resources/img/classic.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 						</c:choose>
 					</form>
@@ -98,56 +98,56 @@
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==6}">
 								<img src="resources/img/baseball.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==7}">
 								<img src="resources/img/chinese_food.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==8}">
 								<img src="resources/img/korea_food.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==11}">
 								<img src="resources/img/horror.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==12}">
 								<img src="resources/img/action.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==15}">
 								<img src="resources/img/ballad.png" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 							<c:when test="${boardList.boardNo==16}">
 								<img src="resources/img/pop.jpg" class="img-responsive"
 									style="width: 100%" alt="Image">
 								<br>
 								<input type="submit" value="${boardList.boardTitle}"
-									style="WIDTH: 347pt;">
+									style="WIDTH: 347pt; height: 30pt;">
 							</c:when>
 						</c:choose>
 					</form>

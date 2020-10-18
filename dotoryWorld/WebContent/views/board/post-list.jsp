@@ -15,7 +15,8 @@
    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   
+   <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
 <script type="text/javascript">
    $(document).ready(function() {
       $(document).on('click', '#btnSearch', function(e) {
@@ -47,7 +48,7 @@
 				</div>
             <button class="btn btn-primary" type="button" id="btnSearch"
                onclick="searchFunction()">
-               검색<span class="glyphicon glyphicon-search"> </span>
+               검색<span class="span"> </span>
             </button>
             <hr>
          </div>
