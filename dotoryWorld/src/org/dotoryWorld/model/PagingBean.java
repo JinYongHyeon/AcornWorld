@@ -33,7 +33,8 @@ public class PagingBean {
   */
  private int totalPostCount;
 
- public PagingBean(int totalPostCount, int postCountPerPage, int pageCountPerPageGroup) {
+
+public PagingBean(int totalPostCount, int postCountPerPage, int pageCountPerPageGroup) {
   this.totalPostCount = totalPostCount;
   this.postCountPerPage = postCountPerPage;
   this.pageCountPerPageGroup = pageCountPerPageGroup;

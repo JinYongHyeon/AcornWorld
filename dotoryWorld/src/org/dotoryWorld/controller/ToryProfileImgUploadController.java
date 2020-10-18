@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.dotoryWorld.model.MemberDAO;
+import org.dotoryWorld.model.MemberVO;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -28,20 +30,22 @@ public class ToryProfileImgUploadController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String path = "C:\\Users\\yonghyeon\\DotoryWorld\\dotoryWorld\\WebContent\\resources\\img\\profile";
-		// String path =
-		// request.getServletContext().getRealPath("resources/image/profile"); 최종 주소
+		HttpSession session =request.getSession(false);
+		if(session == null || session.getAttribute("mvo")==null) response.sendRedirect("front?command=main");
+		//String path = "C:\\Users\\yonghyeon\\DotoryWorld\\dotoryWorld\\WebContent\\resources\\img\\profile";
+		 String path = request.getSession().getServletContext().getRealPath("/resources/img/profile/");// 최종 주소
+		 System.out.println(path);
 		MultipartRequest mutipartRequest = new MultipartRequest(request, path, 10 * 1024 * 1024, "UTF-8",
 				new DefaultFileRenamePolicy());
 		File profileImg = mutipartRequest.getFile("profileImg");
 		String id = mutipartRequest.getParameter("id");
 		String message = "실패";
-		// System.out.println(id);
-		// System.out.println(profileImg.getPath());
 		try {
-			int count = MemberDAO.getInstance().toryProfileImgUpload("user3", profileImg.getPath());// 아이디, 프로필 이미지 Url
+			int count = MemberDAO.getInstance().toryProfileImgUpload(id, profileImg.getName());// 아이디, 프로필 이미지 Url
 			if (count != 0)
-				message = "성공";
+				message = profileImg.getName();
+			session.setAttribute("mvo",MemberDAO.getInstance().addToryHomeInformation(id));
+			
 			request.setAttribute("responsebody", message);
 			request.getRequestDispatcher("/AjaxView").forward(request, response);
 		} catch (SQLException e) {
@@ -49,5 +53,7 @@ public class ToryProfileImgUploadController extends HttpServlet {
 			response.sendRedirect("views/error.jsp");
 		}
 	}
+	
+	
 
 }
