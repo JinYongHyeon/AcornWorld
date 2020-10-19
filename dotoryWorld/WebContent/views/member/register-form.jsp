@@ -50,18 +50,6 @@
 								}
 							});//ajax
 						});//keyup
-				$("#registerForm").submit(function() {
-					if (checkId == "") {
-						alert("아이디 중복 확인을 해주세요!");
-						return false;
-					}
-					var passCheckValue = $(this).val();
-					var passValue = $("#memberPass").val();
-					if (passCheckValue != passValue) {
-						alert("비밀번호가 일치하지 않습니다!");
-						return false;
-					}
-				});//submit
 
 				$("#memberPassCheck").keyup(
 						function() {
@@ -124,6 +112,23 @@
 			}
 		}).open();
 	}
+	function registerCheck(){
+		var checkId = document.getElementById("checkResult").innerHTML;
+			if (checkId == "") {
+				alert("아이디 중복 확인을 해주세요!");
+				return false;
+			}
+			if(checkId == "사용불가한 아이디입니다"){
+				alert("아이디 중복 확인을 해주세요!");
+				return false;
+			}
+			var passCheckValue = document.getElementById("memberPass").value;
+			var passValue = document.getElementById("memberPassCheck").value;
+			if (passCheckValue != passValue) {
+				alert("비밀번호가 일치하지 않습니다!");
+				return false;
+			}
+	}//submit
 </script>
 <body>
 	<h2>
@@ -131,7 +136,7 @@
 	</h2>
 	<br>
 	<form action="${pageContext.request.contextPath}/front" method="post"
-		id="registerForm">
+		id="registerForm" onsubmit="return registerCheck()">
 		<input type="hidden" name="command" value="registerMember">
 		<table>
 			<tbody>
@@ -186,8 +191,7 @@
 							class="col-sm-12" placeholder="소개글을 입력하세요"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan='2'><input type="button" value="회원가입" 
-					onclick="location.href = '${pageContext.request.contextPath}/front?command=registerMember'"></td>
+					<td colspan='2'><input type="submit" value="회원가입" ></td>
 				</tr>
 			</tbody>
 		</table>

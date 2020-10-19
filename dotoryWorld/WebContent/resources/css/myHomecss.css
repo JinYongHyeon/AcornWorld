@@ -24,7 +24,7 @@
 }
 
 #toryProfileForm table tr td, #toryProfileForm table tr th {
-	border: 1px solid #999;
+	border: 3px solid #F57F17;
 }
 
 #toryProfileForm table tr th {
@@ -217,16 +217,23 @@
 	text-align: left;
 	margin: auto;
 }
+
 #registerForm table {
 	text-align: left;
 	margin: auto;
 }
 
-.text-center ul {
+#myForm table {
+	width: 100%;
+	margin: auto;
+}
+
+#boardList ul {
 	list-style: none;
 	width: 100%;
 }
-.text-center li {
+
+#boardList ul li {
 	float: left;
 	width: 45%;
 	margin-right: 15px;
@@ -242,6 +249,18 @@ input[type=submit], input[type=button] {
 	border-radius: 5px;
 	background-color: #F57F17;
 	color: white;
+}
+
+#categoryForm input[type=button] {
+	border: 2px solid red;
+	border-style: dashed;
+	float: left;
+	width: 90px;
+	height: 50px;
+}
+
+#writeForm input[type=submit] {
+	float: right;
 }
 
 #boardListForm input[type=submit] {
@@ -282,4 +301,10 @@ body {
 	padding-top: 20px;
 	background-color: #ffffff;
 	height: 100%;
+}
+
+/* 어드민 페이지 게시물 관리 페이징 스타일*/
+.page-item.active .page-link {
+	background-color: #F57F17;
+	border: 2px solid #F57F17;
 }

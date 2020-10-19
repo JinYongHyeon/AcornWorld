@@ -224,8 +224,8 @@ UPDATE hobbyboard SET hobbyboard_imgName = 'pop.jpg' WHERE hobbyboard_no='16';
 
 select * from dotorylist;
 select * from HOBBYBOARD;
-delete from member where password='123'
-select * from dotorylist;
+delete from member where id='user5'
+select * from member;
 
 select count(*) from hobby_post;
 

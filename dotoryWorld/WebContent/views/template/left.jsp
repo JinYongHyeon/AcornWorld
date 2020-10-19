@@ -2,24 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>도토리 월드</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
-</head>
-<body>
 	<c:choose>
 		<c:when test="${sessionScope.mvo==null}">
 			<h2>
@@ -41,19 +23,20 @@
 			<br>
 		</c:when>
 		<c:otherwise>
-
-		<img src="resources/img/profileDefualt.png">
+		
+		<c:choose>
+			<c:when test="${sessionScope.mvo.profilePhoto==null}">
+				<img src="${pageContext.request.contextPath}/resources/img/profileDefualt.png">
+			</c:when>
+			<c:otherwise>
+				<img src="${pageContext.request.contextPath}/resources/img/profile/${sessionScope.mvo.profilePhoto}">
+			</c:otherwise>
+		</c:choose>
+		
 		${sessionScope.mvo.name}님<br><br>
 			<input type="button" value="로그아웃" onclick="location.href = '${pageContext.request.contextPath}/front?command=logout'">
 			<input type="button" value="회원정보수정" onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'">
-
-		${sessionScope.mvo.name}님<br>
-			<a href="${pageContext.request.contextPath}/front?command=logout">로그아웃</a>
-			<br>
-			<a href="${pageContext.request.contextPath}/front?command=updateMemberInfoForm">회원 정보 수정</a>
-			<br>
-			<a href="${pageContext.request.contextPath}/front?command=myPostList">내 게시물 조회</a>
-
+			<input type="button" value="내 게시물 조회" onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'">
 		</c:otherwise>
 	</c:choose>
 	<c:if test="${sessionScope.mvo != null}">
@@ -63,5 +46,4 @@
 		<input type="button" value="관리자 페이지" onclick="location.href = '	${pageContext.request.contextPath}/front?command=adminManage'">
 	</c:if>
 </c:if>
-</body>
-</html>
+

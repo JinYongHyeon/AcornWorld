@@ -41,9 +41,9 @@
 					</div></td>
 			</tr>
 		</table>
-		<a
-			href="${pageContext.request.contextPath}/front?command=toryProfileUpdateForm">프로필
-			수정</a>
+		<br><br>
+		<input type="button" onclick="location.href='${pageContext.request.contextPath}/front?command=toryProfileUpdateForm'" value="프로필 수정">
+	
 	</div>
 
 </div>
