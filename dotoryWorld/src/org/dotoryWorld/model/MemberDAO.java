@@ -197,6 +197,27 @@ public class MemberDAO {
 		}
 
 	}
+	
+	// 회원 정보 수정(비밀번호는 변경하지 않음) - 정재우
+		public void updateMemberInfoNoPassword(MemberVO updateMember) throws SQLException {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			StringBuilder sql = new StringBuilder();
+			try {
+				con = dataSource.getConnection();
+				sql.append("update member set name=?,");
+				sql.append("address=?,email=? where id=?");
+				pstmt = con.prepareStatement(sql.toString());
+				pstmt.setString(2, updateMember.getName());
+				pstmt.setString(3, updateMember.getAddress());
+				pstmt.setString(4, updateMember.getEmail());
+				pstmt.setString(5, updateMember.getId());
+				pstmt.executeUpdate();
+			} finally {
+				closeAll(pstmt, con);
+			}
+
+		}
 
 	// 내 도토리들 조회하기 - 배배
 	public ArrayList<MemberVO> mydotorylist() throws SQLException {
