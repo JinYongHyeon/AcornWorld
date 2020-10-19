@@ -16,6 +16,9 @@ public class PostListController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		if(request.getParameter("keyword")!=null&&request.getParameter("keyword")!="") {
+			return "front?command=searchPost";
+		}
 		String hobbyBoardNo=request.getParameter("hobbyBoardNo");
 		request.setAttribute("hobbyBoardNo", hobbyBoardNo);
 		System.out.println("postListC 실행-1"); 

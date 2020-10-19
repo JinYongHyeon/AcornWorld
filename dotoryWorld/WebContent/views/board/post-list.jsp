@@ -21,22 +21,6 @@
 	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
 
 <script type="text/javascript">
-/* 	function searchFunction() {
-	alert("검색을 누르셨습니다.")
-	}
-	 */
-	 /*  $(document).ready(function() {
-          $("#keyword").keyup(function() {
-              var k = $(this).val();
-              $("#user-table > tbody > tr").hide();
-              var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
-
-              $(temp).parent().show();
-          })
-      }) */
-      function searchFunction() {
-		
-	}
 </script>
 </head>
 <body>
@@ -52,21 +36,15 @@
 	<input type="hidden" name="searchFiled" value="${postVO.searchFiled }" />
 	<input type="hidden" name="searchValue" value="${postVO.searchValue }" />
 	<!-- <form action="post-search-list.jsp" method="post"> -->
-	<form action=?=$PHP_SELP?>
-	<input type="hidden" name="id" value='<?=$id?>'>
+	<form action="${pageContext.request.contextPath }/front">
+	<input type="hidden" name="command" value="searchPost">
 			<div class="form-group row justify-content-center">
-				<input type="hidden" name="searchflag" onkeyup="searchFunction()"
-					value="true"> &emsp;&emsp; <select name="keyField">
+				 <select name="keyField">
 					<option value="title">title</option>
 				</select>&emsp;
 				<div class="w300" style="padding-right: 10px">
 					<input type="text" class="form-control" name="keyWord" id="keyWord">
 				</div>
-            <button class="btn btn-primary" type="button" id="btnSearch"
-               onclick="searchFunction()">검색
-               <span class="glyphicon glyphicon-search"> </span>
-               검색<span class="span"> </span>
-            </button>
             <input type="submit" value="검색">
             <hr>
          </div>
@@ -126,7 +104,7 @@
 		<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
 			<c:choose>
 				<c:when test="${i != pb.nowPage}">
-					<li><a href="front?command=postList&pageNo=${i}&hobbyBoardNo=${requestScope.hobbyBoardNo}">${i}</a></li>
+					<li><a href="front?command=postList&pageNo=${i}&hobbyBoardNo=${requestScope.hobbyBoardNo}&keyword=${requestScope.keyword}">${i}</a></li>
 				</c:when>
 				<c:otherwise>
 					<li class="active"><a href="#">${i}</a></li>
