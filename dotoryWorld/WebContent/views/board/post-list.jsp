@@ -1,7 +1,8 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,17 +21,26 @@
 	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
 
 <script type="text/javascript">
-   $(document).ready(function() {
-      $(document).on('click', '#btnSearch', function(e) {
-         e.preventDefault();
-         var url = "${pageContext.request.contextPath}/board/post-list";
-         url = url + "?searchType=" + $('#searchType').val();
-         url = url + "&keyword=" + $('#keyword').val();
-         location.href = url;
-         console.log(url);
-      });
-   });
+/* 	function searchFunction() {
+	alert("검색을 누르셨습니다.")
+	}
+	 */
+	 /*  $(document).ready(function() {
+          $("#keyword").keyup(function() {
+              var k = $(this).val();
+              $("#user-table > tbody > tr").hide();
+              var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
+
+              $(temp).parent().show();
+          })
+      }) */
+      function searchFunction() {
+		
+	}
 </script>
+</head>
+<body>
+
 <!-- 게시판 정보가 들어가는 부분 -->
 <div class="row boardInfo">
 		게시판 정보가 들어가는 부분
@@ -41,23 +51,25 @@
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	<input type="hidden" name="searchFiled" value="${postVO.searchFiled }" />
 	<input type="hidden" name="searchValue" value="${postVO.searchValue }" />
-	<form action="post-search-list.jsp" method="post">
-		<div class="container2">
+	<!-- <form action="post-search-list.jsp" method="post"> -->
+	<form action=?=$PHP_SELP?>
+	<input type="hidden" name="id" value='<?=$id?>'>
 			<div class="form-group row justify-content-center">
 				<input type="hidden" name="searchflag" onkeyup="searchFunction()"
 					value="true"> &emsp;&emsp; <select name="keyField">
-					<option value="title">제목</option>
+					<option value="title">title</option>
 				</select>&emsp;
 				<div class="w300" style="padding-right: 10px">
 					<input type="text" class="form-control" name="keyWord" id="keyWord">
 				</div>
             <button class="btn btn-primary" type="button" id="btnSearch"
-               onclick="searchFunction()">
+               onclick="searchFunction()">검색
+               <span class="glyphicon glyphicon-search"> </span>
                검색<span class="span"> </span>
             </button>
+            <input type="submit" value="검색">
             <hr>
          </div>
-      </div>
    </form>
    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
