@@ -41,8 +41,8 @@
 			<br>
 		</c:when>
 		<c:otherwise>
-
-		<img src="resources/img/profileDefualt.png">
+		
+		<img src="resources/img/profileDefualt.png" id="test123">
 		${sessionScope.mvo.name}님<br><br>
 			<input type="button" value="로그아웃" onclick="location.href = '${pageContext.request.contextPath}/front?command=logout'">
 			<input type="button" value="회원정보수정" onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'">

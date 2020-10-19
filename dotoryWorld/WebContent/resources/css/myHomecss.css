@@ -283,3 +283,6 @@ body {
 	background-color: #ffffff;
 	height: 100%;
 }
+
+/* naver Editor iframe 크기 */
+#frm table tr td ifrmae{width:655px}
