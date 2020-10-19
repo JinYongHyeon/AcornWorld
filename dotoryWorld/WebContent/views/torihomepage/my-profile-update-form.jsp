@@ -138,7 +138,7 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 				<td><input type="submit" value="프로필 수정"></td>
-				<td><input type="button" value="취소"></td>
+				<td><input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}'"></td>
 			</tr>
 
 

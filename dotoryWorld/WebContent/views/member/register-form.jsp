@@ -19,19 +19,6 @@
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
-<style>
-input[type=text], input[type=password], textarea {
-	border: 2px solid #F57F17;
-	border-radius: 5px;
-}
-
-input[type=submit], input[type=button] {
-	border: 2px solid #F57F17;
-	border-radius: 5px;
-	background-color: #F57F17;
-	color: white;
-}
-</style>
 <script type="text/javascript">
 	$(document).ready(
 			function() {
@@ -145,35 +132,65 @@ input[type=submit], input[type=button] {
 	<br>
 	<form action="${pageContext.request.contextPath}/front" method="post"
 		id="registerForm">
-		<input type="hidden" name="command" value="registerMember"> <b>아이디</b>
-		<input type="text" id="memberId" placeholder="Enter id" name="id"
-			required="required" class="col-sm-6"> <span id="checkResult"></span>
-		<br>
-		<br> <b>비밀번호</b> <input type="password" id="memberPass"
-			class="col-sm-6" placeholder="Enter Password" name="password"
-			required="required"><br>
-		<br> <b>비밀번호 확인</b> <input type="password" id="memberPassCheck"
-			class="col-sm-6" name="passwordCheck" required="required"
-			placeholder="Check password"> <span id="checkPassResult"></span>
-		<br>
-		<br> <b>이름</b> <input type="text" placeholder="Enter name"
-			name="name" class="col-sm-6" required="required"><br>
-		<br> <b>주소</b> <input type="text" id="address"
-			placeholder="Enter address" class="col-sm-5" name="address"
-			required="required"> <input type="button"
-			onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-		<br> <b>상세주소</b> <input type="text" id="addressDetail"
-			placeholder="Enter address" class="col-sm-6" name="addressDetail"
-			required="required"><br>
-		<br> <b>이메일</b> <input type="text" placeholder="Enter email"
-			name="email" class="col-sm-6" required="required"><br>
-		<br> <b>닉네임</b> <input type="text" placeholder="Enter nickname"
-			name="nickname" class="col-sm-6" required="required"> <span
-			id="checkResult"></span> <br>
-		<br> <b>소개글</b>
-		<textarea name="profileContent" required="required" class="col-sm-6"
-			placeholder="소개글을 입력하세요"></textarea>
-		<br> <input type="submit" value="회원가입">
+		<input type="hidden" name="command" value="registerMember">
+		<table>
+			<tbody>
+				<tr>
+					<td><b>아이디</b></td>
+					<td><input type="text" id="memberId" placeholder="Enter id"
+						name="id" required="required" class="col-sm-12"> <span
+						id="checkResult"></span></td>
+				</tr>
+				<tr>
+					<td><b>비밀번호</b></td>
+					<td><input type="password" id="memberPass" class="col-sm-12"
+						placeholder="Enter Password" name="password" required="required"></td>
+				</tr>
+				<tr>
+					<td><b>비밀번호 확인</b></td>
+					<td><input type="password" id="memberPassCheck"
+						class="col-sm-12" name="passwordCheck" required="required"
+						placeholder="Check password"> <span id="checkPassResult"></span></td>
+				</tr>
+				<tr>
+					<td><b>이름</b></td>
+					<td><input type="text" placeholder="Enter name" name="name"
+						class="col-sm-12" required="required"></td>
+				</tr>
+				<tr>
+					<td><b>주소</b></td>
+					<td><input type="text" id="address"
+						placeholder="Enter address" class="col-sm-7" name="address"
+						required="required"> <input type="button"
+						onclick="execDaumPostcode()" value="우편번호 찾기"></td>
+				</tr>
+				<tr>
+					<td><b>상세주소</b></td>
+					<td><input type="text" id="addressDetail"
+						placeholder="Enter address" class="col-sm-12" name="addressDetail"
+						required="required"></td>
+				</tr>
+				<tr>
+					<td><b>이메일</b></td>
+					<td><input type="text" placeholder="Enter email" name="email"
+						class="col-sm-12" required="required"></td>
+				</tr>
+				<tr>
+					<td><b>닉네임</b></td>
+					<td><input type="text" placeholder="Enter nickname"
+						name="nickname" class="col-sm-12" required="required"></td>
+				</tr>
+				<tr>
+					<td><b>소개글</b></td>
+					<td><textarea name="profileContent" required="required"
+							class="col-sm-12" placeholder="소개글을 입력하세요"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan='2'><input type="button" value="회원가입" 
+					onclick="location.href = '${pageContext.request.contextPath}/front?command=registerMember'"></td>
+				</tr>
+			</tbody>
+		</table>
 	</form>
 </body>
 </html>

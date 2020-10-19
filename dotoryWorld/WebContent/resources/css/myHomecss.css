@@ -200,8 +200,52 @@
 
 #adminPagin ul {
 	position: absolute;
-	left:50%;
-	transform:translate(-50%,0);
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+/*boardList 구역*/
+#boardListForm {
+	width: 347px;
+}
+
+#boardListForm img {
+	width: 100%;
+}
+
+#updateTable table {
+	text-align: left;
+	margin: auto;
+}
+#registerForm table {
+	text-align: left;
+	margin: auto;
+}
+
+.text-center ul {
+	list-style: none;
+	width: 100%;
+}
+.text-center li {
+	float: left;
+	width: 45%;
+	margin-right: 15px;
+}
+
+input[type=text], input[type=password] {
+	border: 2px solid #F57F17;
+	border-radius: 5px;
+}
+
+input[type=submit], input[type=button] {
+	border: 2px solid #F57F17;
+	border-radius: 5px;
+	background-color: #F57F17;
+	color: white;
+}
+
+#boardListForm input[type=submit] {
+	width: 100%;
 }
 
 body {
@@ -211,6 +255,7 @@ body {
 
 .footer {
 	position: absolute;
+	width: 100%;
 	bottom: 0;
 	background-color: #FFF9C4;
 	border-top: 5px solid #F57F17;
