@@ -55,21 +55,21 @@ body {
 		<form action="">
 			<table border="1">
 				<tr>
-					<th>&emsp; grade&emsp; </th>
 					<th> &emsp;id &emsp;</th>
+					<!-- <th>&emsp; grade&emsp; </th>
 					<th> &emsp;name&emsp; </th>
-					<th>&emsp; email &emsp;</th>
+					<th>&emsp; email &emsp;</th> -->
 				</tr>
 				<c:forEach items="${requestScope.myDotoryList}" var="friend">
 				<tr>
-					<td>${friend.grade}</td>
 					<td>${friend.id}</td>
+					<%-- <td>${friend.grade}</td>
 					<td>${friend.name}</td>
-					<td>${friend.email}</td>
+					<td>${friend.email}</td> --%>
 				</tr>
 				</c:forEach>
-				
 			</table>
+				<button type="button">친구삭제</button>
 		</form>
 	</div>
 </body>

@@ -5,24 +5,29 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript">
 </script>
+<style>
+#searchResultForm{
+ border: 2px solid white;
+  padding: 15px;
+}
+</style>
 <!-- 게시판 정보가 들어가는 부분 -->
 <div class="row boardInfo">
 		게시판 정보가 들어가는 부분
 </div>
+
 <!-- 게시물 검색-->
-<div class="row searchPost">
+<div class="row searchPost" id=searchResultForm>
 	
-	<input type="hidden" name="searchFiled" value="${postVO.searchFiled }" />
-	<input type="hidden" name="searchValue" value="${postVO.searchValue }" />
 	<!-- <form action="post-search-list.jsp" method="post"> -->
 	<form action="${pageContext.request.contextPath }/front">
 	<input type="hidden" name="command" value="searchPost">
 			<div class="form-group row justify-content-center">
 				 <select name="keyField">
-					<option value="title">title</option>
+					<option value="title">제목</option>
 				</select>&emsp;
 				<div class="w300" style="padding-right: 10px">
-					<input type="text" class="form-control" name="keyWord" id="keyWord">
+					<input type="text" class="form-control" name="keyword" id="keyWord">
 				</div>
             <input type="submit" value="검색">
             <hr>

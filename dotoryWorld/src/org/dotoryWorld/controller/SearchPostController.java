@@ -14,7 +14,7 @@ public class SearchPostController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String title=request.getParameter("keyWord");
+		String title=request.getParameter("keyword");
 		String nowPage=request.getParameter("pageNo");
 		int TotalCount = PostDAO.getInstance().searchPost(title);
 		PagingBean pgb=null;
@@ -28,7 +28,8 @@ public class SearchPostController implements Controller {
 		ListVO lvo=new ListVO(pvo, pgb);
 		request.setAttribute("lvo", lvo);
 		request.setAttribute("keyword", title);
-		return "/views/board/post-list.jsp";
+		request.setAttribute("url", "/views/board/post-list.jsp");
+		return "/views/template/main-layout.jsp";
 	}
 
 }

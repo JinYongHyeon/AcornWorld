@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>도토리 월드</title>
@@ -18,9 +18,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
 </head>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 
 <%--API 구동에 필요한 파일 로딩 --%>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -131,6 +128,7 @@
 </script>
 
 
+
 <%-- 로그인 여부를 체크하고 로그인이 안됐을 경우 회원 정보 수정 페이지 접근 불가 처리 --%>
 <c:choose>
 	<c:when test="${sessionScope.mvo !=null }">
@@ -213,5 +211,6 @@
 		</script>
 	</c:otherwise>
 </c:choose>
+
 
 

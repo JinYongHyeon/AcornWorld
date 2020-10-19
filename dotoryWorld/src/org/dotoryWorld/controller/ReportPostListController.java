@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.dotoryWorld.model.ListVO;
 import org.dotoryWorld.model.PagingBean;
 import org.dotoryWorld.model.PostDAO;
 import org.dotoryWorld.model.PostVO;
@@ -24,14 +25,13 @@ public class ReportPostListController implements Controller {
 			pagingBean=new PagingBean(totalPostCount, postCountPerPage, pageCountPerPageGroup);
 		else
 			pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo), postCountPerPage, pageCountPerPageGroup);
-		ArrayList<PostVO> list
-		=PostDAO.getInstance().getPostingList(pagingBean, boardNo);
-	request.setAttribute("lvo", list);
-	//request.setAttribute("url", "/board/list.jsp");
-System.out.println("reportPostListController 작동");
-		
+		ArrayList<PostVO> list = PostDAO.getInstance().getReportPostingList(pagingBean, boardNo);
+		System.out.println(list.size());
+		ListVO lvo = new ListVO(list, pagingBean);
+		request.setAttribute("lvo", lvo);
+		//request.setAttribute("url", "/board/list.jsp");
+		System.out.println("reportPostListController 작동");
 		return "/views/board/report-postList.jsp";
 	}
 
 }
-
