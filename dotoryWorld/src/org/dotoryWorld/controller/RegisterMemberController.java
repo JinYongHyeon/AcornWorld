@@ -19,8 +19,8 @@ public class RegisterMemberController implements Controller {
 		String nickname=request.getParameter("nickname");
 		String profileContent=request.getParameter("profileContent");
 		MemberVO memberVO=new MemberVO(id, password, name, address+" "+addressDetail, email, nickname, profileContent, null, "도토리");
-		MemberDAO.getInstance().registerMember(memberVO);
-		return "redirect:views/member/register-result.jsp";
+		MemberDAO.getInstance().registerMember(memberVO);		
+		return "redirect:front?command=registerMemberResult";
 	}
 
 }

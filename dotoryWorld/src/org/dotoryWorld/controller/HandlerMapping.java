@@ -24,7 +24,9 @@ public class HandlerMapping {
 			controller = new RegisterMemberFormController();
 		} else if (command.contentEquals("registerMember")) { // 회원가입
 			controller = new RegisterMemberController();
-		} else if (command.contentEquals("idCheck")) { // 아이디 체크
+		} else if (command.contentEquals("registerMemberResult")) {
+			controller= new RegisterMemberResultController();
+		}else if (command.contentEquals("idCheck")) { // 아이디 체크
 			controller = new IdCheckController();
 		} else if (command.contentEquals("updateMemberInfoForm")) { // 업데이트 폼
 			controller = new UpdateMemberInfoFormController();
