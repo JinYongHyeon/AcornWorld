@@ -23,7 +23,8 @@ public class UpdateMemberInfoController implements Controller {
 		HttpSession session = request.getSession(false);
 		MemberVO nowMemberInfo = (MemberVO) session.getAttribute("mvo");
 		// 주소 변경 여부 확인
-		if(updateAddress =="") {
+		// updateAddress == " " 로 확인시 문제 발생함.
+		if(updateAddress.contentEquals(" ")) {
 			updateAddress = nowMemberInfo.getAddress();
 		}
 		// 비밀번호 변경 여부 확인

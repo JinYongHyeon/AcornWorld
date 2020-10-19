@@ -173,7 +173,7 @@
 					<tr>
 						<td>현재 주소</td>
 						<td>
-							<input style="width: 300px" type="text" readonly="readonly"
+							<input style="width: 350px" type="text" readonly="readonly"
 								name="nowAddress" value="${sessionScope.mvo.address}">
 						</td>
 					</tr>
