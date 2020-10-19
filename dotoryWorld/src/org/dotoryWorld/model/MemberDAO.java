@@ -234,6 +234,10 @@ public class MemberDAO {
 			while (rs.next()) {
 				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString("id"));
+				/*
+				 * mvo.setId(rs.getString("grade")); mvo.setId(rs.getString("name"));
+				 * mvo.setId(rs.getString("email"));
+				 */
 				list.add(mvo);
 			}
 			System.out.println(list.size());

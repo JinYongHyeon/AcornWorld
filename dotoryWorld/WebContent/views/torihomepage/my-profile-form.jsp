@@ -44,6 +44,8 @@
 		<a
 			href="${pageContext.request.contextPath}/front?command=toryProfileUpdateForm">프로필
 			수정</a>
+					 <button type="button" onclick="location.href='${pageContext.request.contextPath }/front?command=myDotoryList'">내 도토리들 보기</button>
+			
 	</div>
 
 </div>

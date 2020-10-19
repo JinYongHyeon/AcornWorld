@@ -10,7 +10,6 @@ CREATE TABLE member(
 	grade VARCHAR2(300)	NOT NULL
 )
 
-
 select * from tab
 select * from member
 delete from member where password='a';
