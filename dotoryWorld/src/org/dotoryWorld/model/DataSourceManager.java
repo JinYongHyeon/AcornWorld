@@ -18,6 +18,7 @@ public class DataSourceManager {
 		dbcp.setInitialSize(3);
 		dbcp.setMaxTotal(10);
 		this.dataSource=dbcp;
+	}
 		
 	
 	public DataSource getDataSource() {
