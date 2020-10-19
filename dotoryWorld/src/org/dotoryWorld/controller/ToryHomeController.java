@@ -15,13 +15,17 @@ public class ToryHomeController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
-		if(session == null || session.getAttribute("mvo") == null)return "redirect:front?command=main";
+		if(session == null || session.getAttribute("mvo") == null) {
+			System.out.println("session null");
+			return "redirect:front?command=main";
+		}
 		//방명록 정보 가져와야됨.
 		MemberVO toryHomeMVO = MemberDAO.getInstance().addToryHomeInformation(request.getParameter("id"));
 		if(toryHomeMVO != null) {
 		request.setAttribute("toryHomeImformation",toryHomeMVO);
 		request.setAttribute("url", "/views/torihomepage/tory-letterList.jsp");
 		}else {
+			System.out.println("toryHomeNVO null");
 			return "redirect:front?command=main";
 		}
 		

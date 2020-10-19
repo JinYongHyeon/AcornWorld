@@ -64,6 +64,8 @@ input[type=submit], input[type=button] {
 			<a href="${pageContext.request.contextPath}/front?command=logout">로그아웃</a>
 			<br>
 			<a href="${pageContext.request.contextPath}/front?command=updateMemberInfoForm">회원 정보 수정</a>
+			<br>
+			<a href="${pageContext.request.contextPath}/front?command=myPostList">내 게시물 조회</a>
 		</c:otherwise>
 	</c:choose>
 </body>

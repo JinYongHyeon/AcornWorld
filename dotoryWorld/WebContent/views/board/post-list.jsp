@@ -3,28 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
-
 <script type="text/javascript">
 </script>
-</head>
-<body>
-
 <!-- 게시판 정보가 들어가는 부분 -->
 <div class="row boardInfo">
 		게시판 정보가 들어가는 부분
@@ -85,7 +65,10 @@
 						</c:otherwise> 
 					</c:choose>
 				</td>
-				<td>${pvo.memberVO.name }</td>
+				<td>
+					<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
+					
+				</td>
 				<td>${pvo.postDate }</td>				
 				<td>${pvo.viewCount }</td>
 			</tr>
