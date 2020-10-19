@@ -12,7 +12,7 @@ public class UpdateMemberInfoController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// update-form.jsp 에서 전달 받은 Parameter 값
-		String updateId = request.getParameter("updateId");
+		String updateId = request.getParameter("nowId");
 		String updatePassword = request.getParameter("updatePassword");
 		String updateName = request.getParameter("updateName");
 		String updateAddress = request.getParameter("updateAddress");

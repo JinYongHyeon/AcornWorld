@@ -56,8 +56,33 @@
         }).open();
 	}
 	
-	$(document).read(function(){
+	// 비밀번호 재확인,
+	function updateMember() {
+		// 비밀번호 일치 확인
+		if(updateForm.nowPassword.value !== updateForm.pwCheck.value){
+			alert("비밀번호가 일치하지 않음");
+		}
+		// 현재 비밀 번호 text 수정 불가 처리
+		$("input[name=nowPassword]").attr('readonly', true);
+		return false;
+	}
+	
+	// 현재 비밀 번호가 일치한 지를 확인
+	$(document).ready(function(){
+		// name으로 접근 시 ${tag_name [name=valu_name]} 형식으로
+		$("input[name=updatePassword]").keyup(function () {
+			if(updateForm.nowPassword.value !== updateForm.pwCheck.value || updateForm.nowPassword.value=== ""){
+				alert("비밀번호 확인 이후 입력이 가능합니다.");
+				updateForm.updatePassword.value="";
+			}
+		})
 		
+		$("input[name=updatePasswordCheck]").keyup(function () {
+			if(updateForm.nowPassword.value !== updateForm.pwCheck.value || updateForm.nowPassword.value=== ""){
+				alert("비밀번호 확인 이후 입력이 가능합니다.");
+				updateForm.updatePasswordCheck.value="";
+			}
+		})
 	})
 
 </script>
@@ -72,7 +97,7 @@
 <%-- 로그인 여부를 체크하고 로그인이 안됐을 경우 회원 정보 수정 페이지 접근 불가 처리 --%>
 <c:choose>
 	<c:when test="${sessionScope.mvo !=null }">
-		<form method="post" action="front">
+		<form name="updateForm" method="post" action="front" onsubmit="return updateMember()">
 		<input type="hidden" name="command" value="updateMemberInfo">
 			<table>
 				<tbody>
@@ -81,12 +106,16 @@
 						<%-- readonly 옵션은 value값 수정이 불가하고, form 전송이 가능하다. --%>
 						<td>
 							<input type="text" readonly="readonly"
-								name="updateId" value="${sessionScope.mvo.id}">
+								name="nowId" value="${sessionScope.mvo.id}">
 						</td>				
 					</tr>
 					<tr>
 						<td>현재 비밀번호</td>
-						<td><input type="password" name="nowPassword"></td>
+						<td>
+							<input type="password" name="nowPassword" required="required">
+							<input type="hidden" name="pwCheck" value="">
+							<input type="button" value="비밀번호 확인" onclick="popup()">
+						</td>
 					</tr>
 					<tr>
 						<td>새 비밀번호</td>
@@ -98,26 +127,41 @@
 					</tr>
 					<tr>
 						<td>이름</td>
-						<td><input type="text" name="updateName"></td>
+						<td>
+							<input type="text" name="updateName"
+								value="${sessionScope.mvo.name}" required="required">
+						</td>
 					</tr>
 					<tr>
-						<td rowspan="3" align ="left">주소</td>
+						<td>현재 주소</td>
+						<td>
+							<input style="width: 300px" type="text" readonly="readonly"
+								name="nowAddress" value="${sessionScope.mvo.address}">
+						</td>
+					</tr>
+					<tr>
+						<td>새 주소</td>
 						<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
 					</tr>
 					<tr>
-						<td><input style="width: 300px" type="text" name="updateAddress" id="sample6_address" placeholder="주소"></td>
+						<td rowspan="2"></td>
+						<td><input style="width: 300px" type="text" name="updateAddress" id="sample6_address" placeholder="주소" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td><input style="width: 200px" type="text" name="updateAddressDetail" id="sample6_detailAddress" placeholder="상세주소"></td>
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td><input style="width: 250px" type="text" name="updateEmail"></td>
+						<td>
+							<input style="width: 250px" type="text" required="required"
+								name="updateEmail" value="${sessionScope.mvo.email}">
+						</td>
 					</tr>
 					<tr>
-						<td colspan="2" align="center">
+						<td></td>
+						<td align="left">
 							<input type="submit" value="수정 완료">
-							<button type="button" onclick="location.href='${pageContext.request.contextPath}/front?command=deleteMemberForm'">회원탈퇴</button>
+							<input type="button" onclick="location.href='${pageContext.request.contextPath}/front?command=deleteMemberForm'" value="회원탈퇴">
 						</td>
 					</tr>
 				</tbody>
