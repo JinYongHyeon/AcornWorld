@@ -92,6 +92,8 @@ public class HandlerMapping {
 			controller = new AddDotoryController();
 		}else if(command.contentEquals("adminManageDelete")) {//어드민 게시물 삭제
 			controller = new AdminManageDeleteController();
+		}else if(command.contentEquals("passwordCheck")) { // 비밀번호 체크 (로그인된 상태에서)
+			controller = new PasswordCheckController();
 		}
 		return controller;
 	}
