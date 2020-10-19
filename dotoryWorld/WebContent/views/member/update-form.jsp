@@ -97,14 +97,6 @@
 			}
 		})
 		
-		$("input[name=updatePasswordCheck]").keyup(function () {
-			if(updateForm.nowPassword.value !== updateForm.pwCheck.value || updateForm.nowPassword.value=== ""){
-				alert("비밀번호 확인 이후 입력이 가능합니다.");
-				updateForm.updatePasswordCheck.value="";
-			}
-		})
-	})
-
 </script>
 
 
