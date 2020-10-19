@@ -31,8 +31,10 @@ public class DeleteMemberController implements Controller {
     		MemberVO mvo =(MemberVO) session.getAttribute("mvo");
     		String password=mvo.getPassword();  // session 에서 가져온 password
     		String pass=request.getParameter("password");  // 입력받은 password
-    		if(password==pass) {
-    			return "redirect:front?command=deleteMember";
+    		if(password.equals(pass)) {
+               MemberDAO.getInstance().deleteMember(mvo.getId());
+               session.invalidate();
+    			return "redirect:views/member/delete-result.jsp";
     		}else {
     			return "redirect:views/member/delete-confirm-fail.jsp";
     		}
