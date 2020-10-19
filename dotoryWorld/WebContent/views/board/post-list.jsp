@@ -15,6 +15,7 @@
 <div class="row boardInfo">
 		게시판 정보가 들어가는 부분
 </div>
+
 <!-- 게시물 검색-->
 <div class="row searchPost" id=searchResultForm>
 	
