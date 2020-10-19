@@ -10,7 +10,6 @@
 	<script type="text/javascript">
 		var pwPop=window.opener.updateForm;
 		pwPop.pwCheck.value=${sessionScope.mvo.password}
-		alert(pwPop.pwCheck.value)
 		function closePop() {
 			self.close();
 		}
