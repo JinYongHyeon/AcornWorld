@@ -31,14 +31,18 @@
 		    	alert("게시글 제목을 입력하세요.");
 		    	return;
 			}
-			if($(".se2_inputarea").html()==""){
+			
+			oEditors.getById["postContent"].exec("UPDATE_CONTENTS_FIELD", []);
+			
+			if($("#postContent").val()==""){
 				alert("게시글 내용을 입력하세요.");
 				return;
 			}
-			oEditors.getById["postContent"].exec("UPDATE_CONTENTS_FIELD", []);
+		
 			$("#frm").submit();
 		});
 	});
+	
 </script>
 <form action="${pageContext.request.contextPath}/front" id="frm" method="post" >
 	<input type="hidden" name="command" value="postWrite">
@@ -52,7 +56,7 @@
 	    <tr>
 			<td>     
 				<div class="row">
-					<div class="col-sm-6 offset-4">
+					<div class="col-sm-12">
 						<textarea cols="90" rows="15" id="postContent" name="content" required="required" placeholder="본문내용을 입력하세요"></textarea>	
 					</div>
 				</div>

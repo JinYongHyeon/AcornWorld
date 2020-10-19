@@ -10,7 +10,6 @@ CREATE TABLE member(
 	grade VARCHAR2(300)	NOT NULL
 )
 
-
 select * from tab
 select * from member
 delete from member where password='a';
@@ -224,8 +223,13 @@ UPDATE hobbyboard SET hobbyboard_imgName = 'pop.jpg' WHERE hobbyboard_no='16';
 
 select * from dotorylist;
 select * from HOBBYBOARD;
+<<<<<<< HEAD
 delete from member where password='123'
 select * from dotorylist;
+=======
+delete from member where id='user5'
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
+select * from member;
 
 select count(*) from hobby_post;
 

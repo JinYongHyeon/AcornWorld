@@ -31,11 +31,12 @@
 		    	alert("게시글 제목을 입력하세요.");
 		    	return;
 			}
+			oEditors.getById["postContent"].exec("UPDATE_CONTENTS_FIELD", []);
 			if($("#postContent").val()==""){
 				alert("게시글 내용을 입력하세요.");
 				return;
 			}
-			oEditors.getById["postContent"].exec("UPDATE_CONTENTS_FIELD", []);
+			
 			$("#frm").submit();
 		});
 	});
