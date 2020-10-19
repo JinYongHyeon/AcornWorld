@@ -342,7 +342,7 @@ public class PostDAO {
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="SELECT h.hobbyboard_title,h.hobbyboard_no FROM hobbyboard h, category c WHERE h.category_no=c.category_no AND c.category_no=?";
+			String sql="SELECT h.hobbyboard_title,h.hobbyboard_no,h.hobbyboard_imgName FROM hobbyboard h, category c WHERE h.category_no=c.category_no AND c.category_no=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, categoryNo);
 			rs=pstmt.executeQuery();
@@ -350,6 +350,7 @@ public class PostDAO {
 				BoardVO boardVO=new BoardVO();
 				boardVO.setBoardTitle(rs.getString(1));
 				boardVO.setBoardNo(rs.getString(2));
+				boardVO.setBoardImage(rs.getString(3));
 				boardList.add(boardVO);
 			}
 		} finally {

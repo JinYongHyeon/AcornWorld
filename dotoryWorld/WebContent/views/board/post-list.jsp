@@ -1,24 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
-
 <script type="text/javascript">
    $(document).ready(function() {
       $(document).on('click', '#btnSearch', function(e) {
@@ -37,8 +19,7 @@
 </div>
 <!-- 게시물 검색-->
 <div class="row searchPost">
-	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	
 	<input type="hidden" name="searchFiled" value="${postVO.searchFiled }" />
 	<input type="hidden" name="searchValue" value="${postVO.searchValue }" />
 	<form action="post-search-list.jsp" method="post">
@@ -59,8 +40,7 @@
          </div>
       </div>
    </form>
-   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
 </div>
 <!-- 게시글 리스트가 나열되는 부분 -->
 <div class="row boardMain">

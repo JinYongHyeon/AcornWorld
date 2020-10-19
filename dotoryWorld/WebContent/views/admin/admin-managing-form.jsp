@@ -32,7 +32,7 @@
 		</c:forEach>
 	</tbody>
 </table>
-<button type="submit">삭제</button>
+<input type="submit" value="삭제">
 </form>
 
 	<nav aria-label="Page navigation example" id="adminPagin">
