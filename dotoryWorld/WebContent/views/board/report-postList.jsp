@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<thead>
+<table class="table table-bordered  table-hover boardlist">
+	<thead>
 		<tr class="success">
 			<th>번호</th>
 			<th class="title">제목</th>
@@ -24,25 +26,27 @@
 	<tbody>
 		<c:forEach var="pvo" items="${requestScope.lvo.list}">
 			<tr>
-				<td>${pvo.no }</td>
+				<td>${pvo.postNo}</td>
 				<td><c:choose>
 						<c:when test="${sessionScope.mvo!=null}">
 							<a
-								href="${pageContext.request.contextPath}/front?command=PostDetail&no=${pvo.no }">
-								${pvo.title }</a>
+								href="${pageContext.request.contextPath}/front?command=PostDetail&no=${pvo.postNo }">
+								${pvo.postTitle }</a>
 						</c:when>
 						<c:otherwise>
-				${pvo.title }
+				${pvo.postTitle }
 				</c:otherwise>
 					</c:choose></td>
 				<td>${pvo.memberVO.name }</td>
-				<td>${pvo.timePosted }</td>
-				<td>${pvo.hits }</td>
+				<td>${pvo.postDate }</td>
+				<td>${pvo.viewCount }</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
+
 <%-- paging 처리  --%>
+
 <c:set var="pb" value="${requestScope.lvo.pagingBean}" />
 <div class="pagingArea">
 <ul class="pagination">
@@ -68,4 +72,7 @@ end="${pb.endPageOfPageGroup}">
 	</li>
 </c:if>
 </ul>
-</div>
+</div> 
+
+</body>
+</html>
