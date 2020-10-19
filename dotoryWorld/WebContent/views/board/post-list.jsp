@@ -45,8 +45,9 @@
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	<input type="hidden" name="searchFiled" value="${postVO.searchFiled }" />
 	<input type="hidden" name="searchValue" value="${postVO.searchValue }" />
-	<form action="post-search-list.jsp" method="post">
-		<div class="container2">
+	<!-- <form action="post-search-list.jsp" method="post"> -->
+	<form action=?=$PHP_SELP?>
+	<input type="hidden" name="id" value='<?=$id?>'>
 			<div class="form-group row justify-content-center">
 				<input type="hidden" name="searchflag" onkeyup="searchFunction()"
 					value="true"> &emsp;&emsp; <select name="keyField">
@@ -56,12 +57,12 @@
 					<input type="text" class="form-control" name="keyWord" id="keyWord">
 				</div>
             <button class="btn btn-primary" type="button" id="btnSearch"
-               onclick="searchFunction()">Search!
+               onclick="searchFunction()">검색
                <span class="glyphicon glyphicon-search"> </span>
             </button>
+            <input type="submit" value="검색">
             <hr>
          </div>
-      </div>
    </form>
    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;

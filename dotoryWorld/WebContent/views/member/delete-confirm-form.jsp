@@ -17,6 +17,7 @@
  		var flag=true;
 		 if(password!==passwordComp){
 			alert("비밀번호가 일치하지 않습니다.");
+			//location.href = "${pageContext.request.contextPath}/delete-confirm-fail.jsp";
 			flag=false;
 			}  
 		return flag;
