@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,10 +41,19 @@
 			<br>
 		</c:when>
 		<c:otherwise>
+
 		<img src="resources/img/profileDefualt.png">
 		${sessionScope.mvo.name}님<br><br>
 			<input type="button" value="로그아웃" onclick="location.href = '${pageContext.request.contextPath}/front?command=logout'">
 			<input type="button" value="회원정보수정" onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'">
+
+		${sessionScope.mvo.name}님<br>
+			<a href="${pageContext.request.contextPath}/front?command=logout">로그아웃</a>
+			<br>
+			<a href="${pageContext.request.contextPath}/front?command=updateMemberInfoForm">회원 정보 수정</a>
+			<br>
+			<a href="${pageContext.request.contextPath}/front?command=myPostList">내 게시물 조회</a>
+
 		</c:otherwise>
 	</c:choose>
 	<c:if test="${sessionScope.mvo != null}">

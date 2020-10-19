@@ -16,6 +16,9 @@ public class PostListController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		if(request.getParameter("keyword")!=null&&request.getParameter("keyword")!="") {
+			return "front?command=searchPost";
+		}
 		String hobbyBoardNo=request.getParameter("hobbyBoardNo");
 		request.setAttribute("hobbyBoardNo", hobbyBoardNo);
 		System.out.println("postListC 실행-1"); 
@@ -35,7 +38,7 @@ public class PostListController implements Controller {
 		ArrayList<PostVO> list = PostDAO.getInstance().getPostingList(pagingBean, hobbyBoardNo);		
 		ListVO listVO = new ListVO(list, pagingBean);
 		request.setAttribute("lvo", listVO);
-		// 세션 의미부여
+		// 세션 의미부여 !=""
 		//HttpSession session = request.getSession();
 		// 임시 세션 추후 삭제
 		//session.setAttribute("mvo", new MemberVO("user2","1234","사용자2","판교","user2@gmail.com","도토리2","도토리2입니다",null,"도토리"));

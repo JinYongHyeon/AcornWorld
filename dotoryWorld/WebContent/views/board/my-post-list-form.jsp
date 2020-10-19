@@ -44,12 +44,14 @@
 <div class="row boardMain">
 <div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
+<form action="${pageContext.request.contextPath}/front" id="checkForm">
 	<table class="table table-bordered  table-hover boardlist">
 	<thead>
 		<tr class="success">
+			<th></th>
 			<th>번호</th>
 			<th class="title">제목</th>
-			<th>작성자</th>
+			<th>게시판</th>
 			<th>작성일</th>
 			<th>조회</th>
 		</tr>
@@ -57,6 +59,10 @@
 	<tbody>
 		<c:forEach var="pvo" items="${requestScope.lvo.list}">
 			<tr>
+				<td>
+					<input type="hidden" name="command" value="myPostDelete">
+					<input type="checkbox" name="deletePost" value="${pvo.postNo }"> <!-- 추후 복수 삭제를 위해 추가? -->
+				</td>
 				<td>${pvo.postNo }</td>
 				<td>
 					<c:choose>
@@ -68,13 +74,18 @@
 						</c:otherwise> 
 					</c:choose>
 				</td>
-				<td>${pvo.memberVO.name }</td>
+				<td>${pvo.boardVO.boardTitle }</td>
 				<td>${pvo.postDate }</td>				
 				<td>${pvo.viewCount }</td>
 			</tr>
 		</c:forEach>
+		<tr>
+			<td colspan="6">
+				<input type="submit" value="삭제">
+		<tr>
 	</tbody>
 </table>
+</form>
 <%-- paging 처리 --%>
 <c:set var="pb" value="${requestScope.lvo.pagingBean}"/>
 <div class="pagingArea">
