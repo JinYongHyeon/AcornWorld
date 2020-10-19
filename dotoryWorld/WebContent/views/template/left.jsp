@@ -53,8 +53,8 @@ input[type=submit], input[type=button] {
 					<input type="password" id="password" placeholder="Enter password"
 						name="password" required="required">
 				</div>
-				<input type="submit" value="로그인"> <input type="button"
-					value="회원가입" onclick="enjoy()">
+				<input type="submit" value="로그인"> 
+				<input type="button" value="회원가입" onclick="enjoy()">
 			</form>
 			<br>
 		</c:when>
@@ -62,9 +62,7 @@ input[type=submit], input[type=button] {
 		${sessionScope.mvo.name}님<br>
 			<a href="${pageContext.request.contextPath}/front?command=logout">로그아웃</a>
 			<br>
-			<a
-				href="${pageContext.request.contextPath}/front?command=updateMemberInfoForm">회원
-				정보 수정</a>
+			<a href="${pageContext.request.contextPath}/front?command=updateMemberInfoForm">회원 정보 수정</a>
 		</c:otherwise>
 	</c:choose>
 </body>
