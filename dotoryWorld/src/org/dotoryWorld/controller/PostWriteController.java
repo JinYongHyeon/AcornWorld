@@ -30,8 +30,8 @@ public class PostWriteController implements Controller {
 		
 		pvo.setMemberVO((MemberVO)session.getAttribute("mvo"));		
 
-		PostDAO.getInstance().postWrite(pvo);		
-		String path="redirect:front?command=PostDetail&no="+pvo.getPostNo();
+		String postNo = PostDAO.getInstance().postWrite(pvo);		
+		String path="redirect:front?command=postDetail&no="+postNo;
 		return path;
 	}
 

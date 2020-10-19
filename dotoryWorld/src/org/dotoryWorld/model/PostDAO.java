@@ -201,15 +201,13 @@ public class PostDAO {
 	 * @param vo
 	 * @throws SQLException
 	 */
-	public void postWrite(PostVO vo) throws SQLException {
+	public String postWrite(PostVO vo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
-
-			//
 			sql.append("INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id) ");
 			sql.append("VALUES(hobbypost_no_seq.NEXTVAL,?,?,sysdate,?,?)");
 			pstmt = con.prepareStatement(sql.toString());
@@ -221,8 +219,11 @@ public class PostDAO {
 			pstmt.close();
 			pstmt = con.prepareStatement("select hobbypost_no_seq.currval from dual");
 			rs = pstmt.executeQuery();
-			if (rs.next())
-				vo.setPostNo(rs.getString(1));
+			String postNo = null;
+			if (rs.next()) {
+				postNo = rs.getString(1);
+			}
+			return postNo;
 		} finally {
 			closeAll(rs, pstmt, con);
 		}

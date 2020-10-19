@@ -20,7 +20,7 @@
 </head>
 <body>
 	<div class="container text-center">
-		<div class="row">
+		<div class="row" id="boardList">
 		<div class="col-sm-12">
 		<ul>
 			<c:forEach items="${requestScope.boardList}" var="boardList">

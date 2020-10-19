@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>도토리 월드</title>
@@ -18,9 +18,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
 </head>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 
 <%--API 구동에 필요한 파일 로딩 --%>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -97,14 +94,6 @@
 			}
 		})
 		
-		$("input[name=updatePasswordCheck]").keyup(function () {
-			if(updateForm.nowPassword.value !== updateForm.pwCheck.value || updateForm.nowPassword.value=== ""){
-				alert("비밀번호 확인 이후 입력이 가능합니다.");
-				updateForm.updatePasswordCheck.value="";
-			}
-		})
-	})
-
 </script>
 
 
@@ -114,7 +103,8 @@
 		<tbody>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="updateId"></td>				
+				<td><input type="text" name="updateId" readonly="readonly"
+				value="${sessionScope.mvo.id}"></td>				
 			</tr>
 			<tr>
 				<td>비밀번호</td>
@@ -154,86 +144,6 @@
 </html>
 
 
-<%-- 로그인 여부를 체크하고 로그인이 안됐을 경우 회원 정보 수정 페이지 접근 불가 처리 --%>
-<c:choose>
-	<c:when test="${sessionScope.mvo !=null }">
-		<form name="updateForm" method="post" action="front" onsubmit="return updateMember()">
-		<input type="hidden" name="command" value="updateMemberInfo">
-			<table>
-				<tbody>
-					<tr>
-						<td>아이디</td>
-						<%-- readonly 옵션은 value값 수정이 불가하고, form 전송이 가능하다. --%>
-						<td>
-							<input type="text" readonly="readonly"
-								name="nowId" value="${sessionScope.mvo.id}">
-						</td>				
-					</tr>
-					<tr>
-						<td>현재 비밀번호</td>
-						<td>
-							<input type="password" name="nowPassword" required="required">
-							<input type="hidden" name="pwCheck" value="">
-							<input type="button" value="비밀번호 확인" onclick="popup()">
-						</td>
-					</tr>
-					<tr>
-						<td>새 비밀번호</td>
-						<td><input type="password" name="updatePassword"></td>
-					</tr>
-					<tr>
-						<td>새 비밀번호 확인</td>
-						<td><input type="password" name="updatePasswordCheck"></td>
-					</tr>
-					<tr>
-						<td>이름</td>
-						<td>
-							<input type="text" name="updateName"
-								value="${sessionScope.mvo.name}" required="required">
-						</td>
-					</tr>
-					<tr>
-						<td>현재 주소</td>
-						<td>
-							<input style="width: 300px" type="text" readonly="readonly"
-								name="nowAddress" value="${sessionScope.mvo.address}">
-						</td>
-					</tr>
-					<tr>
-						<td>새 주소</td>
-						<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td>
-						<td><input style="width: 300px" type="text" name="updateAddress" id="sample6_address" placeholder="주소" readonly="readonly"></td>
-					</tr>
-					<tr>
-						<td><input style="width: 200px" type="text" name="updateAddressDetail" id="sample6_detailAddress" placeholder="상세주소"></td>
-					</tr>
-					<tr>
-						<td>이메일</td>
-						<td>
-							<input style="width: 250px" type="text" required="required"
-								name="updateEmail" value="${sessionScope.mvo.email}">
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td align="left">
-							<input type="submit" value="수정 완료">
-							<input type="button" onclick="location.href='${pageContext.request.contextPath}/front?command=deleteMemberForm'" value="회원탈퇴">
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
-	</c:when>
-	<c:otherwise>
-		<script type="text/javascript">
-			alert("로그인이 필요합니다.");
-			location.href="${pageContext.request.contextPath}/front?command=main";
-		</script>
-	</c:otherwise>
-</c:choose>
+
 
 

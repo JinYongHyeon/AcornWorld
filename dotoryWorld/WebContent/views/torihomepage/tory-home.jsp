@@ -14,6 +14,7 @@
 </head>
 <body>
 	<!-- 삭제해야함  작성일 : 20년 10월 18일 -->
+	
 	<button type="button" onclick="addDotory()">친구추가</button>
 	<script type="text/javascript">
 	//도토리 친구추가	
@@ -22,9 +23,8 @@
 			location.href="${pageContext.request.contextPath}/front?command=addDotory"
 		} 
 	}
-	</script>
-	 <button type="button" onclick="location.href='${pageContext.request.contextPath }/front?command=myDotoryList'">내 도토리들 보기</button>
 	
+	</script>
 	
 </body>
 </html>
