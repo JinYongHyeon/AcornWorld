@@ -1,5 +1,7 @@
 package org.dotoryWorld.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,6 +21,7 @@ public class LoginController implements Controller {
 		} else {
 			HttpSession session=request.getSession();
 			session.setAttribute("mvo", memberVO);
+			session.setAttribute("noList",new ArrayList<Integer>());
 			return "redirect:front?command=main";
 		}
 	}

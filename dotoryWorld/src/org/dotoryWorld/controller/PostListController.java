@@ -23,6 +23,7 @@ public class PostListController implements Controller {
 		int totalPostCount = PostDAO.getInstance().getTotalPostCount(hobbyBoardNo);
 		System.out.println(totalPostCount); // test 용
 		String pageNo = request.getParameter("pageNo");
+		//String postNo = request.getParameter("postNo"); // 게시물이 삭제된 부분의 게시물들을 조회하고자 할때 사용한다????
 		PagingBean  pagingBean = null;
 		int postCountPerPage = 15; // 한 페이지에 보이는 게시물의 수를 설정하는 변수
 		int pageCountPerPageGroup = 9; // 한 페이지 그룹에 보이는 페이지의 수를 설정하는 변수
@@ -39,9 +40,8 @@ public class PostListController implements Controller {
 		// 임시 세션 추후 삭제
 		//session.setAttribute("mvo", new MemberVO("user2","1234","사용자2","판교","user2@gmail.com","도토리2","도토리2입니다",null,"도토리"));
 		//session.setAttribute("noList",new ArrayList<String>());
-		//request.setAttribute("url", "/board/list.jsp");		
-		//return "/template/layout.jsp";
-		return "/views/board/post-list.jsp";
+		request.setAttribute("url", "/views/board/post-list.jsp");		
+		return "/views/template/main-layout.jsp";
 	}
 
 }

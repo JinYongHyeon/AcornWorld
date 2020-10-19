@@ -209,7 +209,7 @@ body {
 	min-height: 100vh;
 }
 
-footer {
+.footer {
 	position: absolute;
 	bottom: 0;
 	background-color: #FFF9C4;
@@ -223,8 +223,9 @@ footer {
 	border-bottom: 5px solid #F57F17;
 	line-height: 150px;
 	height: 100%;
-	width: 100%;
+	/* width: 100%; */
 	background-color: #FFF9C4;
+	background-size: 70%;
 }
 
 .main {

@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>회원가입</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
@@ -17,8 +17,21 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-</head>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
+<style>
+input[type=text], input[type=password], textarea {
+	border: 2px solid #F57F17;
+	border-radius: 5px;
+}
 
+input[type=submit], input[type=button] {
+	border: 2px solid #F57F17;
+	border-radius: 5px;
+	background-color: #F57F17;
+	color: white;
+}
+</style>
 <script type="text/javascript">
 	$(document).ready(
 			function() {
@@ -53,6 +66,12 @@
 				$("#registerForm").submit(function() {
 					if (checkId == "") {
 						alert("아이디 중복 확인을 해주세요!");
+						return false;
+					}
+					var passCheckValue = $(this).val();
+					var passValue = $("#memberPass").val();
+					if (passCheckValue != passValue) {
+						alert("비밀번호가 일치하지 않습니다!");
 						return false;
 					}
 				});//submit
@@ -119,53 +138,42 @@
 		}).open();
 	}
 </script>
-
 <body>
+	<h2>
+		<b>회원가입</b>
+	</h2>
+	<br>
 	<form action="${pageContext.request.contextPath}/front" method="post"
 		id="registerForm">
-		<input type="hidden" name="command" value="registerMember">
-		<div class="form-group">
-			아이디 <input type="text" id="memberId" placeholder="Enter id" name="id"
-				class="form-control" required="required"> <span id="checkResult"></span> <br>
-		</div>
-		<div class="line-box"> <div class="line"></div> </div>
-		<div class="form-group">
-			비밀번호 <input type="password" id="memberPass" class="form-control"
-				placeholder="Enter Password" name="password" required="required">
-		</div>
-		<div class="form-group">
-			비밀번호 확인<input type="password" id="memberPassCheck" class="form-control"
-				name="passwordCheck" required="required"> <span
-				id="checkPassResult"></span> <br>
-		</div>
-		<div class="form-group">
-			이름<input type="text" placeholder="Enter name" name="name" class="form-control"
-				required="required">
-		</div>
-		<div class="form-group">
-			주소<input type="text" id="address" placeholder="Enter address" class="form-control"
-				name="address" required="required"> <input type="button"
-				onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-		</div>
-		<div class="form-group">
-			상세주소<input type="text" id="addressDetail" placeholder="Enter address" class="form-control"
-				name="addressDetail" required="required">
-		</div>
-		<div class="form-group">
-			이메일 <input type="text" placeholder="Enter email" name="email" class="form-control"
-				required="required">
-		</div>
-		<div class="form-group">
-			닉네임 <input type="text" placeholder="Enter nickname" name="nickname" class="form-control"
-				required="required"> <span id="checkResult"></span> <br>
-		</div>
-		<div class="form-group">
-			소개글
-			<textarea name="profileContent" required="required" class="form-control" class="form-control"
-				placeholder="소개글을 입력하세요"></textarea>
-			<br>
-		</div>
-		<input type="submit" value="회원가입">
+		<input type="hidden" name="command" value="registerMember"> <b>아이디</b>
+		<input type="text" id="memberId" placeholder="Enter id" name="id"
+			required="required" class="col-sm-6"> <span id="checkResult"></span>
+		<br>
+		<br> <b>비밀번호</b> <input type="password" id="memberPass"
+			class="col-sm-6" placeholder="Enter Password" name="password"
+			required="required"><br>
+		<br> <b>비밀번호 확인</b> <input type="password" id="memberPassCheck"
+			class="col-sm-6" name="passwordCheck" required="required"
+			placeholder="Check password"> <span id="checkPassResult"></span>
+		<br>
+		<br> <b>이름</b> <input type="text" placeholder="Enter name"
+			name="name" class="col-sm-6" required="required"><br>
+		<br> <b>주소</b> <input type="text" id="address"
+			placeholder="Enter address" class="col-sm-5" name="address"
+			required="required"> <input type="button"
+			onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+		<br> <b>상세주소</b> <input type="text" id="addressDetail"
+			placeholder="Enter address" class="col-sm-6" name="addressDetail"
+			required="required"><br>
+		<br> <b>이메일</b> <input type="text" placeholder="Enter email"
+			name="email" class="col-sm-6" required="required"><br>
+		<br> <b>닉네임</b> <input type="text" placeholder="Enter nickname"
+			name="nickname" class="col-sm-6" required="required"> <span
+			id="checkResult"></span> <br>
+		<br> <b>소개글</b>
+		<textarea name="profileContent" required="required" class="col-sm-6"
+			placeholder="소개글을 입력하세요"></textarea>
+		<br> <input type="submit" value="회원가입">
 	</form>
 </body>
 </html>
