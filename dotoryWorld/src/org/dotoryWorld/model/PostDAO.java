@@ -307,30 +307,65 @@ public class PostDAO {
 	}
 
 	// 게시물 검색 메서드
-	public ArrayList<PostVO> searchPost(String postTitle) throws SQLException {
+	// 게시물 갯수만 알고싶은거임
+	public int searchPost(String postTitle) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count=0;
+		try {
+			con = getConnection();
+			String sql ="select count(*) from hobby_post where hobby_title LIKE ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,"%" + postTitle +"%");
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				count=rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return count;
+	}
+	public ArrayList<PostVO> searchPost(String postTitle,PagingBean pgb) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<PostVO> searchList = new ArrayList<PostVO>();
+		
 		try {
 			con = getConnection();
-			String sql ="select * from hobby_post where hobby_title LIKE ?";
-			pstmt=con.prepareStatement(sql);
+			StringBuilder sql= new StringBuilder();
+			sql.append("select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
+			sql.append("from(select row_number() over(order by hobbypost_no asc) as rnum, ");
+			sql.append("hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
+			sql.append("from hobby_post where hobby_title LIKE ? )");
+			sql.append("where rnum between ? and ? ");
+			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1,"%" + postTitle +"%");
+			pstmt.setInt(2, pgb.getStartRowNumber());
+			pstmt.setInt(3, pgb.getEndRowNumber());
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				PostVO pvo = new PostVO();
 				pvo.setPostNo(rs.getString(1));
 				pvo.setPostTitle(rs.getString(2));
-				pvo.setPostContent(rs.getString(3));
+				MemberVO mvo = new MemberVO();
+				mvo.setId(rs.getString(3));
+				pvo.setMemberVO(mvo);
 				pvo.setPostDate(rs.getString(4));
+				pvo.setViewCount(rs.getInt(5));
 				searchList.add(pvo);
 			}
+			System.out.println(pgb.getStartRowNumber());
+			System.out.println(searchList.size());
+			System.out.println(postTitle);
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
 		return searchList;
 	}
+
 
 
 	

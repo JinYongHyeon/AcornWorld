@@ -44,6 +44,8 @@ public class HandlerMapping {
 			controller = new PostListController();
 		} else if (command.contentEquals("myPostList")) { //내 게시물
 			controller = new MyPostListController();
+		} else if (command.contentEquals("myPostDelete")) { //내 게시물
+			controller = new MyPostDeleteController();
 		} else if (command.contentEquals("reportPostList")) { //신고 게시물
 			controller = new ReportPostListController();
 		} else if (command.contentEquals("postUpdateForm")) { //게시물 수정 폼
