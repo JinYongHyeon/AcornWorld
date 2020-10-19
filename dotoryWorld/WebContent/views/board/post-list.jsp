@@ -17,7 +17,9 @@
    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   
+   <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" />
+
 <script type="text/javascript">
 /* 	function searchFunction() {
 	alert("검색을 누르셨습니다.")
@@ -40,7 +42,12 @@
 </head>
 <body>
 
+<!-- 게시판 정보가 들어가는 부분 -->
+<div class="row boardInfo">
+		게시판 정보가 들어가는 부분
+</div>
 <!-- 게시물 검색-->
+<div class="row searchPost">
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	<input type="hidden" name="searchFiled" value="${postVO.searchFiled }" />
@@ -59,6 +66,7 @@
             <button class="btn btn-primary" type="button" id="btnSearch"
                onclick="searchFunction()">검색
                <span class="glyphicon glyphicon-search"> </span>
+               검색<span class="span"> </span>
             </button>
             <input type="submit" value="검색">
             <hr>
@@ -66,16 +74,10 @@
    </form>
    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-<div class="container">
-<!-- 게시판 정보가 들어가는 부분 -->
-<div class="row boardInfo">
-<div class="col-sm-12">
-	게시판 정보가 들어가는 부분
-</div>
 </div>
 <!-- 게시글 리스트가 나열되는 부분 -->
 <div class="row boardMain">
-<div class="col-sm-1"></div> <!-- 빈공간 -->
+<div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
 	<form action="${pageContext.request.contextPath}/front">
 		<input type="hidden" name="command" value="postWriteForm">
@@ -107,8 +109,7 @@
 					</c:choose>
 				</td>
 				<td>${pvo.memberVO.name }</td>
-				<td>${pvo.postDate }</td>
-				
+				<td>${pvo.postDate }</td>				
 				<td>${pvo.viewCount }</td>
 			</tr>
 		</c:forEach>
@@ -116,9 +117,6 @@
 </table>
 <%-- paging 처리 --%>
 <c:set var="pb" value="${requestScope.lvo.pagingBean}"/>
-${pb.startPageOfPageGroup}
-${pb.endPageOfPageGroup}
-${pb.nowPage }
 <div class="pagingArea">
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">
@@ -143,9 +141,5 @@ ${pb.nowPage }
 		</c:if>
 	</ul>
 </div> <!-- pagingArea -->
-</div> <!-- col-ms-6 -->
+</div> <!-- col-sm-10 -->
 </div> <!-- row boardMain -->
-</div> <!-- container -->
-</body> 
-</html>
-
