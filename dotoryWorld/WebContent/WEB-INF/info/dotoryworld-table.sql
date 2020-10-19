@@ -191,3 +191,4 @@ SELECT * from HOBBYBOARD
 select * from dotorylist;
 select * from category;
 delete from member where password='123'
+select * from dotorylist;

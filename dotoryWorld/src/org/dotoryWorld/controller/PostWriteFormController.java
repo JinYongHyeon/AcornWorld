@@ -16,6 +16,7 @@ public class PostWriteFormController implements Controller {
 		request.setAttribute("boardNo", boardNo);
 		request.setAttribute("url", "/views/board/post-write-form.jsp");		
 		return "/views/template/main-layout.jsp";
+		//return "/views/board/post-write-form.jsp";
 	}
 
 }

@@ -42,7 +42,7 @@ public class HandlerMapping {
 			controller = new BoardListController();
 		} else if (command.contentEquals("postList")) { //게시물
 			controller = new PostListController();
-		} else if (command.contentEquals("mypostList")) { //내 게시물
+		} else if (command.contentEquals("myPostList")) { //내 게시물
 			controller = new MyPostListController();
 		} else if (command.contentEquals("reportPostList")) { //신고 게시물
 			controller = new ReportPostListController();
@@ -59,7 +59,7 @@ public class HandlerMapping {
 		} else if (command.contentEquals("postRemove")) { //게시물 삭제
 			controller = new PostRemoveController();
 		} else if (command.contentEquals("postDetail")) { //게시물 상세
-			controller = new PostDetailController();
+			controller = new PostDetailController();			
 		} else if (command.contentEquals("reportPostWriteForm")) { //신고게시물 작성 폼
 			controller = new ReportPostWriteFormController();
 		} else if (command.contentEquals("reportPostWrite")) { //신고게시물 작성

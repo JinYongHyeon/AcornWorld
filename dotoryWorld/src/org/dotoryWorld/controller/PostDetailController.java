@@ -18,6 +18,7 @@ public class PostDetailController implements Controller {
 			return "redirect:index.jsp";
 		}
 		// 개별 게시물 조회  
+		System.out.println("PostDetailController 실행");
 		String no=request.getParameter("no");
 		@SuppressWarnings("unchecked")
 		ArrayList<String> noList=(ArrayList<String>) session.getAttribute("noList");
@@ -33,6 +34,7 @@ public class PostDetailController implements Controller {
 		request.setAttribute("pvo", vo);
 		request.setAttribute("url", "/views/board/post-detail-form.jsp");
 		return "/views/template/main-layout.jsp";
+		//return "/views/board/post-detail-form.jsp";
 	}
 
 }
