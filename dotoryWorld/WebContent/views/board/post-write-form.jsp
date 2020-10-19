@@ -31,7 +31,7 @@
 		    	alert("게시글 제목을 입력하세요.");
 		    	return;
 			}
-			if($("#postContent").val()==""){
+			if($(".se2_inputarea").html()==""){
 				alert("게시글 내용을 입력하세요.");
 				return;
 			}
@@ -51,7 +51,12 @@
 	    </tr>   
 	    <tr>
 			<td>     
-				<textarea cols="90" rows="15" id="postContent" name="content" required="required" placeholder="본문내용을 입력하세요"></textarea>
+				<div class="row">
+					<div class="col-sm-6 offset-4">
+						<textarea cols="90" rows="15" id="postContent" name="content" required="required" placeholder="본문내용을 입력하세요"></textarea>	
+					</div>
+				</div>
+				
 			</td>
 		</tr> 
 	</table>    

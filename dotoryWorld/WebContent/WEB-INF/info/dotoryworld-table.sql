@@ -192,3 +192,11 @@ select * from dotorylist;
 select * from category;
 delete from member where password='123'
 select * from dotorylist;
+
+
+select hobby_title from(
+	SELECT ROW_NUMBER() OVER(order by hobbypost_no ASC) AS rnum, hobby_title FROM hobby_post WHERE hobby_title LIKE '%메%'
+) WHERE rnum BETWEEN 20 AND 30
+
+where hobby_title LIKE ?
+
