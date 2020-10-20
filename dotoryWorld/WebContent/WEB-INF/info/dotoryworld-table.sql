@@ -227,6 +227,7 @@ UPDATE hobbyboard SET hobbyboard_imgName = 'pop.jpg' WHERE hobbyboard_no='16';
 select * from dotorylist;
 select * from HOBBYBOARD;
 
+
 delete from member where password='123'
 select * from dotorylist;
 
@@ -239,7 +240,9 @@ select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount from(
 select row_number() over(order by hobbypost_no asc) as rnum, hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount from hobby_post )
 where rnum between 1 and 2 ;
 
-select * from DOTORYLIST
+
+select id from DOTORYLIST d;
+
 
 --친구목록 리스트
 SELECT d.dotory_id,m.name FROM dotorylist d, member m WHERE m.id = d.dotory_id AND d.id= 'user1';
