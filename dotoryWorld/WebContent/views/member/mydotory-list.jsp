@@ -18,7 +18,23 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script type="text/javascript">
+function friendDelete() {
+	var no = document.getElementsByName("friendNo");
+	var friendDeleteForm = document.getElementById("deleteMyDotory");
+	var flag = false;
+	for (var i = 0; i < no.length; i++) {
+		if(no[i].checked === true) {
+			flag = true;
+			break;
+		}
+	}
+	if (flag === false) {
+		alert("체크박스를 체크해주세요");
+		return flag;
+	}
+}
+</script>
 <style>
  /* #container {width: 960px; margin: 0 auto;}
         #container #input-form {text-align: center;}
@@ -52,10 +68,12 @@ body {
 	<div align="center" id="example1" style="padding-top: 10px;">
 		<h2 style="color:#FFBB00">My Dotory List</h2>
 		<hr>
-		<form action="">
+		<form action="${pageContext.request.contextPath}/front">
+		<input type="hidden" name="command" value="deleteMyDotory">
 			<table border="1">
 				<tr>
 					<th> &emsp;id &emsp;</th>
+					<th> 친삭 </th>
 					<!-- <th>&emsp; grade&emsp; </th>
 					<th> &emsp;name&emsp; </th>
 					<th>&emsp; email &emsp;</th> -->
@@ -66,10 +84,12 @@ body {
 					<%-- <td>${friend.grade}</td>
 					<td>${friend.name}</td>
 					<td>${friend.email}</td> --%>
+					<td>
+				&emsp;<input type="checkbox" name="friendNo" value="${friend.id}"></td>
 				</tr>
 				</c:forEach>
 			</table>
-				<button type="button" onclick="deleteDotoryList()">친구삭제</button>
+				<button type="submit" onclick="friendDelete()">친구삭제</button>
 		</form>
 	</div>
 </body>

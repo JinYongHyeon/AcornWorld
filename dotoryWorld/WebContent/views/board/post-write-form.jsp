@@ -57,7 +57,7 @@
 			<td>     
 				<div class="row">
 					<div class="col-sm-12">
-						<textarea cols="90" rows="15" id="postContent" name="content" required="required" placeholder="본문내용을 입력하세요"></textarea>	
+						<textarea cols="165" rows="20" id="postContent" name="content" required="required" placeholder="본문내용을 입력하세요"></textarea>	
 					</div>
 				</div>
 				
