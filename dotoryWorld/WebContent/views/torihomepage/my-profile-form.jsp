@@ -41,6 +41,7 @@
 					</div></td>
 			</tr>
 		</table>
+
 			
 		<br><br>
 		<input type="button" onclick="location.href='${pageContext.request.contextPath}/front?command=toryProfileUpdateForm'" value="프로필 수정">

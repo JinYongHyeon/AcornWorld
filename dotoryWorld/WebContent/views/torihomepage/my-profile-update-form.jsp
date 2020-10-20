@@ -26,7 +26,7 @@ $(document).ready(function(){
 						$("#toryProfileImgMainForm .toryProfileImg svg").css({ 'display': 'inline' });
 						$("#toryProfileImgMainForm .toryProfileText").css({ 'display': 'block' });
 						$(".toryProfileImg img").attr("src","${pageContext.request.contextPath}/resources/img/profile/"+data);
-						$("#test123").attr("src","${pageContext.request.contextPath}/resources/img/profile/"+data);
+						$(".sidenav img").attr("src","${pageContext.request.contextPath}/resources/img/profile/"+data);
 					$("#toryProfileImgForm").animate({
 						top: "40%",
 						opacity: 0

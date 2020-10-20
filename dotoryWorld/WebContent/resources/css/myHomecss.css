@@ -273,9 +273,7 @@ body {
 }
 
 .footer {
-	position: absolute;
 	width: 100%;
-	bottom: 0;
 	background-color: #FFF9C4;
 	border-top: 5px solid #F57F17;
 	padding: 25px;
@@ -301,6 +299,11 @@ body {
 	padding-top: 20px;
 	background-color: #ffffff;
 	height: 100%;
+}
+
+.content{
+    min-height: 72.8vh;
+		
 }
 
 
