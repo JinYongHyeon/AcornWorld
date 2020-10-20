@@ -231,7 +231,41 @@
 }
 
 #categoryContent {
-	border: 3px solid #F57F17;
+	border: 3px solid #FFBB00;
+	border-radius: 40px;
+	padding: 15px;
+}
+
+@font-face {
+	src: url(../font/THEletssmileR.otf) format('truetype');
+	font-family: 'THEletssmileR';
+}
+
+* {
+	font-family: 'THEletssmileR' !important;
+}
+
+.pagingArea {
+	text-align: center;
+}
+
+.pagination {
+	display: inline-block;
+	text-align: center;
+}
+
+/* 부트스트랩 페이징 CSS */
+.page-item a {
+	color: #F57F17;
+}
+
+.page-item.active .page-link {
+	background-color: #F57F17;
+	border-color: #F57F17;
+}
+
+#boardListForm input[type=submit] {
+	font-family: SSShinb7;
 }
 
 #categoryContent img {
@@ -284,6 +318,8 @@ input[type=submit], input[type=button] {
 	background-color: #F57F17;
 	color: white;
 }
+
+
 
 #categoryForm input[type=button] {
 	border: 2px solid #FFBF00;
@@ -343,15 +379,9 @@ body {
 	height: 100%;
 }
 
-<<<<<<< HEAD
 .content {
 	min-height: 72.8vh;
-=======
-.content{
-    min-height: 72.8vh;
->>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 }
-
 /* naver Editor iframe 크기 */
 #frm table tr td ifrmae {
 	width: 655px
@@ -361,4 +391,10 @@ body {
 .page-item.active .page-link {
 	background-color: #F57F17;
 	border: 2px solid #F57F17;
+}
+
+#leftForm img {
+	border: 2px solid #F57F17;
+	border-radius: 40px;
+	width: 100%;
 }

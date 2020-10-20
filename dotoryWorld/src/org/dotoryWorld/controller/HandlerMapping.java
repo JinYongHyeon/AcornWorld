@@ -44,6 +44,8 @@ public class HandlerMapping {
 			controller = new BoardListController();
 		} else if (command.contentEquals("postList")) { //게시물
 			controller = new PostListController();
+		} else if (command.contentEquals("noticeList")) { //공지게시물
+			controller = new NoticeListController();
 		} else if (command.contentEquals("myPostList")) { //내 게시물
 			controller = new MyPostListController();
 		} else if (command.contentEquals("myPostDelete")) { //내 게시물
@@ -82,8 +84,6 @@ public class HandlerMapping {
 			controller = new ToryProfileUpdateFormController();
 		} else if (command.contentEquals("toryProfileUpdate")) { //미니홈피 내 정보 수정
 			controller = new ToryProfileUpdateController();
-		} else if (command.contentEquals("toryLetterList")) { //미니홈피 방명록 
-			controller = new ToryLetterListController();
 		} else if (command.contentEquals("toryletterWrite")) { //미니홈피 방명록 작성
 			controller = new ToryletterWriteController();
 		} else if(command .contentEquals("toryLetterDelete")) { //미니홈피 방명록 삭제
@@ -94,10 +94,14 @@ public class HandlerMapping {
 			controller = new AddDotoryController();
 		}else if(command.contentEquals("adminManageDelete")) {//어드민 게시물 삭제
 			controller = new AdminManageDeleteController();
+		}else if(command.contentEquals("myPostDelete")) {//어드민 게시물 삭제
+			controller = new MyPostDeleteController();
 		}else if(command.contentEquals("deleteMyDotory")) { //친구삭제
 			controller = new DeleteMyDotoryController();
 		}else if(command.contentEquals("like")){//좋아요
 			controller = new LikeController();
+		}else if(command.contentEquals("bookmark")) {
+			controller = new BookmarkController();
 		}
 		return controller;
 	}
