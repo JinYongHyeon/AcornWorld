@@ -39,7 +39,7 @@
 	<tr>
 		<td colspan="5"><pre>${requestScope.pvo.postContent}</pre></td>
 	</tr>
-	<%-- <c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}"> --%>
+	<!-- <c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}"> -->
 		<tr>
 			<td colspan="5" class="btnArea">
 				<form name="deleteForm"

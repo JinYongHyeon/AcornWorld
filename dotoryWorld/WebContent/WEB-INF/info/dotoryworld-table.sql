@@ -255,6 +255,25 @@ UPDATE hobbyboard SET hobbyboard_imgName = 'classic.jpg' WHERE hobbyboard_no='14
 UPDATE hobbyboard SET hobbyboard_imgName = 'ballad.png' WHERE hobbyboard_no='15';
 UPDATE hobbyboard SET hobbyboard_imgName = 'pop.jpg' WHERE hobbyboard_no='16';
 
+UPDATE category SET category_content = '<h3><b>SPORTS</b></h3><BR> 
+<b>You have to exercise, or at some point you will just break down.</b> <BR>
+<b>Reading is to the mind what exercise is to the body. </b><BR>
+<b>The reason I exercise is for the quality of life I enjoy. </b>' WHERE category_no='1';
+UPDATE category SET category_content = '<h3><b>COOKING</b></h3><BR> 
+<b>Good food ends with good talk.</b><BR>
+<b>There aint no such thing as wrong food.</b><BR>
+<b>Food is the most primitive form of comfort.</b> <BR>' WHERE category_no='2';
+UPDATE category SET category_content = '<h3><b>MOVIE</b></h3><BR> 
+<b>You can never replace anyone, because everyone is made up of such beautiful specific details.</b><BR>
+<b>You either die a hero or you live long enough to see yourself become the villain.</b><BR>
+<b>Life is like a box of chocolates, You never know what you are gonna get.</b><BR>' WHERE category_no='3';
+UPDATE category SET category_content = '<h3><b>MUSIC</b></h3><BR>
+<b>Dont need make-up to cover up. Being the way that you are is enough.</b><BR>
+<b>Dont hide yourself in regret. Just love yourself and you are set.</b><BR>
+<b>A heart thats broke is a heart thats been loved.</b> <BR>' WHERE category_no='4';
+
+INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
+
 
 select * from category;
 select * from HOBBYBOARD;
