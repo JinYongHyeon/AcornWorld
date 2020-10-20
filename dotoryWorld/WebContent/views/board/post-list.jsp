@@ -3,12 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script type="text/javascript">
-</script>
-<!-- 게시판 정보가 들어가는 부분 -->
-<div class="row boardInfo">
-		
-</div>
 
 <!-- 게시물 검색-->
 <div class="row searchPost" id=searchResultForm>
@@ -98,23 +92,26 @@
 <div class="pagingArea">
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">
-			<li>
-				<a href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}&hobbyBoardNo=${requestScope.hobbyBoardNo}">&laquo;</a>
+			<li class="page-item">
+				<a href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}&hobbyBoardNo=${requestScope.hobbyBoardNo}"
+				class="page-link">&laquo;</a>
 			</li>
 		</c:if>
 		<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
 			<c:choose>
 				<c:when test="${i != pb.nowPage}">
-					<li><a href="front?command=postList&pageNo=${i}&hobbyBoardNo=${requestScope.hobbyBoardNo}&keyword=${requestScope.keyword}">${i}</a></li>
+					<li class="page-item"><a href="front?command=postList&pageNo=${i}&hobbyBoardNo=${requestScope.hobbyBoardNo}&keyword=${requestScope.keyword}"
+					class="page-link">${i}</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="active"><a href="#">${i}</a></li>
+					<li class="page-item active"><a class="page-link" href="#">${i}</a></li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${pb.nextPageGroup}">
-			<li>
-				<a href="front?command=postList&pageNo=${pb.endPageOfPageGroup+1}&hobbyBoardNo=${requestScope.hobbyBoardNo}">&raquo;</a>
+			<li class="page-item">
+				<a href="front?command=postList&pageNo=${pb.endPageOfPageGroup+1}&hobbyBoardNo=${requestScope.hobbyBoardNo}"
+				class="page-link">&raquo;</a>
 			</li>
 		</c:if>
 	</ul>
