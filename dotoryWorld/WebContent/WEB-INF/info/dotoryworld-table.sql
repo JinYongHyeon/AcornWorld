@@ -96,6 +96,20 @@ CREATE TABLE toryhome_board(
 	ON DELETE CASCADE
 )
 
+/* 신고게시판 게시물 테이블 */
+CREATE TABLE report_post(
+	reportpost_no NUMBER PRIMARY KEY,
+	report_title VARCHAR2(300) NOT NULL,
+	report_content CLOB NOT NULL, 
+	reportpost_date DATE NOT NULL,
+	category_no NUMBER NOT NULL,
+	id VARCHAR2(300) NOT NULL,
+	CONSTRAINT FK_report_post_id FOREIGN KEY (id) REFERENCES member (id),
+	CONSTRAINT FK_report_post_category_no FOREIGN KEY (category_no) REFERENCES category (category_no)
+	ON DELETE CASCADE
+)
+CREATE SEQUENCE reportpost_no_seq NOCACHE;
+
 CREATE SEQUENCE toryhome_no_seq
 /* 시퀀스 검색*/
 SELECT * FROM USER_SEQUENCES;
@@ -195,6 +209,9 @@ VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(S
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 
+/* 신고게시판 샘플 데이터 */
+INSERT INTO report_post(reportpost_no,report_title,report_content,reportpost_date,category_no,id)
+VALUES(reportpost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),3,'user4');
 
 -- 내 도토리 목록 데이터
 INSERT INTO dotorylist VALUES('user2','user1');
