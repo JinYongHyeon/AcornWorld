@@ -23,15 +23,19 @@ public class AddDotoryController implements Controller {
 		String friendId = request.getParameter("friendId"); // 상대방 아이디
 		String id = request.getParameter("id");// 내 아이디
 
-			ArrayList<MemberVO> myDotory = MemberDAO.getInstance().mydotorylist();
+		ArrayList<MemberVO> myDotory = MemberDAO.getInstance().mydotorylist(id);
+		ArrayList<String> myDotoryList = new ArrayList<String>();
+		for (MemberVO dotory : myDotory) {
+			myDotoryList.add(dotory.getId());
+		}
 
-			// 친구 중복체크 검사
-			if (myDotory.contains(friendId)) {
-				message = friendId + "님과 이미 친구추가 되어 있습니다.";
-			} else {
-				MemberDAO.getInstance().addDotory(friendId, id);
-				message = friendId + "님과 친구추가 완료";
-			}
+		if (myDotoryList.contains(friendId)) {
+			message = friendId + "님과 이미 친구추가 되어 있습니다.";
+		} else {
+			MemberDAO.getInstance().addDotory(friendId, id);
+			message = friendId + "님과 친구추가 완료";
+		}
+
 		request.setAttribute("responsebody", message);
 		return "AjaxView";
 	}

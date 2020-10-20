@@ -111,7 +111,9 @@
 
 </script>
 
-
+<h2>
+		<b>회원 정보 수정</b> <br><br>
+	</h2>
 
 <%-- 로그인 여부를 체크하고 로그인이 안됐을 경우 회원 정보 수정 페이지 접근 불가 처리 --%>
 <c:choose>
@@ -125,56 +127,56 @@
 						<td>아이디</td>
 						<%-- readonly 옵션은 value값 수정이 불가하고, form 전송이 가능하다. --%>
 						<td>
-							<input type="text" readonly="readonly"
+							<input type="text" readonly="readonly" class="col-sm-12"
 								name="nowId" value="${sessionScope.mvo.id}">
 						</td>				
 					</tr>
 					<tr>
 						<td>새 비밀번호</td>
 						<td>
-							<input type="password" name="updatePassword"
+							<input type="password" name="updatePassword" class="col-sm-12"
 								placeholder="비밀번호 변경시 입력">
 						</td>
 					</tr>
 					<tr>
 						<td>새 비밀번호 확인</td>
-						<td><input type="password" name="updatePasswordCheck"></td>
+						<td><input type="password" class="col-sm-12" name="updatePasswordCheck"></td>
 					</tr>
 					<tr>
 						<td>이름</td>
 						<td>
-							<input type="text" name="updateName"
+							<input type="text" name="updateName" class="col-sm-12"
 								value="${sessionScope.mvo.name}" required="required">
 						</td>
 					</tr>
 					<tr>
 						<td>현재 주소</td>
 						<td>
-							<input style="width: 350px" type="text" readonly="readonly"
+							<input style="width: 350px" type="text" readonly="readonly" class="col-sm-12"
 								name="nowAddress" value="${sessionScope.mvo.address}">
 						</td>
 					</tr>
 					<tr>
 						<td>새 주소</td>
-						<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+						<td><input type="text" name="updateAddress" class="col-sm-7" id="sample6_address" placeholder="주소" readonly="readonly">
+						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
 					</tr>
 					<tr>
-						<td rowspan="2"></td>
-						<td><input style="width: 300px" type="text" name="updateAddress" id="sample6_address" placeholder="주소" readonly="readonly"></td>
-					</tr>
-					<tr>
-						<td><input style="width: 200px" type="text" name="updateAddressDetail" id="sample6_detailAddress" placeholder="상세주소" readonly="readonly"></td>
+						<td></td>
+						<td><input type="text" name="updateAddressDetail" id="sample6_detailAddress" 
+						placeholder="상세주소" readonly="readonly" class="col-sm-12"></td>
 					</tr>
 					<tr>
 						<td>이메일</td>
 						<td>
-							<input style="width: 250px" type="text" required="required"
+							<input type="text" required="required" class="col-sm-12"
 								name="updateEmail" value="${sessionScope.mvo.email}">
 						</td>
 					</tr>
 					<tr>
 						<td></td>
-						<td align="left">
+						<td>
+						<br>
 							<input type="submit" value="수정 완료">
 							<input type="button" onclick="location.href='${pageContext.request.contextPath}/front?command=deleteMemberForm'" value="회원탈퇴">
 						</td>
