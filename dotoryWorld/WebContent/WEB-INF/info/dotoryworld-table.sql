@@ -72,7 +72,7 @@ CREATE SEQUENCE bookmark_no_seq;
 	ON DELETE CASCADE
 )
 
-/*DROP TABLE dotorylist*/
+DROP TABLE dotorylist
 
 CREATE TABLE photobook(
 	photobook_no NUMBER PRIMARY KEY,
@@ -224,7 +224,7 @@ UPDATE hobbyboard SET hobbyboard_imgName = 'ballad.png' WHERE hobbyboard_no='15'
 UPDATE hobbyboard SET hobbyboard_imgName = 'pop.jpg' WHERE hobbyboard_no='16';
 
 
-select * from dotorylist;
+select * from category;
 select * from HOBBYBOARD;
 
 

@@ -207,6 +207,40 @@
 /*boardList 구역*/
 #boardListForm {
 	width: 347px;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+#homeBoardList {
+	border: 3px solid #F57F17;
+	border-radius: 40px 40px;
+	border-style: dashed;
+	padding: 20px;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+#homeBoardList img {
+	width: 100%;
+}
+
+#homeBoardList input[type=submit] {
+	width: 100%;
+}
+
+#categoryContent {
+	border: 3px solid #F57F17;
+}
+
+#categoryContent img {
+	width: 150px;
+	height: 150px;
+}
+
+#mainImage {
+	width: 150px;
 }
 
 #boardListForm img {
@@ -252,7 +286,7 @@ input[type=submit], input[type=button] {
 }
 
 #categoryForm input[type=button] {
-	border: 2px solid red;
+	border: 2px solid #FFBF00;
 	border-style: dashed;
 	float: left;
 	width: 90px;
@@ -265,6 +299,14 @@ input[type=submit], input[type=button] {
 
 #boardListForm input[type=submit] {
 	width: 100%;
+}
+
+#postWriteForm {
+	float: right;
+}
+
+#searchResultForm {
+	display: inline-block;
 }
 
 body {
@@ -301,14 +343,14 @@ body {
 	height: 100%;
 }
 
-.content{
-    min-height: 72.8vh;
-		
+.content {
+	min-height: 72.8vh;
 }
 
-
 /* naver Editor iframe 크기 */
-#frm table tr td ifrmae{width:655px}
+#frm table tr td ifrmae {
+	width: 655px
+}
 
 /* 어드민 페이지 게시물 관리 페이징 스타일*/
 .page-item.active .page-link {

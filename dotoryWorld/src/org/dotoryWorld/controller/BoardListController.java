@@ -11,6 +11,7 @@ public class BoardListController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String categoryNo=request.getParameter("categoryNo");
+		request.setAttribute("categoryNo", categoryNo);
 		request.setAttribute("boardList", PostDAO.getInstance().getBoardList(categoryNo));	
 		request.setAttribute("url", "/views/board/board-list.jsp");
 		return "/views/template/main-layout.jsp";

@@ -5,15 +5,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript">
 </script>
-<style>
-#searchResultForm{
- border: 2px solid white;
-  padding: 15px;
-}
-</style>
 <!-- 게시판 정보가 들어가는 부분 -->
 <div class="row boardInfo">
-		게시판 정보가 들어가는 부분
+		
 </div>
 
 <!-- 게시물 검색-->
@@ -26,7 +20,7 @@
 				 <select name="keyField">
 					<option value="title">제목</option>
 				</select>&emsp;
-				<div class="w300" style="padding-right: 10px">
+				<div class="w300">
 					<input type="text" class="form-control" name="keyword" id="keyWord">
 				</div>
             <input type="submit" value="검색">
@@ -39,7 +33,7 @@
 <div class="row boardMain">
 <div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
-	<form action="${pageContext.request.contextPath}/front">
+	<form action="${pageContext.request.contextPath}/front" id="postWriteForm">
 		<input type="hidden" name="command" value="postWriteForm">
 		<input type="hidden" name="boardNo" value="${requestScope.hobbyBoardNo}">
 		<input type="submit" value="글쓰기">

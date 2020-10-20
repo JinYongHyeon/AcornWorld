@@ -3,7 +3,6 @@ package org.dotoryWorld.model;
 public class BoardVO {
 	private String boardNo;//번호
 	private String boardTitle;//작은항목 제목
-	private String boardContent;//작은항목 소개
 	private String boardImage;
 	private int boardLike;//작은항목 좋아요
 	private CategoryVO categoryVO;//큰항목
@@ -13,11 +12,10 @@ public class BoardVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BoardVO(String boardNo, String boardTitle, String boardContent, int boardLike, String boardImage, CategoryVO categoryVO) {
+	public BoardVO(String boardNo, String boardTitle, int boardLike, String boardImage, CategoryVO categoryVO) {
 		super();
 		this.boardNo = boardNo;
 		this.boardTitle = boardTitle;
-		this.boardContent = boardContent;
 		this.boardImage = boardImage;
 		this.boardLike = boardLike;
 		this.categoryVO = categoryVO;
@@ -39,13 +37,6 @@ public class BoardVO {
 		this.boardTitle = boardTitle;
 	}
 
-	public String getBoardContent() {
-		return boardContent;
-	}
-
-	public void setBoardContent(String boardContent) {
-		this.boardContent = boardContent;
-	}
 
 	public String getBoardImage() {
 		return boardImage;
@@ -73,7 +64,7 @@ public class BoardVO {
 
 	@Override
 	public String toString() {
-		return "BoardVO [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
+		return "BoardVO [boardNo=" + boardNo + ", boardTitle=" + boardTitle
 				+ ", boardImage=" + boardImage + ", boardLike=" + boardLike + ", categoryVO=" + categoryVO + "]";
 	}
 
