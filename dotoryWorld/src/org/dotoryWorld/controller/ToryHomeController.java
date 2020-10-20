@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.dotoryWorld.model.MemberDAO;
 import org.dotoryWorld.model.MemberVO;
+import org.dotoryWorld.model.ToryhomeVO;
 
 public class ToryHomeController implements Controller {
 	/**
@@ -28,6 +29,10 @@ public class ToryHomeController implements Controller {
 			System.out.println("toryHomeNVO null");
 			return "redirect:front?command=main";
 		}
+		
+		// 방명록 가져오기(작성 예정)
+		ToryhomeVO toryhomeVO = MemberDAO.getInstance().ToryHomeLetterInformation(toryHomeMVO);
+		
 		
 		
 		return "views/template/tory-layout.jsp";

@@ -252,4 +252,10 @@ public class MemberDAO {
 		return memberVO;
 	}
 
+	// 방명록 정보 가져오기(작성 예정)
+	public ToryhomeVO ToryHomeLetterInformation(MemberVO toryHomeMVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
