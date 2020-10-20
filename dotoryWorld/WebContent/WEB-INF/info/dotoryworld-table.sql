@@ -223,12 +223,9 @@ UPDATE hobbyboard SET hobbyboard_imgName = 'pop.jpg' WHERE hobbyboard_no='16';
 
 select * from dotorylist;
 select * from HOBBYBOARD;
-<<<<<<< HEAD
 delete from member where password='123'
 select * from dotorylist;
-=======
 delete from member where id='user5'
->>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 select * from member;
 
 select count(*) from hobby_post;
@@ -236,6 +233,8 @@ select count(*) from hobby_post;
 select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount from(
 select row_number() over(order by hobbypost_no asc) as rnum, hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount from hobby_post )
 where rnum between 1 and 2 ;
+
+select id from DOTORYLIST d;
 
 
 
