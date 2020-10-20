@@ -30,7 +30,7 @@
 				<td><c:choose>
 						<c:when test="${sessionScope.mvo!=null}">
 							<a
-								href="${pageContext.request.contextPath}/front?command=PostDetail&no=${pvo.postNo }">
+								href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">
 								${pvo.postTitle }</a>
 						</c:when>
 						<c:otherwise>

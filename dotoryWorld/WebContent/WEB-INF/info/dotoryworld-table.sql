@@ -64,7 +64,7 @@ CREATE TABLE bookmark(
 CREATE SEQUENCE bookmark_no_seq;
 	
 	--20년10월20일[id 까지 PK 복합키로 설정]
-	CREATE TABLE dotorylist(
+CREATE TABLE dotorylist(
 	dotory_id VARCHAR2(300),
 	id VARCHAR2(300),
 	CONSTRAINT PK_dotorylist PRIMARY KEY (dotory_id,id),
@@ -72,7 +72,7 @@ CREATE SEQUENCE bookmark_no_seq;
 	ON DELETE CASCADE
 )
 
-/*DROP TABLE dotorylist*/
+DROP TABLE dotorylist
 
 CREATE TABLE photobook(
 	photobook_no NUMBER PRIMARY KEY,
