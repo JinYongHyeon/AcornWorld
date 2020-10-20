@@ -301,5 +301,9 @@ delete from TORYHOME_BOARD where id='';
 SELECT toryhome_title, toryhome_content, 
 to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), id_writer, id 
 FROM toryhome_board where id='user4' and toryhome_title='방명록'
-ORDER BY toryhome_no ASC;
+ORDER BY toryhome_no DESC;
 
+SELECT ROWNUM, X.* FROM (SELECT toryhome_title, toryhome_content, 
+to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), id_writer,
+FROM toryhome_board where id='user4' and toryhome_title='방명록'
+ORDER BY toryhome_no ASC) X ORDER BY ROWNUM DESC;
