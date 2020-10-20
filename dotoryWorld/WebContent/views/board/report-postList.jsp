@@ -73,6 +73,8 @@ end="${pb.endPageOfPageGroup}">
 </c:if>
 </ul>
 </div> 
+<td> <입력 유형 = 버튼 값 = " 글쓰기 " OnClick = "window.location = 'ReportPostWriteFormController'" > </td> 
+
 
 </body>
 </html>
