@@ -44,7 +44,7 @@
 <div class="row boardMain">
 <div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
-<form action="${pageContext.request.contextPath}/front" id="checkForm">
+<form action="${pageContext.request.contextPath}/front" id="myPostDeleteForm" onsubmit="return myPostDelete()">
 	<table class="table table-bordered  table-hover boardlist">
 	<thead>
 		<tr class="success">

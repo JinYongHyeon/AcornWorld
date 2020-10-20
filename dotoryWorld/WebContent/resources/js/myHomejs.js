@@ -92,4 +92,19 @@ function postDelete() {
 		return flag;
 	}
 }
+function myPostDelete() {
+	var no = document.getElementsByName("postNo");
+	var myPostDeleteForm = document.getElementById("myPostDeleteFrom");
+	var flag = false;
+	for (var i = 0; i < no.length; i++) {
+		if(no[i].checked === true) {
+			flag = true;
+			break;
+		}
+	}
+	if (flag === false) {
+		alert("체크박스를 체크해주세요");
+		return flag;
+	}
+}
 

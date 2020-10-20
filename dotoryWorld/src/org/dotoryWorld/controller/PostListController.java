@@ -21,10 +21,7 @@ public class PostListController implements Controller {
 		}
 		String hobbyBoardNo=request.getParameter("hobbyBoardNo");
 		request.setAttribute("hobbyBoardNo", hobbyBoardNo);
-		System.out.println("postListC 실행-1"); 
-		System.out.println(hobbyBoardNo); // test 용
 		int totalPostCount = PostDAO.getInstance().getTotalPostCount(hobbyBoardNo);
-		System.out.println(totalPostCount); // test 용
 		String pageNo = request.getParameter("pageNo");
 		//String postNo = request.getParameter("postNo"); // 게시물이 삭제된 부분의 게시물들을 조회하고자 할때 사용한다????
 		PagingBean  pagingBean = null;
@@ -35,16 +32,12 @@ public class PostListController implements Controller {
 		} else {
 			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo), postCountPerPage, pageCountPerPageGroup );
 		}
-		ArrayList<PostVO> list = PostDAO.getInstance().getPostingList(pagingBean, hobbyBoardNo);		
-		ListVO listVO = new ListVO(list, pagingBean);
-		request.setAttribute("lvo", listVO);
-		// 세션 의미부여 !=""
-		//HttpSession session = request.getSession();
-		// 임시 세션 추후 삭제
-		//session.setAttribute("mvo", new MemberVO("user2","1234","사용자2","판교","user2@gmail.com","도토리2","도토리2입니다",null,"도토리"));
-		//session.setAttribute("noList",new ArrayList<String>());
-		request.setAttribute("url", "/views/board/post-list.jsp");		
-		return "/views/template/main-layout.jsp";
+		ArrayList<PostVO> postinglist = PostDAO.getInstance().getPostingList(pagingBean, hobbyBoardNo);		
+		ListVO postingListPaging = new ListVO(postinglist, pagingBean);
+		request.setAttribute("postingListPaging", postingListPaging);
+		//request.setAttribute("url", "/views/board/post-list.jsp");		
+		//return "/views/template/main-layout.jsp";
+		return "front?command=noticeList&categoryNo=5";
 	}
 
 }
