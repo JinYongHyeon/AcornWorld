@@ -96,7 +96,32 @@ CREATE TABLE toryhome_board(
 	ON DELETE CASCADE
 )
 
+/* 신고게시판 게시물 테이블 */
+CREATE TABLE report_post(
+	reportpost_no NUMBER PRIMARY KEY,
+	report_title VARCHAR2(300) NOT NULL,
+	report_content CLOB NOT NULL, 
+	reportpost_date DATE NOT NULL,
+	category_no NUMBER NOT NULL,
+	id VARCHAR2(300) NOT NULL,
+	CONSTRAINT FK_report_post_id FOREIGN KEY (id) REFERENCES member (id),
+	CONSTRAINT FK_report_post_category_no FOREIGN KEY (category_no) REFERENCES category (category_no)
+	ON DELETE CASCADE
+)
+CREATE SEQUENCE reportpost_no_seq NOCACHE;
+
 CREATE SEQUENCE toryhome_no_seq
+
+--게시물 좋아요 테이블
+CREATE TABLE hobbypostlike(
+	ID VARCHAR2(400),
+	HOBBYPOST_NO NUMBER,
+	CONSTRAINT pk_hobbypostlike PRIMARY KEY(id,hobbypost_no),
+	CONSTRAINT fk_hobbypostlike_id FOREIGN KEY(id) REFERENCES member(id) ON DELETE CASCADE,
+	CONSTRAINT fk_hobbypostlike_no FOREIGN KEY(hobbypost_no) REFERENCES hobby_post(hobbypost_no) ON DELETE CASCADE
+)
+
+
 /* 시퀀스 검색*/
 SELECT * FROM USER_SEQUENCES;
 SELECT * FROM TAB;
@@ -152,6 +177,8 @@ INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user2','1234','사용자2','판교','user2@gmail.com','도토리2','도토리2입니다','도토리');
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user3','1234','사용자3','판교','user3@gmail.com','도토리3','도토리3입니다','도토리');
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user4','1234','사용자4','판교','user4@gmail.com','도토리4','도토리4입니다','도토리');
+INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user5','1234','꽈꽈','북극','user5@gmail.com','도토리5','도토리5입니다','도토리');
+INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user6','1234','꾸꾸','남극','user6@gmail.com','도토리6','도토리6입니다','도토리');
 
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'운동','운동설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
@@ -195,11 +222,16 @@ VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(S
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 
+/* 신고게시판 샘플 데이터 */
+INSERT INTO report_post(reportpost_no,report_title,report_content,reportpost_date,category_no,id)
+VALUES(reportpost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),3,'user4');
 
 -- 내 도토리 목록 데이터
 INSERT INTO dotorylist VALUES('user2','user1');
 INSERT INTO dotorylist VALUES('user3','user1');
 INSERT INTO dotorylist VALUES('user4','user1');
+INSERT INTO dotorylist VALUES('user5','user1');
+INSERT INTO dotorylist VALUES('user6','user1');
 
 SELECT ROW_NUMBER() OVER(ORDER BY hobbyboard_no ASC),hobbyboard_title from HOBBYBOARD WHERE category_no = ?;
 
@@ -224,7 +256,7 @@ UPDATE hobbyboard SET hobbyboard_imgName = 'ballad.png' WHERE hobbyboard_no='15'
 UPDATE hobbyboard SET hobbyboard_imgName = 'pop.jpg' WHERE hobbyboard_no='16';
 
 
-select * from dotorylist;
+select * from category;
 select * from HOBBYBOARD;
 
 
@@ -234,12 +266,14 @@ select * from dotorylist;
 delete from member where id='user5'
 select * from member;
 
+select * from hobby_post;
 select count(*) from hobby_post;
+
+SELECT * FROM hobbypostlike WHERE id='user1' AND hobbypost_no=55
 
 select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount from(
 select row_number() over(order by hobbypost_no asc) as rnum, hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount from hobby_post )
 where rnum between 1 and 2 ;
-
 
 select id from DOTORYLIST d;
 
@@ -247,5 +281,24 @@ select id from DOTORYLIST d;
 --친구목록 리스트
 SELECT d.dotory_id,m.name FROM dotorylist d, member m WHERE m.id = d.dotory_id AND d.id= 'user1';
 
-hobbypost_no id  (복합키)
+
+
+
+-- 방명록 테스트
+INSERT INTO toryhome_board(toryhome_no, toryhome_title,
+toryhome_content, toryhome_date, id_writer, id)
+VALUES(toryhome_no_seq.nextval,'방명록','테스트 중입니다.',
+SYSDATE, 'user1','user4');
+INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
+VALUES(toryhome_no_seq.nextval,'방명록','테스트 중입니다.user2', SYSDATE, 'user2','user4');
+INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
+VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user2', SYSDATE, 'user2','user3');
+
+delete from TORYHOME_BOARD where id='';
+
+SELECT toryhome_no, toryhome_title,
+toryhome_content, 
+to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'),
+id_writer, id FROM toryhome_board;
+
 

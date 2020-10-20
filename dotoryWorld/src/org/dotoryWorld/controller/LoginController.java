@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.dotoryWorld.model.MemberDAO;
 import org.dotoryWorld.model.MemberVO;
+import org.dotoryWorld.model.PostDAO;
 
 public class LoginController implements Controller {
 

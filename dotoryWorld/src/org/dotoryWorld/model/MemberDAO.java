@@ -228,6 +228,22 @@ public class MemberDAO {
 		}
 		return list;
 	}
+	
+	//내 도토리 삭제하기
+	public void deleteMydotory(String id) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		MemberVO vo=null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "delete from dotorylist where dotory_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
 
 	
 	//미니홈피 정보 가져오기
@@ -250,6 +266,12 @@ public class MemberDAO {
 			closeAll(rs, pstmt, con);
 		}
 		return memberVO;
+	}
+
+	// 방명록 정보 가져오기(작성 예정)
+	public ToryhomeVO ToryHomeLetterInformation(MemberVO toryHomeMVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

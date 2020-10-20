@@ -6,7 +6,7 @@
 <script type="text/javascript">
 	
 </script>
-<table>
+<table border="1">
 	<thead>
 		<tr>
 			<td></td><td>${sessionScope.mvo.nickname }(${sessionScope.mvo.id })</td><td></td>
