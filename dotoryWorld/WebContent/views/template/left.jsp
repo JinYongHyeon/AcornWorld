@@ -16,9 +16,11 @@
 				<input type="password" id="password" placeholder="Enter password"
 					name="password" required="required">
 			</div>
-			<input type="submit" value="로그인"> <input type="button"
+			<input type="submit" value="로그인"><br>
+			<input type="button"
 				value="회원가입"
 				onclick="location.href = '${pageContext.request.contextPath}/front?command=registerMemberForm'">
+				<br>
 		</form>
 		<br>
 	</c:when>
@@ -38,19 +40,17 @@
 		<br>
 
 		<input type="button" value="로그아웃"
-			onclick="location.href = '${pageContext.request.contextPath}/front?command=logout'">
+			onclick="location.href = '${pageContext.request.contextPath}/front?command=logout'">&emsp;
 		<input type="button" value="회원정보수정"
-			onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'">
-
-
+			onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'"><hr>
 		<input type="button" value="내 게시물 조회"
-			onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'">
+			onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'"><hr>
 	</c:otherwise>
 </c:choose>
 <c:if test="${sessionScope.mvo != null}">
-	<br>
 	<input type="button" value="내 미니홈피 가기"
 		onclick="location.href = '${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}'">
+		<hr>
 	<c:if test="${sessionScope.mvo.grade == '다람쥐'}">
 		<input type="button" value="관리자 페이지"
 			onclick="location.href = '	${pageContext.request.contextPath}/front?command=adminManage'">
