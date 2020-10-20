@@ -98,6 +98,8 @@ public class HandlerMapping {
 			controller = new DeleteMyDotoryController();
 		}else if(command.contentEquals("like")){//좋아요
 			controller = new LikeController();
+		}else if(command.contentEquals("bookmark")) {
+			controller = new BookmarkController();
 		}
 		return controller;
 	}

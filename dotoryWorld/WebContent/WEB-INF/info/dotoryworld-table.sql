@@ -122,6 +122,8 @@ CREATE TABLE hobbypostlike(
 )
 
 
+
+
 /* 시퀀스 검색*/
 SELECT * FROM USER_SEQUENCES;
 SELECT * FROM TAB;
@@ -169,7 +171,10 @@ ALTER TABLE hobby_post MODIFY(hobbypost_viewcount DEFAULT 0);
 
 --작은항목 이미지 URL 주소 컬럼 추가
 ALTER TABLE HOBBYBOARD ADD(hobbyboard_imgName VARCHAR2(500))
- 
+
+UPDATE category SET category_content='운동'||CHR(13)||'설명' where category_name = '운동'
+
+select * from category
 
 --샘플 데이터
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('admin','1234','관리자','판교','admin@gmail.com','다람쥐','관리자입니다','다람쥐');
@@ -300,5 +305,11 @@ SELECT toryhome_no, toryhome_title,
 toryhome_content, 
 to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'),
 id_writer, id FROM toryhome_board;
+
+--북마크 샘플
+INSERT INTO bookmark(bookmark_no,link,bookmark_divide,id) VALUES(bookmark_no_seq.NEXTVAL,'56','북마크','user1');
+
+SELECT * FROM bookmark
+
 
 

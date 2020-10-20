@@ -56,7 +56,7 @@
 				<button type="button" class="btn" onclick="updatePost()">수정</button>
 			</td>
 		</tr>
-	<!-- </c:if> -->
+	<%-- </c:if> --%>
 </table>
 </body>
 </html>
