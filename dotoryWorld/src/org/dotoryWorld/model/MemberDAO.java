@@ -268,10 +268,33 @@ public class MemberDAO {
 		return memberVO;
 	}
 
-	// 방명록 정보 가져오기(작성 예정)
-	public ToryhomeVO ToryHomeLetterInformation(MemberVO toryHomeMVO) {
-		// TODO Auto-generated method stub
-		return null;
+	// 방명록 정보 가져오기 - 정콰이어트
+	@SuppressWarnings("null")
+	public ArrayList<ToryhomeVO> ToryHomeLetterInformation(MemberVO toryHomeMVO) throws SQLException {
+		ArrayList<ToryhomeVO> toryletter = new ArrayList<ToryhomeVO>();
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		StringBuilder sql = new StringBuilder();
+		try {
+			con=dataSource.getConnection();
+			sql.append("SELECT toryhome_title, toryhome_content, ");
+			sql.append("to_char(toryhome_date, 'YYYY-MM-DD HH24:MI'), id_writer ");
+			sql.append("FROM toryhome_board where id=? and toryhome_title='방명록' ");
+			sql.append("ORDER BY toryhome_no ASC");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, toryHomeMVO.getId());
+			rs=pstmt.executeQuery();
+			int rsCount = 1;
+			while(rs.next()) {
+				toryletter.add(new ToryhomeVO(rsCount+"",rs.getString(1), rs.getString(2),
+						rs.getString(3), rs.getString(4), toryHomeMVO));
+				rsCount++;
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return toryletter;
 	}
 
 }

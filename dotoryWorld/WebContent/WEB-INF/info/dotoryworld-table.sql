@@ -137,6 +137,8 @@ CREATE TABLE hobbypostlike(
 )
 
 
+
+
 /* 시퀀스 검색*/
 SELECT * FROM USER_SEQUENCES;
 SELECT * FROM TAB;
@@ -184,7 +186,10 @@ ALTER TABLE hobby_post MODIFY(hobbypost_viewcount DEFAULT 0);
 
 --작은항목 이미지 URL 주소 컬럼 추가
 ALTER TABLE HOBBYBOARD ADD(hobbyboard_imgName VARCHAR2(500))
- 
+
+UPDATE category SET category_content='운동'||CHR(13)||'설명' where category_name = '운동'
+
+select * from category
 
 --샘플 데이터
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('admin','1234','관리자','판교','admin@gmail.com','다람쥐','관리자입니다','다람쥐');
@@ -324,20 +329,30 @@ SELECT d.dotory_id,m.name FROM dotorylist d, member m WHERE m.id = d.dotory_id A
 
 
 -- 방명록 테스트
-INSERT INTO toryhome_board(toryhome_no, toryhome_title,
-toryhome_content, toryhome_date, id_writer, id)
-VALUES(toryhome_no_seq.nextval,'방명록','테스트 중입니다.',
-SYSDATE, 'user1','user4');
+INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
+VALUES(toryhome_no_seq.nextval,'방명록','테스트 중입니다.', SYSDATE, 'user1','user4');
 INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
 VALUES(toryhome_no_seq.nextval,'방명록','테스트 중입니다.user2', SYSDATE, 'user2','user4');
 INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
 VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user2', SYSDATE, 'user2','user3');
+INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
+VALUES(toryhome_no_seq.nextval,'방명록','테스트 중입니다.user1', SYSDATE, 'user1','user4');
+INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
+VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user4', SYSDATE, 'user4','user3');
 
 delete from TORYHOME_BOARD where id='';
 
-SELECT toryhome_no, toryhome_title,
-toryhome_content, 
-to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'),
-id_writer, id FROM toryhome_board;
+SELECT toryhome_title, toryhome_content, 
+to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), id_writer, id 
+FROM toryhome_board where id='user4' and toryhome_title='방명록'
+ORDER BY toryhome_no DESC;
+
+
+--북마크 샘플
+INSERT INTO bookmark(bookmark_no,link,bookmark_divide,id) VALUES(bookmark_no_seq.NEXTVAL,'56','북마크','user1');
+
+SELECT * FROM bookmark
+
+
 
 

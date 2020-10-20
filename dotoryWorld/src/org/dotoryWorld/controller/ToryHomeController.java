@@ -1,5 +1,7 @@
 package org.dotoryWorld.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,10 +32,9 @@ public class ToryHomeController implements Controller {
 			return "redirect:front?command=main";
 		}
 		
-		// 방명록 가져오기(작성 예정)
-		ToryhomeVO toryhomeVO = MemberDAO.getInstance().ToryHomeLetterInformation(toryHomeMVO);
-		
-		
+		// 방명록 정보 가저오기
+		ArrayList<ToryhomeVO> toryLetterList = MemberDAO.getInstance().ToryHomeLetterInformation(new MemberVO(request.getParameter("id")));
+		request.setAttribute("toryLetterList", toryLetterList);		
 		
 		return "views/template/tory-layout.jsp";
 	}

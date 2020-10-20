@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-
-
 public class PostDAO {
 	private static PostDAO instance = new PostDAO();
 	private DataSource dataSource;
@@ -50,30 +48,32 @@ public class PostDAO {
 	 * @throws SQLException
 	 */
 
-	public ArrayList<PostVO> getPostingList(PagingBean pagingBean, String hobbyBoardNo) throws SQLException{
-		ArrayList<PostVO> list=new ArrayList<PostVO>();
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		try{
-			System.out.println(hobbyBoardNo+"번호확인"+pagingBean.getEndRowNumber());
-			con=getConnection(); 
-			StringBuilder sql=new StringBuilder();	
+	public ArrayList<PostVO> getPostingList(PagingBean pagingBean, String hobbyBoardNo) throws SQLException {
+		ArrayList<PostVO> list = new ArrayList<PostVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			System.out.println(hobbyBoardNo + "번호확인" + pagingBean.getEndRowNumber());
+			con = getConnection();
+			StringBuilder sql = new StringBuilder();
 			System.out.println("postDAO 실행");
 			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted,M.id,M.name FROM( ");
-			sql.append("SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
-			sql.append("to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post WHERE hobbyboard_no = ? ");
-			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ? ");	
-			pstmt=con.prepareStatement(sql.toString());	
-			//start, endRowNumber를 할당한다
+			sql.append(
+					"SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
+			sql.append(
+					"to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post WHERE hobbyboard_no = ? ");
+			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ? ");
+			pstmt = con.prepareStatement(sql.toString());
+			// start, endRowNumber를 할당한다
 			pstmt.setString(1, hobbyBoardNo);
 			pstmt.setInt(2, pagingBean.getStartRowNumber());
 			pstmt.setInt(3, pagingBean.getEndRowNumber());
-			rs=pstmt.executeQuery();	
-			//목록에서 게시물 content는 필요없으므로 null로 setting
-			//select no,title,time_posted,hits,id,name
-			while(rs.next()){		
-				PostVO pvo=new PostVO();
+			rs = pstmt.executeQuery();
+			// 목록에서 게시물 content는 필요없으므로 null로 setting
+			// select no,title,time_posted,hits,id,name
+			while (rs.next()) {
+				PostVO pvo = new PostVO();
 				pvo.setPostNo(rs.getString(1));
 				pvo.setPostTitle(rs.getString(2));
 				pvo.setViewCount(rs.getInt(3));
@@ -86,48 +86,50 @@ public class PostDAO {
 				list.add(pvo);
 			}
 		} finally {
-			closeAll(rs, pstmt, con);		
+			closeAll(rs, pstmt, con);
 		}
 		return list;
 	}
-	
-	public ArrayList<PostVO> getReportPostingList(PagingBean pagingBean, String boardNo) throws SQLException{
-		ArrayList<PostVO> list=new ArrayList<PostVO>();
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		try{
-			con=getConnection(); 
-			StringBuilder sql=new StringBuilder();		
+
+	public ArrayList<PostVO> getReportPostingList(PagingBean pagingBean, String boardNo) throws SQLException {
+		ArrayList<PostVO> list = new ArrayList<PostVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT B.reportpost_no,B.report_title,B.time_posted,M.id,M.name ");
-			sql.append("FROM(SELECT row_number() over(ORDER BY reportpost_no DESC) as rnum,reportpost_no,report_title,to_char(reportpost_date,'YYYY.MM.DD') as time_posted,id,category_no FROM report_post where category_no=?");
-			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ?");	
-			pstmt=con.prepareStatement(sql.toString());	
-			//start, endRowNumber를 할당한다
+			sql.append(
+					"FROM(SELECT row_number() over(ORDER BY reportpost_no DESC) as rnum,reportpost_no,report_title,to_char(reportpost_date,'YYYY.MM.DD') as time_posted,id,category_no FROM report_post where category_no=?");
+			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ?");
+			pstmt = con.prepareStatement(sql.toString());
+			// start, endRowNumber를 할당한다
 			pstmt.setString(1, boardNo);
 			pstmt.setInt(2, pagingBean.getStartRowNumber());
 			pstmt.setInt(3, pagingBean.getEndRowNumber());
-			rs=pstmt.executeQuery();	
-			//목록에서 게시물 content는 필요없으므로 null로 setting
-			//select no,title,time_posted,hits,id,name
-			while(rs.next()){		
-				PostVO pvo=new PostVO();
+			rs = pstmt.executeQuery();
+			// 목록에서 게시물 content는 필요없으므로 null로 setting
+			// select no,title,time_posted,hits,id,name
+			while (rs.next()) {
+				PostVO pvo = new PostVO();
 				pvo.setPostNo(rs.getString(1));
 				pvo.setPostTitle(rs.getString(2));
-				pvo.setPostDate(rs.getString(3));				
-				MemberVO mvo=new MemberVO();
+				pvo.setPostDate(rs.getString(3));
+				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString(4));
 				mvo.setName(rs.getString(5));
 				pvo.setMemberVO(mvo);
-				list.add(pvo);			
+				list.add(pvo);
 			}
 			System.out.println("postDAO");
 			System.out.println(list);
-		}finally{
-			closeAll(rs,pstmt,con);
+		} finally {
+			closeAll(rs, pstmt, con);
 		}
 		return list;
 	}
+
 	
 	public ArrayList<PostVO> getNoticePostingList(PagingBean pagingBean, String categoryNo) throws SQLException{
 		ArrayList<PostVO> list=new ArrayList<PostVO>();
@@ -177,20 +179,23 @@ public class PostDAO {
 			con=getConnection(); 
 			StringBuilder sql=new StringBuilder();	
 			System.out.println("postDAO 실행");
-			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted, H.hobbyboard_title FROM( ");
-			sql.append("SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
-			sql.append("to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,hobbyboard_no FROM hobby_post WHERE id = ? ");
-			sql.append(")B, hobbyboard H WHERE B.hobbyboard_no=H.hobbyboard_no AND rnum BETWEEN ? AND ? ");	
-			pstmt=con.prepareStatement(sql.toString());	
-			//start, endRowNumber를 할당한다
+			sql.append(
+					"SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted, H.hobbyboard_title FROM( ");
+			sql.append(
+					"SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
+			sql.append(
+					"to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,hobbyboard_no FROM hobby_post WHERE id = ? ");
+			sql.append(")B, hobbyboard H WHERE B.hobbyboard_no=H.hobbyboard_no AND rnum BETWEEN ? AND ? ");
+			pstmt = con.prepareStatement(sql.toString());
+			// start, endRowNumber를 할당한다
 			pstmt.setString(1, id);
 			pstmt.setInt(2, pagingBean.getStartRowNumber());
 			pstmt.setInt(3, pagingBean.getEndRowNumber());
-			rs=pstmt.executeQuery();	
-			//목록에서 게시물 content는 필요없으므로 null로 setting
-			//select no,title,time_posted,hits,id,name
-			while(rs.next()){		
-				PostVO pvo=new PostVO();
+			rs = pstmt.executeQuery();
+			// 목록에서 게시물 content는 필요없으므로 null로 setting
+			// select no,title,time_posted,hits,id,name
+			while (rs.next()) {
+				PostVO pvo = new PostVO();
 				pvo.setPostNo(rs.getString(1));
 				pvo.setPostTitle(rs.getString(2));
 				pvo.setViewCount(rs.getInt(3));
@@ -201,11 +206,11 @@ public class PostDAO {
 				list.add(pvo);
 			}
 		} finally {
-			closeAll(rs, pstmt, con);		
+			closeAll(rs, pstmt, con);
 		}
 		return list;
 	}
-	
+
 	/**
 	 * Sequence 글번호로 게시물을 검색하는 메서드
 	 * 
@@ -250,37 +255,37 @@ public class PostDAO {
 	}
 
 	public PostVO getReportPostingByNo(String no) throws SQLException {
-		PostVO pvo=null;
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		try{
-			con=getConnection();
-			StringBuilder sql=new StringBuilder();
+		PostVO pvo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			StringBuilder sql = new StringBuilder();
 			sql.append("select b.report_title,to_char(b.reportpost_date,'YYYY.MM.DD  HH24:MI:SS') as time_posted");
 			sql.append(",b.report_content,b.id,m.name");
 			sql.append(" from report_post b,member m");
-			sql.append(" where b.id=m.id and b.reportpost_no=?");		
-			pstmt=con.prepareStatement(sql.toString());
+			sql.append(" where b.id=m.id and b.reportpost_no=?");
+			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, no);
-			rs=pstmt.executeQuery();		
-			if(rs.next()){
-				pvo=new PostVO();
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				pvo = new PostVO();
 				pvo.setPostNo(no);
 				pvo.setPostTitle(rs.getString("report_title"));
-				pvo.setPostContent(rs.getString("report_content"));				
+				pvo.setPostContent(rs.getString("report_content"));
 				pvo.setPostDate(rs.getString("time_posted"));
-				MemberVO mvo=new MemberVO();
+				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString("id"));
 				mvo.setName(rs.getString("name"));
 				pvo.setMemberVO(mvo);
-			}			
-		}finally{
-			closeAll(rs,pstmt,con);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
 		}
 		return pvo;
 	}
-	
+
 	/**
 	 * 조회수 증가
 	 * 
@@ -317,7 +322,8 @@ public class PostDAO {
 		try {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id) ");
+			sql.append(
+					"INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id) ");
 			sql.append("VALUES(hobbypost_no_seq.NEXTVAL,?,?,sysdate,?,?)");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, vo.getPostTitle());
@@ -337,98 +343,100 @@ public class PostDAO {
 		return postNo;
 	}
 
-	public void reportPostWrite(PostVO vo) throws SQLException{
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		try{
-			con=getConnection();			
-			StringBuilder sql=new StringBuilder();
+	public void reportPostWrite(PostVO vo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			StringBuilder sql = new StringBuilder();
 			sql.append("Insert into hobby_post(hobbypost_no,hobby_title,hobby_content,id,hobbypost_date) ");
-			sql.append("values(board_seq.nextval,?,?,?,sysdate)");			
-			pstmt=con.prepareStatement(sql.toString());
+			sql.append("values(board_seq.nextval,?,?,?,sysdate)");
+			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, vo.getPostTitle());
 			pstmt.setString(2, vo.getPostContent());
 			pstmt.setString(3, vo.getMemberVO().getId());
-			pstmt.executeUpdate();			
+			pstmt.executeUpdate();
 			pstmt.close();
-			pstmt=con.prepareStatement("select board_seq.currval from dual");
-			rs=pstmt.executeQuery();
-			if(rs.next())
-			vo.setPostNo(rs.getString(1));			
-		}finally{
-			closeAll(rs,pstmt,con);
+			pstmt = con.prepareStatement("select board_seq.currval from dual");
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				vo.setPostNo(rs.getString(1));
+		} finally {
+			closeAll(rs, pstmt, con);
 		}
 	}
-	
+
 	/**
 	 * 글번호에 해당하는 게시물을 삭제하는 메서드
 	 * 
 	 * @param no
 	 * @throws SQLException
 	 */
-	
-	public void deletePosting(int no) throws SQLException{
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		try{
-			con=getConnection();
-			pstmt=con.prepareStatement("delete from hobby_post where hobbypost_no=?");
+
+	public void deletePosting(int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement("delete from hobby_post where hobbypost_no=?");
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
-			}finally{
-				closeAll(pstmt,con);
-			}
-	}
-	
-	public void deleteReportPosting(int no) throws SQLException{
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		try{
-			con=getConnection(); 
-			pstmt=con.prepareStatement("delete from report_post where reportpost_no=?");
-			pstmt.setInt(1, no);		
-			pstmt.executeUpdate();			
-		}finally{
-			closeAll(pstmt,con);
+		} finally {
+			closeAll(pstmt, con);
 		}
 	}
-	
+
+	public void deleteReportPosting(int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement("delete from report_post where reportpost_no=?");
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+
 	/**
 	 * 게시물 정보 업데이트하는 메서드
 	 * 
 	 * @param vo
 	 * @throws SQLException
 	 */
-	
-	public void updatePosting(PostVO vo) throws SQLException{ Connection
-		con=null; PreparedStatement pstmt=null;
-		try{
-			con=getConnection();
-			pstmt=con.prepareStatement("update hobby_post set hobby_title=?,hobby_content=? where hobbypost_no=?");
+
+	public void updatePosting(PostVO vo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement("update hobby_post set hobby_title=?,hobby_content=? where hobbypost_no=?");
 			pstmt.setString(1, vo.getPostTitle());
 			pstmt.setString(2, vo.getPostContent());
-			pstmt.setString(3, vo.getPostNo()); pstmt.executeUpdate();
-		}finally{
-			closeAll(pstmt,con);
+			pstmt.setString(3, vo.getPostNo());
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
 		}
 	}
-	
-	public void updateReportPosting(PostVO vo) throws SQLException{
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		try{
-			con=getConnection();
-			pstmt=con.prepareStatement("update board_paging set title=?,content=? where no=?");
+
+	public void updateReportPosting(PostVO vo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement("update board_paging set title=?,content=? where no=?");
 			pstmt.setString(1, vo.getPostTitle());
 			pstmt.setString(2, vo.getPostContent());
-			pstmt.setString(3, vo.getPostNo());	
-			pstmt.executeUpdate();			
-		}finally{
-			closeAll(pstmt,con);
+			pstmt.setString(3, vo.getPostNo());
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
 		}
 	}
-	
+
 	public int getTotalPostCount(String hobbyBoardNo) throws SQLException {
 		int totalCount = 0;
 		Connection con = null;
@@ -447,6 +455,7 @@ public class PostDAO {
 		}
 		return totalCount;
 	}
+
 	public int getTotalReportPostCount(String categoryNo) throws SQLException {
 		int totalCount = 0;
 		Connection con = null;
@@ -509,41 +518,42 @@ public class PostDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int count=0;
+		int count = 0;
 		try {
 			con = getConnection();
-			String sql ="select count(*) from hobby_post where hobby_title LIKE ?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,"%" + postTitle +"%");
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				count=rs.getInt(1);
+			String sql = "select count(*) from hobby_post where hobby_title LIKE ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + postTitle + "%");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
 		return count;
 	}
-	public ArrayList<PostVO> searchPost(String postTitle,PagingBean pgb) throws SQLException {
+
+	public ArrayList<PostVO> searchPost(String postTitle, PagingBean pgb) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<PostVO> searchList = new ArrayList<PostVO>();
-		
+
 		try {
 			con = getConnection();
-			StringBuilder sql= new StringBuilder();
+			StringBuilder sql = new StringBuilder();
 			sql.append("select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
 			sql.append("from(select row_number() over(order by hobbypost_no asc) as rnum, ");
 			sql.append("hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
 			sql.append("from hobby_post where hobby_title LIKE ? )");
 			sql.append("where rnum between ? and ? ");
-			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1,"%" + postTitle +"%");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, "%" + postTitle + "%");
 			pstmt.setInt(2, pgb.getStartRowNumber());
 			pstmt.setInt(3, pgb.getEndRowNumber());
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
 				PostVO pvo = new PostVO();
 				pvo.setPostNo(rs.getString(1));
 				pvo.setPostTitle(rs.getString(2));
@@ -563,27 +573,24 @@ public class PostDAO {
 		return searchList;
 	}
 
-
-
-	
 	// 소카테고리 리스트(운동-축구,복싱 등) 불러오는 메서드 - 지윤
 	public ArrayList<BoardVO> getBoardList(String categoryNo) throws SQLException {
-		ArrayList<BoardVO> boardList=new ArrayList<BoardVO>();
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			con=dataSource.getConnection();
-			String sql="SELECT h.hobbyboard_title,h.hobbyboard_no,h.hobbyboard_imgName,c.category_content FROM hobbyboard h, category c WHERE h.category_no=c.category_no AND c.category_no=?";
-			pstmt=con.prepareStatement(sql);
+			con = dataSource.getConnection();
+			String sql = "SELECT h.hobbyboard_title,h.hobbyboard_no,h.hobbyboard_imgName,c.category_content FROM hobbyboard h, category c WHERE h.category_no=c.category_no AND c.category_no=?";
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, categoryNo);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				BoardVO boardVO=new BoardVO();
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				BoardVO boardVO = new BoardVO();
 				boardVO.setBoardTitle(rs.getString(1));
 				boardVO.setBoardNo(rs.getString(2));
 				boardVO.setBoardImage(rs.getString(3));
-				CategoryVO categoryVO=new CategoryVO();
+				CategoryVO categoryVO = new CategoryVO();
 				categoryVO.setCategoryContent(rs.getString(4));
 				boardVO.setCategoryVO(categoryVO);
 				boardList.add(boardVO);
@@ -593,102 +600,107 @@ public class PostDAO {
 		}
 		return boardList;
 	}
-	
+
 	/**
 	 * 모든 게시물수[어드민 게시물 관리]
+	 * 
 	 * @return
 	 * @throws SQLException
 	 */
 	public int getAllCountPost() throws SQLException {
-		int count=0;
-		Connection con=null;
-		PreparedStatement pstmt= null;
-		ResultSet rs= null;
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
 			String sql = "SELECT COUNT(*) FROM hobby_post";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				count = rs.getInt(1);
 			}
-		}finally {
-			closeAll(rs,pstmt,con);
+		} finally {
+			closeAll(rs, pstmt, con);
 		}
 		return count;
 	}
-	
+
 	/**
 	 * 어드민 게시물 관리 페이지
+	 * 
 	 * @param paginBean
 	 * @return
 	 * @throws SQLException
 	 */
-	public ArrayList<PostVO> getAllPostList(PagingBean paginBean) throws SQLException{
+	public ArrayList<PostVO> getAllPostList(PagingBean paginBean) throws SQLException {
 		Connection con = null;
-		PreparedStatement pstmt= null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<PostVO> pvoList = new ArrayList<PostVO>();
 		try {
 			con = dataSource.getConnection();
-			StringBuilder sb= new StringBuilder();
+			StringBuilder sb = new StringBuilder();
 			sb.append("SELECT rnum,hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount FROM ");
-			sb.append("(SELECT hobbypost_no,ROW_NUMBER() OVER(ORDER BY hobbypost_no ASC) AS rnum,hobby_title,id,TO_CHAR(hobbypost_date,'yyyy-mm-dd') as hobbypost_date,hobbypost_viewcount");
+			sb.append(
+					"(SELECT hobbypost_no,ROW_NUMBER() OVER(ORDER BY hobbypost_no ASC) AS rnum,hobby_title,id,TO_CHAR(hobbypost_date,'yyyy-mm-dd') as hobbypost_date,hobbypost_viewcount");
 			sb.append(" FROM hobby_post");
 			sb.append(")h WHERE rnum BETWEEN ? AND ?");
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setInt(1, paginBean.getStartRowNumber());
 			pstmt.setInt(2, paginBean.getEndRowNumber());
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				PostVO pvo = new PostVO();
 				pvo.setPostNo(rs.getString("hobbypost_no"));
 				pvo.setPostTitle(rs.getString("hobby_title"));
-				
+
 				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString("id"));
 				pvo.setMemberVO(mvo);
-				
+
 				pvo.setPostDate(rs.getString("hobbypost_date"));
 				pvo.setViewCount(rs.getInt("hobbypost_viewcount"));
-				
+
 				pvoList.add(pvo);
-				
+
 			}
-			}finally {
-			closeAll(rs,pstmt,con);
+		} finally {
+			closeAll(rs, pstmt, con);
 		}
 		return pvoList;
 	}
-	
+
 	/**
 	 * 게시물 일괄 삭제 (관리자 페이지, 내 게시물 페이지)
 	 * @param no
 	 * @throws SQLException
 	 */
+
 	public void deletePostingsByNo(int no) throws SQLException {
 		Connection con =null;
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String sql="DELETE FROM hobby_post WHERE hobbypost_no =?";
+			String sql = "DELETE FROM hobby_post WHERE hobbypost_no =?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
-		}finally {
+		} finally {
 			closeAll(pstmt, con);
 		}
 	}
-	
+
 	/**
 	 * 좋아요 중복 방지를 위한 테이블에 추가
+	 * 
 	 * @param id
 	 * @param no
 	 * @throws SQLException
 	 */
 	public void postLike(String id, String no) throws SQLException {
-		Connection con =null;
-		PreparedStatement pstmt= null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
 			String sql = "INSERT INTO hobbypostlike VALUES(?,?)";
@@ -696,55 +708,58 @@ public class PostDAO {
 			pstmt.setString(1, id);
 			pstmt.setString(2, no);
 			pstmt.executeUpdate();
-		}finally {
+		} finally {
 			closeAll(pstmt, con);
 		}
 	}
+
 	public void postLikeRemove(String id, String no) throws SQLException {
-		Connection con =null;
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-			con =dataSource.getConnection();
+			con = dataSource.getConnection();
 			String sql = "DELETE FROM hobbypostlike WHERE id=? AND HOBBYPOST_NO=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, no);
 			pstmt.executeQuery();
-		}finally {
-			
+		} finally {
+			closeAll(pstmt, con);
 		}
 	}
-	
-	
+
 	/**
 	 * 좋아요 중복체크
+	 * 
 	 * @param id
 	 * @return
 	 * @throws SQLException
 	 */
-	public int postLikeCheck(String id,String no) throws SQLException{
-		Connection con =null;
+	public int postLikeCheck(String id, String no) throws SQLException {
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int count =-1;
+		int count = -1;
 		try {
 			con = dataSource.getConnection();
-			String sql ="SELECT count(*) FROM hobbypostlike WHERE id=? AND hobbypost_no=?";
+			String sql = "SELECT count(*) FROM hobbypostlike WHERE id=? AND hobbypost_no=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1,id);
-			pstmt.setString(2,no);
+			pstmt.setString(1, id);
+			pstmt.setString(2, no);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				count = rs.getInt(1);
 			}
-			
-		}finally {
+
+		} finally {
 			closeAll(rs, pstmt, con);
 		}
 		return count;
 	}
+
 	/**
 	 * 좋아요 기능
+	 * 
 	 * @param no
 	 * @throws SQLException
 	 */
@@ -753,16 +768,18 @@ public class PostDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String sql="UPDATE hobby_post SET hobby_like = hobby_like+1 WHERE hobbypost_no=?";
+			String sql = "UPDATE hobby_post SET hobby_like = hobby_like+1 WHERE hobbypost_no=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, no);
 			pstmt.executeUpdate();
-		}finally {
+		} finally {
 			closeAll(pstmt, con);
 		}
 	}
+
 	/**
 	 * 좋아요 뺴기
+	 * 
 	 * @param no
 	 * @throws SQLException
 	 */
@@ -771,13 +788,30 @@ public class PostDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String sql="UPDATE hobby_post SET hobby_like = hobby_like-1 WHERE hobbypost_no=?";
+			String sql = "UPDATE hobby_post SET hobby_like = hobby_like-1 WHERE hobbypost_no=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, no);
 			pstmt.executeUpdate();
-		}finally {
+		} finally {
 			closeAll(pstmt, con);
 		}
 	}
 
+
+	public void addBookMark(BookmarkVO bookmark) throws SQLException {
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   try {
+		   con = dataSource.getConnection();
+		   StringBuilder sb = new StringBuilder();
+		   sb.append("INSERT INTO bookmark(bookmark_no,link,bookmark_divide,id) VALUES(bookmark_no_seq.NEXTVAL,?,?,?)");
+		   pstmt = con.prepareStatement(sb.toString());
+		   pstmt.setString(1, bookmark.getBookmarkLink());
+		   pstmt.setString(2, bookmark.getBookmarkDivide());
+		   pstmt.setString(3, bookmark.getMemberVO().getId());
+		   pstmt.executeUpdate();
+	   }finally {
+		   closeAll(pstmt, con);
+	   }
+   }
 }
