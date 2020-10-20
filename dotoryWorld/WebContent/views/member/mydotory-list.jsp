@@ -69,7 +69,7 @@ body {
 				</tr>
 				</c:forEach>
 			</table>
-				<button type="button">친구삭제</button>
+				<button type="button" onclick="deleteDotoryList()">친구삭제</button>
 		</form>
 	</div>
 </body>

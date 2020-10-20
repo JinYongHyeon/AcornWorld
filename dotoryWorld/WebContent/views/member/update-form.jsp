@@ -79,10 +79,7 @@
 	// submit 실행
 	function updateMember() {
 		var checkResult = false;
-		if(updateForm.nowPassword.value !== updateForm.pwCheck.value){ // 비밀번호 일치 확인
-			alert("비밀번호가 일치하지 않습니다. 비밀번호 확인을 진행해 주세요.");
-			updateForm.nowPassword.focus();
-		}else if(updateForm.updatePassword.value !== updateForm.updatePasswordCheck.value){ // 새 비밀번호 일치 확인
+		if(updateForm.updatePassword.value !== updateForm.updatePasswordCheck.value){ // 새 비밀번호 일치 확인
 			alert("새 비밀 번호가 일치하지 않습니다.")
 			updateForm.updatePassword.focus();
 		}else{
@@ -111,19 +108,6 @@
 			}
 		})
 	})
-	
-	// 현재 비밀 번호 확인 팝업 창
-	function popup(){
-		var pw= updateForm.nowPassword.value;
-		if(updateForm.pwCheck.value != ""){
-			alert("이미 비밀번호가 확인 되었습니다. ");
-		}else if(pw ===""){
-			alert("비밀번호를 입력하세요.")
-		}else{
-			var path="front?command=passwordCheck&nowPassword="+pw;
-			window.open(path,"pwPop", "width=250, height=200,top=150,left=200");
-		}
-	}
 
 </script>
 
@@ -146,16 +130,11 @@
 						</td>				
 					</tr>
 					<tr>
-						<td>현재 비밀번호</td>
-						<td>
-							<input type="password" name="nowPassword" required="required">
-							<input type="hidden" name="pwCheck" value="">
-							<input type="button" value="비밀번호 확인" onclick="popup()">
-						</td>
-					</tr>
-					<tr>
 						<td>새 비밀번호</td>
-						<td><input type="password" name="updatePassword"></td>
+						<td>
+							<input type="password" name="updatePassword"
+								placeholder="비밀번호 변경시 입력">
+						</td>
 					</tr>
 					<tr>
 						<td>새 비밀번호 확인</td>
