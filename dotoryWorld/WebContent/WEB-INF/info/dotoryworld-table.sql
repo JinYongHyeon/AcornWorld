@@ -206,6 +206,8 @@ INSERT INTO category(category_no,category_name,category_content) VALUES(category
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'음악','요리설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'공지','공지사항');
 
+select * from CATEGORY;
+
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'축구',1);
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'배드민턴',1);
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'농구',1);
