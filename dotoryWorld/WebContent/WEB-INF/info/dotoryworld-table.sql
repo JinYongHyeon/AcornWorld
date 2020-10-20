@@ -285,20 +285,21 @@ SELECT d.dotory_id,m.name FROM dotorylist d, member m WHERE m.id = d.dotory_id A
 
 
 -- 방명록 테스트
-INSERT INTO toryhome_board(toryhome_no, toryhome_title,
-toryhome_content, toryhome_date, id_writer, id)
-VALUES(toryhome_no_seq.nextval,'방명록','테스트 중입니다.',
-SYSDATE, 'user1','user4');
+INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
+VALUES(toryhome_no_seq.nextval,'방명록','테스트 중입니다.', SYSDATE, 'user1','user4');
 INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
 VALUES(toryhome_no_seq.nextval,'방명록','테스트 중입니다.user2', SYSDATE, 'user2','user4');
 INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
 VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user2', SYSDATE, 'user2','user3');
+INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
+VALUES(toryhome_no_seq.nextval,'방명록','테스트 중입니다.user1', SYSDATE, 'user1','user4');
+INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
+VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user4', SYSDATE, 'user4','user3');
 
 delete from TORYHOME_BOARD where id='';
 
-SELECT toryhome_no, toryhome_title,
-toryhome_content, 
-to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'),
-id_writer, id FROM toryhome_board;
-
+SELECT toryhome_title, toryhome_content, 
+to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), id_writer, id 
+FROM toryhome_board where id='user4' and toryhome_title='방명록'
+ORDER BY toryhome_no ASC;
 
