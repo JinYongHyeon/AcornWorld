@@ -97,6 +97,17 @@ CREATE TABLE toryhome_board(
 )
 
 CREATE SEQUENCE toryhome_no_seq
+
+--게시물 좋아요 테이블
+CREATE TABLE hobbypostlike(
+	ID VARCHAR2(400),
+	HOBBYPOST_NO NUMBER,
+	CONSTRAINT pk_hobbypostlike PRIMARY KEY(id,hobbypost_no),
+	CONSTRAINT fk_hobbypostlike_id FOREIGN KEY(id) REFERENCES member(id) ON DELETE CASCADE,
+	CONSTRAINT fk_hobbypostlike_no FOREIGN KEY(hobbypost_no) REFERENCES hobby_post(hobbypost_no) ON DELETE CASCADE
+)
+
+
 /* 시퀀스 검색*/
 SELECT * FROM USER_SEQUENCES;
 SELECT * FROM TAB;
@@ -234,12 +245,14 @@ select * from dotorylist;
 delete from member where id='user5'
 select * from member;
 
+select * from hobby_post;
 select count(*) from hobby_post;
+
+SELECT * FROM hobbypostlike WHERE id='user1' AND hobbypost_no=55
 
 select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount from(
 select row_number() over(order by hobbypost_no asc) as rnum, hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount from hobby_post )
 where rnum between 1 and 2 ;
-
 
 select id from DOTORYLIST d;
 
@@ -247,5 +260,5 @@ select id from DOTORYLIST d;
 --친구목록 리스트
 SELECT d.dotory_id,m.name FROM dotorylist d, member m WHERE m.id = d.dotory_id AND d.id= 'user1';
 
-hobbypost_no id  (복합키)
+
 

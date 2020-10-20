@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 	function sendList() {
@@ -14,6 +14,21 @@
 		if (confirm("게시글을 수정하시겠습니까?")) {
 			document.updateForm.submit();
 		}
+	}
+	var xhr;
+	function likePost() {
+		xhr = new XMLHttpRequest();
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				alert(xhr.responseText);
+			}
+		}
+		xhr.open("post", "${pageContext.request.contextPath}/front");
+		xhr.setRequestHeader("Content-Type",
+				"application/x-www-form-urlencoded");
+		xhr
+				.send("command=like&id=${sessionScope.mvo.id}&no=${requestScope.pvo.postNo}");
 	}
 </script>
 <div class="row postDetailForm">
@@ -37,18 +52,31 @@
 							<input type="hidden" name="command" value="postRemove"> <input
 								type="hidden" name="no" value="${requestScope.pvo.postNo}">
 							<input type="hidden" name="command" value="postRemove"> <input
-								type="hidden" name="bno" value="${requestScope.pvo.boardVO.boardNo}">
-						</form>				
+								type="hidden" name="bno"
+								value="${requestScope.pvo.boardVO.boardNo}">
+						</form>
 						<form name="updateForm"
 							action="${pageContext.request.contextPath}/front" method="post">
-							<input type="hidden" name="command" value="postUpdateForm"> <input
-								type="hidden" name="no" value="${requestScope.pvo.postNo}">
+							<input type="hidden" name="command" value="postUpdateForm">
+							<input type="hidden" name="no" value="${requestScope.pvo.postNo}">
 						</form>
 						<button type="button" class="btn" onclick="deletePost()">삭제</button>
 						<button type="button" class="btn" onclick="updatePost()">수정</button>
 					</td>
 				</tr>
 			</c:if>
+			<c:choose>
+				<c:when test="${requestScope.likeCheck =='up'}">
+					<button type="button" class="btn"
+						style="background-color: #ff0000;" onclick="likePost()">좋아요</button>
+				</c:when>
+
+				<c:otherwise>
+					<button type="button" class="btn" onclick="likePost()">좋아요</button>
+				</c:otherwise>
+			</c:choose>
 		</table>
-	</div> <!-- col-sm-10 -->
-</div> <!-- row postDetailForm -->
+	</div>
+	<!-- col-sm-10 -->
+</div>
+<!-- row postDetailForm -->
