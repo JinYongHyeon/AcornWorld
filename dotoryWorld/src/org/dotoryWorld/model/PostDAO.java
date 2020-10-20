@@ -483,4 +483,105 @@ public class PostDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	
+	/**
+	 * 좋아요 중복 방지를 위한 테이블에 추가
+	 * @param id
+	 * @param no
+	 * @throws SQLException
+	 */
+	public void postLike(String id, String no) throws SQLException {
+		Connection con =null;
+		PreparedStatement pstmt= null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "INSERT INTO hobbypostlike VALUES(?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, no);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	public void postLikeRemove(String id, String no) throws SQLException {
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		try {
+			con =dataSource.getConnection();
+			String sql = "DELETE FROM hobbypostlike WHERE id=? AND HOBBYPOST_NO=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, no);
+			pstmt.executeQuery();
+		}finally {
+			
+		}
+	}
+	
+	
+	/**
+	 * 좋아요 중복체크
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public int postLikeCheck(String id,String no) throws SQLException{
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count =-1;
+		try {
+			con = dataSource.getConnection();
+			String sql ="SELECT count(*) FROM hobbypostlike WHERE id=? AND hobbypost_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			pstmt.setString(2,no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return count;
+	}
+	/**
+	 * 좋아요 기능
+	 * @param no
+	 * @throws SQLException
+	 */
+	public void postLikeUp(String no) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql="UPDATE hobby_post SET hobby_like = hobby_like+1 WHERE hobbypost_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, no);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	/**
+	 * 좋아요 뺴기
+	 * @param no
+	 * @throws SQLException
+	 */
+	public void postLikeMinus(String no) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql="UPDATE hobby_post SET hobby_like = hobby_like-1 WHERE hobbypost_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, no);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
 }

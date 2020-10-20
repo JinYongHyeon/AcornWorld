@@ -114,20 +114,11 @@ body {
 													//readystate가 변화될 때 호출 -> 우측 익명함수로 해도 됨.
 													xhr.onreadystatechange = callback;
 													//요청 메서드방식과 처리할 서버 프로그램  url
-													xhr
-															.open("post",
-																	"${pageContext.request.contextPath}/front");
+													xhr.open("post","${pageContext.request.contextPath}/front");
 													//javascript ajax post 방식일 때 content type을 지정해야 한다.
-													xhr
-															.setRequestHeader(
-																	"Content-Type",
-																	"application/x-www-form-urlencoded");
+													xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 													//post방식일 때 값 여기다 넣음, get일 때는 null로 보내주면 됨.
-													xhr
-															.send("command=addDotory&id="
-																	+ id
-																	+ "&friendId="
-																	+ friendId);
+													xhr.send("command=addDotory&id="+ id+ "&friendId="+ friendId);
 													//location.href="${pageContext.request.contextPath}/front?command=addDotory"
 												}
 											});

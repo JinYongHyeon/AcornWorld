@@ -343,8 +343,13 @@ body {
 	height: 100%;
 }
 
+<<<<<<< HEAD
 .content {
 	min-height: 72.8vh;
+=======
+.content{
+    min-height: 72.8vh;
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 }
 
 /* naver Editor iframe 크기 */

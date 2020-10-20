@@ -94,6 +94,8 @@ public class HandlerMapping {
 			controller = new AddDotoryController();
 		}else if(command.contentEquals("adminManageDelete")) {//어드민 게시물 삭제
 			controller = new AdminManageDeleteController();
+		}else if(command.contentEquals("like")){//좋아요
+			controller = new LikeController();
 		}
 		return controller;
 	}

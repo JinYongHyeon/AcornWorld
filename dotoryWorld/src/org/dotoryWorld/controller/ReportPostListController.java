@@ -25,10 +25,10 @@ public class ReportPostListController implements Controller {
 			pagingBean=new PagingBean(totalPostCount, postCountPerPage, pageCountPerPageGroup);
 		else
 			pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo), postCountPerPage, pageCountPerPageGroup);
-		ArrayList<PostVO> list = PostDAO.getInstance().getReportPostingList(pagingBean, boardNo);
-		System.out.println(list.size());
-		ListVO lvo = new ListVO(list, pagingBean);
-		request.setAttribute("lvo", lvo);
+		//ArrayList<PostVO> list = PostDAO.getInstance().getReportPostingList(pagingBean, boardNo);
+		//System.out.println(list.size());
+		//ListVO lvo = new ListVO(list, pagingBean);
+		//request.setAttribute("lvo", lvo);
 		//request.setAttribute("url", "/board/list.jsp");
 		System.out.println("reportPostListController 작동");
 		return "/views/board/report-postList.jsp";
