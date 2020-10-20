@@ -278,18 +278,17 @@ public class MemberDAO {
 		StringBuilder sql = new StringBuilder();
 		try {
 			con=dataSource.getConnection();
-			sql.append("SELECT toryhome_title, toryhome_content, ");
+			sql.append("SELECT ROWNUM, x.* ");
+			sql.append("FROM (SELECT toryhome_title, toryhome_content, ");
 			sql.append("to_char(toryhome_date, 'YYYY-MM-DD HH24:MI'), id_writer ");
 			sql.append("FROM toryhome_board where id=? and toryhome_title='방명록' ");
-			sql.append("ORDER BY toryhome_no ASC");
+			sql.append("ORDER BY toryhome_no ASC) x ORDER BY ROWNUM DESC");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, toryHomeMVO.getId());
 			rs=pstmt.executeQuery();
-			int rsCount = 1;
 			while(rs.next()) {
-				toryletter.add(new ToryhomeVO(rsCount+"",rs.getString(1), rs.getString(2),
-						rs.getString(3), rs.getString(4), toryHomeMVO));
-				rsCount++;
+				toryletter.add(new ToryhomeVO(rs.getString(1), rs.getString(2),
+						rs.getString(3), rs.getString(4), rs.getString(5), toryHomeMVO));
 			}
 		}finally {
 			closeAll(rs, pstmt, con);
