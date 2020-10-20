@@ -200,19 +200,21 @@ public class MemberDAO {
 	}
 
 	// 내 도토리들 조회하기 - 배배
-	public ArrayList<MemberVO> mydotorylist() throws SQLException {
+	public ArrayList<MemberVO> mydotorylist(String id) throws SQLException {
 		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select id from dotorylist";
+			String sql = "select dotory_id from dotorylist where id = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				MemberVO mvo = new MemberVO();
-				mvo.setId(rs.getString("id"));
+				mvo.setId(rs.getString("dotory_id"));
+				
 				/*
 				 * mvo.setId(rs.getString("grade")); mvo.setId(rs.getString("name"));
 				 * mvo.setId(rs.getString("email"));
@@ -226,6 +228,7 @@ public class MemberDAO {
 		}
 		return list;
 	}
+
 	
 	//미니홈피 정보 가져오기
 	public MemberVO addToryHomeInformation(String id) throws SQLException {
