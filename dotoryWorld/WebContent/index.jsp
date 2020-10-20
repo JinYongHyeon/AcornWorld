@@ -2,4 +2,4 @@
     pageEncoding="UTF-8"%>
 	<jsp:forward page="/front">
 		<jsp:param value="main" name="command"/>
-	</jsp:forward>  
+	</jsp:forward>

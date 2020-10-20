@@ -130,15 +130,54 @@ public class PostDAO {
 		return list;
 	}
 
-	public ArrayList<PostVO> getPostingListById(PagingBean pagingBean, String id) throws SQLException {
-		ArrayList<PostVO> list = new ArrayList<PostVO>();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			System.out.println(id + "아이디확인" + pagingBean.getEndRowNumber());
-			con = getConnection();
-			StringBuilder sql = new StringBuilder();
+	
+	public ArrayList<PostVO> getNoticePostingList(PagingBean pagingBean, String categoryNo) throws SQLException{
+		ArrayList<PostVO> list=new ArrayList<PostVO>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=getConnection(); 
+			StringBuilder sql=new StringBuilder();		
+			sql.append("SELECT B.noticepost_no,B.notice_title,B.time_posted,M.id,M.name ");
+			sql.append("FROM(SELECT row_number() over(ORDER BY noticepost_no DESC) as rnum,noticepost_no,notice_title,to_char(noticepost_date,'YYYY.MM.DD') as time_posted,id,category_no FROM notice_post where category_no=?");
+			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ?");	
+			pstmt=con.prepareStatement(sql.toString());	
+			//start, endRowNumber를 할당한다
+			pstmt.setString(1, categoryNo);
+			pstmt.setInt(2, pagingBean.getStartRowNumber());
+			pstmt.setInt(3, pagingBean.getEndRowNumber());
+			rs=pstmt.executeQuery();	
+			//목록에서 게시물 content는 필요없으므로 null로 setting
+			//select no,title,time_posted,hits,id,name
+			while(rs.next()){		
+				PostVO pvo=new PostVO();
+				pvo.setPostNo(rs.getString(1));
+				pvo.setPostTitle(rs.getString(2));
+				pvo.setPostDate(rs.getString(3));				
+				MemberVO mvo=new MemberVO();
+				mvo.setId(rs.getString(4));
+				mvo.setName(rs.getString(5));
+				pvo.setMemberVO(mvo);
+				list.add(pvo);			
+			}
+			System.out.println("postDAO");
+			System.out.println(list);
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+		return list;
+	}
+	
+	public ArrayList<PostVO> getPostingListById(PagingBean pagingBean, String id) throws SQLException{
+		ArrayList<PostVO> list=new ArrayList<PostVO>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			System.out.println(id+"아이디확인"+pagingBean.getEndRowNumber());
+			con=getConnection(); 
+			StringBuilder sql=new StringBuilder();	
 			System.out.println("postDAO 실행");
 			sql.append(
 					"SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted, H.hobbyboard_title FROM( ");
@@ -279,6 +318,7 @@ public class PostDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		String postNo = null;
 		try {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
@@ -294,14 +334,13 @@ public class PostDAO {
 			pstmt.close();
 			pstmt = con.prepareStatement("select hobbypost_no_seq.currval from dual");
 			rs = pstmt.executeQuery();
-			String postNo = null;
 			if (rs.next()) {
 				postNo = rs.getString(1);
-			}
-			return postNo;
+			}			
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
+		return postNo;
 	}
 
 	public void reportPostWrite(PostVO vo) throws SQLException {
@@ -417,6 +456,43 @@ public class PostDAO {
 		return totalCount;
 	}
 
+	public int getTotalReportPostCount(String categoryNo) throws SQLException {
+		int totalCount = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			String sql = "select count(*) from report_post where category_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, categoryNo);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				totalCount = rs.getInt(1);
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return totalCount;
+	}
+	public int getTotalNoticePostCount(String categoryNo) throws SQLException {
+		int totalCount = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			String sql = "select count(*) from notice_post where category_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, categoryNo);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				totalCount = rs.getInt(1);
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return totalCount;
+	}
+	
 	public int getTotalPostCountById(String id) throws SQLException {
 		int totalCount = 0;
 		Connection con = null;
@@ -596,13 +672,13 @@ public class PostDAO {
 	}
 
 	/**
-	 * 어드민 게시물 삭제
-	 * 
+	 * 게시물 일괄 삭제 (관리자 페이지, 내 게시물 페이지)
 	 * @param no
 	 * @throws SQLException
 	 */
-	public void adminManageDelete(int no) throws SQLException {
-		Connection con = null;
+
+	public void deletePostingsByNo(int no) throws SQLException {
+		Connection con =null;
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
