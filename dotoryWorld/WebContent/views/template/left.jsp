@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <c:choose>
 	<c:when test="${sessionScope.mvo==null}">
 		<h2>
@@ -35,7 +34,6 @@
 					src="${pageContext.request.contextPath}/resources/img/profile/${sessionScope.mvo.profilePhoto}">
 			</c:otherwise>
 		</c:choose>
-		
 		${sessionScope.mvo.name}님<br>
 		<br>
 

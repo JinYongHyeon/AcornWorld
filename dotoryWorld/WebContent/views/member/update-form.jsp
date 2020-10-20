@@ -71,79 +71,146 @@
                 document.getElementById("sample6_detailAddress").focus();
             }
         }).open();
+        
+        // 상세주소 입력 가능 상태로 변경
+        $("input[name=updateAddressDetail]").attr('readonly', false);
 	}
 	
-	// 비밀번호 재확인,
+	// submit 실행
 	function updateMember() {
-		// 비밀번호 일치 확인
-		if(updateForm.nowPassword.value !== updateForm.pwCheck.value){
-			alert("비밀번호가 일치하지 않음");
+		var checkResult = false;
+		if(updateForm.nowPassword.value !== updateForm.pwCheck.value){ // 비밀번호 일치 확인
+			alert("비밀번호가 일치하지 않습니다. 비밀번호 확인을 진행해 주세요.");
+			updateForm.nowPassword.focus();
+		}else if(updateForm.updatePassword.value !== updateForm.updatePasswordCheck.value){ // 새 비밀번호 일치 확인
+			alert("새 비밀 번호가 일치하지 않습니다.")
+			updateForm.updatePassword.focus();
+		}else{
+			checkResult = confirm("정보를 변경하시겠습니까?");
 		}
-		// 현재 비밀 번호 text 수정 불가 처리
-		$("input[name=nowPassword]").attr('readonly', true);
-		return false;
+		
+		return checkResult;
 	}
 	
-	// 현재 비밀 번호가 일치한 지를 확인
+	// 비밀 번호 확인 진행여부 확인
 	$(document).ready(function(){
 		// name으로 접근 시 ${tag_name [name=valu_name]} 형식으로
 		$("input[name=updatePassword]").keyup(function () {
 			if(updateForm.nowPassword.value !== updateForm.pwCheck.value || updateForm.nowPassword.value=== ""){
 				alert("비밀번호 확인 이후 입력이 가능합니다.");
 				updateForm.updatePassword.value="";
+				updateForm.nowPassword.focus();
 			}
 		})
 		
+		$("input[name=updatePasswordCheck]").keyup(function () {
+			if(updateForm.nowPassword.value !== updateForm.pwCheck.value || updateForm.nowPassword.value=== ""){
+				alert("비밀번호 확인 이후 입력이 가능합니다.");
+				updateForm.updatePasswordCheck.value="";
+				updateForm.nowPassword.focus();
+			}
+		})
+	})
+	
+	// 현재 비밀 번호 확인 팝업 창
+	function popup(){
+		var pw= updateForm.nowPassword.value;
+		if(updateForm.pwCheck.value != ""){
+			alert("이미 비밀번호가 확인 되었습니다. ");
+		}else if(pw ===""){
+			alert("비밀번호를 입력하세요.")
+		}else{
+			var path="front?command=passwordCheck&nowPassword="+pw;
+			window.open(path,"pwPop", "width=250, height=200,top=150,left=200");
+		}
+	}
+
 </script>
 
 
-<form method="post" action="front" id="updateTable">
-<input type="hidden" name="command" value="updateMemberInfo">
-	<table>
-		<tbody>
-			<tr>
-				<td>아이디</td>
-				<td><input type="text" name="updateId" readonly="readonly"
-				value="${sessionScope.mvo.id}"></td>				
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td><input type="password" name="updatePassword"></td>
-			</tr>
-			<tr>
-				<td>비밀번호 확인</td>
-				<td><input type="password" name="updatePasswordCheck"></td>
-			</tr>
-			<tr>
-				<td>이름</td>
-				<td><input type="text" name="updateName"></td>
-			</tr>
-			<tr>
-				<td rowspan="3" align ="left">주소</td>
-				<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
-			</tr>
-			<tr>
-				<td><input style="width: 300px" type="text" name="updateAddress" id="sample6_address" placeholder="주소"></td>
-			</tr>
-			<tr>
-				<td><input style="width: 200px" type="text" name="updateAddressDetail" id="sample6_detailAddress" placeholder="상세주소"></td>
-			</tr>
-			<tr>
-				<td>이메일</td>
-				<td><input style="width: 250px" type="text" name="updateEmail"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="수정 완료">
-					<input type="button" value="회원탈퇴" onclick="location.href='${pageContext.request.contextPath}/front?command=deleteMemberForm'">
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</form>
-</html>
 
-
+<%-- 로그인 여부를 체크하고 로그인이 안됐을 경우 회원 정보 수정 페이지 접근 불가 처리 --%>
+<c:choose>
+	<c:when test="${sessionScope.mvo !=null }">
+		<form name="updateForm" method="post" action="front" onsubmit="return updateMember()"
+		id="updateTable">
+		<input type="hidden" name="command" value="updateMemberInfo">
+			<table>
+				<tbody>
+					<tr>
+						<td>아이디</td>
+						<%-- readonly 옵션은 value값 수정이 불가하고, form 전송이 가능하다. --%>
+						<td>
+							<input type="text" readonly="readonly"
+								name="nowId" value="${sessionScope.mvo.id}">
+						</td>				
+					</tr>
+					<tr>
+						<td>현재 비밀번호</td>
+						<td>
+							<input type="password" name="nowPassword" required="required">
+							<input type="hidden" name="pwCheck" value="">
+							<input type="button" value="비밀번호 확인" onclick="popup()">
+						</td>
+					</tr>
+					<tr>
+						<td>새 비밀번호</td>
+						<td><input type="password" name="updatePassword"></td>
+					</tr>
+					<tr>
+						<td>새 비밀번호 확인</td>
+						<td><input type="password" name="updatePasswordCheck"></td>
+					</tr>
+					<tr>
+						<td>이름</td>
+						<td>
+							<input type="text" name="updateName"
+								value="${sessionScope.mvo.name}" required="required">
+						</td>
+					</tr>
+					<tr>
+						<td>현재 주소</td>
+						<td>
+							<input style="width: 350px" type="text" readonly="readonly"
+								name="nowAddress" value="${sessionScope.mvo.address}">
+						</td>
+					</tr>
+					<tr>
+						<td>새 주소</td>
+						<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+					</tr>
+					<tr>
+						<td rowspan="2"></td>
+						<td><input style="width: 300px" type="text" name="updateAddress" id="sample6_address" placeholder="주소" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><input style="width: 200px" type="text" name="updateAddressDetail" id="sample6_detailAddress" placeholder="상세주소" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td>이메일</td>
+						<td>
+							<input style="width: 250px" type="text" required="required"
+								name="updateEmail" value="${sessionScope.mvo.email}">
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td align="left">
+							<input type="submit" value="수정 완료">
+							<input type="button" onclick="location.href='${pageContext.request.contextPath}/front?command=deleteMemberForm'" value="회원탈퇴">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</c:when>
+	<c:otherwise>
+		<script type="text/javascript">
+			alert("로그인이 필요합니다.");
+			location.href="${pageContext.request.contextPath}/front?command=main";
+		</script>
+	</c:otherwise>
+</c:choose>
 
 
 
