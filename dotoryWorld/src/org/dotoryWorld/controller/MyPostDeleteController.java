@@ -15,13 +15,13 @@ public class MyPostDeleteController implements Controller {
 		if(session == null|| session.getAttribute("mvo") == null) {
 			return "redirect:front?command=main";
 		}
-		String no[] = request.getParameterValues("postNo");
-		System.out.println(request.getParameterValues("postNo"));
+		String no[] = request.getParameterValues("deletePost");
+		System.out.println(request.getParameterValues("deletePost"));
 		for(int i=0;i<no.length;i++) {
-			PostDAO.getInstance().adminManageDelete(Integer.parseInt(no[i]));
+			PostDAO.getInstance().deletePostingsByNo(Integer.parseInt(no[i]));
 		}
 		
-		return "redirect:front?command=adminManage";
+		return "redirect:front?command=myPostList";
 	}
 
 }

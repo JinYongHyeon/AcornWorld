@@ -49,7 +49,28 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="pvo" items="${requestScope.lvo.list}">
+		<c:forEach var="pvo" items="${requestScope.noticeListPaging.list}">
+			<tr>
+				<td>${pvo.postNo }</td>
+				<td>
+					<c:choose>
+						<c:when test="${sessionScope.mvo!=null}">
+							<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
+						</c:when>
+						<c:otherwise>
+							${pvo.postTitle }
+						</c:otherwise> 
+					</c:choose>
+				</td>
+				<td>
+					<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
+					
+				</td>
+				<td>${pvo.postDate }</td>				
+				<td>${pvo.viewCount }</td>
+			</tr>
+		</c:forEach>
+		<c:forEach var="pvo" items="${requestScope.postingListPaging.list}">
 			<tr>
 				<td>${pvo.postNo }</td>
 				<td>
@@ -73,7 +94,7 @@
 	</tbody>
 </table>
 <%-- paging 처리 --%>
-<c:set var="pb" value="${requestScope.lvo.pagingBean}"/>
+<c:set var="pb" value="${requestScope.postingListPaging.pagingBean}"/>
 <div class="pagingArea">
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">

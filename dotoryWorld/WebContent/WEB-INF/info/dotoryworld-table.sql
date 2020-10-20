@@ -96,6 +96,8 @@ CREATE TABLE toryhome_board(
 	ON DELETE CASCADE
 )
 
+CREATE SEQUENCE toryhome_no_seq
+
 /* 신고게시판 게시물 테이블 */
 CREATE TABLE report_post(
 	reportpost_no NUMBER PRIMARY KEY,
@@ -110,8 +112,21 @@ CREATE TABLE report_post(
 )
 CREATE SEQUENCE reportpost_no_seq NOCACHE;
 
-CREATE SEQUENCE toryhome_no_seq
-
+/* 공지게시판 게시물 테이블 */
+CREATE TABLE notice_post(
+	noticepost_no NUMBER PRIMARY KEY,
+	notice_title VARCHAR2(300) NOT NULL,
+	notice_content CLOB NOT NULL, 
+	noticepost_date DATE NOT NULL,
+	notice_like NUMBER NOT NULL,
+	category_no NUMBER NOT NULL,
+	id VARCHAR2(300) NOT NULL,
+	CONSTRAINT FK_notice_post_id FOREIGN KEY (id) REFERENCES member (id),
+	CONSTRAINT FK_notice_post_category_no FOREIGN KEY (category_no) REFERENCES category (category_no)
+	ON DELETE CASCADE
+)
+CREATE SEQUENCE noticepost_no_seq NOCACHE;
+ALTER TABLE notice_post MODIFY(notice_like DEFAULT 0);
 --게시물 좋아요 테이블
 CREATE TABLE hobbypostlike(
 	ID VARCHAR2(400),
@@ -184,6 +199,7 @@ INSERT INTO category(category_no,category_name,category_content) VALUES(category
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'영화','요리설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'음악','요리설명');
+INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'공지','공지사항');
 
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'축구',1);
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'배드민턴',1);
@@ -224,7 +240,11 @@ VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(S
 
 /* 신고게시판 샘플 데이터 */
 INSERT INTO report_post(reportpost_no,report_title,report_content,reportpost_date,category_no,id)
-VALUES(reportpost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),3,'user4');
+VALUES(reportpost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),8,'user4');
+
+-- 공지게시판 샘플 데이터
+INSERT INTO notice_post(noticepost_no,notice_title,notice_content,noticepost_date,category_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),5,'user3');
 
 -- 내 도토리 목록 데이터
 INSERT INTO dotorylist VALUES('user2','user1');
