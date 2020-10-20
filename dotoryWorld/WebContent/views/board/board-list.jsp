@@ -19,6 +19,24 @@
 	href="${pageContext.request.contextPath}/resources/css/myHomecss.css" >
 </head>
 <body>
+<form id="categoryContent">
+<c:choose>
+	<c:when test="${requestScope.categoryNo==1}">
+		<img src="${pageContext.request.contextPath}/resources/img/exercise.png">
+		${requestScope.boardList[0].categoryVO.categoryContent}
+	</c:when>
+	<c:when test="${requestScope.categoryNo==2}">
+		<img src="${pageContext.request.contextPath}/resources/img/cooking.png">
+	</c:when>
+	<c:when test="${requestScope.categoryNo==3}">
+		<img src="${pageContext.request.contextPath}/resources/img/video-camera.png">
+	</c:when>
+	<c:when test="${requestScope.categoryNo==4}">
+		<img src="${pageContext.request.contextPath}/resources/img/music-notes.png">
+	</c:when>
+</c:choose>
+</form>
+<br><br>
 	<div class="container text-center">
 		<div class="row" id="boardList">
 		<div class="col-sm-12">
