@@ -41,17 +41,14 @@
 					</div></td>
 			</tr>
 		</table>
-<<<<<<< HEAD
 		<a
 			href="${pageContext.request.contextPath}/front?command=toryProfileUpdateForm">프로필
 			수정</a>
 					 <button type="button" onclick="location.href='${pageContext.request.contextPath }/front?command=myDotoryList'">내 도토리들 보기</button>
 			
-=======
 		<br><br>
 		<input type="button" onclick="location.href='${pageContext.request.contextPath}/front?command=toryProfileUpdateForm'" value="프로필 수정">
 	
->>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 	</div>
 
 </div>

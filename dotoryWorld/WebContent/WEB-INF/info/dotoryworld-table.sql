@@ -62,10 +62,12 @@ CREATE TABLE bookmark(
 )
 
 CREATE SEQUENCE bookmark_no_seq;
-
-CREATE TABLE dotorylist(
-	dotory_id VARCHAR2(300) PRIMARY KEY,
-	id VARCHAR2(300) NOT NULL,
+	
+	--20년10월20일[id 까지 PK 복합키로 설정]
+	CREATE TABLE dotorylist(
+	dotory_id VARCHAR2(300),
+	id VARCHAR2(300),
+	CONSTRAINT PK_dotorylist PRIMARY KEY (dotory_id,id),
 	CONSTRAINT FK_dotorylist_id FOREIGN KEY (id) REFERENCES member (id)
 	ON DELETE CASCADE
 )
@@ -142,6 +144,7 @@ ALTER TABLE hobby_post MODIFY(hobbypost_viewcount DEFAULT 0);
 
 --작은항목 이미지 URL 주소 컬럼 추가
 ALTER TABLE HOBBYBOARD ADD(hobbyboard_imgName VARCHAR2(500))
+ 
 
 --샘플 데이터
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('admin','1234','관리자','판교','admin@gmail.com','다람쥐','관리자입니다','다람쥐');
@@ -223,12 +226,11 @@ UPDATE hobbyboard SET hobbyboard_imgName = 'pop.jpg' WHERE hobbyboard_no='16';
 
 select * from dotorylist;
 select * from HOBBYBOARD;
-<<<<<<< HEAD
+
 delete from member where password='123'
 select * from dotorylist;
-=======
+
 delete from member where id='user5'
->>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 select * from member;
 
 select count(*) from hobby_post;
@@ -237,5 +239,10 @@ select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount from(
 select row_number() over(order by hobbypost_no asc) as rnum, hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount from hobby_post )
 where rnum between 1 and 2 ;
 
+select * from DOTORYLIST
 
+--친구목록 리스트
+SELECT d.dotory_id,m.name FROM dotorylist d, member m WHERE m.id = d.dotory_id AND d.id= 'user1';
+
+hobbypost_no id  (복합키)
 
