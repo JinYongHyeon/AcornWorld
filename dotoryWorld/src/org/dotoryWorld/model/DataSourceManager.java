@@ -19,7 +19,7 @@ public class DataSourceManager {
 		dbcp.setMaxTotal(10);
 		this.dataSource=dbcp;
 		
-	
+	}
 	public DataSource getDataSource() {
 		return this.dataSource;
 	}

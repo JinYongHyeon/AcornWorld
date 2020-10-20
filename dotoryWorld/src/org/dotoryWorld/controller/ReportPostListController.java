@@ -18,7 +18,7 @@ public class ReportPostListController implements Controller {
 		String boardNo=request.getParameter("boardNo");
 		int totalPostCount=PostDAO.getInstance().getTotalPostCount(boardNo);
 		String pageNo=request.getParameter("pageNo");
-		PagingBean pagingBean=null;
+		PagingBean pagingBean=null; 
 		int postCountPerPage=15;
 		int pageCountPerPageGroup=9;
 		if(pageNo==null)
