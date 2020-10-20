@@ -33,8 +33,9 @@ public class ToryHomeController implements Controller {
 		}
 		
 		// 방명록 정보 가저오기
-		ArrayList<ToryhomeVO> toryLetterList = MemberDAO.getInstance().ToryHomeLetterInformation(new MemberVO(request.getParameter("id")));
+		ArrayList<ToryhomeVO> toryLetterList = MemberDAO.getInstance().toryHomeLetterInformation(request.getParameter("id"));
 		request.setAttribute("toryLetterList", toryLetterList);		
+		
 		
 		return "views/template/tory-layout.jsp";
 	}

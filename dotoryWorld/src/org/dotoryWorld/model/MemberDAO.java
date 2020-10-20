@@ -268,9 +268,9 @@ public class MemberDAO {
 		return memberVO;
 	}
 
-	// 방명록 정보 가져오기 - 정콰이어트
+	// 방명록 정보 가져오는 메서드 - 정콰이어트
 	@SuppressWarnings("null")
-	public ArrayList<ToryhomeVO> ToryHomeLetterInformation(MemberVO toryHomeMVO) throws SQLException {
+	public ArrayList<ToryhomeVO> toryHomeLetterInformation(String toryId) throws SQLException {
 		ArrayList<ToryhomeVO> toryletter = new ArrayList<ToryhomeVO>();
 		Connection con =null;
 		PreparedStatement pstmt = null;
@@ -278,22 +278,45 @@ public class MemberDAO {
 		StringBuilder sql = new StringBuilder();
 		try {
 			con=dataSource.getConnection();
-			sql.append("SELECT ROWNUM, x.* ");
+			sql.append("SELECT ROWNUM, tory.* ");
 			sql.append("FROM (SELECT toryhome_title, toryhome_content, ");
 			sql.append("to_char(toryhome_date, 'YYYY-MM-DD HH24:MI'), id_writer ");
 			sql.append("FROM toryhome_board where id=? and toryhome_title='방명록' ");
-			sql.append("ORDER BY toryhome_no ASC) x ORDER BY ROWNUM DESC");
+			sql.append("ORDER BY toryhome_no ASC) tory ORDER BY ROWNUM DESC");
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, toryHomeMVO.getId());
+			pstmt.setString(1, toryId);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				toryletter.add(new ToryhomeVO(rs.getString(1), rs.getString(2),
-						rs.getString(3), rs.getString(4), rs.getString(5), toryHomeMVO));
+						rs.getString(3), rs.getString(4), rs.getString(5),
+						new MemberVO(toryId,null,null,null,null,null,null,findProfilePhoto(rs.getString(5)),null)));
 			}
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
 		return toryletter;
 	}
+	
+	// profile_photo 정보를 가져오는 메서드 - 정콰이어트
+	public String findProfilePhoto(String id) throws SQLException {
+		String photo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT profile_photo FROM member where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				photo = rs.getString(1);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return photo;
+	}
+	
 
 }
