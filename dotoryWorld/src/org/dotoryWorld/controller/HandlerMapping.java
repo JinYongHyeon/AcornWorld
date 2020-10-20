@@ -82,8 +82,6 @@ public class HandlerMapping {
 			controller = new ToryProfileUpdateFormController();
 		} else if (command.contentEquals("toryProfileUpdate")) { //미니홈피 내 정보 수정
 			controller = new ToryProfileUpdateController();
-		} else if (command.contentEquals("toryLetterList")) { //미니홈피 방명록 
-			controller = new ToryLetterListController();
 		} else if (command.contentEquals("toryletterWrite")) { //미니홈피 방명록 작성
 			controller = new ToryletterWriteController();
 		} else if(command .contentEquals("toryLetterDelete")) { //미니홈피 방명록 삭제
