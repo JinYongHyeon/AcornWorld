@@ -38,7 +38,6 @@ public class DispatcherServlet extends HttpServlet {
 	}
 	protected void HandleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String command = request.getParameter("command");
-		System.out.println(command);
 		try {
 			String url = HandlerMapping.getInstance().create(command).execute(request, response);
 			if(url.startsWith("redirect:")) {
@@ -50,12 +49,4 @@ public class DispatcherServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		
-	}
-	
-	
-	
-
 }

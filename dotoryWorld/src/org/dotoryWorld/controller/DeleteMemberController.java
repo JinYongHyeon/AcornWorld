@@ -23,8 +23,5 @@ public class DeleteMemberController implements Controller {
     		}else {
     			return "redirect:views/member/delete-confirm-fail.jsp";
     		}
-
-        
 	}
-
 }

@@ -26,13 +26,11 @@ public class NoticeListController implements Controller {
 		else
 			pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo), postCountPerPage, pageCountPerPageGroup);
 		ArrayList<PostVO> noticeList = PostDAO.getInstance().getNoticePostingList(pagingBean, categoryNo);
-		System.out.println(noticeList.size());
 		ListVO noticeListPaging = new ListVO(noticeList, pagingBean);
 		ListVO postingListPaging = (ListVO) request.getAttribute("postingListPaging");
 		request.setAttribute("postingListPaging", postingListPaging);
 		request.setAttribute("noticeListPaging", noticeListPaging);
 		request.setAttribute("url", "/board/list.jsp");
-		System.out.println("noticePostListController 작동");
 		request.setAttribute("url", "/views/board/post-list.jsp");		
 		return "/views/template/main-layout.jsp";
 	}
