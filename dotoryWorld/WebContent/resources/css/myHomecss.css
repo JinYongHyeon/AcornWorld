@@ -250,6 +250,7 @@
 
 * {
 	font-family: 'THEletssmileR' !important;
+	list-style:none;
 }
 
 .btnArea button[type=button], button[type=reset]{

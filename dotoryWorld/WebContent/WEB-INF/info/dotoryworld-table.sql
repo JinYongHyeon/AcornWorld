@@ -192,9 +192,6 @@ ALTER TABLE HOBBYBOARD ADD(hobbyboard_imgName VARCHAR2(500))
 --북마크 제목 추가
 ALTER TABLE bookmark ADD(bookmark_title VARCHAR2(300)NOT NULL);
 
-
-UPDATE category SET category_content='운동'||CHR(13)||'설명' where category_name = '운동'
-
 select * from category
 
 --샘플 데이터
@@ -370,9 +367,7 @@ delete from TORYHOME_BOARD where id='';
 
 
 --북마크 페이징 쿼리문
-SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(
-SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) as no,link FROM bookmark 
-WHERE id= 'user1' AND bookmark_divide = '북마크')b,hobby_post h,hobbyboard ho 
+ 
 WHERE b.link =h.hobbypost_no AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN 1 AND 10
 ORDER BY no asc
 
@@ -383,8 +378,11 @@ SELECT RNUM,HOBBYBOARD_NO, HOBBY_LIKE FROM(
 ))
 
 
+SELECT * FROM bookmark order by bookmark_no asc
 
-
+SELECT b.rnum, b.LINK,b.ID,h.hobbyboard_title,h.hobbyboard_imgName 
+FROM(SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) AS rnum,link,id FROM bookmark WHERE bookmark_divide='즐겨찾기' AND id='user1')b,hobbyboard h 
+WHERE h.hobbyboard_no = b.link AND b.rnum BETWEEN 2 AND 3;
 
 
 

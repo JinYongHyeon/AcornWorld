@@ -3,7 +3,7 @@ package org.dotoryWorld.model;
 public class BoardVO {
 	private String boardNo;//번호
 	private String boardTitle;//작은항목 제목
-	private String boardImage;
+	private String boardImage; //이미지 주소
 	private int boardLike;//작은항목 좋아요
 	private CategoryVO categoryVO;//큰항목
 

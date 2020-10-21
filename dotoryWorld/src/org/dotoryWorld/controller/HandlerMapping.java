@@ -106,6 +106,8 @@ public class HandlerMapping {
 			controller = new BookmarkController();
 		}else if(command.contentEquals("bookmarkList")) {//내 북마크 리스트
 			controller = new BookmarkListController();
+		}else if(command.contentEquals("favoritesList")) {//내 즐겨찾기 리스트
+			controller = new FavoritesListController();
 		}
 		return controller;
 	}
