@@ -43,13 +43,14 @@
 		</tr>
 	</thead>
 	<tbody>
+	<!-- 공지게시물 노출 -->
 		<c:forEach var="pvo" items="${requestScope.noticeListPaging.list}">
 			<tr>
 				<td>${pvo.postNo }</td>
 				<td>
 					<c:choose>
 						<c:when test="${sessionScope.mvo!=null}">
-							<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
+							<a href="${pageContext.request.contextPath}/front?command=noticePostDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
 						</c:when>
 						<c:otherwise>
 							${pvo.postTitle }
@@ -64,6 +65,7 @@
 				<td>${pvo.viewCount }</td>
 			</tr>
 		</c:forEach>
+	<!-- 일반게시물 노출 -->
 		<c:forEach var="pvo" items="${requestScope.postingListPaging.list}">
 			<tr>
 				<td>${pvo.postNo }</td>
@@ -89,6 +91,9 @@
 </table>
 <%-- paging 처리 --%>
 <c:set var="pb" value="${requestScope.postingListPaging.pagingBean}"/>
+<c:if test="${requestScope.postingListPaging==null}">
+<c:set var="pb" value="${requestScope.noticeListPaging.pagingBean}"/>
+</c:if>
 <div class="pagingArea">
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">
