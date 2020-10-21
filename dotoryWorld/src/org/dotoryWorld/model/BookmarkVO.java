@@ -24,6 +24,8 @@ public class BookmarkVO {
 		this.boardVO = boardVO;
 	}
 
+
+
 	public String getBookmarkNo() {
 		return bookmarkNo;
 	}
@@ -71,12 +73,15 @@ public class BookmarkVO {
 	public void setPostVO(PostVO postVO) {
 		this.postVO = postVO;
 	}
+	
 
 	@Override
 	public String toString() {
 		return "BookmarkVO [bookmarkNo=" + bookmarkNo + ", bookmarkLink=" + bookmarkLink + ", bookmarkDivide="
-				+ bookmarkDivide + ", memberVO=" + memberVO + ", postVO=" + postVO + ", boardVO=" + boardVO + "]";
+				+ bookmarkDivide + ", memberVO=" + memberVO + ", postVO=" + postVO + ", boardVO=" + boardVO
+			;
 	}
 
+	
 
 }

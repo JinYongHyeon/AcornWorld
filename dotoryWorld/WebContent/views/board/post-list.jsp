@@ -3,7 +3,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<script type="text/javascript">
+   $(document).ready(function() {
+      $(document).on('click', '#btnSearch', function(e) {
+         e.preventDefault();
+         var url = "${pageContext.request.contextPath}/board/post-list";
+         url = url + "?searchType=" + $('#searchType').val();
+         url = url + "&keyword=" + $('#keyword').val();
+         location.href = url;
+         console.log(url);
+      });
+   });
+</script>
 <!-- 게시물 검색-->
 <div class="row searchPost" id=searchResultForm>
 	
@@ -19,7 +30,7 @@
 					<input type="text" class="form-control" name="keyword" id="keyWord" size="25">
 					
 				</div>
-            &emsp;<input type="submit" value="검색">
+            &emsp;<input type="submit" id="btnSearch" value="검색">
             <hr>
          </div>
    </form>

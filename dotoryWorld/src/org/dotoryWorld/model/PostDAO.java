@@ -829,7 +829,11 @@ public class PostDAO {
 		}
 	}
 
-
+	/**
+	 * 북마크 추가
+	 * @param bookmark
+	 * @throws SQLException
+	 */
 	public void addBookMark(BookmarkVO bookmark) throws SQLException {
 	   Connection con = null;
 	   PreparedStatement pstmt = null;
@@ -845,6 +849,64 @@ public class PostDAO {
 	   }finally {
 		   closeAll(pstmt, con);
 	   }
+	}
+	/**
+	 * 베스트 취미 가져오기
+	 * @return
+	 * @throws SQLException
+	 */
+	public ArrayList<BoardVO> bestBoardList() throws SQLException{
+		ArrayList<BoardVO>  betsList = new ArrayList<BoardVO>();
+		Connection con =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT H.HOBBYBOARD_NO,hb.hobbyboard_imgName,hb.hobbyboard_title FROM(");
+			sb.append("SELECT ROW_NUMBER() OVER(ORDER BY hobbypost_viewcount DESC) AS rnum, HOBBYBOARD_NO FROM (");
+			sb.append("SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE,SUM(hobbypost_viewcount) AS hobbypost_viewcount FROM HOBBY_POST GROUP BY HOBBYBOARD_NO))");
+			sb.append("h,HOBBYBOARD hb WHERE h.HOBBYBOARD_NO = hb.HOBBYBOARD_NO AND RNUM<=2");
+			pstmt = con.prepareStatement(sb.toString());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+					BoardVO bvo = new BoardVO();
+					bvo.setBoardNo(rs.getString("HOBBYBOARD_NO"));
+					bvo.setBoardImage(rs.getString("hobbyboard_imgName"));
+					bvo.setBoardTitle(rs.getString("hobbyboard_title"));
+					betsList.add(bvo);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return betsList;
+	}
+	
+	public ArrayList<BoardVO> hotBoardList() throws SQLException{
+		ArrayList<BoardVO>  betsList = new ArrayList<BoardVO>();
+		Connection con =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT H.HOBBYBOARD_NO,hb.hobbyboard_imgName,hb.hobbyboard_title FROM(");
+			sb.append("SELECT ROW_NUMBER() OVER(ORDER BY HOBBY_LIKE DESC) AS rnum, HOBBYBOARD_NO ,HOBBY_LIKE FROM (");
+			sb.append("SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE,SUM(hobbypost_viewcount) FROM HOBBY_POST GROUP BY HOBBYBOARD_NO))");
+			sb.append("h,HOBBYBOARD hb WHERE h.HOBBYBOARD_NO = hb.HOBBYBOARD_NO AND RNUM<=2");
+			pstmt = con.prepareStatement(sb.toString());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+					BoardVO bvo = new BoardVO();
+					bvo.setBoardNo(rs.getString("HOBBYBOARD_NO"));
+					bvo.setBoardImage(rs.getString("hobbyboard_imgName"));
+					bvo.setBoardTitle(rs.getString("hobbyboard_title"));
+					betsList.add(bvo);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return betsList;
 	}
 
 }

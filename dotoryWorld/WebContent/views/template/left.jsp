@@ -47,6 +47,8 @@
 		<a href = "${pageContext.request.contextPath}/front?command=myPostList">내 게시물 조회</a><br>
 		<a href = "${pageContext.request.contextPath}/front?command=bookmarkList&id=${sessionScope.mvo.id}&bookmark=북마크">
 		내 북마크 조회</a><br>
+		<a href = "${pageContext.request.contextPath}/front?command=favoritesList&id=${sessionScope.mvo.id}&bookmark=즐겨찾기">
+		내 취미 조회</a>
 </form>
 	</c:otherwise>
 </c:choose>

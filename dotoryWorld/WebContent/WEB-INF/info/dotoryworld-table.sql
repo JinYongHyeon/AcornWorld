@@ -374,18 +374,24 @@ delete from TORYHOME_BOARD where id='';
 
 
 --북마크 페이징 쿼리문
- 
-WHERE b.link =h.hobbypost_no AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN 1 AND 10
-ORDER BY no asc
+SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(
+SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) as no,link FROM bookmark
+WHERE id= 'user1' AND bookmark_divide = '북마크')b,hobby_post h,hobbyboard ho
+WHERE b.link =h.hobbypost_no AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN 1 AND 20
+ORDER BY no ASC
 
 --핫 리스트 쿼리문
-SELECT RNUM,HOBBYBOARD_NO, HOBBY_LIKE FROM(
-	SELECT ROW_NUMBER() OVER(ORDER BY HOBBY_LIKE DESC) AS rnum, HOBBYBOARD_NO ,HOBBY_LIKE FROM (
-	SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE FROM HOBBY_POST GROUP BY HOBBYBOARD_NO
-))
+SELECT H.RNUM,H.HOBBYBOARD_NO,hb.hobbyboard_imgName,hb.hobbyboard_title FROM(
+	SELECT ROW_NUMBER() OVER(ORDER BY HOBBY_LIKE DESC) AS rnum, HOBBYBOARD_NO  FROM (
+	SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE,SUM(hobbypost_viewcount) FROM HOBBY_POST GROUP BY HOBBYBOARD_NO
+))h,HOBBYBOARD hb WHERE h.HOBBYBOARD_NO = hb.HOBBYBOARD_NO AND RNUM<=2
 
+--베스트 쿼리문
+SELECT H.RNUM,H.HOBBYBOARD_NO,hb.hobbyboard_imgName,hb.hobbyboard_title FROM(
+	SELECT ROW_NUMBER() OVER(ORDER BY hobbypost_viewcount DESC) AS rnum, HOBBYBOARD_NO  FROM (
+	SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE,SUM(hobbypost_viewcount) AS hobbypost_viewcount FROM HOBBY_POST GROUP BY HOBBYBOARD_NO
+))h,HOBBYBOARD hb WHERE h.HOBBYBOARD_NO = hb.HOBBYBOARD_NO AND RNUM<=2
 
-SELECT * FROM bookmark order by bookmark_no asc
 
 SELECT b.rnum, b.LINK,b.ID,h.hobbyboard_title,h.hobbyboard_imgName 
 FROM(SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) AS rnum,link,id FROM bookmark WHERE bookmark_divide='즐겨찾기' AND id='user1')b,hobbyboard h 

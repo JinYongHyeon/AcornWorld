@@ -473,7 +473,5 @@ public class MemberDAO {
 	   }
 	   return favoritesList;
    }
-   
-   
 
 }
