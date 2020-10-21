@@ -47,7 +47,7 @@
 			onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'">
 			<br> <br>
 
-			onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'"><hr>
+			
 
 		<input type="button" value="내 게시물 조회"
 			onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'"><hr>

@@ -339,13 +339,26 @@ INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryho
 VALUES(toryhome_no_seq.nextval,'방명록','테스트 중입니다.user1', SYSDATE, 'user1','user4');
 INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
 VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user4', SYSDATE, 'user4','user3');
+INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
+VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'user5','user3');
+INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
+VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'user5','user4');
+
+SELECT toryhome_title, toryhome_content, to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), id_writer, id
+FROM toryhome_board;
+
+SELECT tory.toryhome_title, tory.toryhome_content, to_char(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, m.profile_photo 
+FROM (SELECT toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id FROM toryhome_board) tory, member m
+WHERE tory.id_writer = m.id AND tory.id = 'user4' ORDER BY toryhome_no ASC
+
+SELECT ROWNUM, toryHome.*
+FROM (SELECT tory.toryhome_title, tory.toryhome_content, to_char(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, m.profile_photo 
+FROM (SELECT toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id FROM toryhome_board) tory, member m
+WHERE tory.id_writer = m.id AND tory.id = 'user4' ORDER BY toryhome_no ASC) toryHome
+ORDER BY ROWNUM DESC
+
 
 delete from TORYHOME_BOARD where id='';
-
-SELECT toryhome_title, toryhome_content, 
-to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), id_writer, id 
-FROM toryhome_board where id='user4' and toryhome_title='방명록'
-ORDER BY toryhome_no DESC;
 
 
 --북마크 샘플
