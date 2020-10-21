@@ -45,7 +45,6 @@ $(document).ready(function() {
 	});
 
 
-
 });
 
 //프로필이미지 보여주기
@@ -82,7 +81,7 @@ function postDelete() {
 	var postDeleteForm = document.getElementById("adminPostDeletForm");
 	var flag = false;
 	for (var i = 0; i < no.length; i++) {
-		if(no[i].checked === true) {
+		if (no[i].checked === true) {
 			flag = true;
 			break;
 		}
@@ -97,7 +96,7 @@ function myPostDelete() {
 	var myPostDeleteForm = document.getElementById("myPostDeleteFrom");
 	var flag = false;
 	for (var i = 0; i < no.length; i++) {
-		if(no[i].checked === true) {
+		if (no[i].checked === true) {
 			flag = true;
 			break;
 		}
@@ -107,4 +106,6 @@ function myPostDelete() {
 		return flag;
 	}
 }
+
+
 

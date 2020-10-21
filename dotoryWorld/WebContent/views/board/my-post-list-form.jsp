@@ -1,54 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script type="text/javascript">
-   $(document).ready(function() {
-      $(document).on('click', '#btnSearch', function(e) {
-         e.preventDefault();
-         var url = "${pageContext.request.contextPath}/board/post-list";
-         url = url + "?searchType=" + $('#searchType').val();
-         url = url + "&keyword=" + $('#keyword').val();
-         location.href = url;
-         console.log(url);
-      });
-   });
-</script>
+
 <style>
 tr:hover {background-color:#E4F7BA;}
 </style>
 <!-- 게시물 검색-->
-<div class="row searchPost" >
-	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-	<input type="hidden" name="searchFiled" value="${postVO.searchFiled }" />
-	<input type="hidden" name="searchValue" value="${postVO.searchValue }" />
-	<form action="post-search-list.jsp" method="post" id="boardTable">
-		<div class="container2">
-			<div class="form-group row justify-content-center">
-				<input type="hidden" name="searchflag" onkeyup="searchFunction()"
-					value="true"> &emsp;&emsp; <select name="keyField">
+<h2><img src="resources/img/myPost.png" id="mypostImg"></h2>
+
+<form action="${pageContext.request.contextPath }/front" id="boardTable">
+	<input type="hidden" name="command" value="searchPost">
+			<div class="form-group row"  style= "margin-left:670px">
+				 <select name="keyField">
 					<option value="title">제목</option>
+					<option value="id">작성자</option>
 				</select>&emsp;
-				<div class="w300" style="padding-right: 10px">
-					<input type="text" class="form-control" name="keyWord" id="keyWord">
-				</div>
-            <button class="btn btn-primary" type="button" id="btnSearch"
-               onclick="searchFunction()">
-               검색<span class="glyphicon glyphicon-search"> </span>
-            </button>
+	<input type="text" name="keyword" size="20">
+            &emsp;<input type="submit" value="검색">
+            </div>
             <hr>
-         </div>
-      </div>
    </form>
-   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-</div>
 <!-- 게시글 리스트가 나열되는 부분 -->
 <div class="row boardMain">
 <div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
 <form action="${pageContext.request.contextPath}/front" id="boardTable" onsubmit="return myPostDelete()">
-	<table class="table table-bordered  table-hover boardlist" bgcolor="white">
+	<table class="table table-bordered  table-hover boardlist">
 	<thead>
 		<tr class="success">
 			<th></th>

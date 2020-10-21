@@ -20,7 +20,7 @@ public class BookmarkController implements Controller {
 		String id = request.getParameter("id");
 		String link = request.getParameter("link");
 		String bookmark = request.getParameter("bookmark");
-		String title = request.getParameter("title");
+		
 		String message = null;
 
 		BookmarkVO mark = new BookmarkVO();
@@ -43,8 +43,8 @@ public class BookmarkController implements Controller {
 				message = "실패";
 			}
 		}
-		request.setAttribute("responsebody", message);
-
+ 		request.setAttribute("responsebody", message);
+ 		 
 		return "/AjaxView";
 	}
 

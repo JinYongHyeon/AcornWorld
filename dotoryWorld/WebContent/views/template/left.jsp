@@ -42,6 +42,7 @@
 		<h6><b>${sessionScope.mvo.name}님</b></h6>
 		<input type="button" value="로그아웃"
 			onclick="location.href = '${pageContext.request.contextPath}/front?command=logout'">
+
 		<input type="button" value="회원정보수정" onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'"> <br><br>
 		<a href = "${pageContext.request.contextPath}/front?command=myPostList">내 게시물 조회</a><br>
 		<a href = "${pageContext.request.contextPath}/front?command=bookmarkList&id=${sessionScope.mvo.id}&bookmark=북마크">

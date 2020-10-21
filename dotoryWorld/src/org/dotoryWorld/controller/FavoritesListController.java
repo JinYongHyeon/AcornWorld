@@ -10,9 +10,9 @@ import org.dotoryWorld.model.BookmarkVO;
 import org.dotoryWorld.model.MemberDAO;
 import org.dotoryWorld.model.PagingBean;
 
-public class BookmarkListController implements Controller {
+public class FavoritesListController implements Controller {
 	/**
-	 * 내 북마크 가져오는 기능
+	 * 내 즐겨찾기 데이터 가져오는 기능
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -24,13 +24,14 @@ public class BookmarkListController implements Controller {
  		String nowPage = request.getParameter("nowPage");
  		
  		 /**
-		  * 페이지당 게시물수
-		  */
-		  int postCountPerPage = 10;
-		 /**
-		  * 페이지 그룹당 페이지수
-		  */
-		  int pageCountPerPageGroup =5 ;
+ 		  * 페이지당 게시물수
+ 		  */
+ 		  int postCountPerPage = 4;
+ 		 /**
+ 		  * 페이지 그룹당 페이지수
+ 		  */
+ 		  int pageCountPerPageGroup =5 ;
+ 		
  		
  		PagingBean paginBean = null;
  		int totalCount = MemberDAO.getInstance().bookmartListCount(id, bookmark);
@@ -39,11 +40,10 @@ public class BookmarkListController implements Controller {
 		}else {
 		paginBean = new PagingBean(totalCount,Integer.parseInt(nowPage),postCountPerPage,pageCountPerPageGroup);
 		}
-		
-		ArrayList<BookmarkVO> bookList =MemberDAO.getInstance().bookmarkListAll(id,bookmark,paginBean);
+	    ArrayList<BookmarkVO> bookList =MemberDAO.getInstance().favoritesListAll(id,bookmark,paginBean);	
 		request.setAttribute("bookmarkPagin", paginBean);
 		request.setAttribute("bookmarkList", bookList);		
-		request.setAttribute("url", "/views/bookmark/bookmark.jsp");
+		request.setAttribute("url", "/views/bookmark/favorites.jsp");
 	
 		
 		return "views/template/main-layout.jsp";
