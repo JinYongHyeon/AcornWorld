@@ -46,21 +46,21 @@
 	<input type="hidden" name="no" value="${pvo.postNo}"></input>	
 	<table class="table" >
 		<tr>
+				<td>게시판번호: ${requestScope.pvo.boardVO.boardNo}</td> <!-- 번호가 아닌 텍스트로 잡으면? -->
+				<td>글번호: ${requestScope.pvo.postNo }</td>
+				<td>작성자 : ${requestScope.pvo.memberVO.name }</td>
+				<td>작성일시 : ${requestScope.pvo.postDate }</td>
+		</tr>
+		<tr>
 			<td colspan="4">제목 &nbsp;&nbsp;
 				<input type="text" id ="postTitle" name="title" value="${pvo.postTitle}" required="required">
 			</td>
 		</tr>   
 		<tr>
 			<td colspan="4">     
-				<textarea cols="90" rows="15" id="postContent" name="content" required="required" >${pvo.postContent }</textarea>
+				<textarea cols="126" rows="20" id="postContent" name="content" required="required" >${pvo.postContent }</textarea>
 			</td>
 		</tr> 
-		<tr>
-				<td>게시판번호: ${requestScope.pvo.boardVO.boardNo}</td> <!-- 번호가 아닌 텍스트로 잡으면? -->
-				<td>글번호: ${requestScope.pvo.postNo }</td>
-				<td>작성자 : ${requestScope.pvo.memberVO.name }</td>
-				<td>작성일시 : ${requestScope.pvo.postDate }</td>
-		</tr>
 	</table>    
 	<div class="btnArea">
 		<button type="button" id="postUpdate" class="btn" >수정</button>  

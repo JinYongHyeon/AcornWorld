@@ -119,7 +119,7 @@ ${requestScope.pvo.boardVO.boardTitle}
 </svg>
 			</c:otherwise>
 		</c:choose>
-		좋아요&emsp;
+		${requestScope.pvo.postLike}&emsp;
 <img id="bookMarkImgIcon" src="${pageContext.request.contextPath}/resources/img/icon/bookmark3.png">
 		북마크</c:if>
 	</div>

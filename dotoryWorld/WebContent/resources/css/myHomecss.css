@@ -174,11 +174,11 @@ body {
 }
 
 #toryProfileUpdateForm table tr td {
-	width: 75%;
+	width: 20%;
 }
 
 #toryProfileUpdateForm table tr th {
-	width: 25%;
+	width: 10%;
 }
 
 #toryProfileUpdateForm table tr td input {
@@ -327,13 +327,6 @@ body {
 	height: 40px;
 }
 
-#adminPagin ul {
-	margin-top: 30px;
-	position: absolute;
-	left: 50%;
-	transform: translate(-50%, 0);
-}
-
 /*boardList 구역*/
 #boardListForm {
 	width: 347px;
@@ -373,6 +366,33 @@ body {
 #boardList ul li input[type=submit] {
 	float: left;
 	width: 87%;
+}
+
+/*즐겨찾기 게시판 리스트*/
+#favoriteForm {
+	width: 347px;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+#favoriteForm input[type=button] {
+	width: 100%;
+}
+
+#favoriteForm img {
+	width: 100%;
+}
+
+#favoriteList ul {
+	list-style: none;
+	width: 100%;
+}
+
+#favoriteList ul li {
+	float: left;
+	width: 45%;
+	margin-right: 15px;
 }
 
 /*메인 화면 게시판 리스트*/
@@ -491,6 +511,31 @@ body {
 	width: 100%;
 }
 
+#boardTable2 td {
+	padding: 6px;
+	text-align: center;
+}
+
+#boardTable2 th {
+	padding: 5px;
+	background-color: #FFBB00;
+	color: white;
+	text-align: center;
+}
+#boardTable2 table {
+	border: 1px;
+	background: white;
+	width: 100%;
+}
+#boardTable2 input [type=submit] {
+	border: 2px solid white;
+	border-radius: 5px;
+	background-color: white;
+	color: white;
+}
+
+
+
 /*각 카테고리 제목 이미지*/
 #mydotoryImg{
 	width:250px;
@@ -513,14 +558,16 @@ body {
 	vertical-align: middle;
 }
 
+/*게시물 수정, 글쓰기의 제목 입력칸*/
+#frm input[type=text] {
+	width: 60%;
+}
+
+
 /*그 외*/
 #myForm table {
 	width: 100%;
 	margin: auto;
-}
-
-#frm input[type=text] {
-	width: 60%;
 }
 
 #mainImage {

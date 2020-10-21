@@ -20,7 +20,7 @@ public class ToryProfileUpdateController implements Controller {
 		MemberDAO.getInstance().toryProfileUpdate(ninkName, profileContent, id);
 		
 		session.setAttribute("mvo", MemberDAO.getInstance().addToryHomeInformation(id));
-		return "redirect:front?command=toryHome&id="+id;
+		return "redirect:front?command=toryProfileForm&id="+id;
 	}
 
 }
