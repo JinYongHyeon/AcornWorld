@@ -46,6 +46,9 @@
 #write_button {
 	text-align: right;
 	vertical-align: middle;
+
+#write_button{
+	 text-align: right;
 }
 
 #toryProfileForm table {
