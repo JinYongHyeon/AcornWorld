@@ -48,6 +48,8 @@ CREATE TABLE hobby_post(
 	ON DELETE CASCADE
 )
 
+select count(*) from hobby_post where hobby_title LIKE '%메%' and id like '%u%'
+
 SELECT * FROM hobby_post
 
 CREATE SEQUENCE hobbypost_no_seq;

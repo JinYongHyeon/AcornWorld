@@ -10,9 +10,10 @@
 	<!-- <form action="post-search-list.jsp" method="post"> -->
 	<form action="${pageContext.request.contextPath }/front">
 	<input type="hidden" name="command" value="searchPost">
-			<div class="form-group row justify-content-center">
+			<div class="form-group row">
 				 <select name="keyField">
 					<option value="title">제목</option>
+					<option value="id">작성자</option>
 				</select>&emsp;
 				<div class="w300">
 					<input type="text" class="form-control" name="keyword" id="keyWord">
@@ -54,7 +55,6 @@
 				</td>
 				<td>
 					<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
-					
 				</td>
 				<td>${pvo.postDate }</td>				
 				<td>${pvo.viewCount }</td>
