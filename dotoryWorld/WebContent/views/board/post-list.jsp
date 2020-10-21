@@ -90,16 +90,21 @@ tr:hover {background-color:#E4F7BA;}
 					<!-- 로그인 상태에는 글을 읽을 수 있다. -->
 					<c:choose>
 						<c:when test="${sessionScope.mvo!=null}">
-							<c:if test="${requestScope.hobbyBoardNo == 18 }">
-								<c:choose>
-									<c:when test="${sessionScope.mvo.id == pvo.memberVO.id || sessionScope.mvo.grade == '다람쥐' }">
-											<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
-									</c:when>
-									<c:otherwise>
-										${pvo.postTitle } <!-- 18번 게시판에서는 글 작성자만 글을 읽을 수 있다. -->
-									</c:otherwise>
-								</c:choose>
-							</c:if>
+							<c:choose>
+								<c:when test="${requestScope.hobbyBoardNo == 18 }">
+									<c:choose>
+										<c:when test="${sessionScope.mvo.id == pvo.memberVO.id || sessionScope.mvo.grade == '다람쥐' }">
+												<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
+										</c:when>
+										<c:otherwise>
+											${pvo.postTitle } <!-- 18번 게시판에서는 글 작성자만 글을 읽을 수 있다. -->
+										</c:otherwise>
+									</c:choose>
+								</c:when>
+								<c:otherwise>
+									<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
+								</c:otherwise>
+							</c:choose>
 						</c:when>
 						<c:otherwise>
 							${pvo.postTitle } <!-- 비 로그인 상태에는 글을 읽을 수 없다. -->
