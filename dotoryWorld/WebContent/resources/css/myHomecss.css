@@ -13,7 +13,7 @@
 
 * {
 	font-family: 'THEletssmileR' !important;
-	list-style:none;
+	list-style: none;
 }
 
 input[type=text], input[type=password] {
@@ -108,7 +108,8 @@ body {
 	color: white;
 	text-align: center;
 }
-#boardTable table{
+
+#boardTable table {
 	border: 1;
 	background-color: white;
 }
@@ -117,26 +118,27 @@ body {
 	text-align: right;
 	vertical-align: middle;
 }
-#mydotoryImg{
-	width:250px;
-	height:70px; 
+
+#mydotoryImg {
+	width: 250px;
+	height: 70px;
 }
 
-#mypostImg{
-	width:500px;
-	height:70px;
-}
-#bookMarkImg{
-	width:500px;
-	height:70px;
+#mypostImg {
+	width: 500px;
+	height: 70px;
 }
 
-#bookMarkImgIcon{
-	width:34px;
-	height:32px;
-	cursor:pointer;
+#bookMarkImg {
+	width: 500px;
+	height: 70px;
 }
 
+#bookMarkImgIcon {
+	width: 34px;
+	height: 32px;
+	cursor: pointer;
+}
 
 #toryProfileForm table {
 	width: 100%;
@@ -340,19 +342,11 @@ body {
 	float: left;
 }
 
-#boardListForm .noLoginBoardList {
-	width: 100%;
-}
-
 #boardListForm input[type=button] {
 	float: right;
 }
 
 #boardListForm img {
-	width: 100%;
-}
-
-#noLoginBoardList input[type=submit] {
 	width: 100%;
 }
 
@@ -404,22 +398,25 @@ body {
 }
 
 /*메인 화면 게시판 리스트*/
-#homeBoardList {
+#boardListMain {
 	border: 3px solid #F57F17;
 	border-radius: 40px 40px;
 	border-style: dashed;
 	padding: 20px;
-	position: relative;
 	left: 50%;
-	transform: translate(-50%, 0);
+	transform: translate(-100%, 0);
 }
 
-#homeBoardList img {
+#boardListMain input[type=submit] {
 	width: 100%;
 }
 
-#homeBoardList input[type=submit] {
-	width: 100%;
+#boardListMain img {
+	width: 50%;
+}
+
+#boardListMainForm img{
+	width:100%;
 }
 
 /*게시판 정보*/
@@ -530,11 +527,13 @@ body {
 	color: white;
 	text-align: center;
 }
+
 #boardTable2 table {
 	border: 1px;
 	background: white;
 	width: 100%;
 }
+
 #boardTable2 input [type=submit] {
 	border: 2px solid white;
 	border-radius: 5px;
@@ -542,22 +541,20 @@ body {
 	color: white;
 }
 
-
-
 /*각 카테고리 제목 이미지*/
-#mydotoryImg{
-	width:250px;
-	height:70px; 
+#mydotoryImg {
+	width: 250px;
+	height: 70px;
 }
 
-#mypostImg{
-	width:500px;
-	height:70px;
+#mypostImg {
+	width: 500px;
+	height: 70px;
 }
 
-#bookMarkImg{
-	width:500px;
-	height:70px;
+#bookMarkImg {
+	width: 500px;
+	height: 70px;
 }
 
 /*글쓰기 버튼*/
@@ -570,7 +567,6 @@ body {
 #frm input[type=text] {
 	width: 60%;
 }
-
 
 /*그 외*/
 #myForm table {
@@ -597,4 +593,3 @@ body {
 .content {
 	min-height: 72.8vh;
 }
-
