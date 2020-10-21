@@ -39,7 +39,6 @@ public class ToryHomeController implements Controller {
 		// 방명록 정보 가저오기, 페이징
 		int tototalLetterCount = MemberDAO.getInstance().getTotalLetterCount(request.getParameter("id"));
 		String letterPageNo=request.getParameter("letterPageNo");
-		System.out.println(letterPageNo);
 		PagingBean letterPaging = null;
 		if (letterPageNo==null) {
 			letterPaging = new PagingBean(tototalLetterCount, 3, 5);

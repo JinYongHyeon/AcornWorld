@@ -372,26 +372,15 @@ VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'user5
 SELECT toryhome_title, toryhome_content, to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), id_writer, id
 FROM toryhome_board;
 
+SELECT ROW_NUMBER() OVER(ORDER BY t.toryhome_no DESC) as rnum, t.toryhome_no, t.toryhome_title, t.toryhome_content, t.toryhome_date, t.id_writer, m.profile_photo
+FROM TORYHOME_BOARD t, member m
+where t.id_writer = m.id and t.id = 'user4' and t.toryhome_title='방명록'
 
-
-ROW_NUMBER() OVER(ORDER BY ) row_num
-
-SELECT toryhome_no, toryhome_title, toryhome_content,   FROM TORYHOME_BOARD
-
-SELECT ROW_NUMBER() OVER(ORDER BY toryhome_no DESC) as rnum
-,toryhome_no,TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')
-FROM TORYHOME_BOARD
-WHERE ID = 'user4'
-
-SELECT *
-FROM (SELECT ROW_NUMBER() OVER(ORDER BY toryhome_no DESC) as rnum
-,toryhome_no,TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')
-FROM TORYHOME_BOARD
-WHERE ID = 'user4')
-WHERE rnum BETWEEN 1 AND 3
-
-SELECT * FROM TORYHOME_BOARD
-WHERE TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')='2020-10-21 10:45:51';
+SELECT tory.toryhome_no, tory.toryhome_title, tory.toryhome_content, TO_CHAR(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, tory.profile_photo
+FROM (SELECT ROW_NUMBER() OVER(ORDER BY t.toryhome_no DESC) as rnum, t.toryhome_no, t.toryhome_title, t.toryhome_content, t.toryhome_date, t.id_writer, m.profile_photo
+FROM TORYHOME_BOARD t, member m
+WHERE t.id_writer = m.id and t.id = 'user4' and t.toryhome_title='방명록') tory
+WHERE tory.rnum BETWEEN 4 AND 4;
 
 delete from TORYHOME_BOARD
 where id_writer='user2' and id='user4' and TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')='2020-10-21 10:45:51';

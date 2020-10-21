@@ -278,18 +278,13 @@ public class MemberDAO {
 		StringBuilder sql = new StringBuilder();
 		try {
 			con=dataSource.getConnection();
-			sql.append("SELECT R.* ");
-			sql.append("FROM (SELECT ROWNUM, toryHome.* ");
-			sql.append("FROM (SELECT tory.toryhome_title, tory.toryhome_content, to_char(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, m.profile_photo ");
-			sql.append("FROM (SELECT toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id FROM toryhome_board) tory, member m ");
-			sql.append("WHERE tory.id_writer = m.id AND tory.id = ? ORDER BY toryhome_no ASC) toryHome ORDER BY ROWNUM DESC) R ");
-			sql.append("WHERE ROWNUM BETWEEN ? AND ?");
+			sql.append("SELECT tory.toryhome_no, tory.toryhome_title, tory.toryhome_content, TO_CHAR(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, tory.profile_photo ");
+			sql.append("FROM (SELECT ROW_NUMBER() OVER(ORDER BY t.toryhome_no DESC) as rnum, t.toryhome_no, t.toryhome_title, t.toryhome_content, t.toryhome_date, t.id_writer, m.profile_photo ");
+			sql.append("FROM TORYHOME_BOARD t, member m ");
+			sql.append("WHERE t.id_writer = m.id and t.id = ? and t.toryhome_title='방명록') tory ");
+			sql.append("WHERE tory.rnum BETWEEN ? AND ?");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, toryId);
-			System.out.println("----test----");
-			System.out.println(letterPaging.getStartRowNumber());
-			System.out.println(letterPaging.getEndRowNumber());
-			System.out.println("----test----");
 			pstmt.setInt(2, letterPaging.getStartRowNumber());
 			pstmt.setInt(3, letterPaging.getEndRowNumber());
 			rs=pstmt.executeQuery();
