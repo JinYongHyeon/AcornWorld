@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%-- 링크 주자 --%>
-		<h2><img src="resources/img/bookMark.png" width="500px" height="70px"></h2>
+		<h2><img src="resources/img/bookMark.png" id="bookMarkImg"></h2>
 
 <form  id="boardTable">
 <table class="table">

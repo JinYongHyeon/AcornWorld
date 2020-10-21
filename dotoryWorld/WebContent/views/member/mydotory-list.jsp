@@ -43,10 +43,10 @@ tr:hover {background-color:#E4F7BA;}
 <body>
 	
 	<div align="center" style="padding-top: 10px;">
-		<h2><img src="resources/img/도토리.png" width="250px" height="70px"></h2>
+		<h2><img src="resources/img/도토리.png" id="mydotoryImg"></h2>
 		<form action="${pageContext.request.contextPath}/front" id="boardTable">
 		<input type="hidden" name="command" value="deleteMyDotory">
-			<table border="1" bgcolor="white" >
+			<table>
 				<tr>
 					<th> &emsp;&emsp;&emsp; 도토리 ID  &emsp;&emsp;&emsp;</th>
 					<th>선택</th>
