@@ -17,6 +17,12 @@
 	background-color: #FFF9C4;
 	text-align: center;
 }
+#example1 {
+  border: 2px solid #FFBB00;
+  padding: 25px;
+  background-size: auto;
+  background-color: white;
+}
 
 #toryProfileForm table {
 	width: 100%;

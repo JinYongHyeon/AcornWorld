@@ -1,9 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- test style -->
+<style>
+table {
+  width: 100%;
+  border-color:#FFBB00;
+}
 
+td {
+  padding: 6px;
+  text-align: center;
+}
+th {
+padding: 5px;
+  background-color: #FFBB00;
+  color: white;
+    text-align: center;
+}
 
-<div class="row">
+</style>
+
+<div class="row" id="example1">
 	<div class="col-sm-8 offset-2" id="toryProfileForm">
 		<table>
 
