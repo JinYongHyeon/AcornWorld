@@ -21,10 +21,12 @@ padding: 5px;
 
 </style>
 
-<div class="row" id="example1">
+<div class="row" id="boardTableLine">
 	<div class="col-sm-8 offset-2" id="toryProfileForm">
-		<table>
-
+		<h2><img src="resources/img/profile/profile.png" width="500px" height="70px"></h2>
+				<form id="boardTable">
+		<table bgcolor="white">
+		
 			<tr>
 				<th colspan="2">프로필</th>
 			</tr>
@@ -64,7 +66,7 @@ padding: 5px;
 		<br><br>
 		<input type="button" onclick="location.href='${pageContext.request.contextPath}/front?command=toryProfileUpdateForm'" value="프로필 수정">
 		<input type="button" onclick="location.href='${pageContext.request.contextPath }/front?command=myDotoryList&id=${sessionScope.mvo.id}'" value="내 도토리 리스트">
-		
+		</form>
 	</div>
 
 </div>
