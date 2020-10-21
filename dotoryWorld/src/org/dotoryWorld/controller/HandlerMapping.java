@@ -60,6 +60,8 @@ public class HandlerMapping {
 			controller = new PostWriteController();
 		} else if (command.contentEquals("searchPost")) { //게시물 검색 
 			controller = new SearchPostController();
+		} else if (command.contentEquals("searchMyPost")) { //내가 작성한 게시물 검색 
+			controller = new SearchMyPostController();
 		} else if (command.contentEquals("postRemove")) { //게시물 삭제
 			controller = new PostRemoveController();
 		} else if (command.contentEquals("postDetail")) { //게시물 상세

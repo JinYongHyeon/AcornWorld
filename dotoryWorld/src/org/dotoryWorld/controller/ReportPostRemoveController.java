@@ -10,11 +10,7 @@ public class ReportPostRemoveController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		/*
-		 * HttpSession session=request.getSession(false);
-		 * if(session==null||session.getAttribute("mvo")==null||
-		 * request.getMethod().equals("POST")==false){ return "redirect:index.jsp"; }
-		 */
+
 		String no=request.getParameter("no");
 		PostDAO.getInstance().deleteReportPosting(Integer.parseInt(no));
 		// 게시물 목록을 보여주기 위해

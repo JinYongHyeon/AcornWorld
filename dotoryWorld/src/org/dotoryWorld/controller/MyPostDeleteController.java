@@ -16,7 +16,6 @@ public class MyPostDeleteController implements Controller {
 			return "redirect:front?command=main";
 		}
 		String no[] = request.getParameterValues("deletePost");
-		System.out.println(request.getParameterValues("deletePost"));
 		for(int i=0;i<no.length;i++) {
 			PostDAO.getInstance().deletePostingsByNo(Integer.parseInt(no[i]));
 		}

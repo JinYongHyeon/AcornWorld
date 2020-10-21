@@ -1,7 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<script type="text/javascript">
+   $(document).ready(function() {
+      $(document).on('click', '#btnSearch', function(e) {
+         e.preventDefault();
+         var url = "${pageContext.request.contextPath}/board/post-list";
+         url = url + "?searchType=" + $('#searchType').val();
+         url = url + "&keyword=" + $('#keyword').val();
+         location.href = url;
+         console.log(url);
+      });
+   });
+</script>
 <style>
 tr:hover {background-color:#E4F7BA;}
 </style>
@@ -41,7 +52,7 @@ tr:hover {background-color:#E4F7BA;}
 			<tr>
 				<td>
 					<input type="hidden" name="command" value="myPostDelete">
-					<input type="checkbox" name="deletePost" value="${pvo.postNo }"> <!-- 추후 복수 삭제를 위해 추가? -->
+					<input type="checkbox" name="deletePost" value="${pvo.postNo }">
 				</td>
 				<td>${pvo.postNo }</td>
 				<td>

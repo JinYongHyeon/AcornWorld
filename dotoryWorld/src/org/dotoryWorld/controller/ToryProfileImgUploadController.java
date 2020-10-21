@@ -32,9 +32,9 @@ public class ToryProfileImgUploadController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session =request.getSession(false);
 		if(session == null || session.getAttribute("mvo")==null) response.sendRedirect("front?command=main");
-		//String path = "C:\\Users\\yonghyeon\\DotoryWorld\\dotoryWorld\\WebContent\\resources\\img\\profile";
+
 		 String path = request.getSession().getServletContext().getRealPath("/resources/img/profile/");// 최종 주소
-		 System.out.println(path);
+
 		MultipartRequest mutipartRequest = new MultipartRequest(request, path, 10 * 1024 * 1024, "UTF-8",
 				new DefaultFileRenamePolicy());
 		File profileImg = mutipartRequest.getFile("profileImg");
