@@ -29,12 +29,16 @@
 		
 	}
 	
-	#letterPaging td{
+	.pagingArea{
 		text-align: center;
+	}
+	
+	#letterWrite{
+		border: 3px solid lime;
 	}
 
 </style>
-${requestScope.letterVO.letterList}
+${mvo.id == list.homewriterId || mvo.id == list.memberVO.id || mvo.grade == '다람쥐'}
 <table >
 	<c:forEach var="list" items="${requestScope.letterVO.letterList }">
 		<thead>
@@ -43,7 +47,7 @@ ${requestScope.letterVO.letterList}
 				<th>${list.homewriterId }</th>
 				<th>${list.homeDate }</th>
 				<c:choose>
-					<c:when test="${0==0 }">
+					<c:when test="${mvo.id == list.homewriterId || mvo.id == list.memberVO.id || mvo.grade == '다람쥐'}">
 						<th><button onclick="dd()">삭제</button></th>
 					</c:when>
 					<c:otherwise>
@@ -56,7 +60,9 @@ ${requestScope.letterVO.letterList}
 			<tr id ="body">
 				<c:choose>
 					<c:when test="${list.memberVO.profilePhoto==null }">
-						<td colspan="2">null</td>
+						<td colspan="2">
+							<img width="20px" src="${pageContext.request.contextPath}/resources/img/profile/profileDefualt.png">
+						</td>
 					</c:when>
 					<c:otherwise>
 						<td colspan="2">${list.memberVO.profilePhoto }</td>
@@ -69,35 +75,43 @@ ${requestScope.letterVO.letterList}
 			<tr><td><br></td></tr>
 		</tbody>
 	</c:forEach>
-	<tfoot>
-		<tr id ="letterPaging">
-			<td colspan="4">
-				<c:set var="paging" value="${requestScope.letterVO.pagingBean }"/>
-				<ul class="pagination">
-					<c:if test="${paging.previousPageGroup }">
-						<li>
-							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${requestScope.letterVO.letterList[0].memberVO.id}&letterPageNo=${paging.startPageOfPageGroup-1 }">&laquo;</a>
-						</li>
-					</c:if>
-					<c:forEach var="i" begin="${paging.startPageOfPageGroup }" end="${paging.endPageOfPageGroup }">
-						<c:choose>
-							<c:when test="${pb.nowPage!=i }">
-								<li><a href="${pageContext.request.contextPath}/front?command=toryHome&id=${requestScope.letterVO.letterList[0].memberVO.id}&letterPageNo=${i }">${i }</a></li>
-							</c:when>
-							<c:otherwise>
-								<li class="active"><a href="#">${i }</a></li>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${paging.nextPageGroup }">
-						<li>
-							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${requestScope.letterVO.letterList[0].memberVO.id}&letterPageNo=${paging.endPageOfPageGroup+1 }">&raquo;</a>
-						</li>
-					</c:if>
-				</ul>
-			</td>
-		</tr>
-	</tfoot>
 </table>
 
-  
+<div class="pagingArea">
+	<c:set var="paging" value="${requestScope.letterVO.pagingBean }"/>
+	<ul class="pagination">
+		<c:if test="${paging.previousPageGroup }">
+			<li>
+				<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${requestScope.letterVO.letterList[0].memberVO.id}&letterPageNo=${paging.startPageOfPageGroup-1 }">&laquo;</a>
+			</li>
+		</c:if>
+		<c:forEach var="i" begin="${paging.startPageOfPageGroup }" end="${paging.endPageOfPageGroup }">
+			<c:choose>
+				<c:when test="${pb.nowPage!=i }">
+					<li><a href="${pageContext.request.contextPath}/front?command=toryHome&id=${requestScope.letterVO.letterList[0].memberVO.id}&letterPageNo=${i }">${i }</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="active"><a href="#">${i }</a></li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.nextPageGroup }">
+			<li>
+				<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${requestScope.letterVO.letterList[0].memberVO.id}&letterPageNo=${paging.endPageOfPageGroup+1 }">&raquo;</a>
+			</li>
+		</c:if>
+	</ul>
+</div>
+
+<table id="letterWrite">
+	<tbody>
+		<tr>
+			<td>
+				test
+			</td>
+			<td>
+				test	
+			</td>
+		</tr>
+	</tbody>
+</table>

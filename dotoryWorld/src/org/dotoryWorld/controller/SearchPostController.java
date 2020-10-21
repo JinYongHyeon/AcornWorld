@@ -26,7 +26,8 @@ public class SearchPostController implements Controller {
 		
 		ArrayList<PostVO> pvo=PostDAO.getInstance().searchPost(title, pgb);
 		ListVO lvo=new ListVO(pvo, pgb);
-		request.setAttribute("lvo", lvo);
+		request.setAttribute("keyword", title);
+		request.setAttribute("postingListPaging", lvo);
 		request.setAttribute("url", "/views/board/post-list.jsp");
 		return "/views/template/main-layout.jsp";
 	}

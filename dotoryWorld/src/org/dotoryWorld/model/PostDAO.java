@@ -579,8 +579,8 @@ public class PostDAO {
 			sql.append("where rnum between ? and ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, "%" + postTitle + "%");
-			pstmt.setInt(3, pgb.getStartRowNumber());
-			pstmt.setInt(4, pgb.getEndRowNumber());
+			pstmt.setInt(2, pgb.getStartRowNumber());
+			pstmt.setInt(3, pgb.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				PostVO pvo = new PostVO();
@@ -601,16 +601,17 @@ public class PostDAO {
 	
 	// 내 게시물 조회 페이지에서 검색하는 메서드 
 	
-	public int searchMyPost(String postTitle) throws SQLException {
+	public int searchMyPost(String postTitle, String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int count = 0;
 		try {
 			con = getConnection();
-			String sql = "select count(*) from hobby_post where hobby_title LIKE ?";
+			String sql = "select count(*) from hobby_post where hobby_title LIKE ? AND id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + postTitle + "%");
+			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				count = rs.getInt(1);
@@ -621,7 +622,7 @@ public class PostDAO {
 		return count;
 	}
 	
-	public ArrayList<PostVO> searchMyPost(String postTitle, PagingBean pgb) throws SQLException {
+	public ArrayList<PostVO> searchMyPost(String postTitle, PagingBean pgb, String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -633,10 +634,11 @@ public class PostDAO {
 			sql.append("select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
 			sql.append("from(select row_number() over(order by hobbypost_no asc) as rnum, ");
 			sql.append("hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
-			sql.append("from hobby_post where hobby_title LIKE ?)");
+			sql.append("from hobby_post where hobby_title LIKE ? AND id = ?)");
 			sql.append("where rnum between ? and ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, "%" + postTitle + "%");
+			pstmt.setString(2, id);
 			pstmt.setInt(3, pgb.getStartRowNumber());
 			pstmt.setInt(4, pgb.getEndRowNumber());
 			rs = pstmt.executeQuery();
