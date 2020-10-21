@@ -37,9 +37,28 @@
   color: white;
     text-align: center;
 }
+#boardTable table{
+	border: 1;
+	background-color: white;
+}
+
+
 
 #write_button{
 	 text-align: right;
+}
+
+#mydotoryImg{
+	width:250px;
+	height:70px; 
+}
+#mypostImg{
+	width:500px;
+	height:70px;
+}
+#bookMarkImg{
+	width:500px;
+	height:70px;
 }
 
 
