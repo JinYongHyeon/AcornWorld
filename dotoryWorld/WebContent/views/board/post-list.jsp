@@ -48,7 +48,7 @@
 				<td>
 					<c:choose>
 						<c:when test="${sessionScope.mvo!=null}">
-							<a href="${pageContext.request.contextPath}/front?command=noticePostDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
+							<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
 						</c:when>
 						<c:otherwise>
 							${pvo.postTitle }
