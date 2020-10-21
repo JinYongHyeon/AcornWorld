@@ -4,6 +4,22 @@
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<script type="text/javascript">
+   $(document).ready(function() {
+      $(document).on('click', '#btnSearch', function(e) {
+         e.preventDefault();
+         var url = "${pageContext.request.contextPath}/board/post-list";
+         url = url + "?searchType=" + $('#searchType').val();
+         url = url + "&keyword=" + $('#keyword').val();
+         location.href = url;
+         console.log(url);
+      });
+   });
+</script>
+<style>
+tr:hover {background-color:#E4F7BA;}
+</style>
+
 <!-- 게시물 검색-->
 <div class="row searchPost" id=searchResultForm>
 	
@@ -30,7 +46,7 @@
 <div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
 <form id="boardTable" >
-	<table class="table table-bordered  table-hover boardlist" bgcolor="white">
+	<table class="table table-bordered  table-hover boardlist">
 	<thead>
 		<tr class="success">
 			<th>번호</th>
