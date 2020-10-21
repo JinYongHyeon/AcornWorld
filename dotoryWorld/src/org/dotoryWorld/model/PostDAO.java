@@ -502,7 +502,7 @@ public class PostDAO {
 			pstmt.setString(1, categoryNo);
 			rs = pstmt.executeQuery();
 			if (rs.next())
-				totalCount = rs.getInt(1);
+				totalCount = rs.getInt(1); 
 		} finally {
 			closeAll(rs, pstmt, con);
 		}

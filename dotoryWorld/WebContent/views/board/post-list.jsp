@@ -33,9 +33,8 @@ tr:hover {background-color:#E4F7BA;}
 				</select>&emsp;
 				<div class="w300">
 					<input type="text" class="form-control" name="keyword" id="keyWord" size="25">
-					
 				</div>
-            &emsp;<input type="submit" value="검색">
+            &emsp;<input type="submit" value="검색" id="btnSearch">
             <hr>
          </div>
    </form>
