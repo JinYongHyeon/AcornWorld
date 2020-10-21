@@ -3,20 +3,20 @@ package org.dotoryWorld.model;
 import java.util.ArrayList;
 
 public class ToryLetterListVO {	// 방명록 페이징에 필요
-	private ArrayList<ToryhomeVO> LetterList;
+	private ArrayList<ToryhomeVO> letterList;
 	private PagingBean pagingBean;
 	
 	public ToryLetterListVO(ArrayList<ToryhomeVO> letterList, PagingBean pagingBean) {
 		super();
-		LetterList = letterList;
+		this.letterList = letterList;
 		this.pagingBean = pagingBean;
 	}
 
-	public ArrayList<ToryhomeVO> getLetterList() {
-		return LetterList;
+	public ArrayList<ToryhomeVO> getletterList() {
+		return letterList;
 	}
-	public void setLetterList(ArrayList<ToryhomeVO> letterList) {
-		LetterList = letterList;
+	public void setletterList(ArrayList<ToryhomeVO> letterList) {
+		this.letterList = letterList;
 	}
 	public PagingBean getPagingBean() {
 		return pagingBean;
@@ -27,7 +27,7 @@ public class ToryLetterListVO {	// 방명록 페이징에 필요
 
 	@Override
 	public String toString() {
-		return "ToryLetterListVO [LetterList=" + LetterList + ", pagingBean=" + pagingBean + "]";
+		return "ToryletterListVO [letterList=" + letterList + ", pagingBean=" + pagingBean + "]";
 	}
 	
 	

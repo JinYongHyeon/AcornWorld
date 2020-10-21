@@ -359,15 +359,23 @@ VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'user5
 SELECT toryhome_title, toryhome_content, to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), id_writer, id
 FROM toryhome_board;
 
-SELECT tory.toryhome_title, tory.toryhome_content, to_char(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, m.profile_photo 
-FROM (SELECT toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id FROM toryhome_board) tory, member m
-WHERE tory.id_writer = m.id AND tory.id = 'user4' ORDER BY toryhome_no ASC
 
-SELECT ROWNUM, toryHome.*
-FROM (SELECT tory.toryhome_title, tory.toryhome_content, to_char(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, m.profile_photo 
-FROM (SELECT toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id FROM toryhome_board) tory, member m
-WHERE tory.id_writer = m.id AND tory.id = 'user4' ORDER BY toryhome_no ASC) toryHome
-ORDER BY ROWNUM DESC
+
+ROW_NUMBER() OVER(ORDER BY ) row_num
+
+SELECT toryhome_no, toryhome_title, toryhome_content,   FROM TORYHOME_BOARD
+
+SELECT ROW_NUMBER() OVER(ORDER BY toryhome_no DESC) as rnum
+,toryhome_no,TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')
+FROM TORYHOME_BOARD
+WHERE ID = 'user4'
+
+SELECT *
+FROM (SELECT ROW_NUMBER() OVER(ORDER BY toryhome_no DESC) as rnum
+,toryhome_no,TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')
+FROM TORYHOME_BOARD
+WHERE ID = 'user4')
+WHERE rnum BETWEEN 1 AND 3
 
 SELECT * FROM TORYHOME_BOARD
 WHERE TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')='2020-10-21 10:45:51';

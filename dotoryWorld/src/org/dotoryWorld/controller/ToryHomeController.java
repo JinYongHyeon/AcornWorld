@@ -38,16 +38,17 @@ public class ToryHomeController implements Controller {
 		
 		// 방명록 정보 가저오기, 페이징
 		int tototalLetterCount = MemberDAO.getInstance().getTotalLetterCount(request.getParameter("id"));
-		String letterPageNo=request.getParameter("LetterPateNo");
+		String letterPageNo=request.getParameter("letterPageNo");
+		System.out.println(letterPageNo);
 		PagingBean letterPaging = null;
 		if (letterPageNo==null) {
-			letterPaging = new PagingBean(tototalLetterCount);
+			letterPaging = new PagingBean(tototalLetterCount, 3, 5);
 		}else {
 			letterPaging = new PagingBean(tototalLetterCount, Integer.parseInt(letterPageNo), 3, 5);
 		}
 		ArrayList<ToryhomeVO> toryLetterList = MemberDAO.getInstance().toryHomeLetterList(request.getParameter("id"), letterPaging);
-		ToryLetterListVO LetterVO = new ToryLetterListVO(toryLetterList, letterPaging);
-		request.setAttribute("toryLvo", LetterVO);		
+		ToryLetterListVO letterVO = new ToryLetterListVO(toryLetterList, letterPaging);
+		request.setAttribute("letterVO", letterVO);		
 		
 		
 		return "views/template/tory-layout.jsp";
