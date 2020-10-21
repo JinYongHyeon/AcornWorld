@@ -17,12 +17,32 @@
 	background-color: #FFF9C4;
 	text-align: center;
 }
-#example1 {
+#boardTableLine {
   border: 2px solid #FFBB00;
   padding: 25px;
   background-size: auto;
-  background-color: white;
 }
+#boardTable table  {
+	  width: 100%;
+  border-color:#FFBB00;
+}
+
+#boardTable td {
+	 padding: 6px;
+  text-align: center;
+}
+#boardTable th {
+	padding: 5px;
+  background-color: #FFBB00;
+  color: white;
+    text-align: center;
+}
+
+#write_button{
+	 text-align: right;
+       vertical-align: middle;
+}
+
 
 #toryProfileForm table {
 	width: 100%;
@@ -30,7 +50,7 @@
 }
 
 #toryProfileForm table tr td, #toryProfileForm table tr th {
-	border: 3px solid #F57F17;
+	border: 1px solid #F57F17;
 }
 
 #toryProfileForm table tr th {
@@ -185,8 +205,8 @@
 }
 
 #toryProfileImgMainForm .toryProfileImg img {
-	width: 400px;
-	height: 400px;
+	width: 300px;
+	height: 300px;
 }
 
 /* 어드민 게시물 관리 뷰 - 삭제 폼 */
