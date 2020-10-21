@@ -285,6 +285,38 @@ public class PostDAO {
 		}
 		return pvo;
 	}
+	
+	public PostVO getNoticePostingByNo(String no) throws SQLException {
+		PostVO pvo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select b.notice_title,to_char(b.noticepost_date,'YYYY.MM.DD  HH24:MI:SS') as time_posted");
+			sql.append(",b.notice_content,b.id,m.name");
+			sql.append(" from notice_post b,member m");
+			sql.append(" where b.id=m.id and b.noticepost_no=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, no);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				pvo = new PostVO();
+				pvo.setPostNo(no);
+				pvo.setPostTitle(rs.getString("notice_title"));
+				pvo.setPostContent(rs.getString("notice_content"));
+				pvo.setPostDate(rs.getString("time_posted"));
+				MemberVO mvo = new MemberVO();
+				mvo.setId(rs.getString("id"));
+				mvo.setName(rs.getString("name"));
+				pvo.setMemberVO(mvo);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return pvo;
+	}
 
 	/**
 	 * 조회수 증가
@@ -796,6 +828,24 @@ public class PostDAO {
 			closeAll(pstmt, con);
 		}
 	}
+
+
+	public void addBookMark(BookmarkVO bookmark) throws SQLException {
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   try {
+		   con = dataSource.getConnection();
+		   StringBuilder sb = new StringBuilder();
+		   sb.append("INSERT INTO bookmark(bookmark_no,link,bookmark_divide,id) VALUES(bookmark_no_seq.NEXTVAL,?,?,?)");
+		   pstmt = con.prepareStatement(sb.toString());
+		   pstmt.setString(1, bookmark.getBookmarkLink());
+		   pstmt.setString(2, bookmark.getBookmarkDivide());
+		   pstmt.setString(3, bookmark.getMemberVO().getId());
+		   pstmt.executeUpdate();
+	   }finally {
+		   closeAll(pstmt, con);
+	   }
+   }
 
 	
 }

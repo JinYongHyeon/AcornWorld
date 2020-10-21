@@ -246,6 +246,17 @@
 	font-family: 'THEletssmileR' !important;
 }
 
+.btnArea button[type=button], button[type=reset]{
+	border: 2px solid #F57F17;
+	border-radius: 5px;
+	background-color: #F57F17;
+	color: white;
+}
+
+#frm input[type=text] {
+	width: 60%;
+}
+
 .pagingArea {
 	text-align: center;
 }
