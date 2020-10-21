@@ -57,7 +57,7 @@ $(document).ready(function(){
 				.send("command=like&id=${sessionScope.mvo.id}&no=${requestScope.pvo.postNo}");
 	}
 </script>
-${requestScope.pvo.boardVO.boardTitle}
+${requestScope.pvo.categoryVO.categoryName}>>${requestScope.pvo.boardVO.boardTitle}
 <div class="row postDetailForm">
 	<div class="col-sm-1"></div>
 	<div class="col-sm-10">

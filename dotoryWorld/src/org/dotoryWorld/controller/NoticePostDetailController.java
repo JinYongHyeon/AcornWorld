@@ -13,7 +13,6 @@ public class NoticePostDetailController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("공지글 상세");
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){ return
 		"redirect:index.jsp"; }

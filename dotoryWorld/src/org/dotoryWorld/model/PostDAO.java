@@ -54,10 +54,8 @@ public class PostDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			System.out.println(hobbyBoardNo + "번호확인" + pagingBean.getEndRowNumber());
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
-			System.out.println("postDAO 실행");
 			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted,M.id,M.name FROM( ");
 			sql.append("SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
 			sql.append("to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post WHERE hobbyboard_no = ? ");
@@ -159,8 +157,6 @@ public class PostDAO {
 				pvo.setMemberVO(mvo);
 				list.add(pvo);			
 			}
-			System.out.println("postDAO");
-			System.out.println(list);
 		}finally{
 			closeAll(rs,pstmt,con);
 		}
@@ -173,10 +169,8 @@ public class PostDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
-			System.out.println(id+"아이디확인"+pagingBean.getEndRowNumber());
 			con=getConnection(); 
 			StringBuilder sql=new StringBuilder();	
-			System.out.println("postDAO 실행");
 			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted, H.hobbyboard_title FROM( ");
 			sql.append("SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
 			sql.append("to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,hobbyboard_no FROM hobby_post WHERE id = ? ");
@@ -221,9 +215,9 @@ public class PostDAO {
 		try {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select b.hobby_title,to_char(b.hobbypost_date,'YYYY.MM.DD  HH24:MI:SS') as time_posted");
-			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name,b.hobbyboard_no,h.category_no, b.hobby_like");
-			sql.append(" from hobby_post b,member m,hobbyboard h");
+			sql.append("select b.hobby_title,to_char(b.hobbypost_date,'YYYY.MM.DD  HH24:MI:SS') as time_posted, c.category_name");
+			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name,b.hobbyboard_no,h.category_no, b.hobby_like, h.hobbyboard_title");
+			sql.append(" from hobby_post b,member m,hobbyboard h, category c");
 			sql.append(" where b.id=m.id and b.hobbypost_no=? and b.hobbyboard_no = h.hobbyboard_no");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, no);
@@ -238,15 +232,16 @@ public class PostDAO {
 				pvo.setPostLike(rs.getInt("hobby_like"));
 				BoardVO bvo = new BoardVO();
 				bvo.setBoardNo(rs.getString("hobbyboard_no"));
+				bvo.setBoardTitle(rs.getString("hobbyboard_title"));
 				CategoryVO cvo = new CategoryVO();
 				cvo.setCategoryNo(rs.getString("category_no"));
+				cvo.setCategoryName("category_name");
 				bvo.setCategoryVO(cvo);
 				pvo.setBoardVO(bvo);
 				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString("id"));
 				mvo.setName(rs.getString("name"));
 				
-
 				pvo.setMemberVO(mvo);
 			}
 		} finally {

@@ -49,10 +49,4 @@ public class PostDetailController implements Controller {
 		request.setAttribute("url", "/views/board/post-detail-form.jsp");
 		return "/views/template/main-layout.jsp";
 	}
-
-	private void alert(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

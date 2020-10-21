@@ -43,11 +43,15 @@
 									src="${pageContext.request.contextPath}/resources/img/${boardList.boardImage}">
 								<c:if test="${sessionScope.mvo != null}">
 									<input type="button" value="⭐">
+									<br>
+									<input type="submit" value="${boardList.boardTitle}">
 								</c:if>
-								<br> <input type="submit" value="${boardList.boardTitle}">
-								<br>
-								<br>
-								<br>
+								<c:if test="${sessionScope.mvo == null}">
+									<br>
+									<input type="submit" value="${boardList.boardTitle}"
+										style="width: 100%;">
+								</c:if>
+								<br> <br> <br>
 							</form>
 						</li>
 					</c:forEach>
@@ -65,8 +69,13 @@
 											"click",
 											"#boardList input[value=⭐]",
 											function() {
-												var no = $(this).parent().children("input[name=hobbyBoardNo]").val();
-												$.ajax({
+												var no = $(this)
+														.parent()
+														.children(
+																"input[name=hobbyBoardNo]")
+														.val();
+												$
+														.ajax({
 															type : "post",//전송방식
 															url : "${pageContext.request.contextPath}/front", //주소
 															dataType : "text", //받는타입

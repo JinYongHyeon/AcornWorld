@@ -340,11 +340,19 @@ body {
 	float: left;
 }
 
+#boardListForm .noLoginBoardList {
+	width: 100%;
+}
+
 #boardListForm input[type=button] {
 	float: right;
 }
 
 #boardListForm img {
+	width: 100%;
+}
+
+#noLoginBoardList input[type=submit] {
 	width: 100%;
 }
 
