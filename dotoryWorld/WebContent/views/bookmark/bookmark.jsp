@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%-- 링크 주자 --%>
+		<h2><img src="resources/img/bookMark.png" width="500px" height="70px"></h2>
+
+<form  id="boardTable">
 <table class="table">
 	<thead>
 		<tr>
@@ -22,6 +25,7 @@
 		</c:forEach>
 	</tbody>
 </table>
+</form>
 <nav aria-label="Page navigation example">
 	<ul class="pagination">
 		<c:if test="${requestScope.bookmarkPagin.previousPageGroup}">
