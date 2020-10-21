@@ -144,7 +144,7 @@ $(document).ready(function(){
 		</table><br>
 		
 				<input type="submit" value="수정하기">&emsp;
-				<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}'">
+				<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/front?command=toryProfileForm&id=${sessionScope.mvo.id}'">
 	</form>
 </div>
 
