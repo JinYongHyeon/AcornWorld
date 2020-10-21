@@ -18,8 +18,11 @@ public class PostDetailController implements Controller {
 		if(session==null||session.getAttribute("mvo")==null){
 			return "redirect:index.jsp";
 		}
-		// 개별 게시물 조회  
 		String no=request.getParameter("no");
+		MemberVO mvo = (MemberVO)session.getAttribute("mvo");
+		PostVO vo = PostDAO.getInstance().getPostingByNo(no);		
+		
+		// 개별 게시물 조회  
 		@SuppressWarnings("unchecked")
 		ArrayList<String> noList=(ArrayList<String>) session.getAttribute("noList");
 		/* 읽은 게시물을 다시 읽었을 때 조회수 증가를 방지하기 위해 
@@ -33,7 +36,6 @@ public class PostDetailController implements Controller {
 		/**
 		 * 좋아요 체크
 		 */
-		MemberVO mvo = (MemberVO)session.getAttribute("mvo");
 		int count = PostDAO.getInstance().postLikeCheck(mvo.getId(), no);
 		String likeCheck = null;
 		if(count == 1) {
@@ -42,11 +44,15 @@ public class PostDetailController implements Controller {
 			likeCheck = "down";
 		}
 		
-		PostVO vo = PostDAO.getInstance().getPostingByNo(no);		
 		request.setAttribute("likeCheck", likeCheck);
 		request.setAttribute("pvo", vo);
 		request.setAttribute("url", "/views/board/post-detail-form.jsp");
 		return "/views/template/main-layout.jsp";
+	}
+
+	private void alert(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

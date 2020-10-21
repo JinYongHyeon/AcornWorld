@@ -20,7 +20,6 @@ public class PostListController implements Controller {
 			return "front?command=searchPost";
 		}
 		String hobbyBoardNo=request.getParameter("hobbyBoardNo");
-		request.setAttribute("hobbyBoardNo", hobbyBoardNo);
 		int totalPostCount = PostDAO.getInstance().getTotalPostCount(hobbyBoardNo);
 		String pageNo = request.getParameter("pageNo");
 		PagingBean  pagingBean = null;
@@ -34,7 +33,10 @@ public class PostListController implements Controller {
 		ArrayList<PostVO> postinglist = PostDAO.getInstance().getPostingList(pagingBean, hobbyBoardNo);		
 		ListVO postingListPaging = new ListVO(postinglist, pagingBean);
 		request.setAttribute("postingListPaging", postingListPaging);
-		request.setAttribute("url", "/views/board/post-list.jsp");		
+		request.setAttribute("url", "/views/board/post-list.jsp");
+		request.setAttribute("hobbyBoardNo", hobbyBoardNo);
+		//request.setAttribute("boardNo", hobbyBoardNo);
+		System.out.println(hobbyBoardNo+"현재 페이지"); // test용
 		//return "/views/template/main-layout.jsp";
 		return "front?command=noticeList&noticePostBoardNo=17";
 	}

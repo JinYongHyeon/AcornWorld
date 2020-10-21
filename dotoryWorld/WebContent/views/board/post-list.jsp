@@ -56,7 +56,11 @@
 					</c:choose>
 				</td>
 				<td>
-					<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
+					<c:choose>
+						<c:when test="${sessionScope.mvo!=null}">
+							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
+						</c:when>
+					</c:choose>
 				</td>
 				<td>${pvo.postDate }</td>				
 				<td>${pvo.viewCount }</td>
@@ -67,18 +71,31 @@
 			<tr>
 				<td>${pvo.postNo }</td>
 				<td>
+					<!-- 로그인 상태에는 글을 읽을 수 있다. -->
 					<c:choose>
 						<c:when test="${sessionScope.mvo!=null}">
-							<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
+							<c:if test="${requestScope.hobbyBoardNo == 18 }">
+								<c:choose>
+									<c:when test="${sessionScope.mvo.id == pvo.memberVO.id || sessionScope.mvo.grade == '다람쥐' }">
+											<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
+									</c:when>
+									<c:otherwise>
+										${pvo.postTitle } <!-- 18번 게시판에서는 글 작성자만 글을 읽을 수 있다. -->
+									</c:otherwise>
+								</c:choose>
+							</c:if>
 						</c:when>
 						<c:otherwise>
-							${pvo.postTitle }
+							${pvo.postTitle } <!-- 비 로그인 상태에는 글을 읽을 수 없다. -->
 						</c:otherwise> 
 					</c:choose>
 				</td>
 				<td>
-					<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
-					
+					<c:choose>
+						<c:when test="${sessionScope.mvo!=null}">
+							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
+						</c:when>
+					</c:choose>					
 				</td>
 				<td>${pvo.postDate }</td>				
 				<td>${pvo.viewCount }</td>
@@ -87,13 +104,44 @@
 	</tbody>
 </table>
 </form>
-	<form action="${pageContext.request.contextPath}/front">
-		<input type="hidden" name="command" value="postWriteForm">
-		<input type="hidden" name="boardNo" value="${requestScope.hobbyBoardNo}">
-		<div id="write_button">
+<!-- 17번 게시판일 경우 다람쥐만 글 쓰기 버튼이 보인다. -->
+<!-- 17번 게시판이 아닌 경우 다람쥐와 도토리 모두에게 글쓰기 버튼이 보인다. -->
+<c:choose>
+	<c:when test="${requestScope.hobbyBoardNo == 17}">
+		<c:if test="${sessionScope.mvo.grade == '다람쥐'}">
+			<form action="${pageContext.request.contextPath}/front">
+				<input type="hidden" name="command" value="postWriteForm">
+				<input type="hidden" name="boardNo" value="${requestScope.hobbyBoardNo}">
+				<div id="write_button">
+					<input type="submit" value="글쓰기">
+				</div>
+			</form>
+		</c:if>
+	</c:when>
+	<c:otherwise>
+		<c:if test="${sessionScope.mvo.grade != null}">
+			<form action="${pageContext.request.contextPath}/front">
+				<input type="hidden" name="command" value="postWriteForm">
+				<input type="hidden" name="boardNo" value="${requestScope.hobbyBoardNo}">
+				<div id="write_button">
+					<input type="submit" value="글쓰기">
+				</div>
+			</form>
+		</c:if>
+	</c:otherwise>
+</c:choose>
+
+
+<!-- 17번 게시판에서 다람쥐에게만 보이는 버튼이다. -->
+<c:if test="${requestScope.boardNo == 17 && sessionScope.postingListPaging.list.grade == '다람쥐'}">
+<form action="${pageContext.request.contextPath}/front">
+	<input type="hidden" name="command" value="postWriteForm">
+	<input type="hidden" name="boardNo" value="${requestScope.hobbyBoardNo}">
+	<div id="write_button">
 		<input type="submit" value="글쓰기">
-		</div>
-	</form>
+	</div>
+</form>
+</c:if>
 <%-- paging 처리 --%>
 <c:set var="pb" value="${requestScope.postingListPaging.pagingBean}"/>
 <c:if test="${requestScope.postingListPaging==null}">

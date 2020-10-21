@@ -11,6 +11,7 @@ public class MyPostDeleteController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("MyPostDeleteController 실행");
 		HttpSession session = request.getSession(false);
 		if(session == null|| session.getAttribute("mvo") == null) {
 			return "redirect:front?command=main";
