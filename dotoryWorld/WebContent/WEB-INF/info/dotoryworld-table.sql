@@ -18,8 +18,6 @@ CREATE TABLE category(
 	category_no NUMBER PRIMARY KEY,
 	category_name VARCHAR2(300) NOT NULL
 )
-
-
 CREATE SEQUENCE category_no_seq;
 
 CREATE TABLE hobbyboard(
@@ -113,6 +111,7 @@ CREATE TABLE report_post(
 	ON DELETE CASCADE
 )
 CREATE SEQUENCE reportpost_no_seq NOCACHE;
+SELECT * FROM report_post
 
 /* 공지게시판 게시물 테이블 */
 CREATE TABLE notice_post(
@@ -144,6 +143,8 @@ CREATE TABLE hobbypostlike(
 /* 시퀀스 검색*/
 SELECT * FROM USER_SEQUENCES;
 SELECT * FROM TAB;
+SELECT * FROM CATEGORY
+SELECT * FROM REPORT_POST
 /* ON DELETE CASCADE */ 
 
 --삭제 테이블
@@ -155,6 +156,7 @@ DROP TABLE bookmark
 DROP TABLE dotorylist
 DROP TABLE photobook
 DROP TABLE toryhome_board
+DROP TABLE report_post
 
 --삭제 시퀀스
 DROP SEQUENCE bookmark_no_seq
@@ -212,7 +214,7 @@ INSERT INTO category(category_no,category_name,category_content) VALUES(category
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'영화','요리설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'음악','요리설명');
-INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'공지','공지사항');
+INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'공지/신고','공지/신고사항');
 
 select * from CATEGORY;
 
@@ -236,6 +238,9 @@ INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyb
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'발라드',4);
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'팝',4);
 
+INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'공지',5);
+INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'신고',5);
+
 -- 취미게시판 샘플데이터
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user4');
@@ -254,12 +259,12 @@ INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hob
 VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 
 /* 신고게시판 샘플 데이터 */
-INSERT INTO report_post(reportpost_no,report_title,report_content,reportpost_date,category_no,id)
-VALUES(reportpost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),8,'user4');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'신고신고신고','신고',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),18,'user3');
 
 -- 공지게시판 샘플 데이터
-INSERT INTO notice_post(noticepost_no,notice_title,notice_content,noticepost_date,category_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),5,'user3');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'공지공지공지','공지',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),17,'user3');
 
 -- 내 도토리 목록 데이터
 INSERT INTO dotorylist VALUES('user2','user1');
