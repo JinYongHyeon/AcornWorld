@@ -30,6 +30,7 @@ public class NoticeListController implements Controller {
 			pagingBean=new PagingBean(totalPostCount, postCountPerPage, pageCountPerPageGroup);
 		} else {
 		// 공지게시판에 공지글을 노출하는 경우 
+			request.setAttribute("hobbyBoardNo", 17);
 			postCountPerPage=15;
 			pageCountPerPageGroup=9;					
 			if(pageNo==null)
@@ -40,9 +41,7 @@ public class NoticeListController implements Controller {
 		ArrayList<PostVO> noticeList = PostDAO.getInstance().getPostingList(pagingBean, noticePostBoardNo);
 		ListVO noticeListPaging = new ListVO(noticeList, pagingBean);
 		request.setAttribute("noticeListPaging", noticeListPaging);
-		request.setAttribute("url", "/board/list.jsp");
-		request.setAttribute("url", "/views/board/post-list.jsp");		
-		System.out.println("noticePostListController 작동");
+		request.setAttribute("url", "/views/board/post-list.jsp");
 		return "/views/template/main-layout.jsp";
 	}
 

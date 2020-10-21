@@ -13,6 +13,8 @@ CREATE TABLE member(
 select * from tab
 select * from member
 delete from member where password='a';
+drop table hobbyboard;
+
 
 CREATE TABLE category(
 	category_no NUMBER PRIMARY KEY,
@@ -30,7 +32,11 @@ CREATE TABLE hobbyboard(
 	ON DELETE CASCADE
 )
 
+select * from HOBBYBOARD;
+
 CREATE SEQUENCE hobbyboard_no_seq;
+drop sequence hobbyboard_no_seq;
+delete from hobbyboard;
 
 CREATE TABLE hobby_post(
 	hobbypost_no NUMBER PRIMARY KEY,
@@ -110,8 +116,10 @@ CREATE TABLE report_post(
 	CONSTRAINT FK_report_post_category_no FOREIGN KEY (category_no) REFERENCES category (category_no)
 	ON DELETE CASCADE
 )
+select * from CATEGORY;
+delete * from CATEGORY;
 CREATE SEQUENCE reportpost_no_seq NOCACHE;
-SELECT * FROM report_post
+SELECT * FROM report_post;
 
 /* 공지게시판 게시물 테이블 */
 CREATE TABLE notice_post(
@@ -176,7 +184,7 @@ ALTER SEQUENCE photobook_no_seq NOCACHE;
 ALTER SEQUENCE toryhome_no_seq NOCACHE;
 
 --테이블 변경사항
-
+select * from tab;
 --카테고리 소개글 생김
 ALTER TABLE category ADD(category_content CLOB NOT NULL); 
 
@@ -210,7 +218,7 @@ INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'운동','운동설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'영화','요리설명');
-INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'음악','요리설명');
+INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'음악','음악설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'공지/신고','공지/신고사항');
 
 select * from CATEGORY;
@@ -237,6 +245,8 @@ INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyb
 
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'공지',5);
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'신고',5);
+
+select * from HOBBYBOARD;
 
 -- 취미게시판 샘플데이터
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
@@ -309,6 +319,9 @@ UPDATE category SET category_content = '<h3><b>MUSIC</b></h3><BR>
 <b>Dont hide yourself in regret. Just love yourself and you are set.</b><BR>
 <b>A heart thats broke is a heart thats been loved.</b> <BR>' WHERE category_no='4';
 
+update category set category_name='공지/신고' where category_no='5'
+select * from category
+
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
 
 
@@ -359,19 +372,31 @@ VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'user5
 SELECT toryhome_title, toryhome_content, to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), id_writer, id
 FROM toryhome_board;
 
-SELECT tory.toryhome_title, tory.toryhome_content, to_char(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, m.profile_photo 
-FROM (SELECT toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id FROM toryhome_board) tory, member m
-WHERE tory.id_writer = m.id AND tory.id = 'user4' ORDER BY toryhome_no ASC
-
-SELECT ROWNUM, toryHome.*
-FROM (SELECT tory.toryhome_title, tory.toryhome_content, to_char(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, m.profile_photo 
-FROM (SELECT toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id FROM toryhome_board) tory, member m
-WHERE tory.id_writer = m.id AND tory.id = 'user4' ORDER BY toryhome_no ASC) toryHome
-ORDER BY ROWNUM DESC
 
 
-delete from TORYHOME_BOARD where id='';
+ROW_NUMBER() OVER(ORDER BY ) row_num
 
+SELECT toryhome_no, toryhome_title, toryhome_content,   FROM TORYHOME_BOARD
+
+SELECT ROW_NUMBER() OVER(ORDER BY toryhome_no DESC) as rnum
+,toryhome_no,TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')
+FROM TORYHOME_BOARD
+WHERE ID = 'user4'
+
+SELECT *
+FROM (SELECT ROW_NUMBER() OVER(ORDER BY toryhome_no DESC) as rnum
+,toryhome_no,TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')
+FROM TORYHOME_BOARD
+WHERE ID = 'user4')
+WHERE rnum BETWEEN 1 AND 3
+
+SELECT * FROM TORYHOME_BOARD
+WHERE TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')='2020-10-21 10:45:51';
+
+delete from TORYHOME_BOARD
+where id_writer='user2' and id='user4' and TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')='2020-10-21 10:45:51';
+
+SELECT COUNT(*) FROM TORYHOME_BOARD WHERE id='user4';
 
 --북마크 페이징 쿼리문
 SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(
@@ -393,8 +418,11 @@ SELECT H.RNUM,H.HOBBYBOARD_NO,hb.hobbyboard_imgName,hb.hobbyboard_title FROM(
 ))h,HOBBYBOARD hb WHERE h.HOBBYBOARD_NO = hb.HOBBYBOARD_NO AND RNUM<=2
 
 
+
+
 SELECT b.rnum, b.LINK,b.ID,h.hobbyboard_title,h.hobbyboard_imgName 
-FROM(SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) AS rnum,link,id FROM bookmark WHERE bookmark_divide='즐겨찾기' AND id='user1')b,hobbyboard h 
+FROM(SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) AS rnum,link,id FROM bookmark 
+WHERE bookmark_divide='즐겨찾기' AND id='user1')b,hobbyboard h 
 WHERE h.hobbyboard_no = b.link AND b.rnum BETWEEN 2 AND 3;
 
 

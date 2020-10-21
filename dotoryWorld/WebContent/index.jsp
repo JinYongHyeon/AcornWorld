@@ -3,3 +3,4 @@
 	<jsp:forward page="/front">
 		<jsp:param value="main" name="command"/>
 	</jsp:forward>
+	

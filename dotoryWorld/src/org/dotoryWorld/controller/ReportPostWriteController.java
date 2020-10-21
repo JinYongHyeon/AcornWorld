@@ -24,8 +24,6 @@ public class ReportPostWriteController implements Controller {
 		pvo.setPostTitle(title);
 		pvo.setPostContent(content);
 		pvo.setMemberVO((MemberVO)session.getAttribute("mvo"));		
-		//PostDAO.getInstance().posting(pvo);		
-		//String path="redirect:front?command=PostDetailNoHits&no="+pvo.getNo();
 		
 		return "/views/board/report-post-write-form.jsp";
 	}

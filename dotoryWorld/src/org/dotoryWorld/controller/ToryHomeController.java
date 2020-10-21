@@ -8,7 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import org.dotoryWorld.model.MemberDAO;
 import org.dotoryWorld.model.MemberVO;
+import org.dotoryWorld.model.PagingBean;
+import org.dotoryWorld.model.ToryLetterListVO;
 import org.dotoryWorld.model.ToryhomeVO;
+
+import jdk.management.resource.internal.TotalResourceContext;
 
 public class ToryHomeController implements Controller {
 	/**
@@ -32,9 +36,19 @@ public class ToryHomeController implements Controller {
 			return "redirect:front?command=main";
 		}
 		
-		// 방명록 정보 가저오기
-		ArrayList<ToryhomeVO> toryLetterList = MemberDAO.getInstance().toryHomeLetterInformation(request.getParameter("id"));
-		request.setAttribute("toryLetterList", toryLetterList);		
+		// 방명록 정보 가저오기, 페이징
+		int tototalLetterCount = MemberDAO.getInstance().getTotalLetterCount(request.getParameter("id"));
+		String letterPageNo=request.getParameter("letterPageNo");
+		System.out.println(letterPageNo);
+		PagingBean letterPaging = null;
+		if (letterPageNo==null) {
+			letterPaging = new PagingBean(tototalLetterCount, 3, 5);
+		}else {
+			letterPaging = new PagingBean(tototalLetterCount, Integer.parseInt(letterPageNo), 3, 5);
+		}
+		ArrayList<ToryhomeVO> toryLetterList = MemberDAO.getInstance().toryHomeLetterList(request.getParameter("id"), letterPaging);
+		ToryLetterListVO letterVO = new ToryLetterListVO(toryLetterList, letterPaging);
+		request.setAttribute("letterVO", letterVO);		
 		
 		
 		return "views/template/tory-layout.jsp";

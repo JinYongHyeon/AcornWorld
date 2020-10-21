@@ -270,7 +270,7 @@ public class MemberDAO {
 
 	// 방명록 정보 가져오는 메서드 - 정콰이어트
 	@SuppressWarnings("null")
-	public ArrayList<ToryhomeVO> toryHomeLetterInformation(String toryId) throws SQLException {
+	public ArrayList<ToryhomeVO> toryHomeLetterList(String toryId, PagingBean letterPaging) throws SQLException {
 		ArrayList<ToryhomeVO> toryletter = new ArrayList<ToryhomeVO>();
 		Connection con =null;
 		PreparedStatement pstmt = null;
@@ -278,13 +278,20 @@ public class MemberDAO {
 		StringBuilder sql = new StringBuilder();
 		try {
 			con=dataSource.getConnection();
-			sql.append("SELECT ROWNUM, toryHome.* ");
+			sql.append("SELECT R.* ");
+			sql.append("FROM (SELECT ROWNUM, toryHome.* ");
 			sql.append("FROM (SELECT tory.toryhome_title, tory.toryhome_content, to_char(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, m.profile_photo ");
 			sql.append("FROM (SELECT toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id FROM toryhome_board) tory, member m ");
-			sql.append("WHERE tory.id_writer = m.id AND tory.id = ? ORDER BY toryhome_no ASC) toryHome ");
-			sql.append("ORDER BY ROWNUM DESC");
+			sql.append("WHERE tory.id_writer = m.id AND tory.id = ? ORDER BY toryhome_no ASC) toryHome ORDER BY ROWNUM DESC) R ");
+			sql.append("WHERE ROWNUM BETWEEN ? AND ?");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, toryId);
+			System.out.println("----test----");
+			System.out.println(letterPaging.getStartRowNumber());
+			System.out.println(letterPaging.getEndRowNumber());
+			System.out.println("----test----");
+			pstmt.setInt(2, letterPaging.getStartRowNumber());
+			pstmt.setInt(3, letterPaging.getEndRowNumber());
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				toryletter.add(new ToryhomeVO(rs.getString(1), rs.getString(2),
@@ -472,6 +479,27 @@ public class MemberDAO {
 		   closeAll(rs, pstmt, con);
 	   }
 	   return favoritesList;
+   }
+
+   // 방명록 페이징 totalCount - 정 콰이어트
+   public int getTotalLetterCount(String id) throws SQLException {
+	   int totalCount = 0;
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   ResultSet rs = null;
+	   try {
+		   con = dataSource.getConnection();
+		   String sql = "SELECT COUNT(*) FROM TORYHOME_BOARD WHERE id=?";
+		   pstmt = con.prepareStatement(sql);
+		   pstmt.setString(1, id);
+		   rs = pstmt.executeQuery();
+		   if(rs.next()) {
+			   totalCount = rs.getInt(1);
+		   }
+	   }finally {
+		   closeAll(rs, pstmt, con);
+	   }
+	   return totalCount;
    }
 
 }

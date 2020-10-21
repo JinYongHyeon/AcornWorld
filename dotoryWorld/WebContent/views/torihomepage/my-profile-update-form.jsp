@@ -46,6 +46,7 @@ $(document).ready(function(){
 <input type="hidden" id="path"
 	value="${pageContext.request.contextPath}">
 <div class="row" id="toryProfileImgForm">
+
 	<div class="col-sm-12" id="toryProfileImgTilte">
 		<h1>프로필 사진 선택</h1>
 	</div>
@@ -81,17 +82,19 @@ $(document).ready(function(){
 		프로필 닉네임 소개글 수정 뷰
 	 -->
 <div class="col-sm-8 offset-2" id="toryProfileUpdateForm">
-	<form action="${pageContext.request.contextPath}/front" method="post">
+	<form action="${pageContext.request.contextPath}/front" method="post" id="boardTable2">
+	
 		<input type="hidden" name="command" value="toryProfileUpdate">
 		<input type="hidden" name="id" value="${sessionScope.mvo.id}">
+		
 		<table>
 
 			<tr>
-				<th colspan="2"><h1>회원정보 수정</h1></th>
+				<th colspan="2"><h4>회원정보 수정</h4></th>
 			</tr>
 
 			<tr>
-				<th>프로필</th>
+				<th>프로필 사진</th>
 				<td>
 					<div class="toryProfileImg">
 						<div class="cameraicon">
@@ -137,13 +140,11 @@ $(document).ready(function(){
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<td><input type="submit" value="프로필 수정"></td>
-				<td><input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}'"></td>
-			</tr>
-
-
-		</table>
+			
+		</table><br>
+		
+				<input type="submit" value="수정하기">&emsp;
+				<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/front?command=toryProfileForm&id=${sessionScope.mvo.id}'">
 	</form>
 </div>
 
