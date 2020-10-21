@@ -4,7 +4,7 @@
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
    $(document).ready(function() {
       $(document).on('click', '#btnSearch', function(e) {
          e.preventDefault();
@@ -14,8 +14,9 @@
          location.href = url;
          console.log(url);
       });
-   });
+   }); 
 </script>
+-->
 <style>
 tr:hover {background-color:#E4F7BA;}
 </style>
@@ -29,12 +30,11 @@ tr:hover {background-color:#E4F7BA;}
 			<div class="form-group row">
 				 <select name="keyField">
 					<option value="title">제목</option>
-					<option value="id">작성자</option>
 				</select>&emsp;
 				<div class="w300">
 					<input type="text" class="form-control" name="keyword" id="keyWord" size="25">
 				</div>
-            &emsp;<input type="submit" value="검색" id="btnSearch">
+            &emsp;<input type="submit" value="검색" >
             <hr>
          </div>
    </form>

@@ -17,7 +17,7 @@ public class PostListController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if(request.getParameter("keyword")!=null&&request.getParameter("keyword")!="") {
-			return "front?command=searchPost";
+			return "front?command=searchMyPost";
 		}
 		String hobbyBoardNo=request.getParameter("hobbyBoardNo");
 		int totalPostCount = PostDAO.getInstance().getTotalPostCount(hobbyBoardNo);
@@ -35,7 +35,6 @@ public class PostListController implements Controller {
 		request.setAttribute("postingListPaging", postingListPaging);
 		request.setAttribute("url", "/views/board/post-list.jsp");
 		request.setAttribute("hobbyBoardNo", hobbyBoardNo);
-		System.out.println(hobbyBoardNo+"현재 페이지"); // test용
 		return "front?command=noticeList&noticePostBoardNo=17";
 	}
 

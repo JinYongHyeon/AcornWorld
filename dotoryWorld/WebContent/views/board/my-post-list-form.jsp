@@ -1,18 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script type="text/javascript">
-   $(document).ready(function() {
-      $(document).on('click', '#btnSearch', function(e) {
-         e.preventDefault();
-         var url = "${pageContext.request.contextPath}/board/post-list";
-         url = url + "?searchType=" + $('#searchType').val();
-         url = url + "&keyword=" + $('#keyword').val();
-         location.href = url;
-         console.log(url);
-      });
-   });
-</script>
+
 <style>
 tr:hover {background-color:#E4F7BA;}
 </style>
@@ -20,7 +9,8 @@ tr:hover {background-color:#E4F7BA;}
 <h2><img src="resources/img/myPost.png" id="mypostImg"></h2>
 
 <form action="${pageContext.request.contextPath }/front" id="boardTable">
-	<input type="hidden" name="command" value="searchPost">
+	<input type="hidden" name="command" value="searchMyPost">
+	<input type="hidden" name="id" value="${sessionScope.mvo.id}">
 			<div class="form-group row"  style= "margin-left:670px">
 				 <select name="keyField">
 					<option value="title">제목</option>
@@ -48,7 +38,7 @@ tr:hover {background-color:#E4F7BA;}
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="pvo" items="${requestScope.lvo.list}">
+		<c:forEach var="pvo" items="${requestScope.postingListPaging.list}">
 			<tr>
 				<td>
 					<input type="hidden" name="command" value="myPostDelete">
@@ -78,18 +68,18 @@ tr:hover {background-color:#E4F7BA;}
 </table>
 </form>
 <%-- paging 처리 --%>
-<c:set var="pb" value="${requestScope.lvo.pagingBean}"/>
+<c:set var="pb" value="${requestScope.postingListPaging.pagingBean}"/>
 <div class="pagingArea">
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">
 			<li>
-				<a href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}&hobbyBoardNo=${requestScope.hobbyBoardNo}">&laquo;</a>
+				<a href="front?command=myPostList&pageNo=${pb.startPageOfPageGroup-1}&hobbyBoardNo=${requestScope.hobbyBoardNo}">&laquo;</a>
 			</li>
 		</c:if>
 		<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
 			<c:choose>
 				<c:when test="${i != pb.nowPage}">
-					<li><a href="front?command=postList&pageNo=${i}&hobbyBoardNo=${requestScope.hobbyBoardNo}">${i}</a></li>
+					<li><a href="front?command=myPostList&pageNo=${i}&hobbyBoardNo=${requestScope.hobbyBoardNo}&keyword=${requestScope.keyword}&id=${sessionScope.mvo.id}">${i}</a></li>
 				</c:when>
 				<c:otherwise>
 					<li class="active"><a href="#">${i}</a></li>
@@ -98,7 +88,7 @@ tr:hover {background-color:#E4F7BA;}
 		</c:forEach>
 		<c:if test="${pb.nextPageGroup}">
 			<li>
-				<a href="front?command=postList&pageNo=${pb.endPageOfPageGroup+1}&hobbyBoardNo=${requestScope.hobbyBoardNo}">&raquo;</a>
+				<a href="front?command=myPostList&pageNo=${pb.endPageOfPageGroup+1}&hobbyBoardNo=${requestScope.hobbyBoardNo}&keyword=${requestScope.keyword}&id=${sessionScope.mvo.id}">&raquo;</a>
 			</li>
 		</c:if>
 	</ul>
