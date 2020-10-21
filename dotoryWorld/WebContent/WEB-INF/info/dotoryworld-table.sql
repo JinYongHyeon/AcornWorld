@@ -365,9 +365,13 @@ FROM (SELECT toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_wr
 WHERE tory.id_writer = m.id AND tory.id = 'user4' ORDER BY toryhome_no ASC) toryHome
 ORDER BY ROWNUM DESC
 
+SELECT * FROM TORYHOME_BOARD
+WHERE TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')='2020-10-21 10:45:51';
 
-delete from TORYHOME_BOARD where id='';
+delete from TORYHOME_BOARD
+where id_writer='user2' and id='user4' and TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')='2020-10-21 10:45:51';
 
+SELECT COUNT(*) FROM TORYHOME_BOARD WHERE id='user4';
 
 --북마크 페이징 쿼리문
 SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(

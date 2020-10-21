@@ -270,7 +270,7 @@ public class MemberDAO {
 
 	// 방명록 정보 가져오는 메서드 - 정콰이어트
 	@SuppressWarnings("null")
-	public ArrayList<ToryhomeVO> toryHomeLetterInformation(String toryId) throws SQLException {
+	public ArrayList<ToryhomeVO> toryHomeLetterList(String toryId, PagingBean letterPaging) throws SQLException {
 		ArrayList<ToryhomeVO> toryletter = new ArrayList<ToryhomeVO>();
 		Connection con =null;
 		PreparedStatement pstmt = null;
@@ -418,6 +418,27 @@ public class MemberDAO {
 		   closeAll(rs, pstmt, con);
 	   }
 	   return bookmarkList;
+   }
+
+   // 방명록 페이징 totalCount - 정 콰이어트
+   public int getTotalLetterCount(String id) throws SQLException {
+	   int totalCount = 0;
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   ResultSet rs = null;
+	   try {
+		   con = dataSource.getConnection();
+		   String sql = "SELECT COUNT(*) FROM TORYHOME_BOARD WHERE id=?";
+		   pstmt = con.prepareStatement(sql);
+		   pstmt.setString(1, id);
+		   rs = pstmt.executeQuery();
+		   if(rs.next()) {
+			   totalCount = rs.getInt(1);
+		   }
+	   }finally {
+		   closeAll(rs, pstmt, con);
+	   }
+	   return totalCount;
    }
 
 }

@@ -53,6 +53,10 @@ public PagingBean(int totalPostCount, int postCountPerPage, int pageCountPerPage
 	this.pageCountPerPageGroup = pageCountPerPageGroup;
 }
 
+ public PagingBean(int totalPostCount) {
+	  this.totalPostCount = totalPostCount;
+}
+ 
 public int getNowPage() {
   return nowPage;
  }
