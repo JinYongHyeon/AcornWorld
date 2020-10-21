@@ -319,6 +319,9 @@ UPDATE category SET category_content = '<h3><b>MUSIC</b></h3><BR>
 <b>Dont hide yourself in regret. Just love yourself and you are set.</b><BR>
 <b>A heart thats broke is a heart thats been loved.</b> <BR>' WHERE category_no='4';
 
+update category set category_name='공지/신고' where category_no='5'
+select * from category
+
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
 
 

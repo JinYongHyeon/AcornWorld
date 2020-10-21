@@ -39,11 +39,14 @@
 								id="boardListForm">
 								<input type="hidden" name="command" value="postList"> <input
 									type="hidden" name="hobbyBoardNo" value="${boardList.boardNo}">
-								<img src="${pageContext.request.contextPath}/resources/img/${boardList.boardImage}">
+								<img
+									src="${pageContext.request.contextPath}/resources/img/${boardList.boardImage}">
 								<c:if test="${sessionScope.mvo != null}">
-								<input type="button" value="즐겨찾기" >
+									<input type="button" value="⭐">
 								</c:if>
-								<input type="submit" value="${boardList.boardTitle}"> <br>
+								<br> <input type="submit" value="${boardList.boardTitle}">
+								<br>
+								<br>
 								<br>
 							</form>
 						</li>
@@ -52,30 +55,44 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript">
-	$(document).ready(function(){
-		/* 즐겨찾기 */
-		$(document).on("click","#boardList input[value=즐겨찾기]",function(){
-			var no = $(this).parent().children("input[name=hobbyBoardNo]").val();
-			$.ajax({
-				type : "post",//전송방식
-				url : "${pageContext.request.contextPath}/front", //주소
-				dataType : "text", //받는타입
-				data : "command=bookmark&id=${sessionScope.mvo.id}&link="+no+"&bookmark=즐겨찾기", //보낼 값
-				success : function(data){
-					if(data =='중복'){
-						alert("취미 즐겨찾기가 중복입니다.");
-					}else if(data == '성공'){
-						alert("즐겨찾기 추가 완료");
-						if(confirm("취미 리스트로 이동하시겠습니까")){
-							location.href="${pageContext.request.contextPath}/front?command=favoritesList&id=${sessionScope.mvo.id}&bookmark=즐겨찾기";
-						}
-					}else{
-						location.href = "${pageContext.request.contextPath}/views/error.jsp";
-					}
-				}
-			});
-		});
-	
-	});
-</script>
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							/* 즐겨찾기 */
+							$(document)
+									.on(
+											"click",
+											"#boardList input[value=즐겨찾기]",
+											function() {
+												var no = $(this)
+														.parent()
+														.children(
+																"input[name=hobbyBoardNo]")
+														.val();
+												$
+														.ajax({
+															type : "post",//전송방식
+															url : "${pageContext.request.contextPath}/front", //주소
+															dataType : "text", //받는타입
+															data : "command=bookmark&id=${sessionScope.mvo.id}&link="
+																	+ no
+																	+ "&bookmark=즐겨찾기", //보낼 값
+															success : function(
+																	data) {
+																if (data == '중복') {
+																	alert("취미 즐겨찾기가 중복입니다.");
+																} else if (data == '성공') {
+																	alert("즐겨찾기 추가 완료");
+																	if (confirm("취미 리스트로 이동하시겠습니까")) {
+																		location.href = "${pageContext.request.contextPath}/front?command=favoritesList&id=${sessionScope.mvo.id}&bookmark=즐겨찾기";
+																	}
+																} else {
+																	location.href = "${pageContext.request.contextPath}/views/error.jsp";
+																}
+															}
+														});
+											});
+
+						});
+	</script>

@@ -66,7 +66,7 @@ ${requestScope.pvo.boardVO.boardTitle}
 			<tr>
 				<td>글번호 ${requestScope.pvo.postNo }</td>
 				<td>제목: ${requestScope.pvo.postTitle}</td>
-				<td>작성자 : ${requestScope.pvo.memberVO.name }</td>
+				<td>작성자 : ${requestScope.pvo.memberVO.id }</td>
 				<td>조회수 : ${requestScope.pvo.viewCount }</td>
 			</tr>
 			<tr>
