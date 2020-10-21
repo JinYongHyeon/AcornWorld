@@ -38,41 +38,23 @@
 				</c:otherwise>
 			</c:choose>
 		</form>
+		<form id="leftLink">
 		<h6><b>${sessionScope.mvo.name}님</b></h6>
-
 		<input type="button" value="로그아웃"
 			onclick="location.href = '${pageContext.request.contextPath}/front?command=logout'">
-		<input type="button" value="회원정보수정"
-			onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'">
-
-			<br> <br>
-
-		<input type="button" value="내 게시물 조회"	onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'"><hr>
-		<input type="button" value="내 북마크 조회"	onclick="location.href = '${pageContext.request.contextPath}/front?command=bookmarkList&id=${sessionScope.mvo.id}&bookmark=북마크'"><hr>
-
-
-			
-
-
-		<input type="button" value="내 게시물 조회"
-
-			onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'">
-
-			<hr>
-
+		<input type="button" value="회원정보수정" onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'"> <br><br>
+		<a href = "${pageContext.request.contextPath}/front?command=myPostList">내 게시물 조회</a><br>
+		<a href = "${pageContext.request.contextPath}/front?command=bookmarkList&id=${sessionScope.mvo.id}&bookmark=북마크">
+		내 북마크 조회</a><br>
+</form>
 	</c:otherwise>
 </c:choose>
+<form id="leftLink">
 <c:if test="${sessionScope.mvo != null}">
-	<hr>
-	<input type="button" value="내 미니홈피 가기"
-		onclick="location.href = '${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}'">
-		<hr>
-	<input type="button" onclick="location.href='${pageContext.request.contextPath }/front?command=myDotoryList&id=${sessionScope.mvo.id}'" value="내 도토리 리스트">
-		<br>
-		<hr>
-
+	<a href = "${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}">내 미니홈피 가기</a> <br>
+	<a href="${pageContext.request.contextPath }/front?command=myDotoryList&id=${sessionScope.mvo.id}">내 도토리 리스트</a><br>
 	<c:if test="${sessionScope.mvo.grade == '다람쥐'}">
-		<input type="button" value="관리자 페이지"
-			onclick="location.href = '	${pageContext.request.contextPath}/front?command=adminManage'">
+		<a href ="${pageContext.request.contextPath}/front?command=adminManage">관리자 페이지</a><br>
 	</c:if>
 </c:if>
+</form>

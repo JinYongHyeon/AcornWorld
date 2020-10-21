@@ -13,13 +13,16 @@
       });
    });
 </script>
+<style>
+tr:hover {background-color:#E4F7BA;}
+</style>
 <!-- 게시물 검색-->
-<div class="row searchPost">
+<div class="row searchPost" >
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	<input type="hidden" name="searchFiled" value="${postVO.searchFiled }" />
 	<input type="hidden" name="searchValue" value="${postVO.searchValue }" />
-	<form action="post-search-list.jsp" method="post">
+	<form action="post-search-list.jsp" method="post" id="boardTable">
 		<div class="container2">
 			<div class="form-group row justify-content-center">
 				<input type="hidden" name="searchflag" onkeyup="searchFunction()"
@@ -44,8 +47,8 @@
 <div class="row boardMain">
 <div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
-<form action="${pageContext.request.contextPath}/front" id="myPostDeleteForm" onsubmit="return myPostDelete()">
-	<table class="table table-bordered  table-hover boardlist">
+<form action="${pageContext.request.contextPath}/front" id="boardTable" onsubmit="return myPostDelete()">
+	<table class="table table-bordered  table-hover boardlist" bgcolor="white">
 	<thead>
 		<tr class="success">
 			<th></th>

@@ -5,11 +5,6 @@
 	font-family: "맑은고딕";
 }
 
-body {
-	position: relative;
-	min-height: 100vh;
-}
-
 /* 미니홈피 전체 */
 #toryHomeForm {
 	position: absolute;
