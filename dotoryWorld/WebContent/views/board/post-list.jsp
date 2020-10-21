@@ -8,7 +8,7 @@
 <div class="row searchPost" id=searchResultForm>
 	
 	<!-- <form action="post-search-list.jsp" method="post"> -->
-	<form action="${pageContext.request.contextPath }/front">
+	<form action="${pageContext.request.contextPath }/front" id="boardTable">
 	<input type="hidden" name="command" value="searchPost">
 			<div class="form-group row">
 				 <select name="keyField">
@@ -16,9 +16,10 @@
 					<option value="id">작성자</option>
 				</select>&emsp;
 				<div class="w300">
-					<input type="text" class="form-control" name="keyword" id="keyWord">
+					<input type="text" class="form-control" name="keyword" id="keyWord" size="25">
+					
 				</div>
-            <input type="submit" value="검색">
+            &emsp;<input type="submit" value="검색">
             <hr>
          </div>
    </form>
@@ -28,7 +29,8 @@
 <div class="row boardMain">
 <div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
-	<table class="table table-bordered  table-hover boardlist">
+<form id="boardTable" >
+	<table class="table table-bordered  table-hover boardlist" bgcolor="white">
 	<thead>
 		<tr class="success">
 			<th>번호</th>
@@ -84,10 +86,13 @@
 		</c:forEach>
 	</tbody>
 </table>
-	<form action="${pageContext.request.contextPath}/front" id="postWriteForm">
+</form>
+	<form action="${pageContext.request.contextPath}/front">
 		<input type="hidden" name="command" value="postWriteForm">
 		<input type="hidden" name="boardNo" value="${requestScope.hobbyBoardNo}">
+		<div id="write_button">
 		<input type="submit" value="글쓰기">
+		</div>
 	</form>
 <%-- paging 처리 --%>
 <c:set var="pb" value="${requestScope.postingListPaging.pagingBean}"/>
