@@ -10,11 +10,6 @@
 	font-family: 'THEletssmileR' !important;
 }
 
-body {
-	position: relative;
-	min-height: 100vh;
-}
-
 /* 미니홈피 전체 */
 #toryHomeForm {
 	position: absolute;

@@ -88,7 +88,7 @@ $(document).ready(function(){
 					</td>
 				</tr>
 			</c:if>
-			<c:if test="${requestScope.pvo.boardVO.boardNo != null}">
+			<c:if test="${requestScope.pvo.boardVO.categoryVO.categoryNo != 5}">
 
 				<%-- 좋아요 기능--%>
 				<c:choose>

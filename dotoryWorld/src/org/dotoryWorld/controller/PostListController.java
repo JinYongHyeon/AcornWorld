@@ -36,7 +36,7 @@ public class PostListController implements Controller {
 		request.setAttribute("postingListPaging", postingListPaging);
 		request.setAttribute("url", "/views/board/post-list.jsp");		
 		//return "/views/template/main-layout.jsp";
-		return "front?command=noticeList&categoryNo=5";
+		return "front?command=noticeList&noticePostBoardNo=17";
 	}
 
 }
