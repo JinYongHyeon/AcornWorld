@@ -2,23 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>my dotory list</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>도토리 월드</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/toryHome.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 function friendDelete() {
 	var no = document.getElementsByName("friendNo");
@@ -35,18 +19,12 @@ function friendDelete() {
 		return flag;
 	}
 }
-</script>
-<style>
-tr:hover {background-color:#E4F7BA;}
-</style>
-</head>
-<body>
-	
-	<div align="center" style="padding-top: 10px;">
+</script>	
+	<div align="center">
 		<h2><img src="resources/img/도토리.png" width="250px" height="70px"></h2>
 		<form action="${pageContext.request.contextPath}/front" id="boardTable">
 		<input type="hidden" name="command" value="deleteMyDotory">
-			<table border="1" bgcolor="white" >
+			<table>
 				<tr>
 					<th> &emsp;&emsp;&emsp; 도토리 ID  &emsp;&emsp;&emsp;</th>
 					<th>선택</th>
@@ -66,17 +44,9 @@ tr:hover {background-color:#E4F7BA;}
 				</c:forEach>
 			</table>
 				<br>
-				<div align="right"><input type="submit" onclick="return friendDelete()" value="  도토리 삭제  ">&emsp;&emsp;</div>
+				<div><input type="submit" onclick="return friendDelete()" value="  도토리 삭제  ">&emsp;&emsp;</div>
 				<!-- submit을 하면 js로 가서 함수를 실행시킴.
 				true를 반환받으면 form이 명시한 front로 가고,
 				false를 반환받으면 그대로 작동을 멈춘다.(페이지에 머무른다.) -->
 		</form>
 	</div>
-</body>
-</html>
-
-
-
-
-
-
