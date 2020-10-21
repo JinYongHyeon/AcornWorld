@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 $(document).ready(function(){
-	$(document).on("click","#bookMark",function(){
+	$(document).on("click","#bookMarkImgIcon",function(){
 		$.ajax({
 			type:"post", //전송방식
 			url:"${pageContext.request.contextPath}/front", //주소
@@ -61,11 +61,12 @@ ${requestScope.pvo.boardVO.boardTitle}
 <div class="row postDetailForm">
 	<div class="col-sm-1"></div>
 	<div class="col-sm-10">
+	<form id="boardTable">
 		<table class="table">
 			<tr>
 				<td>글번호 ${requestScope.pvo.postNo }</td>
 				<td>제목: ${requestScope.pvo.postTitle}</td>
-				<td>작성자 : ${requestScope.pvo.memberVO.name }</td>
+				<td>작성자 : ${requestScope.pvo.memberVO.id }</td>
 				<td>조회수 : ${requestScope.pvo.viewCount }</td>
 			</tr>
 			<tr>
@@ -76,7 +77,7 @@ ${requestScope.pvo.boardVO.boardTitle}
 			<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
 				<tr>
 					<td colspan="5" class="btnArea">
-
+					
 						<form name="removeForm"
 							action="${pageContext.request.contextPath}/front" method="post">
 							<input type="hidden" name="command" value="postRemove"> <input
@@ -95,6 +96,7 @@ ${requestScope.pvo.boardVO.boardTitle}
 				</tr>
 			</c:if>
 		</table>
+		</form>
 		<%-- 좋아요 기능--%>
 		<c:if test="${requestScope.pvo.boardVO.categoryVO.categoryNo != 5}">
 		<c:choose>
@@ -117,9 +119,12 @@ ${requestScope.pvo.boardVO.boardTitle}
 </svg>
 			</c:otherwise>
 		</c:choose>
-		좋아요&emsp;&emsp;&emsp;<input type="button" value="북마크" id="bookMark">
-		</c:if>
+		좋아요&emsp;
+<img id="bookMarkImgIcon" src="${pageContext.request.contextPath}/resources/img/icon/bookmark3.png">
+		북마크</c:if>
 	</div>
 	<!-- col-sm-10 -->
 </div>
 <!-- row postDetailForm -->
+
+

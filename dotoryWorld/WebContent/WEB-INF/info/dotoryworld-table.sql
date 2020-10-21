@@ -13,6 +13,8 @@ CREATE TABLE member(
 select * from tab
 select * from member
 delete from member where password='a';
+drop table hobbyboard;
+
 
 CREATE TABLE category(
 	category_no NUMBER PRIMARY KEY,
@@ -30,7 +32,11 @@ CREATE TABLE hobbyboard(
 	ON DELETE CASCADE
 )
 
+select * from HOBBYBOARD;
+
 CREATE SEQUENCE hobbyboard_no_seq;
+drop sequence hobbyboard_no_seq;
+delete from hobbyboard;
 
 CREATE TABLE hobby_post(
 	hobbypost_no NUMBER PRIMARY KEY,
@@ -110,8 +116,10 @@ CREATE TABLE report_post(
 	CONSTRAINT FK_report_post_category_no FOREIGN KEY (category_no) REFERENCES category (category_no)
 	ON DELETE CASCADE
 )
+select * from CATEGORY;
+delete * from CATEGORY;
 CREATE SEQUENCE reportpost_no_seq NOCACHE;
-SELECT * FROM report_post
+SELECT * FROM report_post;
 
 /* 공지게시판 게시물 테이블 */
 CREATE TABLE notice_post(
@@ -176,7 +184,7 @@ ALTER SEQUENCE photobook_no_seq NOCACHE;
 ALTER SEQUENCE toryhome_no_seq NOCACHE;
 
 --테이블 변경사항
-
+select * from tab;
 --카테고리 소개글 생김
 ALTER TABLE category ADD(category_content CLOB NOT NULL); 
 
@@ -210,7 +218,7 @@ INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'운동','운동설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'영화','요리설명');
-INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'음악','요리설명');
+INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'음악','음악설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'공지/신고','공지/신고사항');
 
 select * from CATEGORY;
@@ -237,6 +245,8 @@ INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyb
 
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'공지',5);
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'신고',5);
+
+select * from HOBBYBOARD;
 
 -- 취미게시판 샘플데이터
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
@@ -308,6 +318,9 @@ UPDATE category SET category_content = '<h3><b>MUSIC</b></h3><BR>
 <b>Dont need make-up to cover up. Being the way that you are is enough.</b><BR>
 <b>Dont hide yourself in regret. Just love yourself and you are set.</b><BR>
 <b>A heart thats broke is a heart thats been loved.</b> <BR>' WHERE category_no='4';
+
+update category set category_name='공지/신고' where category_no='5'
+select * from category
 
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
 

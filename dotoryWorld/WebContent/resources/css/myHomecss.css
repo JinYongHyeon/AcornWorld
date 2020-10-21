@@ -1,5 +1,71 @@
 @charset "UTF-8";
 
+/*전체 적용*/
+* a {
+	color: #F57F17;
+	font-weight: bold;
+}
+
+@font-face {
+	src: url(../font/THEletssmileR.otf) format('truetype');
+	font-family: 'THEletssmileR';
+}
+
+* {
+	font-family: 'THEletssmileR' !important;
+	list-style:none;
+}
+
+input[type=text], input[type=password] {
+	border: 2px solid #F57F17;
+	border-radius: 5px;
+}
+
+input[type=submit], input[type=button] {
+	border: 2px solid #F57F17;
+	border-radius: 5px;
+	background-color: #F57F17;
+	color: white;
+}
+
+/*기본 레이아웃*/
+body {
+	position: relative;
+	min-height: 100vh;
+}
+
+/*푸터*/
+.footer {
+	width: 100%;
+	background-color: #FFF9C4;
+	border-top: 5px solid #F57F17;
+	padding: 25px;
+	height: 100px;
+}
+
+/*헤더*/
+.header {
+	text-align: center;
+	border-bottom: 5px solid #F57F17;
+	line-height: 150px;
+	height: 100%;
+	background-color: #FFF9C4;
+	background-size: 70%;
+}
+
+/*main-layout 중간 부분*/
+.main {
+	background-color: #FFF9C4;
+	padding: 25px;
+}
+
+/*main-layout에서 left, right 부분*/
+.sidenav {
+	padding-top: 20px;
+	background-color: #ffffff;
+	height: 100%;
+}
+
 /* 미니홈피 프로필 스타일 */
 #toryProfileForm {
 	position: relative;
@@ -63,6 +129,12 @@
 #bookMarkImg{
 	width:500px;
 	height:70px;
+}
+
+#bookMarkImgIcon{
+	width:34px;
+	height:32px;
+	cursor:pointer;
 }
 
 
@@ -246,6 +318,15 @@
 	background-color: #F57F17;
 }
 
+#adminPostDeletForm input[type=submit] {
+	border: 2px solid #F57F17;
+	border-radius: 5px;
+	background-color: #F57F17;
+	color: white;
+	width: 70px;
+	height: 40px;
+}
+
 #adminPagin ul {
 	margin-top: 30px;
 	position: absolute;
@@ -261,6 +342,40 @@
 	transform: translate(-50%, 0);
 }
 
+#boardListForm input[type=submit] {
+	width: 87%;
+	float: left;
+}
+
+#boardListForm input[type=button] {
+	float: right;
+}
+
+#boardListForm img {
+	width: 100%;
+}
+
+#boardList ul {
+	list-style: none;
+	width: 100%;
+}
+
+#boardList ul li {
+	float: left;
+	width: 45%;
+	margin-right: 15px;
+}
+
+#boardList ul li input[type=button] {
+	float: right;
+}
+
+#boardList ul li input[type=submit] {
+	float: left;
+	width: 87%;
+}
+
+/*메인 화면 게시판 리스트*/
 #homeBoardList {
 	border: 3px solid #F57F17;
 	border-radius: 40px 40px;
@@ -279,36 +394,19 @@
 	width: 100%;
 }
 
+/*게시판 정보*/
 #categoryContent {
 	border: 3px solid #FFBB00;
 	border-radius: 40px;
 	padding: 15px;
 }
 
-* a {
-	color: #F57F17;
-	font-weight: bold;
+#categoryContent img {
+	width: 150px;
+	height: 150px;
 }
 
-#adminPostDeletForm input[type=submit] {
-	border: 2px solid #F57F17;
-	border-radius: 5px;
-	background-color: #F57F17;
-	color: white;
-	width: 70px;
-	height: 40px;
-}
-
-@font-face {
-	src: url(../font/THEletssmileR.otf) format('truetype');
-	font-family: 'THEletssmileR';
-}
-
-* {
-	font-family: 'THEletssmileR' !important;
-	list-style:none;
-}
-
+/*글쓰기 폼에 확인, 취소 버튼*/
 .btnArea button[type=button], button[type=reset] {
 	border: 2px solid #F57F17;
 	border-radius: 5px;
@@ -316,8 +414,14 @@
 	color: white;
 }
 
-#frm input[type=text] {
-	width: 60%;
+/* 부트스트랩 페이징 CSS */
+.page-item a {
+	color: #F57F17;
+}
+
+.page-item.active .page-link {
+	background-color: #F57F17;
+	border-color: #F57F17;
 }
 
 .pagingArea {
@@ -333,71 +437,19 @@
 	float: left;
 }
 
-/* 부트스트랩 페이징 CSS */
-.page-item a {
-	color: #F57F17;
-}
-
-.page-item.active .page-link {
-	background-color: #F57F17;
-	border-color: #F57F17;
-}
-
-#boardListForm input[type=submit] {
-	font-family: SSShinb7;
-}
-
-#categoryContent img {
-	width: 150px;
-	height: 150px;
-}
-
-#mainImage {
-	width: 150px;
-}
-
-#boardListForm img {
-	width: 100%;
-}
-
+/*회원수정 테이블*/
 #updateTable table {
 	text-align: left;
 	margin: auto;
 }
 
+/*회원가입 테이블*/
 #registerForm table {
 	text-align: left;
 	margin: auto;
 }
 
-#myForm table {
-	width: 100%;
-	margin: auto;
-}
-
-#boardList ul {
-	list-style: none;
-	width: 100%;
-}
-
-#boardList ul li {
-	float: left;
-	width: 45%;
-	margin-right: 15px;
-}
-
-input[type=text], input[type=password] {
-	border: 2px solid #F57F17;
-	border-radius: 5px;
-}
-
-input[type=submit], input[type=button] {
-	border: 2px solid #F57F17;
-	border-radius: 5px;
-	background-color: #F57F17;
-	color: white;
-}
-
+/*카테고리 버튼*/
 #categoryForm input[type=button] {
 	border: 2px solid #FFBF00;
 	border-style: dashed;
@@ -406,12 +458,77 @@ input[type=submit], input[type=button] {
 	height: 50px;
 }
 
-#writeForm input[type=submit] {
-	float: right;
+/*프로필 사진*/
+#leftForm img {
+	border: 2px solid #F57F17;
+	border-radius: 40px;
+	width: 100%;
 }
 
-#boardListForm input[type=submit] {
+/*게시판 테이블*/
+#boardTable input [type=submit] {
+	border: 2px solid #F57F17;
+	border-radius: 5px;
+	background-color: #F57F17;
+	color: white;
+}
+
+#boardTable td {
+	padding: 6px;
+	text-align: center;
+}
+
+#boardTable th {
+	padding: 5px;
+	background-color: #FFBB00;
+	color: white;
+	text-align: center;
+}
+
+#boardTable table {
+	border: 1px;
+	background: white;
 	width: 100%;
+}
+
+/*각 카테고리 제목 이미지*/
+#mydotoryImg{
+	width:250px;
+	height:70px; 
+}
+
+#mypostImg{
+	width:500px;
+	height:70px;
+}
+
+#bookMarkImg{
+	width:500px;
+	height:70px;
+}
+
+/*글쓰기 버튼*/
+#write_button {
+	text-align: right;
+	vertical-align: middle;
+}
+
+/*그 외*/
+#myForm table {
+	width: 100%;
+	margin: auto;
+}
+
+#frm input[type=text] {
+	width: 60%;
+}
+
+#mainImage {
+	width: 150px;
+}
+
+#writeForm input[type=submit] {
+	float: right;
 }
 
 #postWriteForm {
@@ -422,45 +539,7 @@ input[type=submit], input[type=button] {
 	display: inline-block;
 }
 
-body {
-	position: relative;
-	min-height: 100vh;
-}
-
-.footer {
-	width: 100%;
-	background-color: #FFF9C4;
-	border-top: 5px solid #F57F17;
-	padding: 25px;
-	height: 100px;
-}
-
-.header {
-	text-align: center;
-	border-bottom: 5px solid #F57F17;
-	line-height: 150px;
-	height: 100%;
-	background-color: #FFF9C4;
-	background-size: 70%;
-}
-
-.main {
-	background-color: #FFF9C4;
-	padding: 25px;
-}
-
-.sidenav {
-	padding-top: 20px;
-	background-color: #ffffff;
-	height: 100%;
-}
-
 .content {
 	min-height: 72.8vh;
 }
 
-#leftForm img {
-	border: 2px solid #F57F17;
-	border-radius: 40px;
-	width: 100%;
-}

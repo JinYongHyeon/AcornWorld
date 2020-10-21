@@ -43,7 +43,7 @@
 	<tbody>
 	<!-- 공지게시물 노출 -->
 		<c:forEach var="pvo" items="${requestScope.noticeListPaging.list}">
-			<tr>
+			<tr bgcolor="#F3F781">
 				<td>${pvo.postNo }</td>
 				<td>
 					<c:choose>
