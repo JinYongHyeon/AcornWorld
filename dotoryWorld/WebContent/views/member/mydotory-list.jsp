@@ -28,8 +28,7 @@ tr:hover {background-color:#E4F7BA;}
 	
 	<div align="center" style="padding-top: 10px;">
 		<h2><img src="resources/img/도토리.png" id="mydotoryImg"></h2>	
-	<div align="center">
-		<h2><img src="resources/img/도토리.png" width="250px" height="70px"></h2>
+	
 		<form action="${pageContext.request.contextPath}/front" id="boardTable">
 		<input type="hidden" name="command" value="deleteMyDotory">
 			<table>
@@ -58,4 +57,3 @@ tr:hover {background-color:#E4F7BA;}
 				false를 반환받으면 그대로 작동을 멈춘다.(페이지에 머무른다.) -->
 		</form>
 	</div>
-</div>

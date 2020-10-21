@@ -47,21 +47,15 @@
 	background-color: white;
 }
 
-
-
 #write_button {
 	text-align: right;
 	vertical-align: middle;
-
-#write_button{
-	 text-align: right;
 }
-
-<<<<<<< HEAD
 #mydotoryImg{
 	width:250px;
 	height:70px; 
 }
+
 #mypostImg{
 	width:500px;
 	height:70px;
@@ -72,8 +66,6 @@
 }
 
 
-=======
->>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 #toryProfileForm table {
 	width: 100%;
 	text-align: center;
