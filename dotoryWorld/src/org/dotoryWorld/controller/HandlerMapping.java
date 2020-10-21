@@ -68,6 +68,8 @@ public class HandlerMapping {
 			controller = new NoticeListController();
 		} else if (command.contentEquals("noticePostDetail")) { //공지게시물 상세
 			controller = new NoticePostDetailController();
+		} else if (command.contentEquals("reportPostList")) { // 신고게시물 리스트
+			
 		} else if (command.contentEquals("reportPostWriteForm")) { //신고게시물 작성 폼
 			controller = new ReportPostWriteFormController();
 		} else if (command.contentEquals("reportPostWrite")) { //신고게시물 작성

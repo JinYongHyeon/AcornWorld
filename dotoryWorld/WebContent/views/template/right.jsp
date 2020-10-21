@@ -14,7 +14,7 @@
 	<input type="button" value="공지" 
 	onclick="location.href ='${pageContext.request.contextPath}/front?command=noticeList&categoryNo=5'"> <br><br><br>
 	<input type="button" value="신고" 
-	onclick="location.href ='${pageContext.request.contextPath}/front?command=noticeList&categoryNo=6'"> <br><br><br>
+	onclick="location.href ='${pageContext.request.contextPath}/front?command=reportPostList&categoryNo=6'"> <br><br><br>
 </form>
 	
 
