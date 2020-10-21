@@ -278,44 +278,23 @@ public class MemberDAO {
 		StringBuilder sql = new StringBuilder();
 		try {
 			con=dataSource.getConnection();
-			sql.append("SELECT ROWNUM, tory.* ");
-			sql.append("FROM (SELECT toryhome_title, toryhome_content, ");
-			sql.append("to_char(toryhome_date, 'YYYY-MM-DD HH24:MI'), id_writer ");
-			sql.append("FROM toryhome_board where id=? and toryhome_title='방명록' ");
-			sql.append("ORDER BY toryhome_no ASC) tory ORDER BY ROWNUM DESC");
+			sql.append("SELECT ROWNUM, toryHome.* ");
+			sql.append("FROM (SELECT tory.toryhome_title, tory.toryhome_content, to_char(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, m.profile_photo ");
+			sql.append("FROM (SELECT toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id FROM toryhome_board) tory, member m ");
+			sql.append("WHERE tory.id_writer = m.id AND tory.id = ? ORDER BY toryhome_no ASC) toryHome ");
+			sql.append("ORDER BY ROWNUM DESC");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, toryId);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				toryletter.add(new ToryhomeVO(rs.getString(1), rs.getString(2),
 						rs.getString(3), rs.getString(4), rs.getString(5),
-						new MemberVO(toryId,null,null,null,null,null,null,findProfilePhoto(rs.getString(5)),null)));
+						new MemberVO(toryId,null,null,null,null,null,null,(rs.getString(6)),null)));
 			}
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
 		return toryletter;
-	}
-	
-	// profile_photo 정보를 가져오는 메서드 - 정콰이어트
-	public String findProfilePhoto(String id) throws SQLException {
-		String photo = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "SELECT profile_photo FROM member where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1,id);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				photo = rs.getString(1);
-			}
-		}finally {
-			closeAll(rs, pstmt, con);
-		}
-		return photo;
 	}
 	
 
