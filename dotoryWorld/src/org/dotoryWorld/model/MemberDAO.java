@@ -347,6 +347,13 @@ public class MemberDAO {
 	   }
 	   return bookMarkNo;
    }
+   /**
+    * 내 북마크 갯수
+    * @param id
+    * @param bookMark
+    * @return
+    * @throws SQLException
+    */
    public int bookmartListCount(String id,String bookMark) throws SQLException {
 	   Connection con = null;
 	   PreparedStatement pstmt = null;
@@ -419,6 +426,55 @@ public class MemberDAO {
 	   }
 	   return bookmarkList;
    }
+   /**
+    * 내 즐겨찾기 정보 가져오기
+    * @param id
+    * @param bookMark
+    * @param paginBean
+    * @return
+    * @throws SQLException
+    */
+   public ArrayList<BookmarkVO> favoritesListAll(String id,String bookMark,PagingBean paginBean) throws SQLException{ 
+	   ArrayList<BookmarkVO> favoritesList = new ArrayList<BookmarkVO>();
+	   Connection con =null;
+	   PreparedStatement pstmt= null;
+	   ResultSet rs =null;
+	   try {
+		   con = dataSource.getConnection();
+		   StringBuilder sb = new StringBuilder();
+		   sb.append("SELECT b.rnum, b.LINK,b.ID,h.hobbyboard_title,h.hobbyboard_imgName ");
+		   sb.append("FROM(SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) AS rnum,link,id ");
+		   sb.append("FROM bookmark WHERE bookmark_divide=? AND id=?)b,hobbyboard h ");
+		   sb.append("WHERE h.hobbyboard_no = b.link AND b.rnum BETWEEN ? AND ?");
+		   pstmt = con.prepareStatement(sb.toString());
+		   pstmt.setString(1, bookMark);
+		   pstmt.setString(2, id);
+		   pstmt.setInt(3, paginBean.getStartRowNumber());
+		   pstmt.setInt(4, paginBean.getEndRowNumber());
+		   rs = pstmt.executeQuery();
+		   while(rs.next()) {
+			   BookmarkVO bookVO = new BookmarkVO();
+			   bookVO.setBookmarkNo(rs.getString("rnum"));
+			   bookVO.setBookmarkLink(rs.getString("link"));
+			   
+			   MemberVO mvo = new MemberVO();
+			   mvo.setId(rs.getString("id"));
+			   bookVO.setMemberVO(mvo);
+			   
+			   BoardVO bvo = new BoardVO();
+			   bvo.setBoardTitle(rs.getString("hobbyboard_title"));
+			   bvo.setBoardImage(rs.getString("hobbyboard_imgName"));
+			   bookVO.setBoardVO(bvo);
+			   
+			   favoritesList.add(bookVO);
+		   }
+	   }finally {
+		   closeAll(rs, pstmt, con);
+	   }
+	   return favoritesList;
+   }
+   
+   
 
    // 방명록 페이징 totalCount - 정 콰이어트
    public int getTotalLetterCount(String id) throws SQLException {

@@ -40,7 +40,7 @@
 		<c:if test="${paginBean.previousPageGroup == true}">
 			<li class="page-item"><a class="page-link"
 				href="${pageContext.request.contextPath}/front?command=adminManage&nowPage=${paginBean.startPageOfPageGroup-1}"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				aria-label="Previous"> <span aria-hidden="true"></span>
 			</a></li>
 		</c:if>
 		<c:forEach begin="${paginBean.startPageOfPageGroup}"

@@ -59,10 +59,8 @@ public class PostDAO {
 			StringBuilder sql = new StringBuilder();
 			System.out.println("postDAO 실행");
 			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted,M.id,M.name FROM( ");
-			sql.append(
-					"SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
-			sql.append(
-					"to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post WHERE hobbyboard_no = ? ");
+			sql.append("SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
+			sql.append("to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post WHERE hobbyboard_no = ? ");
 			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			// start, endRowNumber를 할당한다
@@ -179,12 +177,9 @@ public class PostDAO {
 			con=getConnection(); 
 			StringBuilder sql=new StringBuilder();	
 			System.out.println("postDAO 실행");
-			sql.append(
-					"SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted, H.hobbyboard_title FROM( ");
-			sql.append(
-					"SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
-			sql.append(
-					"to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,hobbyboard_no FROM hobby_post WHERE id = ? ");
+			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted, H.hobbyboard_title FROM( ");
+			sql.append("SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
+			sql.append("to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,hobbyboard_no FROM hobby_post WHERE id = ? ");
 			sql.append(")B, hobbyboard H WHERE B.hobbyboard_no=H.hobbyboard_no AND rnum BETWEEN ? AND ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			// start, endRowNumber를 할당한다
@@ -227,9 +222,9 @@ public class PostDAO {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append("select b.hobby_title,to_char(b.hobbypost_date,'YYYY.MM.DD  HH24:MI:SS') as time_posted");
-			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name,b.hobbyboard_no");
-			sql.append(" from hobby_post b,member m");
-			sql.append(" where b.id=m.id and b.hobbypost_no=?");
+			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name,b.hobbyboard_no,h.category_no");
+			sql.append(" from hobby_post b,member m,hobbyboard h");
+			sql.append(" where b.id=m.id and b.hobbypost_no=? and b.hobbyboard_no = h.hobbyboard_no");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, no);
 			rs = pstmt.executeQuery();
@@ -242,10 +237,15 @@ public class PostDAO {
 				pvo.setPostDate(rs.getString("time_posted"));
 				BoardVO bvo = new BoardVO();
 				bvo.setBoardNo(rs.getString("hobbyboard_no"));
+				CategoryVO cvo = new CategoryVO();
+				cvo.setCategoryNo(rs.getString("category_no"));
+				bvo.setCategoryVO(cvo);
 				pvo.setBoardVO(bvo);
 				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString("id"));
 				mvo.setName(rs.getString("name"));
+				
+
 				pvo.setMemberVO(mvo);
 			}
 		} finally {
@@ -286,6 +286,7 @@ public class PostDAO {
 		return pvo;
 	}
 	
+	//공지 신고 상세페이지
 	public PostVO getNoticePostingByNo(String no) throws SQLException {
 		PostVO pvo = null;
 		Connection con = null;
@@ -546,16 +547,17 @@ public class PostDAO {
 
 	// 게시물 검색 메서드
 	// 게시물 갯수만 알고싶은거임
-	public int searchPost(String postTitle) throws SQLException {
+	public int searchPost(String postTitle, String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int count = 0;
 		try {
 			con = getConnection();
-			String sql = "select count(*) from hobby_post where hobby_title LIKE ?";
+			String sql = "select count(*) from hobby_post where hobby_title LIKE ? and id like ? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + postTitle + "%");
+			pstmt.setString(2, "%"+id+"%");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				count = rs.getInt(1);
@@ -566,7 +568,7 @@ public class PostDAO {
 		return count;
 	}
 
-	public ArrayList<PostVO> searchPost(String postTitle, PagingBean pgb) throws SQLException {
+	public ArrayList<PostVO> searchPost(String postTitle, String id, PagingBean pgb) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -578,12 +580,13 @@ public class PostDAO {
 			sql.append("select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
 			sql.append("from(select row_number() over(order by hobbypost_no asc) as rnum, ");
 			sql.append("hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
-			sql.append("from hobby_post where hobby_title LIKE ? )");
+			sql.append("from hobby_post where hobby_title LIKE ? and id LIKE ?)");
 			sql.append("where rnum between ? and ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, "%" + postTitle + "%");
-			pstmt.setInt(2, pgb.getStartRowNumber());
-			pstmt.setInt(3, pgb.getEndRowNumber());
+			pstmt.setString(2, "%" + id + "%");
+			pstmt.setInt(3, pgb.getStartRowNumber());
+			pstmt.setInt(4, pgb.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				PostVO pvo = new PostVO();
@@ -596,9 +599,6 @@ public class PostDAO {
 				pvo.setViewCount(rs.getInt(5));
 				searchList.add(pvo);
 			}
-			System.out.println(pgb.getStartRowNumber());
-			System.out.println(searchList.size());
-			System.out.println(postTitle);
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
@@ -845,7 +845,6 @@ public class PostDAO {
 	   }finally {
 		   closeAll(pstmt, con);
 	   }
-   }
+	}
 
-	
 }

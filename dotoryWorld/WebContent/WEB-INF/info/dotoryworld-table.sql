@@ -18,8 +18,6 @@ CREATE TABLE category(
 	category_no NUMBER PRIMARY KEY,
 	category_name VARCHAR2(300) NOT NULL
 )
-
-
 CREATE SEQUENCE category_no_seq;
 
 CREATE TABLE hobbyboard(
@@ -47,6 +45,8 @@ CREATE TABLE hobby_post(
 	CONSTRAINT FK_hobby_post_hobbyboard_no FOREIGN KEY (hobbyboard_no) REFERENCES hobbyboard (hobbyboard_no)
 	ON DELETE CASCADE
 )
+
+select count(*) from hobby_post where hobby_title LIKE '%메%' and id like '%u%'
 
 SELECT * FROM hobby_post
 
@@ -111,6 +111,7 @@ CREATE TABLE report_post(
 	ON DELETE CASCADE
 )
 CREATE SEQUENCE reportpost_no_seq NOCACHE;
+SELECT * FROM report_post
 
 /* 공지게시판 게시물 테이블 */
 CREATE TABLE notice_post(
@@ -142,6 +143,8 @@ CREATE TABLE hobbypostlike(
 /* 시퀀스 검색*/
 SELECT * FROM USER_SEQUENCES;
 SELECT * FROM TAB;
+SELECT * FROM CATEGORY
+SELECT * FROM REPORT_POST
 /* ON DELETE CASCADE */ 
 
 --삭제 테이블
@@ -153,6 +156,7 @@ DROP TABLE bookmark
 DROP TABLE dotorylist
 DROP TABLE photobook
 DROP TABLE toryhome_board
+DROP TABLE report_post
 
 --삭제 시퀀스
 DROP SEQUENCE bookmark_no_seq
@@ -192,9 +196,6 @@ ALTER TABLE HOBBYBOARD ADD(hobbyboard_imgName VARCHAR2(500))
 --북마크 제목 추가
 ALTER TABLE bookmark ADD(bookmark_title VARCHAR2(300)NOT NULL);
 
-
-UPDATE category SET category_content='운동'||CHR(13)||'설명' where category_name = '운동'
-
 select * from category
 
 --샘플 데이터
@@ -210,7 +211,7 @@ INSERT INTO category(category_no,category_name,category_content) VALUES(category
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'영화','요리설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'음악','요리설명');
-INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'공지','공지사항');
+INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'공지/신고','공지/신고사항');
 
 select * from CATEGORY;
 
@@ -234,6 +235,9 @@ INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyb
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'발라드',4);
 INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'팝',4);
 
+INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'공지',5);
+INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyboard_no_seq.nextval,'신고',5);
+
 -- 취미게시판 샘플데이터
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user4');
@@ -252,12 +256,12 @@ INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hob
 VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 
 /* 신고게시판 샘플 데이터 */
-INSERT INTO report_post(reportpost_no,report_title,report_content,reportpost_date,category_no,id)
-VALUES(reportpost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),8,'user4');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'신고신고신고','신고',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),18,'user3');
 
 -- 공지게시판 샘플 데이터
-INSERT INTO notice_post(noticepost_no,notice_title,notice_content,noticepost_date,category_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),5,'user3');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'공지공지공지','공지',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),17,'user3');
 
 -- 내 도토리 목록 데이터
 INSERT INTO dotorylist VALUES('user2','user1');
@@ -374,9 +378,7 @@ where id_writer='user2' and id='user4' and TO_CHAR(toryhome_date, 'YYYY-MM-DD HH
 SELECT COUNT(*) FROM TORYHOME_BOARD WHERE id='user4';
 
 --북마크 페이징 쿼리문
-SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(
-SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) as no,link FROM bookmark 
-WHERE id= 'user1' AND bookmark_divide = '북마크')b,hobby_post h,hobbyboard ho 
+ 
 WHERE b.link =h.hobbypost_no AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN 1 AND 10
 ORDER BY no asc
 
@@ -387,11 +389,11 @@ SELECT RNUM,HOBBYBOARD_NO, HOBBY_LIKE FROM(
 ))
 
 
+SELECT * FROM bookmark order by bookmark_no asc
 
-
-
-
-
+SELECT b.rnum, b.LINK,b.ID,h.hobbyboard_title,h.hobbyboard_imgName 
+FROM(SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) AS rnum,link,id FROM bookmark WHERE bookmark_divide='즐겨찾기' AND id='user1')b,hobbyboard h 
+WHERE h.hobbyboard_no = b.link AND b.rnum BETWEEN 2 AND 3;
 
 
 

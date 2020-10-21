@@ -15,8 +15,9 @@ public class ReportPostListController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		String boardNo=request.getParameter("boardNo");
-		int totalPostCount=PostDAO.getInstance().getTotalPostCount(boardNo);
+		String categoryNo=request.getParameter("categoryNo");
+		int totalPostCount=PostDAO.getInstance().getTotalReportPostCount(categoryNo);
+		System.out.println(totalPostCount);
 		String pageNo=request.getParameter("pageNo");
 		PagingBean pagingBean=null; 
 		int postCountPerPage=15;
@@ -25,13 +26,13 @@ public class ReportPostListController implements Controller {
 			pagingBean=new PagingBean(totalPostCount, postCountPerPage, pageCountPerPageGroup);
 		else
 			pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo), postCountPerPage, pageCountPerPageGroup);
-		//ArrayList<PostVO> list = PostDAO.getInstance().getReportPostingList(pagingBean, boardNo);
-		//System.out.println(list.size());
-		//ListVO lvo = new ListVO(list, pagingBean);
-		//request.setAttribute("lvo", lvo);
-		//request.setAttribute("url", "/board/list.jsp");
-		System.out.println("reportPostListController 작동");
-		return "/views/board/report-postList.jsp";
+		ArrayList<PostVO> list = PostDAO.getInstance().getReportPostingList(pagingBean, categoryNo);
+		System.out.println(list.size()); // test 용 추후 삭제
+		ListVO lvo = new ListVO(list, pagingBean);
+		request.setAttribute("lvo", lvo);
+		request.setAttribute("url", "/views/board/report-postList.jsp");
+		System.out.println("reportPostListController 작동"); // test용 추후 삭제
+		return "/views/template/main-layout.jsp";
 	}
 
 }

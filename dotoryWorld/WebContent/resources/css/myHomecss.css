@@ -17,12 +17,54 @@
 	background-color: #FFF9C4;
 	text-align: center;
 }
-#example1 {
-  border: 2px solid #FFBB00;
-  padding: 25px;
-  background-size: auto;
-  background-color: white;
+
+#boardTable table {
+	border: 1px;
+	background: white;
+	width: 100%;
 }
+
+#boardTable input [type=submit] {
+	border: 2px solid #F57F17;
+	border-radius: 5px;
+	background-color: #F57F17;
+	color: white;
+}
+
+#boardTable td {
+	padding: 6px;
+	text-align: center;
+}
+
+#boardTable th {
+	padding: 5px;
+	background-color: #FFBB00;
+	color: white;
+	text-align: center;
+}
+#boardTable table{
+	border: 1;
+	background-color: white;
+}
+
+#write_button {
+	text-align: right;
+	vertical-align: middle;
+}
+#mydotoryImg{
+	width:250px;
+	height:70px; 
+}
+
+#mypostImg{
+	width:500px;
+	height:70px;
+}
+#bookMarkImg{
+	width:500px;
+	height:70px;
+}
+
 
 #toryProfileForm table {
 	width: 100%;
@@ -30,7 +72,7 @@
 }
 
 #toryProfileForm table tr td, #toryProfileForm table tr th {
-	border: 3px solid #F57F17;
+	border: 1px solid #F57F17;
 }
 
 #toryProfileForm table tr th {
@@ -185,8 +227,8 @@
 }
 
 #toryProfileImgMainForm .toryProfileImg img {
-	width: 400px;
-	height: 400px;
+	width: 300px;
+	height: 300px;
 }
 
 /* 어드민 게시물 관리 뷰 - 삭제 폼 */
@@ -205,7 +247,7 @@
 }
 
 #adminPagin ul {
-	margin-top:30px;
+	margin-top: 30px;
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%, 0);
@@ -243,6 +285,20 @@
 	padding: 15px;
 }
 
+* a {
+	color: #F57F17;
+	font-weight: bold;
+}
+
+#adminPostDeletForm input[type=submit] {
+	border: 2px solid #F57F17;
+	border-radius: 5px;
+	background-color: #F57F17;
+	color: white;
+	width: 70px;
+	height: 40px;
+}
+
 @font-face {
 	src: url(../font/THEletssmileR.otf) format('truetype');
 	font-family: 'THEletssmileR';
@@ -250,9 +306,10 @@
 
 * {
 	font-family: 'THEletssmileR' !important;
+	list-style:none;
 }
 
-.btnArea button[type=button], button[type=reset]{
+.btnArea button[type=button], button[type=reset] {
 	border: 2px solid #F57F17;
 	border-radius: 5px;
 	background-color: #F57F17;
@@ -383,7 +440,6 @@ body {
 	border-bottom: 5px solid #F57F17;
 	line-height: 150px;
 	height: 100%;
-	/* width: 100%; */
 	background-color: #FFF9C4;
 	background-size: 70%;
 }
