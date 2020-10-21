@@ -400,8 +400,11 @@ SELECT RNUM,HOBBYBOARD_NO, HOBBY_LIKE FROM(
 
 SELECT * FROM bookmark order by bookmark_no asc
 
+
+
 SELECT b.rnum, b.LINK,b.ID,h.hobbyboard_title,h.hobbyboard_imgName 
-FROM(SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) AS rnum,link,id FROM bookmark WHERE bookmark_divide='즐겨찾기' AND id='user1')b,hobbyboard h 
+FROM(SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) AS rnum,link,id FROM bookmark 
+WHERE bookmark_divide='즐겨찾기' AND id='user1')b,hobbyboard h 
 WHERE h.hobbyboard_no = b.link AND b.rnum BETWEEN 2 AND 3;
 
 
