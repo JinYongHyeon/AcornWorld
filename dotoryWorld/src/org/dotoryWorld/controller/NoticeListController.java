@@ -15,15 +15,14 @@ public class NoticeListController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		String categoryNo=request.getParameter("categoryNo");
-		int totalPostCount=PostDAO.getInstance().getTotalNoticePostCount(categoryNo);
+		String noticePostBoardNo=request.getParameter("noticePostBoardNo");
+		int totalPostCount=PostDAO.getInstance().getTotalPostCount(noticePostBoardNo);
 		String pageNo=request.getParameter("pageNo");
 		PagingBean pagingBean=null;
 		int postCountPerPage = 0;
 		int pageCountPerPageGroup = 0;	
 		// 일반게시판에 공지글을 노출하는 경우
 		ListVO postingListPaging = (ListVO) request.getAttribute("postingListPaging");
-		//if(request.getAttribute("postingListPaging")==null) {
 		if(postingListPaging!=null) {
 			postCountPerPage=3;
 			pageCountPerPageGroup=3;
@@ -38,7 +37,7 @@ public class NoticeListController implements Controller {
 			else
 				pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo), postCountPerPage, pageCountPerPageGroup);
 		}
-		ArrayList<PostVO> noticeList = PostDAO.getInstance().getNoticePostingList(pagingBean, categoryNo);
+		ArrayList<PostVO> noticeList = PostDAO.getInstance().getPostingList(pagingBean, noticePostBoardNo);
 		ListVO noticeListPaging = new ListVO(noticeList, pagingBean);
 		request.setAttribute("noticeListPaging", noticeListPaging);
 		request.setAttribute("url", "/board/list.jsp");
