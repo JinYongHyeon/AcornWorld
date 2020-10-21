@@ -5,7 +5,7 @@ $(document).ready(function() {
 	$(document).on("click", "#toryProfileUpdateForm .toryProfileImg .cameraicon", function() {
 		$("#toryProfileImgForm").css({ 'display': 'block' });
 		$("#toryProfileImgForm").animate({
-			top: "70%",
+			top: "50%",
 			opacity: 1
 		}, 1000);
 

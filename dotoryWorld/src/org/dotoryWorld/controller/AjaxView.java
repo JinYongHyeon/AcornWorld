@@ -17,7 +17,6 @@ public class AjaxView extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		System.out.println("message : "+request.getAttribute("responsebody").toString());
 		out.print(request.getAttribute("responsebody").toString());
 		out.close();
 	}

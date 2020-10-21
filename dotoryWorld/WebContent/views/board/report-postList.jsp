@@ -42,6 +42,7 @@
 				<td>${pvo.viewCount }</td>
 			</tr>
 		</c:forEach>
+		<tr><td> <input type = "submit" value="글쓰기" > </td> </tr>
 	</tbody>
 </table>
 
@@ -73,6 +74,8 @@ end="${pb.endPageOfPageGroup}">
 </c:if>
 </ul>
 </div> 
+
+
 
 </body>
 </html>

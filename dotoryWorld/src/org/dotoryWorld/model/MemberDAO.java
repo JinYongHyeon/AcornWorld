@@ -297,5 +297,127 @@ public class MemberDAO {
 		return toryletter;
 	}
 	
+	/**
+	 * 북마크 추가
+	 * @param bookmark
+	 * @return
+	 * @throws SQLException
+	 */
+	public int addBookMark(BookmarkVO bookmark) throws SQLException {
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   int coin =0;
+	   try {
+		   con = dataSource.getConnection();
+		   StringBuilder sb = new StringBuilder();
+		   sb.append("INSERT INTO bookmark(bookmark_no,link,bookmark_divide,id) VALUES(bookmark_no_seq.NEXTVAL,?,?,?)");
+		   pstmt = con.prepareStatement(sb.toString());
+		   pstmt.setString(1, bookmark.getBookmarkLink());
+		   pstmt.setString(2, bookmark.getBookmarkDivide());
+		   pstmt.setString(3, bookmark.getMemberVO().getId());
+		   coin = pstmt.executeUpdate();
+	   }finally {
+		   closeAll(pstmt, con);
+	   }
+	   return coin;
+   }
+   /**
+    * 북마크 중복체크
+    * @param bookmark
+    * @return
+ * @throws SQLException 
+    */
+   public ArrayList<String> bookmarkCheck(BookmarkVO bookmark) throws SQLException{
+	   Connection con =null;
+	   PreparedStatement pstmt =null;
+	   ResultSet rs =null;
+	   ArrayList<String> bookMarkNo = new ArrayList<String>();
+	   try {
+		   con = dataSource.getConnection();
+		   String sql="SELECT link FROM bookmark WHERE id= ? AND bookmark_divide =?";
+		   pstmt = con.prepareStatement(sql);
+		   pstmt.setString(1, bookmark.getMemberVO().getId());
+		   pstmt.setString(2, bookmark.getBookmarkDivide());
+		   rs = pstmt.executeQuery();
+		   while(rs.next()) {
+			   bookMarkNo.add(rs.getString(1));
+		   }
+	   }finally {
+		   closeAll(rs,pstmt, con);
+	   }
+	   return bookMarkNo;
+   }
+   public int bookmartListCount(String id,String bookMark) throws SQLException {
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   ResultSet rs = null;
+	   int count =0;
+	   try {
+		   con =dataSource.getConnection();
+		   String sql = "SELECT COUNT(*) FROM BOOKMARK WHERE id=? AND bookmark_divide=?";
+		   pstmt = con.prepareStatement(sql);
+		   pstmt.setString(1, id);
+		   pstmt.setString(2, bookMark);
+		   rs = pstmt.executeQuery();
+		   while(rs.next()) {
+			   count = rs.getInt(1);
+		   }
+	   }finally {
+		   closeAll(rs, pstmt, con);
+	   }
+	   return count;
+   }
+   /**
+    * 북마크 정보 가져오기(페이징 사용)
+    * @param bookmark
+    * @return
+    * @throws SQLException
+    */
+   //bookmark_no,link,bookmark_divide,id
+   public ArrayList<BookmarkVO> bookmarkListAll(String id,String bookMark,PagingBean paginBean) throws SQLException{ 
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   ResultSet rs = null;
+	   ArrayList<BookmarkVO> bookmarkList = new ArrayList<BookmarkVO>();
+	   try {
+		  con = dataSource.getConnection();
+		  StringBuilder sb = new StringBuilder();
+		  sb.append("SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(");
+		  sb.append("SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) as no,link FROM bookmark ");
+		  sb.append("WHERE id= ? AND bookmark_divide = ?)b,hobby_post h,hobbyboard ho ");
+		  sb.append("WHERE b.link =h.hobbypost_no AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN ? AND ?");
+		  sb.append(" ORDER BY no ASC");
+		  pstmt = con.prepareStatement(sb.toString());
+		  pstmt.setString(1, id);
+		  pstmt.setString(2, bookMark);
+		  pstmt.setInt(3, paginBean.getStartRowNumber());
+		  pstmt.setInt(4, paginBean.getEndRowNumber());
+		  rs = pstmt.executeQuery();
+		  while(rs.next()) {
+			  BookmarkVO bookVO = new BookmarkVO();
+			  bookVO.setBookmarkNo(rs.getString("no"));
+			  
+			  PostVO pvo =new PostVO();
+			  pvo.setPostTitle(rs.getString("hobby_title"));
+			  bookVO.setPostVO(pvo);
+			  
+			  
+			  MemberVO mvo = new MemberVO();
+			  mvo.setId(rs.getString("id"));
+			  bookVO.setMemberVO(mvo);
+			  
+			  bookVO.setBookmarkLink(rs.getString("link"));
+			  
+			  BoardVO bvo = new BoardVO();
+			  bvo.setBoardTitle(rs.getString("hobbyboard_title"));
+			  bookVO.setBoardVO(bvo);
+			  
+			  bookmarkList.add(bookVO);
+		  }
+	   }finally {
+		   closeAll(rs, pstmt, con);
+	   }
+	   return bookmarkList;
+   }
 
 }

@@ -23,11 +23,8 @@ public class MyPostListController implements Controller {
 		}
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String userId = mvo.getId();
-		System.out.println(userId); // test 용
 		int totalPostCount = PostDAO.getInstance().getTotalPostCountById(userId);
-		System.out.println(totalPostCount); // test 용
 		String pageNo = request.getParameter("pageNo");
-		//String postNo = request.getParameter("postNo"); // 게시물이 삭제된 부분의 게시물들을 조회하고자 할때 사용한다????
 		PagingBean  pagingBean = null;
 		int postCountPerPage = 15; // 한 페이지에 보이는 게시물의 수를 설정하는 변수
 		int pageCountPerPageGroup = 9; // 한 페이지 그룹에 보이는 페이지의 수를 설정하는 변수
