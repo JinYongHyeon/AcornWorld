@@ -47,10 +47,11 @@
 			onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'">
 			<br> <br>
 
-			onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'"><hr>
 
 		<input type="button" value="내 게시물 조회"
 			onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'"><hr>
+		<input type="button" value="내 북마크 조회"
+			onclick="location.href = '${pageContext.request.contextPath}/front?command=bookmarkList&id=${sessionScope.mvo.id}&bookmark=북마크'"><hr>
 	</c:otherwise>
 </c:choose>
 <c:if test="${sessionScope.mvo != null}">
@@ -58,7 +59,7 @@
 	<br><br>
 
 	<input type="button" value="내 미니홈피 가기"
-		onclick="location.href = '${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}'">
+		onclick="location.href='${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}'">
 
 		<br><br>
 

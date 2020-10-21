@@ -179,6 +179,8 @@ ALTER TABLE category ADD(category_content CLOB NOT NULL);
 --게시판에 좋아요 기본 0 설정, 게시판 소개글 삭제
 ALTER TABLE hobbyboard MODIFY(hobbyboard_like DEFAULT 0);
 ALTER TABLE hobbyboard DROP COLUMN hobbyboard_content;
+--게시판 좋아요 삭제
+ALTER TABLE hobbyboard DROP COLUMN hobbyboard_like;
 
 --게시글 좋아요 기본 0 설정, 게시글 조회수 기본 0 설정
 ALTER TABLE hobby_post MODIFY(hobby_like DEFAULT 0);
@@ -186,6 +188,10 @@ ALTER TABLE hobby_post MODIFY(hobbypost_viewcount DEFAULT 0);
 
 --작은항목 이미지 URL 주소 컬럼 추가
 ALTER TABLE HOBBYBOARD ADD(hobbyboard_imgName VARCHAR2(500))
+
+--북마크 제목 추가
+ALTER TABLE bookmark ADD(bookmark_title VARCHAR2(300)NOT NULL);
+
 
 UPDATE category SET category_content='운동'||CHR(13)||'설명' where category_name = '운동'
 
@@ -348,10 +354,24 @@ FROM toryhome_board where id='user4' and toryhome_title='방명록'
 ORDER BY toryhome_no DESC;
 
 
---북마크 샘플
-INSERT INTO bookmark(bookmark_no,link,bookmark_divide,id) VALUES(bookmark_no_seq.NEXTVAL,'56','북마크','user1');
+--북마크 페이징 쿼리문
+SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(
+SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) as no,link FROM bookmark 
+WHERE id= 'user1' AND bookmark_divide = '북마크')b,hobby_post h,hobbyboard ho 
+WHERE b.link =h.hobbypost_no AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN 1 AND 10
+ORDER BY no asc
 
-SELECT * FROM bookmark
+--핫 리스트 쿼리문
+SELECT RNUM,HOBBYBOARD_NO, HOBBY_LIKE FROM(
+	SELECT ROW_NUMBER() OVER(ORDER BY HOBBY_LIKE DESC) AS rnum, HOBBYBOARD_NO ,HOBBY_LIKE FROM (
+	SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE FROM HOBBY_POST GROUP BY HOBBYBOARD_NO
+))
+
+
+
+
+
+
 
 
 

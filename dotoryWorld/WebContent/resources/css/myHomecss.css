@@ -184,7 +184,7 @@
 }
 
 /* 어드민 게시물 관리 뷰 - 삭제 폼 */
-#adminPostDeletForm button[type=submit] {
+#adminPostDeletForm input[type=submit] {
 	float: right;
 	width: 150px;
 	height: 50px;
@@ -199,6 +199,7 @@
 }
 
 #adminPagin ul {
+	margin-top:30px;
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%, 0);
@@ -251,7 +252,11 @@
 
 .pagination {
 	display: inline-block;
-	text-align: center;
+}
+
+.pagination li {
+	width: 45px;
+	float: left;
 }
 
 /* 부트스트랩 페이징 CSS */
@@ -319,8 +324,6 @@ input[type=submit], input[type=button] {
 	color: white;
 }
 
-
-
 #categoryForm input[type=button] {
 	border: 2px solid #FFBF00;
 	border-style: dashed;
@@ -381,16 +384,6 @@ body {
 
 .content {
 	min-height: 72.8vh;
-}
-/* naver Editor iframe 크기 */
-#frm table tr td ifrmae {
-	width: 655px
-}
-
-/* 어드민 페이지 게시물 관리 페이징 스타일*/
-.page-item.active .page-link {
-	background-color: #F57F17;
-	border: 2px solid #F57F17;
 }
 
 #leftForm img {
