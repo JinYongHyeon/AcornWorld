@@ -174,11 +174,11 @@ body {
 }
 
 #toryProfileUpdateForm table tr td {
-	width: 75%;
+	width: 20%;
 }
 
 #toryProfileUpdateForm table tr th {
-	width: 25%;
+	width: 10%;
 }
 
 #toryProfileUpdateForm table tr td input {
@@ -490,6 +490,31 @@ body {
 	background: white;
 	width: 100%;
 }
+
+#boardTable2 td {
+	padding: 6px;
+	text-align: center;
+}
+
+#boardTable2 th {
+	padding: 5px;
+	background-color: #FFBB00;
+	color: white;
+	text-align: center;
+}
+#boardTable2 table {
+	border: 1px;
+	background: white;
+	width: 100%;
+}
+#boardTable2 input [type=submit] {
+	border: 2px solid white;
+	border-radius: 5px;
+	background-color: white;
+	color: white;
+}
+
+
 
 /*각 카테고리 제목 이미지*/
 #mydotoryImg{
