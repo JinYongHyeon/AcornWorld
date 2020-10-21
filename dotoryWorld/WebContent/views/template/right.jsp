@@ -11,8 +11,10 @@
 	onclick="location.href ='${pageContext.request.contextPath}/front?command=boardList&categoryNo=3'"> <br><br><br>
 	<input type="button" value="음악" 
 	onclick="location.href ='${pageContext.request.contextPath}/front?command=boardList&categoryNo=4'"> <br><br><br>
-	<input type="button" value="공지/신고" 
-	onclick="location.href ='${pageContext.request.contextPath}/front?command=boardList&categoryNo=5'"> <br><br><br>
+	<input type="button" value="공지" 
+	onclick="location.href ='${pageContext.request.contextPath}/front?command=noticeList&noticePostBoardNo=17'"> <br><br><br>
+	<input type="button" value="신고" 
+	onclick="location.href ='${pageContext.request.contextPath}/front?command=postList&hobbyBoardNo=18'"> <br><br><br>
 </form>
 	
 

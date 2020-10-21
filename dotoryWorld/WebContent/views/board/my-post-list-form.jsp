@@ -41,7 +41,7 @@ tr:hover {background-color:#E4F7BA;}
 			<tr>
 				<td>
 					<input type="hidden" name="command" value="myPostDelete">
-					<input type="checkbox" name="deletePost" value="${pvo.postNo }"> <!-- 추후 복수 삭제를 위해 추가? -->
+					<input type="checkbox" name="deletePost" value="${pvo.postNo }">
 				</td>
 				<td>${pvo.postNo }</td>
 				<td>

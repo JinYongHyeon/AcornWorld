@@ -63,15 +63,10 @@
 							$(document)
 									.on(
 											"click",
-											"#boardList input[value=즐겨찾기]",
+											"#boardList input[value=⭐]",
 											function() {
-												var no = $(this)
-														.parent()
-														.children(
-																"input[name=hobbyBoardNo]")
-														.val();
-												$
-														.ajax({
+												var no = $(this).parent().children("input[name=hobbyBoardNo]").val();
+												$.ajax({
 															type : "post",//전송방식
 															url : "${pageContext.request.contextPath}/front", //주소
 															dataType : "text", //받는타입

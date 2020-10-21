@@ -54,6 +54,8 @@
 <c:if test="${sessionScope.mvo != null}">
 	<a href = "${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}">내 미니홈피 가기</a> <br>
 	<a href="${pageContext.request.contextPath }/front?command=myDotoryList&id=${sessionScope.mvo.id}">내 도토리 리스트</a><br>
+	<a href = "${pageContext.request.contextPath}/front?command=favoritesList&id=${sessionScope.mvo.id}&bookmark=즐겨찾기">
+      내 취미 조회</a><br>
 	<c:if test="${sessionScope.mvo.grade == '다람쥐'}">
 		<a href ="${pageContext.request.contextPath}/front?command=adminManage">관리자 페이지</a><br>
 	</c:if>
