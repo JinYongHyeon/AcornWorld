@@ -46,25 +46,21 @@ function friendDelete() {
         #user-table > thead > tr > th { padding: 8px; width: 150px; }
         #user-table > tbody > tr > td { border-bottom: 1px solid gray; padding:8px; } */
   table {
-  border-collapse: collapse;
   width: 100%;
+  border-color:#FFBB00;
 }
 
-th, td {
+td {
   padding: 6px;
   text-align: center;
-  border-bottom: 1px solid #ddd;
-  
 }
 th {
+padding: 5px;
   background-color: #FFBB00;
   color: white;
+    text-align: center;
 }
-}
-h2 {
-  border-style: solid;
-  border-color: coral;
-}
+
 body {
  
 }

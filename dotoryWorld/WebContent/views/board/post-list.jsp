@@ -27,11 +27,6 @@
 <div class="row boardMain">
 <div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
-	<form action="${pageContext.request.contextPath}/front" id="postWriteForm">
-		<input type="hidden" name="command" value="postWriteForm">
-		<input type="hidden" name="boardNo" value="${requestScope.hobbyBoardNo}">
-		<input type="submit" value="글쓰기">
-	</form>
 	<table class="table table-bordered  table-hover boardlist">
 	<thead>
 		<tr class="success">
@@ -89,6 +84,11 @@
 		</c:forEach>
 	</tbody>
 </table>
+	<form action="${pageContext.request.contextPath}/front" id="postWriteForm">
+		<input type="hidden" name="command" value="postWriteForm">
+		<input type="hidden" name="boardNo" value="${requestScope.hobbyBoardNo}">
+		<input type="submit" value="글쓰기">
+	</form>
 <%-- paging 처리 --%>
 <c:set var="pb" value="${requestScope.postingListPaging.pagingBean}"/>
 <c:if test="${requestScope.postingListPaging==null}">

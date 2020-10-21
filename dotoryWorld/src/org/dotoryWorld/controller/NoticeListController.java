@@ -39,9 +39,9 @@ public class NoticeListController implements Controller {
 				pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo), postCountPerPage, pageCountPerPageGroup);
 		}
 		ArrayList<PostVO> noticeList = PostDAO.getInstance().getNoticePostingList(pagingBean, categoryNo);
-		System.out.println(noticeList.size());
 		ListVO noticeListPaging = new ListVO(noticeList, pagingBean);
 		request.setAttribute("noticeListPaging", noticeListPaging);
+		request.setAttribute("url", "/board/list.jsp");
 		request.setAttribute("url", "/views/board/post-list.jsp");		
 		System.out.println("noticePostListController 작동");
 		return "/views/template/main-layout.jsp";

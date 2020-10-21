@@ -104,8 +104,10 @@ public class HandlerMapping {
 			controller = new DeleteMyDotoryController();
 		}else if(command.contentEquals("like")){//좋아요
 			controller = new LikeController();
-		}else if(command.contentEquals("bookmark")) {
+		}else if(command.contentEquals("bookmark")) {//북마크 추가
 			controller = new BookmarkController();
+		}else if(command.contentEquals("bookmarkList")) {//내 북마크 리스트
+			controller = new BookmarkListController();
 		}
 		return controller;
 	}

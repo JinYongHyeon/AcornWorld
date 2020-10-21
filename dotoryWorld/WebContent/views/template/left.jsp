@@ -16,7 +16,8 @@
 				<input type="password" id="password" placeholder="Enter password"
 					name="password" required="required">
 			</div>
-			<input type="submit" value="로그인"><br>
+			<input type="submit" value="로그인">&emsp;
+
 			<input type="button"
 				value="회원가입"
 				onclick="location.href = '${pageContext.request.contextPath}/front?command=registerMemberForm'">
@@ -25,7 +26,6 @@
 		<br>
 	</c:when>
 	<c:otherwise>
-
 		<form id="leftForm">
 			<c:choose>
 				<c:when test="${sessionScope.mvo.profilePhoto==null}">
@@ -38,30 +38,37 @@
 				</c:otherwise>
 			</c:choose>
 		</form>
-		<br><h5><b>${sessionScope.mvo.name}님</b></h5>
-		<br>
+		<h6><b>${sessionScope.mvo.name}님</b></h6>
 
 		<input type="button" value="로그아웃"
-			onclick="location.href = '${pageContext.request.contextPath}/front?command=logout'">&emsp;
+			onclick="location.href = '${pageContext.request.contextPath}/front?command=logout'">
 		<input type="button" value="회원정보수정"
 			onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'">
+
 			<br> <br>
 
-			onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'"><hr>
+		<input type="button" value="내 게시물 조회"	onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'"><hr>
+		<input type="button" value="내 북마크 조회"	onclick="location.href = '${pageContext.request.contextPath}/front?command=bookmarkList&id=${sessionScope.mvo.id}&bookmark=북마크'"><hr>
+
+
+			
+
 
 		<input type="button" value="내 게시물 조회"
-			onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'"><hr>
+
+			onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'">
+
+			<hr>
+
 	</c:otherwise>
 </c:choose>
 <c:if test="${sessionScope.mvo != null}">
-
-	<br><br>
-
+	<hr>
 	<input type="button" value="내 미니홈피 가기"
 		onclick="location.href = '${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}'">
-
-		<br><br>
-
+		<hr>
+	<input type="button" onclick="location.href='${pageContext.request.contextPath }/front?command=myDotoryList&id=${sessionScope.mvo.id}'" value="내 도토리 리스트">
+		<br>
 		<hr>
 
 	<c:if test="${sessionScope.mvo.grade == '다람쥐'}">
