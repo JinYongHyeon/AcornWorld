@@ -42,11 +42,29 @@
 	color: white;
 	text-align: center;
 }
+#boardTable table{
+	border: 1;
+	background-color: white;
+}
 
 #write_button {
 	text-align: right;
 	vertical-align: middle;
 }
+#mydotoryImg{
+	width:250px;
+	height:70px; 
+}
+
+#mypostImg{
+	width:500px;
+	height:70px;
+}
+#bookMarkImg{
+	width:500px;
+	height:70px;
+}
+
 
 #toryProfileForm table {
 	width: 100%;
@@ -288,6 +306,7 @@
 
 * {
 	font-family: 'THEletssmileR' !important;
+	list-style:none;
 }
 
 .btnArea button[type=button], button[type=reset] {

@@ -6,7 +6,7 @@
 tr:hover {background-color:#E4F7BA;}
 </style>
 <!-- 게시물 검색-->
-<h2><img src="resources/img/myPost.png" width="500px" height="70px"></h2>
+<h2><img src="resources/img/myPost.png" id="mypostImg"></h2>
 
 <form action="${pageContext.request.contextPath }/front" id="boardTable">
 	<input type="hidden" name="command" value="searchPost">
@@ -25,7 +25,7 @@ tr:hover {background-color:#E4F7BA;}
 <div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
 <form action="${pageContext.request.contextPath}/front" id="boardTable" onsubmit="return myPostDelete()">
-	<table class="table table-bordered  table-hover boardlist" bgcolor="white">
+	<table class="table table-bordered  table-hover boardlist">
 	<thead>
 		<tr class="success">
 			<th></th>

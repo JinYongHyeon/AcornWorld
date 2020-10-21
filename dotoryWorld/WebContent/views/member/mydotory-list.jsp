@@ -19,9 +19,16 @@ function friendDelete() {
 		return flag;
 	}
 }
-</script>	
-	<div align="center">
-		<h2><img src="resources/img/도토리.png" width="250px" height="70px"></h2>
+</script>
+<style>
+tr:hover {background-color:#E4F7BA;}
+</style>
+</head>
+<body>
+	
+	<div align="center" style="padding-top: 10px;">
+		<h2><img src="resources/img/도토리.png" id="mydotoryImg"></h2>	
+	
 		<form action="${pageContext.request.contextPath}/front" id="boardTable">
 		<input type="hidden" name="command" value="deleteMyDotory">
 			<table>

@@ -1,36 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$(document)
-								.on(
-										"click",
-										"#bookMark",
-										function() {
-											$
-													.ajax({
-														type : "post", //전송방식
-														url : "${pageContext.request.contextPath}/front", //주소
-														dataType : "text", //받는 타입
-														data : "command=bookmark&link=${requestScope.pvo.postNo}&id=${sessionScope.mvo.id}&bookmark=북마크&title=${requestScope.pvo.postTitle}", //보내는 값
-														success : function(data) {//성공
+$(document).ready(function(){
+	$(document).on("click","#bookMark",function(){
+		$.ajax({
+			type:"post", //전송방식
+			url:"${pageContext.request.contextPath}/front", //주소
+			dataType:"text", //받는 타입
+			data:"command=bookmark&link=${requestScope.pvo.postNo}&id=${sessionScope.mvo.id}&bookmark=북마크&title=${requestScope.pvo.postTitle}", //보내는 값
+			success: function(data){//성공
+				
+				if(data=='성공'){
+					alert("북마크 추가");
+					if(confirm("북마크 리스트로 가시겠습니까?"))location.href="${pageContext.request.contextPath}/front?command=bookmarkList&id=${sessionScope.mvo.id}&bookmark=북마크";
+				}else if(data=='중복'){
+					alert("이미 추가된 북마크 입니다.");
+				}else{
+					 location.href="${pageContext.request.contextPath}/views/error.jsp";
+				}
+			} 
+		});
+	});
+});
 
-															if (data == '성공') {
-																alert("북마크 추가");
-																if (confirm("북마크 리스트로 가시겠습니까?"))
-																	location.href = "";
-															} else if (data == '중복') {
-																alert("이미 추가된 북마크 입니다.");
-															} else {
-																location.href = "${pageContext.request.contextPath}/views/error.jsp";
-															}
-														}
-													});
-										});
-					});
 	function sendList() {
 		location.href = "${pageContext.request.contextPath}/index.jsp";
 	}
@@ -77,11 +69,14 @@ ${requestScope.pvo.boardVO.boardTitle}
 				<td>조회수 : ${requestScope.pvo.viewCount }</td>
 			</tr>
 			<tr>
-				<td colspan="5"><pre>${requestScope.pvo.postContent}</pre></td>
+				<td colspan="5">
+					<pre>${requestScope.pvo.postContent}</pre>
+				</td>
 			</tr>
 			<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
 				<tr>
 					<td colspan="5" class="btnArea">
+
 						<form name="removeForm"
 							action="${pageContext.request.contextPath}/front" method="post">
 							<input type="hidden" name="command" value="postRemove"> <input
@@ -90,8 +85,7 @@ ${requestScope.pvo.boardVO.boardTitle}
 							<input type="hidden" name="bno"
 								value="${requestScope.pvo.boardVO.boardNo}">
 						</form>
-						<form name="updateForm"
-							action="${pageContext.request.contextPath}/front" method="post">
+						<form name="updateForm" action="${pageContext.request.contextPath}/front" method="post">
 							<input type="hidden" name="command" value="postUpdateForm">
 							<input type="hidden" name="no" value="${requestScope.pvo.postNo}">
 						</form>
@@ -100,11 +94,9 @@ ${requestScope.pvo.boardVO.boardTitle}
 					</td>
 				</tr>
 			</c:if>
-
-
 		</table>
 		<%-- 좋아요 기능--%>
-	<c:if test="${requestScope.pvo.boardVO.boardNo != null }">
+		<c:if test="${requestScope.pvo.boardVO.categoryVO.categoryNo != 5}">
 		<c:choose>
 			<c:when test="${requestScope.likeCheck =='up'}">
 				<svg width="2em" height="2em" viewBox="0 0 16 16"
