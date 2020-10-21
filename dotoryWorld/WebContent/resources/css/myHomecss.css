@@ -65,6 +65,12 @@
 	height:70px;
 }
 
+#bookMarkImgIcon{
+	width:34px;
+	height:32px;
+	cursor:pointer;
+}
+
 
 #toryProfileForm table {
 	width: 100%;
