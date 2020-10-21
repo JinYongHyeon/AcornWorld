@@ -16,7 +16,9 @@
 				<input type="password" id="password" placeholder="Enter password"
 					name="password" required="required">
 			</div>
-			<input type="submit" value="로그인">&emsp;<input type="button"
+			<input type="submit" value="로그인">&emsp;
+
+			<input type="button"
 				value="회원가입"
 				onclick="location.href = '${pageContext.request.contextPath}/front?command=registerMemberForm'">
 				<br>
@@ -39,12 +41,25 @@
 		<h6><b>${sessionScope.mvo.name}님</b></h6>
 
 		<input type="button" value="로그아웃"
-			onclick="location.href = '${pageContext.request.contextPath}/front?command=logout'">&emsp;
+			onclick="location.href = '${pageContext.request.contextPath}/front?command=logout'">
 		<input type="button" value="회원정보수정"
 			onclick="location.href = '${pageContext.request.contextPath}/front?command=updateMemberInfoForm'">
+
 			<br> <br>
+
+		<input type="button" value="내 게시물 조회"	onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'"><hr>
+		<input type="button" value="내 북마크 조회"	onclick="location.href = '${pageContext.request.contextPath}/front?command=bookmarkList&id=${sessionScope.mvo.id}&bookmark=북마크'"><hr>
+
+
+			
+
+
 		<input type="button" value="내 게시물 조회"
+
 			onclick="location.href = '${pageContext.request.contextPath}/front?command=myPostList'">
+
+			<hr>
+
 	</c:otherwise>
 </c:choose>
 <c:if test="${sessionScope.mvo != null}">

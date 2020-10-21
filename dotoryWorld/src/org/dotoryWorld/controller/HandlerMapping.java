@@ -44,8 +44,6 @@ public class HandlerMapping {
 			controller = new BoardListController();
 		} else if (command.contentEquals("postList")) { //게시물
 			controller = new PostListController();
-		} else if (command.contentEquals("noticeList")) { //공지게시물
-			controller = new NoticeListController();
 		} else if (command.contentEquals("myPostList")) { //내 게시물
 			controller = new MyPostListController();
 		} else if (command.contentEquals("myPostDelete")) { //내 게시물
@@ -66,6 +64,10 @@ public class HandlerMapping {
 			controller = new PostRemoveController();
 		} else if (command.contentEquals("postDetail")) { //게시물 상세
 			controller = new PostDetailController();			
+		} else if (command.contentEquals("noticeList")) { //공지게시물
+			controller = new NoticeListController();
+		} else if (command.contentEquals("noticePostDetail")) { //공지게시물 상세
+			controller = new NoticePostDetailController();
 		} else if (command.contentEquals("reportPostWriteForm")) { //신고게시물 작성 폼
 			controller = new ReportPostWriteFormController();
 		} else if (command.contentEquals("reportPostWrite")) { //신고게시물 작성
@@ -100,8 +102,10 @@ public class HandlerMapping {
 			controller = new DeleteMyDotoryController();
 		}else if(command.contentEquals("like")){//좋아요
 			controller = new LikeController();
-		}else if(command.contentEquals("bookmark")) {
+		}else if(command.contentEquals("bookmark")) {//북마크 추가
 			controller = new BookmarkController();
+		}else if(command.contentEquals("bookmarkList")) {//내 북마크 리스트
+			controller = new BookmarkListController();
 		}
 		return controller;
 	}

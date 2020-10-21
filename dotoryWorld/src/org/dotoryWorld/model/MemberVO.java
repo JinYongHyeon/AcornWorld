@@ -16,11 +16,6 @@ public class MemberVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberVO(String id) { // TroyhomeVO에 사용
-		super();
-		this.id = id;
-	}
-
 	public MemberVO(String id, String password, String name) {
 		super();
 		this.id = id;

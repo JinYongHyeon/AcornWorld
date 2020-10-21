@@ -9,11 +9,11 @@ import javax.servlet.http.HttpSession;
 import org.dotoryWorld.model.PostDAO;
 import org.dotoryWorld.model.PostVO;
 
-public class ReportPostDetailController implements Controller {
+public class NoticePostDetailController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("공지글 상세");
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){ return
 		"redirect:index.jsp"; }
@@ -30,11 +30,10 @@ public class ReportPostDetailController implements Controller {
 		  noList.add(no); }
 		
 		PostVO vo = PostDAO.getInstance().getNoticePostingByNo(no);		
-		request.setAttribute("pvo", vo);
-		
-		request.setAttribute("url", "/views/board/post-detail.jsp");
+		request.setAttribute("pvo", vo);		
+		request.setAttribute("url", "/views/board/post-detail-form.jsp");
 		return	"/views/template/main-layout.jsp";
 		//return "/views/board/report-post-detail-form.jsp";
-	}
 
+}
 }
