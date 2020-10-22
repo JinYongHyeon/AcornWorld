@@ -12,8 +12,6 @@ import org.dotoryWorld.model.PagingBean;
 import org.dotoryWorld.model.ToryLetterListVO;
 import org.dotoryWorld.model.ToryhomeVO;
 
-import jdk.management.resource.internal.TotalResourceContext;
-
 public class ToryHomeController implements Controller {
 	/**
 	 * 미니홈피 가기 아이디 값을 DAO에 보내 정보를 가져와 미니홈피에 전달
