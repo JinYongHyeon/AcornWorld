@@ -377,23 +377,6 @@ VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'user5
 INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
 VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'user5','user4');
 
-SELECT toryhome_title, toryhome_content, to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), id_writer, id
-FROM toryhome_board;
-
-SELECT ROW_NUMBER() OVER(ORDER BY t.toryhome_no DESC) as rnum, t.toryhome_no, t.toryhome_title, t.toryhome_content, t.toryhome_date, t.id_writer, m.profile_photo
-FROM TORYHOME_BOARD t, member m
-where t.id_writer = m.id and t.id = 'user4' and t.toryhome_title='방명록'
-
-SELECT tory.toryhome_no, tory.toryhome_title, tory.toryhome_content, TO_CHAR(tory.toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), tory.id_writer, tory.profile_photo
-FROM (SELECT ROW_NUMBER() OVER(ORDER BY t.toryhome_no DESC) as rnum, t.toryhome_no, t.toryhome_title, t.toryhome_content, t.toryhome_date, t.id_writer, m.profile_photo
-FROM TORYHOME_BOARD t, member m
-WHERE t.id_writer = m.id and t.id = 'user4' and t.toryhome_title='방명록') tory
-WHERE tory.rnum BETWEEN 4 AND 4;
-
-delete from TORYHOME_BOARD
-where id_writer='user2' and id='user4' and TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')='2020-10-21 10:45:51';
-
-SELECT COUNT(*) FROM TORYHOME_BOARD WHERE id='user4';
 
 --북마크 페이징 쿼리문
 SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(

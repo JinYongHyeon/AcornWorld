@@ -496,5 +496,39 @@ public class MemberDAO {
 	   }
 	   return totalCount;
    }
+   
+   // 방명록 글 남기기 - 정 콰이어트
+   public void addToryLetter(String id, String id_writer, String contentLetter) throws SQLException {
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   try {
+		   con = dataSource.getConnection();
+		   String sql = "INSERT INTO toryhome_board VALUES(toryhome_no_seq.nextval,'방명록',?, SYSDATE,?,?)";
+		   pstmt = con.prepareStatement(sql);
+		   pstmt.setString(1, contentLetter);
+		   pstmt.setString(2, id_writer);
+		   pstmt.setString(3, id);
+		   pstmt.executeUpdate();
+	   }finally {
+		   closeAll(pstmt, con);
+	   }
+   }
+
+   // 방명록 글 삭제 - 정 콰이어트
+   public void deleteToryLetter(String id_writer, String id, String toryhome_no) throws SQLException {
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   try {
+		   con = dataSource.getConnection();
+		   String sql ="delete from TORYHOME_BOARD where id_writer=? and id=? and toryhome_no=?";
+		   pstmt = con.prepareStatement(sql);
+		   pstmt.setString(1, id_writer);
+		   pstmt.setString(2, id);
+		   pstmt.setString(3, toryhome_no);
+		   pstmt.executeUpdate();
+	   }finally {
+		   closeAll(pstmt, con);
+	   }
+   }
 
 }

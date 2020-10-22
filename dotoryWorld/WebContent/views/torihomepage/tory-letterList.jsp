@@ -43,9 +43,15 @@
 	}
 
 </style>
-${mvo.id == list.homewriterId || mvo.id == list.memberVO.id || mvo.grade == '다람쥐'}
-<table >
+
+<%-- 방명록 글 목록 --%>
+<table>
 	<c:forEach var="list" items="${requestScope.letterVO.letterList }">
+	<form action="${pageContext.request.contextPath}/front">
+	<input type="hidden" name="command" value="toryLetterDelete">
+	<input type="hidden" name="letterWriter" value="${list.homewriterId }">
+	<input type="hidden" name="id" value="${list.memberVO.id }">
+	<input type="hidden" name="ltterNo" value="${list.homeNo }">
 		<thead>
 			<tr id="head">
 				<th>No.${list.homeNo }</th>
@@ -53,7 +59,7 @@ ${mvo.id == list.homewriterId || mvo.id == list.memberVO.id || mvo.grade == '다
 				<th>${list.homeDate }</th>
 				<c:choose>
 					<c:when test="${mvo.id == list.homewriterId || mvo.id == list.memberVO.id || mvo.grade == '다람쥐'}">
-						<th><button onclick="dd()">삭제</button></th>
+						<th><input type="submit" value="삭제"></th>
 					</c:when>
 					<c:otherwise>
 						<th></th>
@@ -79,9 +85,11 @@ ${mvo.id == list.homewriterId || mvo.id == list.memberVO.id || mvo.grade == '다
 			</tr>
 			<tr><td><br></td></tr>
 		</tbody>
+	</form>
 	</c:forEach>
 </table>
 
+<%-- 방명록 페이징 --%>
 <div class="pagingArea">
 	<c:set var="paging" value="${requestScope.letterVO.pagingBean }"/>
 	<ul class="pagination">
@@ -108,15 +116,21 @@ ${mvo.id == list.homewriterId || mvo.id == list.memberVO.id || mvo.grade == '다
 	</ul>
 </div>
 
-<table id="letterWrite">
-	<tbody>
-		<tr>
-			<td>
-				<textarea id="letterForm" cols="130" rows="4" name="content" required="required" placeholder="본문내용을 입력하세요"></textarea>
-			</td>
-			<td>
-				<input type="submit" value="글 남기기">
-			</td>
-		</tr>
-	</tbody>
-</table>
+<%-- 방명록 글 남기기 --%>
+<form action="${pageContext.request.contextPath}/front">
+<input type="hidden" name="id" value="${requestScope.letterVO.letterList[0].memberVO.id}">
+<input type="hidden" name="id_writer" value="${mvo.id }">
+<input type="hidden" name="command" value="toryletterWrite">
+	<table id="letterWrite">
+		<tbody>
+			<tr>
+				<td>
+					<textarea id="letterForm" cols="130" rows="4" name="contentLetter" required="required" placeholder="글을 남겨주세요"></textarea>
+				</td>
+				<td>
+					<input type="submit" value="글 남기기">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>
