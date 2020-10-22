@@ -1,4 +1,4 @@
-CREATE TABLE member(
+	CREATE TABLE member(
 	id VARCHAR2(300) PRIMARY KEY,
 	password VARCHAR2(300) NOT NULL,
 	name VARCHAR2(300) NOT NULL,
@@ -250,7 +250,7 @@ select * from HOBBYBOARD;
 
 -- 취미게시판 샘플데이터
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user4');
+VALUES(hobbypost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user1');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'네이마르는 네이마르다..','네이마르~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 

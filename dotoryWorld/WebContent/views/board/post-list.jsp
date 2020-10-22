@@ -20,13 +20,14 @@
 <style>
 tr:hover {background-color:#E4F7BA;}
 </style>
-
+<h1>${requestScope.hobbyBoardNo}</h1>
 <!-- 게시물 검색-->
 <div class="row searchPost" id=searchResultForm>
 	
 	<!-- <form action="post-search-list.jsp" method="post"> -->
 	<form action="${pageContext.request.contextPath }/front" id="boardTable">
 	<input type="hidden" name="command" value="searchPost">
+	<input type="hidden" name="hobbyBoardNo" value="1">
 			<div class="form-group row">
 				 <select name="keyField">
 					<option value="title">제목</option>
@@ -75,6 +76,9 @@ tr:hover {background-color:#E4F7BA;}
 						<c:when test="${sessionScope.mvo!=null}">
 							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
 						</c:when>
+						<c:otherwise>
+						${pvo.memberVO.id }
+						</c:otherwise>
 					</c:choose>
 				</td>
 				<td>${pvo.postDate }</td>				
@@ -115,6 +119,7 @@ tr:hover {background-color:#E4F7BA;}
 						<c:when test="${sessionScope.mvo!=null}">
 							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
 						</c:when>
+						<c:otherwise>${pvo.memberVO.id }</c:otherwise>
 					</c:choose>					
 				</td>
 				<td>${pvo.postDate }</td>				
@@ -171,7 +176,7 @@ tr:hover {background-color:#E4F7BA;}
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">
 			<li class="page-item">
-				<a href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}&hobbyBoardNo=${requestScope.hobbyBoardNo}"
+				<a href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}&hobbyBoardNo=${requestScope.hobbyBoardNo}&keyword=${requestScope.keyword}"
 				class="page-link">&laquo;</a>
 			</li>
 		</c:if>
@@ -188,7 +193,7 @@ tr:hover {background-color:#E4F7BA;}
 		</c:forEach>
 		<c:if test="${pb.nextPageGroup}">
 			<li class="page-item">
-				<a href="front?command=postList&pageNo=${pb.endPageOfPageGroup+1}&hobbyBoardNo=${requestScope.hobbyBoardNo}"
+				<a href="front?command=postList&pageNo=${pb.endPageOfPageGroup+1}&hobbyBoardNo=${requestScope.hobbyBoardNo}&keyword=${requestScope.keyword}"
 				class="page-link">&raquo;</a>
 			</li>
 		</c:if>
