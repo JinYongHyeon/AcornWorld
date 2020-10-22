@@ -225,3 +225,20 @@
 #toryHomeLeftForm #toryHomeRing ul li:nth-child(4) {
 	bottom: 17%;
 }
+
+/*미니홈피 방명록 글쓰기 폼*/
+#toryLetterWriteForm input[type=submit] {
+	border: 2px solid #000000;
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: black;
+	height: 79px;
+	width: 79px;
+}
+
+#toryLetterWriteForm {
+	border: 2px solid #ffffff;
+	background-color: #f7f7f6;
+	padding: 10px;
+	width: 90%;
+}

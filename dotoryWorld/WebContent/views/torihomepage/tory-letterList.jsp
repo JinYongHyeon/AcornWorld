@@ -9,41 +9,6 @@
 <script type="text/javascript">
 </script>
 
-
-<style>
-	table {
-		width: 1000px;
-		margin-top: 20px;
-		text-align: center;
-	}
-
-	#head th{
-		padding: 3px;
-		border: 3px solid #00264d;
-		text-align: center;
-	}
-	
-	#body td{
-		padding: 30px;
-		border: 2px solid #FFC0CB;
-		
-	}
-	
-	.pagingArea{
-		text-align: center;
-	}
-	
-	#letterWrite td{
-		border: 3px solid lime;
-		resize: none;
-	}
-	
-	#letterForm{
-		resize: none;
-	}
-
-</style>
-
 <%-- 방명록 글 목록 --%>
 <table>
 	<c:forEach var="list" items="${requestScope.letterVO.letterList }">
@@ -53,7 +18,7 @@
 	<input type="hidden" name="id" value="${list.memberVO.id }">
 	<input type="hidden" name="ltterNo" value="${list.homeNo }">
 		<thead>
-			<tr id="head">
+			<tr>
 				<th>No.${list.homeNo }</th>
 				<th>${list.homewriterId }</th>
 				<th>${list.homeDate }</th>
@@ -68,11 +33,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr id ="body">
+			<tr>
 				<c:choose>
 					<c:when test="${list.memberVO.profilePhoto==null }">
 						<td colspan="2">
-							<img width="20px" src="${pageContext.request.contextPath}/resources/img/profile/profileDefualt.png">
+							<img src="${pageContext.request.contextPath}/resources/img/profile/profileDefualt.png">
 						</td>
 					</c:when>
 					<c:otherwise>
@@ -117,7 +82,7 @@
 </div>
 
 <%-- 방명록 글 남기기 --%>
-<form action="${pageContext.request.contextPath}/front">
+<form action="${pageContext.request.contextPath}/front" id="toryLetterWriteForm">
 <input type="hidden" name="id" value="${requestScope.letterVO.letterList[0].memberVO.id}">
 <input type="hidden" name="id_writer" value="${mvo.id }">
 <input type="hidden" name="command" value="toryletterWrite">
@@ -125,10 +90,10 @@
 		<tbody>
 			<tr>
 				<td>
-					<textarea id="letterForm" cols="130" rows="4" name="contentLetter" required="required" placeholder="글을 남겨주세요"></textarea>
+					<textarea id="letterForm" cols="130" rows="4" name="contentLetter" required="required"></textarea>
 				</td>
 				<td>
-					<input type="submit" value="글 남기기">
+				&emsp; <input type="submit" value="확인">
 				</td>
 			</tr>
 		</tbody>
