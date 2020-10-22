@@ -18,5 +18,4 @@ public class ToryLetterWriteController implements Controller {
 		
 		return "redirect:front?command=toryHome&id="+id ;
 	}
-
 }
