@@ -73,7 +73,7 @@ body {
 		</div>
 		<div class="col-sm-9" id="toryHomeRightForm">
 			<div class="toryHomeNickTitle">
-				<h2>${requestScope.toryHomeImformation.nickname}님의토리홈피</h2>
+				<h2>${requestScope.toryHomeImformation.nickname}님의 토리홈피</h2>
 			</div>
 			<div class="toryHomeRight">
 				<jsp:include page="${requestScope.url}"></jsp:include>
