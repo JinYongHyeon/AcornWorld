@@ -41,7 +41,7 @@
 						</td>
 					</c:when>
 					<c:otherwise>
-						<td colspan="2">${list.memberVO.profilePhoto }</td>
+						<td colspan="2"><img width="20px" src="${pageContext.request.contextPath}/resources/img/profile/${list.memberVO.profilePhoto }"></td>
 					</c:otherwise>
 				</c:choose>
 				<td colspan="2">
