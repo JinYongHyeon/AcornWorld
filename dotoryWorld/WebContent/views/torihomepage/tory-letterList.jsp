@@ -76,7 +76,7 @@
 						</td>
 					</c:when>
 					<c:otherwise>
-						<td colspan="2">${list.memberVO.profilePhoto }</td>
+						<td colspan="2"><img width="20px" src="${pageContext.request.contextPath}/resources/img/profile/${list.memberVO.profilePhoto }"></td>
 					</c:otherwise>
 				</c:choose>
 				<td colspan="2">
@@ -118,7 +118,7 @@
 
 <%-- 방명록 글 남기기 --%>
 <form action="${pageContext.request.contextPath}/front">
-<input type="hidden" name="id" value="${requestScope.letterVO.letterList[0].memberVO.id}">
+<input type="hidden" name="id" value="${requestScope.toryHomeImformation.id}">
 <input type="hidden" name="id_writer" value="${mvo.id }">
 <input type="hidden" name="command" value="toryletterWrite">
 	<table id="letterWrite">
