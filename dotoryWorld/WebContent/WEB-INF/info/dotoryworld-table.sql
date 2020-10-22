@@ -215,6 +215,7 @@ INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user5','1234','꽈꽈','북극','user5@gmail.com','도토리5','도토리5입니다','도토리');
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user6','1234','꾸꾸','남극','user6@gmail.com','도토리6','도토리6입니다','도토리');
 
+
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'운동','운동설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'영화','요리설명');

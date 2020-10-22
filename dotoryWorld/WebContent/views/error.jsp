@@ -31,7 +31,8 @@ p {
 </head>
 <body>
 <div class="test">
-<p><img src="${pageContext.request.contextPath }/resources/img/hamster.jpg"> * ㅇ ㅔ ㄹ ㅓ 입 ㄴ ㅣ ㄷ ㅏ  ! * </p>
+<p><br><br>&emsp;&emsp;&emsp;<img src="${pageContext.request.contextPath }/resources/img/hamster.jpg"> <br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;* ㅇ ㅔ ㄹ ㅓ 입 ㄴ ㅣ ㄷ ㅏ  ! * </p>
  
 </div>
 </body>
