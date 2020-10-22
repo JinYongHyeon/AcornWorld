@@ -135,6 +135,7 @@
 	border: 1px solid #c7c7c7;
 	z-index: 2;
 	overflow: auto;
+	padding-top: 40px;
 }
 
 #toryHomeRightForm .toryHomeNav {
@@ -224,4 +225,79 @@
 
 #toryHomeLeftForm #toryHomeRing ul li:nth-child(4) {
 	bottom: 17%;
+}
+
+/*미니홈피 방명록 글쓰기 폼*/
+#toryLetterWriteForm {
+	border: 2px solid #ffffff;
+	background-color: #f7f7f6;
+	padding: 10px;
+	width: 90%;
+}
+
+#toryLetterWriteForm input[type=submit] {
+	border: 2px solid #000000;
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: black;
+	height: 79px;
+	width: 79px;
+	font-weight: bold;
+	font-size: x-large;
+}
+
+/*미니홈피 방명록 리스트*/
+#toryLetterList {
+	border: 2px solid #ffffff;
+	padding: 10px;
+	width: 90%;
+}
+
+#toryLetterListTable {
+	padding-top: 15px;
+	font-weight: bold;
+	font-size: x-large;
+}
+
+#toryLetterListTable img {
+	width: 170px;
+	height: 170px;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%,0);
+	padding-top: 10px;
+}
+
+#toryLetterListTable tr th{
+	border: 2px solid #000000;
+	text-align: center;
+	border-left: 0;
+	border-right: 0;
+	width: 270px;
+	background-color: #f7f7f6;
+}
+
+#toryLetterList input[type=submit] {
+	border: none;
+	background-color: #f7f7f6;
+	color: blue;
+	font-weight: bold;
+}
+
+/*방명록 페이징*/
+.page-item a {
+	color: #F57F17;
+}
+
+.page-item.active .page-link {
+	background-color: #F57F17;
+	border-color: #F57F17;
+}
+
+.pagingArea {
+	text-align: center;
+}
+
+.pagination {
+	display: inline-block;
 }

@@ -392,7 +392,7 @@ public class MemberDAO {
 		  con = dataSource.getConnection();
 		  StringBuilder sb = new StringBuilder();
 		  sb.append("SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(");
-		  sb.append("SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) as no,link FROM bookmark ");
+		  sb.append("SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no DESC) as no,link FROM bookmark ");
 		  sb.append("WHERE id= ? AND bookmark_divide = ?)b,hobby_post h,hobbyboard ho ");
 		  sb.append("WHERE b.link =h.hobbypost_no AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN ? AND ?");
 		  sb.append(" ORDER BY no ASC");
@@ -428,6 +428,22 @@ public class MemberDAO {
 	   }
 	   return bookmarkList;
    }
+   
+   public void bookmarkRemove(String link) throws SQLException {
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   try {
+		   con = dataSource.getConnection();
+		   StringBuilder sb = new StringBuilder();
+		   sb.append("DELETE FROM bookmark WHERE link=?");
+		   pstmt = con.prepareStatement(sb.toString());
+		   pstmt.setString(1, link);
+		   pstmt.executeUpdate();
+	   }finally {
+		   closeAll(pstmt, con);
+	   }
+   }
+   
    /**
     * 내 즐겨찾기 정보 가져오기
     * @param id
@@ -530,5 +546,7 @@ public class MemberDAO {
 		   closeAll(pstmt, con);
 	   }
    }
+   
+   
 
 }

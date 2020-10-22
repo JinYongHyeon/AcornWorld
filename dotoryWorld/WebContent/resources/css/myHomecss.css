@@ -84,62 +84,6 @@ body {
 	text-align: center;
 }
 
-#boardTable table {
-	border: 1px;
-	background: white;
-	width: 100%;
-}
-
-#boardTable input [type=submit] {
-	border: 2px solid #F57F17;
-	border-radius: 5px;
-	background-color: #F57F17;
-	color: white;
-}
-
-#boardTable td {
-	padding: 6px;
-	text-align: center;
-}
-
-#boardTable th {
-	padding: 5px;
-	background-color: #FFBB00;
-	color: white;
-	text-align: center;
-}
-
-#boardTable table {
-	border: 1;
-	background-color: white;
-}
-
-#write_button {
-	text-align: right;
-	vertical-align: middle;
-}
-
-#mydotoryImg {
-	width: 250px;
-	height: 70px;
-}
-
-#mypostImg {
-	width: 500px;
-	height: 70px;
-}
-
-#bookMarkImg {
-	width: 500px;
-	height: 70px;
-}
-
-#bookMarkImgIcon {
-	width: 34px;
-	height: 32px;
-	cursor: pointer;
-}
-
 #toryProfileForm table {
 	width: 100%;
 	text-align: center;
@@ -557,6 +501,12 @@ body {
 	height: 70px;
 }
 
+#bookMarkImgIcon {
+	width: 34px;
+	height: 32px;
+	cursor: pointer;
+}
+
 /*글쓰기 버튼*/
 #write_button {
 	text-align: right;
@@ -566,6 +516,12 @@ body {
 /*게시물 수정, 글쓰기의 제목 입력칸*/
 #frm input[type=text] {
 	width: 60%;
+}
+
+/*게시물 리스트 로고*/
+#postListLogo img {
+	width: 750px;
+	height: 100px;
 }
 
 /*그 외*/

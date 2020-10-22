@@ -39,8 +39,8 @@
 								id="boardListForm">
 								<input type="hidden" name="command" value="postList"> <input
 									type="hidden" name="hobbyBoardNo" value="${boardList.boardNo}">
-								<img
-									src="${pageContext.request.contextPath}/resources/img/${boardList.boardImage}">
+								<a href="${pageContext.request.contextPath}/front?command=postList&hobbyBoardNo=${boardList.boardNo}"><img
+									src="${pageContext.request.contextPath}/resources/img/${boardList.boardImage}"></a>
 								<c:if test="${sessionScope.mvo != null}">
 									<input type="button" value="⭐">
 									<br>

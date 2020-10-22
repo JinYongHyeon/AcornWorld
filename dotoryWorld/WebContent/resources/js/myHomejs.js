@@ -109,5 +109,14 @@ function myPostDelete() {
 	return confirm("정말로 삭제하시겠습니까?");
 }
 
+//글작성 체크
+function searchTextCheck(){
+	var keyword =document.getElementById("keyWord");
+	if(keyword.value.trim() ==""){
+		alert("검색어를 입력해주세요.");
+		return false;
+	}
+}
+
 
 

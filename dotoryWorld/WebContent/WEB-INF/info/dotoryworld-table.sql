@@ -66,7 +66,6 @@ CREATE TABLE bookmark(
 	CONSTRAINT FK_bookmark_id FOREIGN KEY (id) REFERENCES member (id)
 	ON DELETE CASCADE
 )
-
 CREATE SEQUENCE bookmark_no_seq;
 	
 	--20년10월20일[id 까지 PK 복합키로 설정]
@@ -206,6 +205,9 @@ ALTER TABLE bookmark ADD(bookmark_title VARCHAR2(300)NOT NULL);
 
 select * from category
 
+
+
+
 --샘플 데이터
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('admin','1234','관리자','판교','admin@gmail.com','다람쥐','관리자입니다','다람쥐');
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user1','1234','사용자1','판교','user1@gmail.com','도토리1','도토리1입니다','도토리');
@@ -256,15 +258,15 @@ INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hob
 VALUES(hobbypost_no_seq.NEXTVAL,'네이마르는 네이마르다..','네이마르~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
+VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user1');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
+VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user1');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
+VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user1');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
+VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user1');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
+VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user1');
 
 
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
@@ -378,10 +380,9 @@ VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'user5
 INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
 VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'user5','user4');
 
-
 --북마크 페이징 쿼리문
 SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(
-SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) as no,link FROM bookmark
+SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no desc) as no,link FROM bookmark
 WHERE id= 'user1' AND bookmark_divide = '북마크')b,hobby_post h,hobbyboard ho
 WHERE b.link =h.hobbypost_no AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN 1 AND 20
 ORDER BY no ASC
@@ -390,21 +391,26 @@ ORDER BY no ASC
 SELECT H.RNUM,H.HOBBYBOARD_NO,hb.hobbyboard_imgName,hb.hobbyboard_title FROM(
 	SELECT ROW_NUMBER() OVER(ORDER BY HOBBY_LIKE DESC) AS rnum, HOBBYBOARD_NO  FROM (
 	SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE,SUM(hobbypost_viewcount) FROM HOBBY_POST GROUP BY HOBBYBOARD_NO
-))h,HOBBYBOARD hb WHERE h.HOBBYBOARD_NO = hb.HOBBYBOARD_NO AND RNUM<=2
+	HAVING HOBBYBOARD_NO NOT IN('17','18')
+))h,HOBBYBOARD hb WHERE h.HOBBYBOARD_NO = hb.HOBBYBOARD_NO AND RNUM<=2 
 
 --베스트 쿼리문
 SELECT H.RNUM,H.HOBBYBOARD_NO,hb.hobbyboard_imgName,hb.hobbyboard_title FROM(
 	SELECT ROW_NUMBER() OVER(ORDER BY hobbypost_viewcount DESC) AS rnum, HOBBYBOARD_NO  FROM (
 	SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE,SUM(hobbypost_viewcount) AS hobbypost_viewcount FROM HOBBY_POST GROUP BY HOBBYBOARD_NO
-))h,HOBBYBOARD hb WHERE h.HOBBYBOARD_NO = hb.HOBBYBOARD_NO AND RNUM<=2
-
-
-
+	HAVING HOBBYBOARD_NO NOT IN('17','18')
+	))h,HOBBYBOARD hb WHERE h.HOBBYBOARD_NO = hb.HOBBYBOARD_NO AND RNUM<=2
 
 SELECT b.rnum, b.LINK,b.ID,h.hobbyboard_title,h.hobbyboard_imgName 
 FROM(SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) AS rnum,link,id FROM bookmark 
 WHERE bookmark_divide='즐겨찾기' AND id='user1')b,hobbyboard h 
 WHERE h.hobbyboard_no = b.link AND b.rnum BETWEEN 2 AND 3;
+
+SELECT COUNT(*) FROM BOOKMARK WHERE ID ='user1' AND link = 54;
+
+select * from bookmark
+
+
 
 
 

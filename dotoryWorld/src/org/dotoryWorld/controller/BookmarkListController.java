@@ -11,9 +11,11 @@ import org.dotoryWorld.model.MemberDAO;
 import org.dotoryWorld.model.PagingBean;
 
 public class BookmarkListController implements Controller {
+	
 	/**
 	 * 내 북마크 가져오는 기능
 	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
