@@ -29,16 +29,16 @@ tr:hover {background-color:#E4F7BA;}
 	<c:when test="${requestScope.hobbyBoardNo==2}">
 		<img src="${pageContext.request.contextPath}/resources/img/badmintonLogo.png">
 	</c:when>
-	<c:when test="${requestScope.hobbyBoardNo==3}">
+	<c:when test="${requestScope.hobbyBoardNo==5}">
 		<img src="${pageContext.request.contextPath}/resources/img/japaneseFoodLogo.png">
 	</c:when>
-	<c:when test="${requestScope.hobbyBoardNo==4}">
+	<c:when test="${requestScope.hobbyBoardNo==6}">
 		<img src="${pageContext.request.contextPath}/resources/img/westernFoodLogo.png">
 	</c:when>
-	<c:when test="${requestScope.hobbyBoardNo==5}">
+	<c:when test="${requestScope.hobbyBoardNo==3}">
 		<img src="${pageContext.request.contextPath}/resources/img/basketballLogo.png">
 	</c:when>
-	<c:when test="${requestScope.hobbyBoardNo==6}">
+	<c:when test="${requestScope.hobbyBoardNo==4}">
 		<img src="${pageContext.request.contextPath}/resources/img/baseballLogo.png">
 	</c:when>
 	<c:when test="${requestScope.hobbyBoardNo==7}">
