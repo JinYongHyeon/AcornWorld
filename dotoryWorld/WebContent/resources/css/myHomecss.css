@@ -524,6 +524,12 @@ body {
 	height: 100px;
 }
 
+/*게시물 경로*/
+#postPathForm {
+	text-align: left;
+	margin-left: 85px;
+}
+
 /*그 외*/
 #myForm table {
 	width: 100%;
