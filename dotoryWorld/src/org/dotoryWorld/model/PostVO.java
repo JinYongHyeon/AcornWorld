@@ -9,7 +9,6 @@ public class PostVO {
 	private int viewCount; //조회수
 	private BoardVO boardVO; //큰항목 표시[EX/축구]
 	private MemberVO memberVO; //작성자
-	private CategoryVO categoryVO;
 
 	public PostVO() {
 		super();
@@ -17,7 +16,7 @@ public class PostVO {
 	}
 
 	public PostVO(String postNo, String postTitle, String postContent, String postDate, int postLike, int viewCount,
-			BoardVO boardVO, MemberVO memberVO, CategoryVO categoryVO) {
+			BoardVO boardVO, MemberVO memberVO) {
 		super();
 		this.postNo = postNo;
 		this.postTitle = postTitle;
@@ -27,7 +26,6 @@ public class PostVO {
 		this.viewCount = viewCount;
 		this.boardVO = boardVO;
 		this.memberVO = memberVO;
-		this.categoryVO = categoryVO;
 	}
 
 	public String getPostNo() {
@@ -94,19 +92,12 @@ public class PostVO {
 		this.memberVO = memberVO;
 	}
 
-	public CategoryVO getCategoryVO() {
-		return categoryVO;
-	}
-
-	public void setCategoryVO(CategoryVO categoryVO) {
-		this.categoryVO = categoryVO;
-	}
 
 	@Override
 	public String toString() {
 		return "PostVO [postNo=" + postNo + ", postTitle=" + postTitle + ", postContent=" + postContent + ", postDate="
 				+ postDate + ", postLike=" + postLike + ", viewCount=" + viewCount + ", boardVO=" + boardVO
-				+ ", memberVO=" + memberVO + ", categoryVO=" + categoryVO + "]";
+				+ ", memberVO=" + memberVO;
 	}
 
 }

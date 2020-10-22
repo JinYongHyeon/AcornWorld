@@ -78,7 +78,9 @@
 	}
 </script>
 
-${requestScope.pvo.categoryVO.categoryName}>>${requestScope.pvo.boardVO.boardTitle}
+<form id="postPathForm">
+<b>${requestScope.pvo.boardVO.categoryVO.categoryName}>>${requestScope.pvo.boardVO.boardTitle}</b>
+</form>
 <div class="row postDetailForm">
 	<div class="col-sm-1"></div>
 	<div class="col-sm-10">

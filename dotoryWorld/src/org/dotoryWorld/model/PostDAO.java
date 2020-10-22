@@ -235,7 +235,7 @@ public class PostDAO {
 				bvo.setBoardTitle(rs.getString("hobbyboard_title"));
 				CategoryVO cvo = new CategoryVO();
 				cvo.setCategoryNo(rs.getString("category_no"));
-				cvo.setCategoryName("category_name");
+				cvo.setCategoryName(rs.getString("category_name"));
 				bvo.setCategoryVO(cvo);
 				pvo.setBoardVO(bvo);
 				MemberVO mvo = new MemberVO();

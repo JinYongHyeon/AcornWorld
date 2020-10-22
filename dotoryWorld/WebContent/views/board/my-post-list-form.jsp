@@ -25,7 +25,7 @@ tr:hover {background-color:#E4F7BA;}
 <div class="row boardMain">
 <div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
-<form action="${pageContext.request.contextPath}/front" id="boardTable" onsubmit="return myPostDelete()">
+<form action="${pageContext.request.contextPath}/front" id="myPostDeleteFrom" onsubmit="return myPostDelete()">
 	<table class="table table-bordered  table-hover boardlist">
 	<thead>
 		<tr class="success">
@@ -42,7 +42,7 @@ tr:hover {background-color:#E4F7BA;}
 			<tr>
 				<td>
 					<input type="hidden" name="command" value="myPostDelete">
-					<input type="checkbox" name="deletePost" value="${pvo.postNo }">
+					<input type="checkbox" name="deletePostNo" value="${pvo.postNo }">
 				</td>
 				<td>${pvo.postNo }</td>
 				<td>
