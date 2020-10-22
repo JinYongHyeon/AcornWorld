@@ -47,8 +47,7 @@
 				<c:if test="${requestScope.bookmarkPagin.nextPageGroup}">
 					<li class="page-item"><a class="page-link"
 						href="${pageContext.request.contextPath}/front?command=favoritesList&nowPage=${requestScope.bookmarkPagin.endPageOfPageGroup+1}&id=${sessionScope.mvo.id}&bookmark=즐겨찾기"
-						"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
 				</c:if>
 			</ul>

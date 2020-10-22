@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.dotoryWorld.model.BoardVO;
-import org.dotoryWorld.model.CategoryVO;
 import org.dotoryWorld.model.MemberVO;
 import org.dotoryWorld.model.PostDAO;
 import org.dotoryWorld.model.PostVO;

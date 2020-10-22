@@ -52,7 +52,6 @@ tr:hover {background-color:#E4F7BA;}
 		<c:if test="${requestScope.bookmarkPagin.nextPageGroup}">
 			<li class="page-item"><a class="page-link"
 				href="${pageContext.request.contextPath}/front?command=bookmarkList&nowPage=${requestScope.bookmarkPagin.endPageOfPageGroup+1}&id=${sessionScope.mvo.id}&bookmark=북마크"
-				"
 				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			</a></li>
 		</c:if>

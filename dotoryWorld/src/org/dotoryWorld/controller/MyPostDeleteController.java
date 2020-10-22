@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.dotoryWorld.model.MemberVO;
 import org.dotoryWorld.model.PostDAO;
 
 public class MyPostDeleteController implements Controller {
