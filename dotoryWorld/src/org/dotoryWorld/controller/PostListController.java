@@ -35,7 +35,6 @@ public class PostListController implements Controller {
 		request.setAttribute("postingListPaging", postingListPaging);
 		request.setAttribute("url", "/views/board/post-list.jsp");
 		request.setAttribute("hobbyBoardNo", hobbyBoardNo);
-		System.out.println(hobbyBoardNo+"현재 페이지"); // test용
 		return "front?command=noticeList&noticePostBoardNo=17";
 	}
 

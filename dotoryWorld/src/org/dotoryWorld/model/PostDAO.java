@@ -563,7 +563,7 @@ public class PostDAO {
 		return count;
 	}
 	
-	public ArrayList<PostVO> searchPost(String postTitle, PagingBean pgb) throws SQLException {
+	public ArrayList<PostVO> searchPost(String postTitle,String hobbyboardNo ,PagingBean pgb) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -575,10 +575,11 @@ public class PostDAO {
 			sql.append("select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
 			sql.append("from(select row_number() over(order by hobbypost_no asc) as rnum, ");
 			sql.append("hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
-			sql.append("from hobby_post where hobby_title LIKE ?)");
+			sql.append("from hobby_post where hobby_title LIKE ? AND hobbyboard_no = ?)");
 			sql.append("where rnum between ? and ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, "%" + postTitle + "%");
+			pstmt.setString(2,hobbyboardNo);
 			pstmt.setInt(3, pgb.getStartRowNumber());
 			pstmt.setInt(4, pgb.getEndRowNumber());
 			rs = pstmt.executeQuery();
@@ -601,16 +602,17 @@ public class PostDAO {
 	
 	// 내 게시물 조회 페이지에서 검색하는 메서드 
 	
-	public int searchMyPost(String postTitle) throws SQLException {
+	public int searchMyPost(String postTitle, String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int count = 0;
 		try {
 			con = getConnection();
-			String sql = "select count(*) from hobby_post where hobby_title LIKE ?";
+			String sql = "select count(*) from hobby_post where hobby_title LIKE ? AND id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + postTitle + "%");
+			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				count = rs.getInt(1);
@@ -621,7 +623,7 @@ public class PostDAO {
 		return count;
 	}
 	
-	public ArrayList<PostVO> searchMyPost(String postTitle, PagingBean pgb) throws SQLException {
+	public ArrayList<PostVO> searchMyPost(String postTitle, PagingBean pgb, String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -630,13 +632,14 @@ public class PostDAO {
 		try {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
+			sql.append("select h.hobbypost_no,h.hobby_title,h.id,h.hobbypost_date,h.hobbypost_viewcount,ho.hobbyboard_title ");
 			sql.append("from(select row_number() over(order by hobbypost_no asc) as rnum, ");
-			sql.append("hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
-			sql.append("from hobby_post where hobby_title LIKE ?)");
-			sql.append("where rnum between ? and ? ");
+			sql.append("hobbypost_no,hobby_title,id,TO_CHAR(hobbypost_date,'yyyy-mm-dd hh24:mi:ss') AS hobbypost_date,hobbypost_viewcount,hobbyboard_no ");
+			sql.append("from hobby_post where hobby_title LIKE ? AND id = ?)h, hobbyboard ho ");
+			sql.append("where rnum between ? and ? AND h.hobbyboard_no = ho.hobbyboard_no");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, "%" + postTitle + "%");
+			pstmt.setString(2, id);
 			pstmt.setInt(3, pgb.getStartRowNumber());
 			pstmt.setInt(4, pgb.getEndRowNumber());
 			rs = pstmt.executeQuery();
@@ -649,6 +652,10 @@ public class PostDAO {
 				pvo.setMemberVO(mvo);
 				pvo.setPostDate(rs.getString(4));
 				pvo.setViewCount(rs.getInt(5));
+				BoardVO bvo = new BoardVO();
+				bvo.setBoardTitle(rs.getString(6));
+				pvo.setBoardVO(bvo);
+				
 				searchMyList.add(pvo);
 			}
 		} finally {

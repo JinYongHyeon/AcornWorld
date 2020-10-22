@@ -73,7 +73,7 @@ body {
 		</div>
 		<div class="col-sm-9" id="toryHomeRightForm">
 			<div class="toryHomeNickTitle">
-				<h2>${requestScope.toryHomeImformation.nickname}님의토리홈피</h2>
+				<h2>${requestScope.toryHomeImformation.nickname}님의 토리홈피</h2>
 			</div>
 			<div class="toryHomeRight">
 				<jsp:include page="${requestScope.url}"></jsp:include>
@@ -81,8 +81,8 @@ body {
 			<div class="toryHomeNav">
 				<ul>
 					<li><a href="#">방명록</a></li>
-					<li><a href="#">사진첩</a></li>
-					<li><a href="#">다이어리</a></li>
+					<%-- <li><a href="#">사진첩</a></li>
+					<li><a href="#">다이어리</a></li>--%>
 					<c:if
 						test="${sessionScope.mvo.id == requestScope.toryHomeImformation.id}">
 						<li><a

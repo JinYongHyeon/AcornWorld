@@ -1,4 +1,4 @@
-CREATE TABLE member(
+	CREATE TABLE member(
 	id VARCHAR2(300) PRIMARY KEY,
 	password VARCHAR2(300) NOT NULL,
 	name VARCHAR2(300) NOT NULL,
@@ -215,6 +215,7 @@ INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user5','1234','꽈꽈','북극','user5@gmail.com','도토리5','도토리5입니다','도토리');
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user6','1234','꾸꾸','남극','user6@gmail.com','도토리6','도토리6입니다','도토리');
 
+
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'운동','운동설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'요리','요리설명');
 INSERT INTO category(category_no,category_name,category_content) VALUES(category_no_seq.nextval,'영화','요리설명');
@@ -250,7 +251,7 @@ select * from HOBBYBOARD;
 
 -- 취미게시판 샘플데이터
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user4');
+VALUES(hobbypost_no_seq.NEXTVAL,'메시는 메시다..','메시~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user1');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'네이마르는 네이마르다..','네이마르~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 
@@ -264,6 +265,14 @@ INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hob
 VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user3');
+
+
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user1');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user1');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'고구마는 고구마..','고구마',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'user1');
 
 /* 신고게시판 샘플 데이터 */
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
@@ -369,34 +378,6 @@ VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'user5
 INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
 VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'user5','user4');
 
-SELECT toryhome_title, toryhome_content, to_char(toryhome_date, 'YYYY-MM-DD HH24:MI:SS'), id_writer, id
-FROM toryhome_board;
-
-
-
-ROW_NUMBER() OVER(ORDER BY ) row_num
-
-SELECT toryhome_no, toryhome_title, toryhome_content,   FROM TORYHOME_BOARD
-
-SELECT ROW_NUMBER() OVER(ORDER BY toryhome_no DESC) as rnum
-,toryhome_no,TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')
-FROM TORYHOME_BOARD
-WHERE ID = 'user4'
-
-SELECT *
-FROM (SELECT ROW_NUMBER() OVER(ORDER BY toryhome_no DESC) as rnum
-,toryhome_no,TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')
-FROM TORYHOME_BOARD
-WHERE ID = 'user4')
-WHERE rnum BETWEEN 1 AND 3
-
-SELECT * FROM TORYHOME_BOARD
-WHERE TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')='2020-10-21 10:45:51';
-
-delete from TORYHOME_BOARD
-where id_writer='user2' and id='user4' and TO_CHAR(toryhome_date, 'YYYY-MM-DD HH24:MI:SS')='2020-10-21 10:45:51';
-
-SELECT COUNT(*) FROM TORYHOME_BOARD WHERE id='user4';
 
 --북마크 페이징 쿼리문
 SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(

@@ -4,7 +4,7 @@
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
    $(document).ready(function() {
       $(document).on('click', '#btnSearch', function(e) {
          e.preventDefault();
@@ -14,27 +14,27 @@
          location.href = url;
          console.log(url);
       });
-   });
+   }); 
 </script>
+-->
 <style>
 tr:hover {background-color:#E4F7BA;}
 </style>
-
 <!-- 게시물 검색-->
 <div class="row searchPost" id=searchResultForm>
 	
 	<!-- <form action="post-search-list.jsp" method="post"> -->
 	<form action="${pageContext.request.contextPath }/front" id="boardTable">
 	<input type="hidden" name="command" value="searchPost">
-			<div class="form-group row">
+	<input type="hidden" name="hobbyBoardNo" value="${requestScope.hobbyBoardNo}">
+			<div class="form-group row" style= "margin-left:510px">
 				 <select name="keyField">
 					<option value="title">제목</option>
-					<option value="id">작성자</option>
 				</select>&emsp;
 				<div class="w300">
 					<input type="text" class="form-control" name="keyword" id="keyWord" size="25">
 				</div>
-            &emsp;<input type="submit" value="검색" id="btnSearch">
+            &emsp;<input type="submit" value="검색" >
             <hr>
          </div>
    </form>
@@ -75,6 +75,9 @@ tr:hover {background-color:#E4F7BA;}
 						<c:when test="${sessionScope.mvo!=null}">
 							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
 						</c:when>
+						<c:otherwise>
+						${pvo.memberVO.id }
+						</c:otherwise>
 					</c:choose>
 				</td>
 				<td>${pvo.postDate }</td>				
@@ -115,6 +118,7 @@ tr:hover {background-color:#E4F7BA;}
 						<c:when test="${sessionScope.mvo!=null}">
 							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
 						</c:when>
+						<c:otherwise>${pvo.memberVO.id }</c:otherwise>
 					</c:choose>					
 				</td>
 				<td>${pvo.postDate }</td>				
@@ -171,7 +175,7 @@ tr:hover {background-color:#E4F7BA;}
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">
 			<li class="page-item">
-				<a href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}&hobbyBoardNo=${requestScope.hobbyBoardNo}"
+				<a href="front?command=postList&pageNo=${pb.startPageOfPageGroup-1}&hobbyBoardNo=${requestScope.hobbyBoardNo}&keyword=${requestScope.keyword}"
 				class="page-link">&laquo;</a>
 			</li>
 		</c:if>
@@ -188,7 +192,7 @@ tr:hover {background-color:#E4F7BA;}
 		</c:forEach>
 		<c:if test="${pb.nextPageGroup}">
 			<li class="page-item">
-				<a href="front?command=postList&pageNo=${pb.endPageOfPageGroup+1}&hobbyBoardNo=${requestScope.hobbyBoardNo}"
+				<a href="front?command=postList&pageNo=${pb.endPageOfPageGroup+1}&hobbyBoardNo=${requestScope.hobbyBoardNo}&keyword=${requestScope.keyword}"
 				class="page-link">&raquo;</a>
 			</li>
 		</c:if>
