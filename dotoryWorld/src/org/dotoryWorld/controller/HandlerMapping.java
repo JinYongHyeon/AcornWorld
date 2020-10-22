@@ -46,10 +46,8 @@ public class HandlerMapping {
 			controller = new PostListController();
 		} else if (command.contentEquals("myPostList")) { //내 게시물
 			controller = new MyPostListController();
-		} else if (command.contentEquals("myPostDelete")) { //내 게시물
+		} else if (command.contentEquals("myPostDelete")) { //내 게시물 삭제
 			controller = new MyPostDeleteController();
-		} else if (command.contentEquals("reportPostList")) { //신고 게시물
-			controller = new ReportPostListController();
 		} else if (command.contentEquals("postUpdateForm")) { //게시물 수정 폼
 			controller = new PostUpdateFormController();
 		} else if (command.contentEquals("postUpdate")) { //게시물 수정
@@ -68,22 +66,6 @@ public class HandlerMapping {
 			controller = new PostDetailController();			
 		} else if (command.contentEquals("noticeList")) { //공지게시물
 			controller = new NoticeListController();
-		} else if (command.contentEquals("noticePostDetail")) { //공지게시물 상세
-			controller = new NoticePostDetailController();
-		} else if (command.contentEquals("reportPostList")) { // 신고게시물 리스트
-			controller = new ReportPostListController();
-		} else if (command.contentEquals("reportPostWriteForm")) { //신고게시물 작성 폼
-			controller = new ReportPostWriteFormController();
-		} else if (command.contentEquals("reportPostWrite")) { //신고게시물 작성
-			controller = new ReportPostWriteController();
-		} else if (command.contentEquals("reportPostUpdateForm")) { //신고게시물 수정 폼
-			controller = new ReportPostUpdateFormController();
-		/*} else if (command.contentEquals("reportPostUpdate")) { //신고게시물 수정
-			controller = new ReportPostUpdateController();*/
-		} else if (command.contentEquals("reportPostRemove")) { //신고게시물 삭제
-			controller = new ReportPostRemoveController();
-		} else if (command.contentEquals("reportPostDetail")) { //신고게시물 상세
-			controller = new ReportPostDetailController();
 		} else if(command.contentEquals("toryProfileForm")) {//미니홈피 내 정보 폼
 			controller = new ToryProfileFormController();
 		} else if (command.contentEquals("toryProfileUpdateForm")) { //미니홈피 내 정보 수정 폼
