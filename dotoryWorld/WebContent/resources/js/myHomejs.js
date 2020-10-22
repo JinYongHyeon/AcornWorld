@@ -14,7 +14,6 @@ $(document).ready(function() {
 
 	/* 프로필 이미지 업로드 폼 --> 취소버튼 클릭 시  이벤트*/
 	$(document).on("click", "#toryProfileImgForm .toryProfileUploadButton input[value='취소']", function() {
-
 		$("#toryProfileImgForm").animate({
 			top: "40%",
 			opacity: 0

@@ -78,7 +78,6 @@ public class PostDAO {
 				mvo.setId(rs.getString(5));
 				mvo.setName(rs.getString(6));
 				pvo.setMemberVO(mvo);
-
 				list.add(pvo);
 			}
 		} finally {
@@ -215,7 +214,7 @@ public class PostDAO {
 			sql.append("select b.hobby_title,to_char(b.hobbypost_date,'YYYY.MM.DD  HH24:MI:SS') as time_posted, c.category_name");
 			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name,b.hobbyboard_no,h.category_no, b.hobby_like, h.hobbyboard_title");
 			sql.append(" from hobby_post b,member m,hobbyboard h, category c");
-			sql.append(" where b.id=m.id and b.hobbypost_no=? and b.hobbyboard_no = h.hobbyboard_no");
+			sql.append(" where b.id=m.id and b.hobbypost_no=? and b.hobbyboard_no = h.hobbyboard_no and c.category_no = h.category_no");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, no);
 			rs = pstmt.executeQuery();

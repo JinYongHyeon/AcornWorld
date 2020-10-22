@@ -15,7 +15,7 @@ tr:hover {background-color:#E4F7BA;}
 					<option value="title">제목</option>
 					<option value="id">작성자</option>
 				</select>&emsp;
-	<input type="text" name="keyword" size="20">
+	<input type="text" name="keyword" id="keyWord" size="20">
             &emsp;<input type="submit" value="검색">
             </div>
             <hr>

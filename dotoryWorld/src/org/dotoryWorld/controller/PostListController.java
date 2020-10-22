@@ -32,6 +32,7 @@ public class PostListController implements Controller {
 		}
 		ArrayList<PostVO> postinglist = PostDAO.getInstance().getPostingList(pagingBean, hobbyBoardNo);		
 		ListVO postingListPaging = new ListVO(postinglist, pagingBean);
+		
 		request.setAttribute("postingListPaging", postingListPaging);
 		request.setAttribute("url", "/views/board/post-list.jsp");
 		request.setAttribute("hobbyBoardNo", hobbyBoardNo);
