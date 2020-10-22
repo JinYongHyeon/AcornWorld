@@ -904,7 +904,8 @@ public class PostDAO {
 			StringBuilder sb = new StringBuilder();
 			sb.append("SELECT H.HOBBYBOARD_NO,hb.hobbyboard_imgName,hb.hobbyboard_title FROM(");
 			sb.append("SELECT ROW_NUMBER() OVER(ORDER BY hobbypost_viewcount DESC) AS rnum, HOBBYBOARD_NO FROM (");
-			sb.append("SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE,SUM(hobbypost_viewcount) AS hobbypost_viewcount FROM HOBBY_POST GROUP BY HOBBYBOARD_NO))");
+			sb.append("SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE,SUM(hobbypost_viewcount) AS hobbypost_viewcount FROM HOBBY_POST GROUP BY HOBBYBOARD_NO ");
+			sb.append("HAVING HOBBYBOARD_NO NOT IN('17','18')))");
 			sb.append("h,HOBBYBOARD hb WHERE h.HOBBYBOARD_NO = hb.HOBBYBOARD_NO AND RNUM<=2");
 			pstmt = con.prepareStatement(sb.toString());
 			rs = pstmt.executeQuery();
@@ -931,7 +932,8 @@ public class PostDAO {
 			StringBuilder sb = new StringBuilder();
 			sb.append("SELECT H.HOBBYBOARD_NO,hb.hobbyboard_imgName,hb.hobbyboard_title FROM(");
 			sb.append("SELECT ROW_NUMBER() OVER(ORDER BY HOBBY_LIKE DESC) AS rnum, HOBBYBOARD_NO ,HOBBY_LIKE FROM (");
-			sb.append("SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE,SUM(hobbypost_viewcount) FROM HOBBY_POST GROUP BY HOBBYBOARD_NO))");
+			sb.append("SELECT HOBBYBOARD_NO,SUM(HOBBY_LIKE) AS HOBBY_LIKE,SUM(hobbypost_viewcount) FROM HOBBY_POST GROUP BY HOBBYBOARD_NO ");
+			sb.append("HAVING HOBBYBOARD_NO NOT IN('17','18')))");
 			sb.append("h,HOBBYBOARD hb WHERE h.HOBBYBOARD_NO = hb.HOBBYBOARD_NO AND RNUM<=2");
 			pstmt = con.prepareStatement(sb.toString());
 			rs = pstmt.executeQuery();

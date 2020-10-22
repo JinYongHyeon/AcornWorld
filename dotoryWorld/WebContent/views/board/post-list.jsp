@@ -24,10 +24,11 @@ tr:hover {background-color:#E4F7BA;}
 <div class="row searchPost" id=searchResultForm>
 	
 	<!-- <form action="post-search-list.jsp" method="post"> -->
-	<form action="${pageContext.request.contextPath }/front" id="boardTable">
+	<form action="${pageContext.request.contextPath }/front" id="boardTable" onsubmit="return searchTextCheck()">
 	<input type="hidden" name="command" value="searchPost">
 	<input type="hidden" name="hobbyBoardNo" value="${requestScope.hobbyBoardNo}">
-			<div class="form-group row">
+
+			<div class="form-group row" style= "margin-left:510px">
 				 <select name="keyField">
 					<option value="title">제목</option>
 				</select>&emsp;
