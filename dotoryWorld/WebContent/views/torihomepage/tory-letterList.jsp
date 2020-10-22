@@ -15,7 +15,7 @@
 		<thead>
 			<tr>
 				<th>No.${list.homeNo }</th>
-				<th><a href = "${pageContext.request.contextPath}/front?command=toryHome&id=${list.homewriterId }">${list.homewriterId }</a></a></th>
+				<th><a href = "${pageContext.request.contextPath}/front?command=toryHome&id=${list.homewriterId }">${list.homewriterId }</a></th>
 				<th>${list.homeDate }</th>
 				<c:choose>
 					<c:when test="${mvo.id == list.homewriterId || mvo.id == list.memberVO.id || mvo.grade == '다람쥐'}">

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.dotoryWorld.model.MemberDAO;
 
-public class ToryletterWriteController implements Controller {
+public class ToryLetterWriteController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

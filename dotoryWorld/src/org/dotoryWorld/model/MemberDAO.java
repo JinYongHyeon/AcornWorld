@@ -37,7 +37,6 @@ public class MemberDAO {
 	public void deleteMember(String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		MemberVO vo=null;
 		try {
 			con = dataSource.getConnection();
 			String sql = "delete from member where id = ?";
@@ -233,7 +232,6 @@ public class MemberDAO {
 	public void deleteMydotory(String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		MemberVO vo=null;
 		try {
 			con = dataSource.getConnection();
 			String sql = "delete from dotorylist where dotory_id = ?";
