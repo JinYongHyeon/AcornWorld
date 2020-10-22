@@ -16,7 +16,7 @@ public class ToryletterWriteController implements Controller {
 		
 		MemberDAO.getInstance().addToryLetter(id, id_writer, contentLetter);
 		
-		return "front?command=toryHome";
+		return "redirect:front?command=toryHome&id="+id ;
 	}
 
 }
