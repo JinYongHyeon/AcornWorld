@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.dotoryWorld.model.MemberDAO;
+import org.dotoryWorld.model.MemberVO;
 import org.dotoryWorld.model.PostDAO;
 
 public class PostRemoveController implements Controller {
@@ -19,6 +21,10 @@ public class PostRemoveController implements Controller {
 		String no=request.getParameter("no");
 		PostDAO.getInstance().deletePosting(Integer.parseInt(no));
 		String bno=request.getParameter("bno");
+		
+		//북마크 삭제
+		MemberDAO.getInstance().bookmarkRemove(no);
+		
 		// 게시물 목록을 보여주기 위해
 		// path를 front?command=postList setting하고
 		// 리다이렉트 방식으로 이동시킨다. 
