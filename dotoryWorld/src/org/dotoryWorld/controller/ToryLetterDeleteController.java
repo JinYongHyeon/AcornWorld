@@ -17,7 +17,7 @@ public class ToryLetterDeleteController implements Controller {
 		
 		MemberDAO.getInstance().deleteToryLetter(id_writer, id, toryhome_no);
 		
-		return "front?command=toryHome";
+		return "redirect:front?command=toryHome&id="+id;
 	}
 
 }

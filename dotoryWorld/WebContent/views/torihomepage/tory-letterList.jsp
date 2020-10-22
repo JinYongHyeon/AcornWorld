@@ -62,6 +62,52 @@
 	</table>
 </form>
 
+<table>
+	<c:forEach var="list" items="${requestScope.letterVO.letterList }">
+		<thead>
+			<tr id="head">
+				<th>No.${list.homeNo }</th>
+				<th>${list.homewriterId }</th>
+				<th>${list.homeDate }</th>
+				<c:choose>
+					<c:when test="${mvo.id == list.homewriterId || mvo.id == list.memberVO.id || mvo.grade == '다람쥐'}">
+						<th>			
+							<form action="${pageContext.request.contextPath}/front">
+								<input type="hidden" name="command" value="toryLetterDelete">
+								<input type="hidden" name="letterWriter" value="${list.homewriterId }">
+								<input type="hidden" name="id" value="${list.memberVO.id }">
+								<input type="hidden" name="ltterNo" value="${list.homeNo }">
+								<input type="submit" value="삭제">
+							</form>
+						</th>
+					</c:when>
+					<c:otherwise>
+						<th></th>
+					</c:otherwise>
+				</c:choose>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id ="body">
+				<c:choose>
+					<c:when test="${list.memberVO.profilePhoto==null }">
+						<td colspan="2">
+							<img width="20px" src="${pageContext.request.contextPath}/resources/img/profile/profileDefualt.png">
+						</td>
+					</c:when>
+					<c:otherwise>
+						<td colspan="2"><img width="20px" src="${pageContext.request.contextPath}/resources/img/profile/${list.memberVO.profilePhoto }"></td>
+					</c:otherwise>
+				</c:choose>
+				<td colspan="2">
+					${list.homeContent }
+				</td>
+			</tr>
+			<tr><td><br></td></tr>
+		</tbody>
+	</c:forEach>
+</table>
+
 <%-- 방명록 페이징 --%>
 <div class="pagingArea">
 	<c:set var="paging" value="${requestScope.letterVO.pagingBean }" />
