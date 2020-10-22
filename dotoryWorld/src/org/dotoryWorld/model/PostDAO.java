@@ -96,8 +96,7 @@ public class PostDAO {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT B.reportpost_no,B.report_title,B.time_posted,M.id,M.name ");
-			sql.append(
-					"FROM(SELECT row_number() over(ORDER BY reportpost_no DESC) as rnum,reportpost_no,report_title,to_char(reportpost_date,'YYYY.MM.DD') as time_posted,id,category_no FROM report_post where category_no=?");
+			sql.append("FROM(SELECT row_number() over(ORDER BY reportpost_no DESC) as rnum,reportpost_no,report_title,to_char(reportpost_date,'YYYY.MM.DD') as time_posted,id,category_no FROM report_post where category_no=?");
 			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ?");
 			pstmt = con.prepareStatement(sql.toString());
 			// start, endRowNumber를 할당한다
@@ -118,8 +117,6 @@ public class PostDAO {
 				pvo.setMemberVO(mvo);
 				list.add(pvo);
 			}
-			System.out.println("postDAO");
-			System.out.println(list);
 		} finally {
 			closeAll(rs, pstmt, con);
 		}

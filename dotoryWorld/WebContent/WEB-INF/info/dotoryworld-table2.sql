@@ -27,7 +27,7 @@ SELECT * FROM user_sequences; -- 전체 시퀀스 조회
 SELECT * FROM member -- 회원/관리자 정보 테이블 조회
 SELECT * FROM category -- 취미 카테고리(큰항목) 테이블 조회 (공지/신고 포함)
 SELECT * FROM hobbyboard -- 취미 게시판(작은항목) 테이블 조회 (공지/신고 포함)
-SELECT * FROM hobbypost -- 취미 게시판 커뮤니티글 테이블 조회 (공지/신고 게시글 포함)
+SELECT * FROM hobby_post -- 취미 게시판 커뮤니티글 테이블 조회 (공지/신고 게시글 포함)
 SELECT * FROM dotorylist -- 친구리스트 정보 테이블 조회
 SELECT * FROM bookmark -- 커뮤니티글/게시판 즐겨찾기 정보 테이블 조회
 SELECT * FROM toryhome_board -- 개인 미니홈페이지(토리홈) 정보 테이블 조회
@@ -122,7 +122,6 @@ CREATE TABLE bookmark(
 	link VARCHAR2(2000) NOT NULL,
 	bookmark_divide VARCHAR2(300) NOT NULL,
 	id VARCHAR2(300) NOT NULL,
-	bookmark_title VARCHAR2(300)NOT NULL, /* 추가 */
 	CONSTRAINT FK_bookmark_id FOREIGN KEY (id) REFERENCES member (id)
 	ON DELETE CASCADE
 )
@@ -465,3 +464,4 @@ VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'drago
  */
 
 ------------------------------------------------------------
+

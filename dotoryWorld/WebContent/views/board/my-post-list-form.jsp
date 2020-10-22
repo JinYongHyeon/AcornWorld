@@ -7,8 +7,7 @@ tr:hover {background-color:#E4F7BA;}
 </style>
 <!-- 게시물 검색-->
 <h2><img src="resources/img/myPost.png" id="mypostImg"></h2>
-
-<form action="${pageContext.request.contextPath }/front" id="boardTable">
+<form action="${pageContext.request.contextPath }/front" id="boardTable" onsubmit="return searchTextCheck()">
 	<input type="hidden" name="command" value="searchMyPost">
 	<input type="hidden" name="id" value="${sessionScope.mvo.id}">
 			<div class="form-group row"  style= "margin-left:670px">

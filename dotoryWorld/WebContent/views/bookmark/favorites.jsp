@@ -8,8 +8,8 @@
 				<li>
 					<form action="${pageContext.request.contextPath}/front"
 						id="favoriteForm">
-						<img
-							src="${pageContext.request.contextPath}/resources/img/${mark.boardVO.boardImage}">
+						<a href="${pageContext.request.contextPath}/front?command=postList&hobbyBoardNo=${mark.bookmarkLink}"><img
+							src="${pageContext.request.contextPath}/resources/img/${mark.boardVO.boardImage}"></a>
 						<input type="button" value="${mark.boardVO.boardTitle}"
 							onclick="location.href='${pageContext.request.contextPath}/front?command=postList&hobbyBoardNo=${mark.bookmarkLink}'">
 					</form>
