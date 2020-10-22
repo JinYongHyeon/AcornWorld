@@ -33,8 +33,13 @@
 		text-align: center;
 	}
 	
-	#letterWrite{
+	#letterWrite td{
 		border: 3px solid lime;
+		resize: none;
+	}
+	
+	#letterForm{
+		resize: none;
 	}
 
 </style>
@@ -107,10 +112,10 @@ ${mvo.id == list.homewriterId || mvo.id == list.memberVO.id || mvo.grade == '다
 	<tbody>
 		<tr>
 			<td>
-				test
+				<textarea id="letterForm" cols="130" rows="4" name="content" required="required" placeholder="본문내용을 입력하세요"></textarea>
 			</td>
 			<td>
-				test	
+				<input type="submit" value="글 남기기">
 			</td>
 		</tr>
 	</tbody>
