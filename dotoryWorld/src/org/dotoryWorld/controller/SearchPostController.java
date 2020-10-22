@@ -16,17 +16,20 @@ public class SearchPostController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String title=request.getParameter("keyword");
 		String nowPage=request.getParameter("pageNo");
+		String hobbyboardNo = request.getParameter("hobbyBoardNo");
+		System.out.println(hobbyboardNo);
 		int TotalCount = PostDAO.getInstance().searchPost(title);
 		PagingBean pgb=null;
 		if(nowPage==null) {
-			 pgb = new PagingBean(TotalCount, 15,5);  
+			 pgb = new PagingBean(TotalCount, 15,10);  
 		}else {
-			 pgb = new PagingBean(TotalCount, Integer.parseInt(nowPage), 15,5);  
+			 pgb = new PagingBean(TotalCount, Integer.parseInt(nowPage), 15,10);  
 		}
 		
-		ArrayList<PostVO> pvo=PostDAO.getInstance().searchPost(title, pgb);
+		ArrayList<PostVO> pvo=PostDAO.getInstance().searchPost(title,hobbyboardNo, pgb);
 		ListVO lvo=new ListVO(pvo, pgb);
 		request.setAttribute("keyword", title);
+		request.setAttribute("hobbyBoardNo", hobbyboardNo);
 		request.setAttribute("postingListPaging", lvo);
 		request.setAttribute("url", "/views/board/post-list.jsp");
 		return "/views/template/main-layout.jsp";
