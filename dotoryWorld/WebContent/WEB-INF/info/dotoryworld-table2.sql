@@ -161,13 +161,13 @@ DROP TABLE member -- 회원/관리자 정보 테이블 삭제
 DROP TABLE category -- 취미 카테고리(큰항목) 테이블 삭제 (공지/신고 포함)
 DROP TABLE hobbyboard -- 취미 게시판(작은항목) 테이블 삭제 (공지/신고 포함)
 DROP TABLE hobby_post -- 취미 게시판 커뮤니티글 테이블 삭제 (공지/신고 게시글 포함)
+DROP TABLE hobbypostlike 
 DROP TABLE dotorylist -- 친구리스트 정보 테이블 삭제
 DROP TABLE bookmark -- 커뮤니티글/게시판 즐겨찾기 정보 테이블 삭제
 DROP TABLE toryhome_board -- 개인 미니홈페이지(토리홈) 정보 테이블 삭제
 DROP TABLE report_post -- 신고 게시물 테이블 삭제
 DROP TABLE notice_post -- 공지 게시물 테이블 삭제
 DROP TABLE photobook -- 사진첩 테이블 삭제
-DROP TABLE hobbypostlike -- 커뮤니티글 좋아요 테이블 삭제
 ------------------------------------------------------------
 --------------------- DROP SEQUENCE 모음 ---------------------
 DROP SEQUENCE category_no_seq -- 취미 카테고리(큰항목) 테이블 시퀀스 삭제 (공지/신고 포함)
@@ -183,6 +183,7 @@ DROP SEQUENCE photobook_no_seq -- 사진첩 테이블 시퀀스 삭제
 ---------------------- SAMPLE DATA 모음 ----------------------
 
 -- id 
+INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('admin','1234','가짜개발자','판교','fake@gmail.com','가짜개발자','진짜가 되고 싶은 가짜','다람쥐');
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('hellchang','1234','김행창','스포짐','2du@gmail.com','창헬','운동을 사랑하는 강한 남자.','도토리');
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('chukku','1234','추국공','판교','chukku@gmail.com','축사모','내 드리블은 메시 급','도토리');
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('badbad','1234','배민턱','서울','hamington@gmail.com','배해밍턴','날아올라..!','도토리');
@@ -289,7 +290,7 @@ INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hob
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 발라드 게시판입니다.','발라드~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),15,'richi');
 -- category4 board4
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'여기는 팝 게시판입니다.','팝~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),16,'usejungwoor3');
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 팝 게시판입니다.','팝~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),16,'jungwoo');
 
 -- 공지게시판(17번 게시판) 샘플 데이터
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
@@ -314,11 +315,11 @@ INSERT INTO dotorylist VALUES('dragon','ddol');
 -- 취미 게시판 대문 사진
 UPDATE hobbyboard SET hobbyboard_imgName = 'soccer.jpg' WHERE hobbyboard_no='1';
 UPDATE hobbyboard SET hobbyboard_imgName = 'badminton.jpg' WHERE hobbyboard_no='2';
-UPDATE hobbyboard SET hobbyboard_imgName = 'basketball.jpg' WHERE hobbyboard_no='5';
-UPDATE hobbyboard SET hobbyboard_imgName = 'baseball.jpg' WHERE hobbyboard_no='6';
+UPDATE hobbyboard SET hobbyboard_imgName = 'basketball.jpg' WHERE hobbyboard_no='3';
+UPDATE hobbyboard SET hobbyboard_imgName = 'baseball.jpg' WHERE hobbyboard_no='4';
 
-UPDATE hobbyboard SET hobbyboard_imgName = 'japan_food.jpg' WHERE hobbyboard_no='3';
-UPDATE hobbyboard SET hobbyboard_imgName = 'italian_food.jpg' WHERE hobbyboard_no='4';
+UPDATE hobbyboard SET hobbyboard_imgName = 'japan_food.jpg' WHERE hobbyboard_no='5';
+UPDATE hobbyboard SET hobbyboard_imgName = 'italian_food.jpg' WHERE hobbyboard_no='6';
 UPDATE hobbyboard SET hobbyboard_imgName = 'chinese_food.jpg' WHERE hobbyboard_no='7';
 UPDATE hobbyboard SET hobbyboard_imgName = 'korea_food.jpg' WHERE hobbyboard_no='8';
 
@@ -464,4 +465,3 @@ VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'drago
  */
 
 ------------------------------------------------------------
-
