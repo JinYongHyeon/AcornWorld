@@ -520,8 +520,8 @@ body {
 
 /*게시물 리스트 로고*/
 #postListLogo img {
-	width: 750px;
-	height: 100px;
+	width: 500px;
+	height: 70px;
 }
 
 /*게시물 경로*/
