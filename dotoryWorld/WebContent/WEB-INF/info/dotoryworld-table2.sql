@@ -167,6 +167,7 @@ DROP TABLE toryhome_board -- 개인 미니홈페이지(토리홈) 정보 테이�
 DROP TABLE report_post -- 신고 게시물 테이블 삭제
 DROP TABLE notice_post -- 공지 게시물 테이블 삭제
 DROP TABLE photobook -- 사진첩 테이블 삭제
+DROP TABLE hobbypostlike -- 커뮤니티글 좋아요 테이블 삭제
 ------------------------------------------------------------
 --------------------- DROP SEQUENCE 모음 ---------------------
 DROP SEQUENCE category_no_seq -- 취미 카테고리(큰항목) 테이블 시퀀스 삭제 (공지/신고 포함)
