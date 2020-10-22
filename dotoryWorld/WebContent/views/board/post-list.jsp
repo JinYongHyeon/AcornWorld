@@ -20,6 +20,67 @@
 <style>
 tr:hover {background-color:#E4F7BA;}
 </style>
+
+<form id="postListLogo">
+<c:choose>
+	<c:when test="${requestScope.hobbyBoardNo==1}">
+		<img src="${pageContext.request.contextPath}/resources/img/footballLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==2}">
+		<img src="${pageContext.request.contextPath}/resources/img/badmintonLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==3}">
+		<img src="${pageContext.request.contextPath}/resources/img/japaneseFoodLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==4}">
+		<img src="${pageContext.request.contextPath}/resources/img/westernFoodLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==5}">
+		<img src="${pageContext.request.contextPath}/resources/img/basketballLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==6}">
+		<img src="${pageContext.request.contextPath}/resources/img/baseballLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==7}">
+		<img src="${pageContext.request.contextPath}/resources/img/chineseFoodLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==8}">
+		<img src="${pageContext.request.contextPath}/resources/img/koreanFoodLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==9}">
+		<img src="${pageContext.request.contextPath}/resources/img/romanceLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==10}">
+		<img src="${pageContext.request.contextPath}/resources/img/thrillerLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==11}">
+		<img src="${pageContext.request.contextPath}/resources/img/horrorLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==12}">
+		<img src="${pageContext.request.contextPath}/resources/img/actionLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==13}">
+		<img src="${pageContext.request.contextPath}/resources/img/danceLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==14}">
+		<img src="${pageContext.request.contextPath}/resources/img/classicLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==15}">
+		<img src="${pageContext.request.contextPath}/resources/img/balladLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==16}">
+		<img src="${pageContext.request.contextPath}/resources/img/popLogo.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==17}">
+		<img src="${pageContext.request.contextPath}/resources/img/notice.png">
+	</c:when>
+	<c:when test="${requestScope.hobbyBoardNo==18}">
+		<img src="${pageContext.request.contextPath}/resources/img/report.png">
+	</c:when>
+</c:choose>
+</form>
+<br><Br>
+
 <!-- 게시물 검색-->
 <div class="row searchPost" id=searchResultForm>
 	
