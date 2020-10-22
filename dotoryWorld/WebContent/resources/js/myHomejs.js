@@ -78,7 +78,7 @@ function profileFileCheck() {
 //어드민 페이지 게시물 삭제 이벤트
 function postDelete() {
 	var no = document.getElementsByName("postNo");
-	var postDeleteForm = document.getElementById("adminPostDeletForm");
+	//var postDeleteForm = document.getElementById("adminPostDeletForm");
 	var flag = false;
 	for (var i = 0; i < no.length; i++) {
 		if (no[i].checked === true) {
@@ -91,9 +91,10 @@ function postDelete() {
 		return flag;
 	}
 }
+// 내 게시물 삭제
 function myPostDelete() {
-	var no = document.getElementsByName("postNo");
-	var myPostDeleteForm = document.getElementById("myPostDeleteFrom");
+	var no = document.getElementsByName("deletePostNo");
+	//var myPostDeleteForm = document.getElementById("myPostDeleteFrom");
 	var flag = false;
 	for (var i = 0; i < no.length; i++) {
 		if (no[i].checked === true) {
@@ -105,6 +106,7 @@ function myPostDelete() {
 		alert("체크박스를 체크해주세요");
 		return flag;
 	}
+	return confirm("정말로 삭제하시겠습니까?");
 }
 
 
