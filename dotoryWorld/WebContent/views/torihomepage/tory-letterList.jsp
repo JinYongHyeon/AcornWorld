@@ -47,11 +47,6 @@
 <%-- 방명록 글 목록 --%>
 <table>
 	<c:forEach var="list" items="${requestScope.letterVO.letterList }">
-	<form action="${pageContext.request.contextPath}/front">
-	<input type="hidden" name="command" value="toryLetterDelete">
-	<input type="hidden" name="letterWriter" value="${list.homewriterId }">
-	<input type="hidden" name="id" value="${list.memberVO.id }">
-	<input type="hidden" name="ltterNo" value="${list.homeNo }">
 		<thead>
 			<tr id="head">
 				<th>No.${list.homeNo }</th>
@@ -59,7 +54,15 @@
 				<th>${list.homeDate }</th>
 				<c:choose>
 					<c:when test="${mvo.id == list.homewriterId || mvo.id == list.memberVO.id || mvo.grade == '다람쥐'}">
-						<th><input type="submit" value="삭제"></th>
+						<th>			
+							<form action="${pageContext.request.contextPath}/front">
+								<input type="hidden" name="command" value="toryLetterDelete">
+								<input type="hidden" name="letterWriter" value="${list.homewriterId }">
+								<input type="hidden" name="id" value="${list.memberVO.id }">
+								<input type="hidden" name="ltterNo" value="${list.homeNo }">
+								<input type="submit" value="삭제">
+							</form>
+						</th>
 					</c:when>
 					<c:otherwise>
 						<th></th>
@@ -85,7 +88,6 @@
 			</tr>
 			<tr><td><br></td></tr>
 		</tbody>
-	</form>
 	</c:forEach>
 </table>
 
