@@ -64,6 +64,7 @@ CREATE TABLE category(
 
 -- 취미 카테고리 테이블 category_no 시퀀스 생성 (비정상 종료로 인해 시퀀스가 증가하는 것을 방지하기 위해 NOCACHE 추가)
 CREATE SEQUENCE category_no_seq NOCACHE;
+drop SEQUENCE category_no_seq;
 
 -- 취미 게시판(작은항목) 테이블 생성 (공지/신고 포함)
 CREATE TABLE hobbyboard(
@@ -167,6 +168,7 @@ DROP TABLE toryhome_board -- 개인 미니홈페이지(토리홈) 정보 테이�
 DROP TABLE report_post -- 신고 게시물 테이블 삭제
 DROP TABLE notice_post -- 공지 게시물 테이블 삭제
 DROP TABLE photobook -- 사진첩 테이블 삭제
+DROP TABLE hobbypostlike
 ------------------------------------------------------------
 --------------------- DROP SEQUENCE 모음 ---------------------
 DROP SEQUENCE category_no_seq -- 취미 카테고리(큰항목) 테이블 시퀀스 삭제 (공지/신고 포함)
