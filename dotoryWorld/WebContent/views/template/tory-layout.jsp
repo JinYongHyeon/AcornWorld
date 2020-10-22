@@ -81,8 +81,8 @@ body {
 			<div class="toryHomeNav">
 				<ul>
 					<li><a href="#">방명록</a></li>
-					<li><a href="#">사진첩</a></li>
-					<li><a href="#">다이어리</a></li>
+					<%-- <li><a href="#">사진첩</a></li>
+					<li><a href="#">다이어리</a></li>--%>
 					<c:if
 						test="${sessionScope.mvo.id == requestScope.toryHomeImformation.id}">
 						<li><a

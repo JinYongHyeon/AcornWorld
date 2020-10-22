@@ -563,7 +563,7 @@ public class PostDAO {
 		return count;
 	}
 	
-	public ArrayList<PostVO> searchPost(String postTitle, PagingBean pgb) throws SQLException {
+	public ArrayList<PostVO> searchPost(String postTitle,String hobbyboardNo ,PagingBean pgb) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -575,12 +575,13 @@ public class PostDAO {
 			sql.append("select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
 			sql.append("from(select row_number() over(order by hobbypost_no asc) as rnum, ");
 			sql.append("hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
-			sql.append("from hobby_post where hobby_title LIKE ?)");
+			sql.append("from hobby_post where hobby_title LIKE ? AND hobbyboard_no = ?)");
 			sql.append("where rnum between ? and ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, "%" + postTitle + "%");
-			pstmt.setInt(2, pgb.getStartRowNumber());
-			pstmt.setInt(3, pgb.getEndRowNumber());
+			pstmt.setString(2,hobbyboardNo);
+			pstmt.setInt(3, pgb.getStartRowNumber());
+			pstmt.setInt(4, pgb.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				PostVO pvo = new PostVO();
@@ -631,11 +632,11 @@ public class PostDAO {
 		try {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
+			sql.append("select h.hobbypost_no,h.hobby_title,h.id,h.hobbypost_date,h.hobbypost_viewcount,ho.hobbyboard_title ");
 			sql.append("from(select row_number() over(order by hobbypost_no asc) as rnum, ");
-			sql.append("hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
-			sql.append("from hobby_post where hobby_title LIKE ? AND id = ?)");
-			sql.append("where rnum between ? and ? ");
+			sql.append("hobbypost_no,hobby_title,id,TO_CHAR(hobbypost_date,'yyyy-mm-dd hh24:mi:ss') AS hobbypost_date,hobbypost_viewcount,hobbyboard_no ");
+			sql.append("from hobby_post where hobby_title LIKE ? AND id = ?)h, hobbyboard ho ");
+			sql.append("where rnum between ? and ? AND h.hobbyboard_no = ho.hobbyboard_no");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, "%" + postTitle + "%");
 			pstmt.setString(2, id);
@@ -651,6 +652,10 @@ public class PostDAO {
 				pvo.setMemberVO(mvo);
 				pvo.setPostDate(rs.getString(4));
 				pvo.setViewCount(rs.getInt(5));
+				BoardVO bvo = new BoardVO();
+				bvo.setBoardTitle(rs.getString(6));
+				pvo.setBoardVO(bvo);
+				
 				searchMyList.add(pvo);
 			}
 		} finally {
