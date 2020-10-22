@@ -206,6 +206,14 @@ ALTER TABLE bookmark ADD(bookmark_title VARCHAR2(300)NOT NULL);
 
 select * from category
 
+--북마크 상품번호 FK  설정
+ALTER TABLE BOOKMARK
+
+ALTER TABLE '테이블명' ADD CONSTRAINT '제약조건명' FOREIGN KEY('외래키 칼럼명') 
+REFERENCES '참조테이블'('참조테이블_PK') [ON DELET 옵션] [ON UPDATE 옵션]
+
+
+
 --샘플 데이터
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('admin','1234','관리자','판교','admin@gmail.com','다람쥐','관리자입니다','다람쥐');
 INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES('user1','1234','사용자1','판교','user1@gmail.com','도토리1','도토리1입니다','도토리');
@@ -397,10 +405,14 @@ SELECT COUNT(*) FROM TORYHOME_BOARD WHERE id='user4';
 
 --북마크 페이징 쿼리문
 SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(
-SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) as no,link FROM bookmark
+SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no desc) as no,link FROM bookmark
 WHERE id= 'user1' AND bookmark_divide = '북마크')b,hobby_post h,hobbyboard ho
 WHERE b.link =h.hobbypost_no AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN 1 AND 20
 ORDER BY no ASC
+
+
+SELECT * FROM HOBBY_POST
+SELECT * FROM BOOKMARK
 
 --핫 리스트 쿼리문
 SELECT H.RNUM,H.HOBBYBOARD_NO,hb.hobbyboard_imgName,hb.hobbyboard_title FROM(
@@ -422,5 +434,6 @@ FROM(SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) AS rnum,link,id FROM boo
 WHERE bookmark_divide='즐겨찾기' AND id='user1')b,hobbyboard h 
 WHERE h.hobbyboard_no = b.link AND b.rnum BETWEEN 2 AND 3;
 
+SELECT COUNT(*) FROM BOOKMARK WHERE ID ='user1' AND link = 54;
 
 

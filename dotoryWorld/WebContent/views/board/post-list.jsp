@@ -20,14 +20,13 @@
 <style>
 tr:hover {background-color:#E4F7BA;}
 </style>
-<h1>${requestScope.hobbyBoardNo}</h1>
 <!-- 게시물 검색-->
 <div class="row searchPost" id=searchResultForm>
 	
 	<!-- <form action="post-search-list.jsp" method="post"> -->
 	<form action="${pageContext.request.contextPath }/front" id="boardTable">
 	<input type="hidden" name="command" value="searchPost">
-	<input type="hidden" name="hobbyBoardNo" value="1">
+	<input type="hidden" name="hobbyBoardNo" value="${requestScope.hobbyBoardNo}">
 			<div class="form-group row">
 				 <select name="keyField">
 					<option value="title">제목</option>
@@ -64,7 +63,7 @@ tr:hover {background-color:#E4F7BA;}
 				<td>
 					<c:choose>
 						<c:when test="${sessionScope.mvo!=null}">
-							<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo }">${pvo.postTitle }</a>
+							<a href="${pageContext.request.contextPath}/front?command=postDetail&no=${pvo.postNo}">${pvo.postTitle }</a>
 						</c:when>
 						<c:otherwise>
 							${pvo.postTitle }

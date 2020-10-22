@@ -78,8 +78,8 @@ public class HandlerMapping {
 			controller = new ReportPostWriteController();
 		} else if (command.contentEquals("reportPostUpdateForm")) { //신고게시물 수정 폼
 			controller = new ReportPostUpdateFormController();
-		} else if (command.contentEquals("reportPostUpdate")) { //신고게시물 수정
-			controller = new ReportPostUpdateController();
+		/*} else if (command.contentEquals("reportPostUpdate")) { //신고게시물 수정
+			controller = new ReportPostUpdateController();*/
 		} else if (command.contentEquals("reportPostRemove")) { //신고게시물 삭제
 			controller = new ReportPostRemoveController();
 		} else if (command.contentEquals("reportPostDetail")) { //신고게시물 상세

@@ -888,28 +888,7 @@ public class PostDAO {
 			closeAll(pstmt, con);
 		}
 	}
-
-	/**
-	 * 북마크 추가
-	 * @param bookmark
-	 * @throws SQLException
-	 */
-	public void addBookMark(BookmarkVO bookmark) throws SQLException {
-	   Connection con = null;
-	   PreparedStatement pstmt = null;
-	   try {
-		   con = dataSource.getConnection();
-		   StringBuilder sb = new StringBuilder();
-		   sb.append("INSERT INTO bookmark(bookmark_no,link,bookmark_divide,id) VALUES(bookmark_no_seq.NEXTVAL,?,?,?)");
-		   pstmt = con.prepareStatement(sb.toString());
-		   pstmt.setString(1, bookmark.getBookmarkLink());
-		   pstmt.setString(2, bookmark.getBookmarkDivide());
-		   pstmt.setString(3, bookmark.getMemberVO().getId());
-		   pstmt.executeUpdate();
-	   }finally {
-		   closeAll(pstmt, con);
-	   }
-	}
+	
 	/**
 	 * 베스트 취미 가져오기
 	 * @return
@@ -968,5 +947,6 @@ public class PostDAO {
 		}
 		return betsList;
 	}
+
 
 }

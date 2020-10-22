@@ -392,7 +392,7 @@ public class MemberDAO {
 		  con = dataSource.getConnection();
 		  StringBuilder sb = new StringBuilder();
 		  sb.append("SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(");
-		  sb.append("SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no ASC) as no,link FROM bookmark ");
+		  sb.append("SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no DESC) as no,link FROM bookmark ");
 		  sb.append("WHERE id= ? AND bookmark_divide = ?)b,hobby_post h,hobbyboard ho ");
 		  sb.append("WHERE b.link =h.hobbypost_no AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN ? AND ?");
 		  sb.append(" ORDER BY no ASC");

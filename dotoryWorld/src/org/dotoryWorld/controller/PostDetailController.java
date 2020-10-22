@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.dotoryWorld.model.BookmarkVO;
+import org.dotoryWorld.model.MemberDAO;
 import org.dotoryWorld.model.MemberVO;
 import org.dotoryWorld.model.PostDAO;
 import org.dotoryWorld.model.PostVO;
@@ -44,6 +46,23 @@ public class PostDetailController implements Controller {
 			likeCheck = "down";
 		}
 		
+		/**
+		 * 북마크 체크
+		 */
+		BookmarkVO bookVO = new BookmarkVO();
+		bookVO.setBookmarkDivide("북마크");
+		MemberVO memberVO = new MemberVO();
+		memberVO.setId(mvo.getId());
+		bookVO.setMemberVO(memberVO);
+		ArrayList<String> bookList = MemberDAO.getInstance().bookmarkCheck(bookVO);
+		String markCheck = null;
+		if(bookList.contains(no)) {
+			markCheck = "up";
+		}else {
+			markCheck = "down";
+		}
+		
+		request.setAttribute("markCheck", markCheck);
 		request.setAttribute("likeCheck", likeCheck);
 		request.setAttribute("pvo", vo);
 		request.setAttribute("url", "/views/board/post-detail-form.jsp");
