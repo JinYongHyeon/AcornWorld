@@ -400,6 +400,8 @@ VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user4', SYSDATE, 'baeba
 INSERT INTO toryhome_board(toryhome_no, toryhome_title, toryhome_content, toryhome_date, id_writer, id)
 VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'dragon','ddol');
 
+
+ALTER TABLE bookmark DROP COLUMN bookmark_title;
 -------------------------------------------------------------
 ----------------------- 사용하지 않는 테이블 -----------------------
 -- 개인 미니홈페이지 사진첩 테이블 생성(3차 구현에 해당하는 사진첩 기능을 구현하지 않아 사용하지 않음.)
