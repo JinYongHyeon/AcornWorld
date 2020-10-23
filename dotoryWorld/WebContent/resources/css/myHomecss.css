@@ -513,6 +513,11 @@ body {
 	vertical-align: middle;
 }
 
+/*즐겨찾기 게시판 로고*/
+#favoriteLogo img {
+	padding-bottom: 30px;
+}
+
 /*게시물 수정, 글쓰기의 제목 입력칸*/
 #frm input[type=text] {
 	width: 60%;
