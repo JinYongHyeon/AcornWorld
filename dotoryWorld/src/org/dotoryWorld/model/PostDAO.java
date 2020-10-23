@@ -570,11 +570,11 @@ public class PostDAO {
 		try {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
+			sql.append("select h.hobbypost_no,h.hobby_title,h.id,h.hobbypost_date,h.hobbypost_viewcount,m.nickname ");
 			sql.append("from(select row_number() over(order by hobbypost_no asc) as rnum, ");
 			sql.append("hobbypost_no,hobby_title,id,hobbypost_date,hobbypost_viewcount ");
-			sql.append("from hobby_post where hobby_title LIKE ? AND hobbyboard_no = ?)");
-			sql.append("where rnum between ? and ? ");
+			sql.append("from hobby_post where hobby_title LIKE ? AND hobbyboard_no = ?)h, member m ");
+			sql.append("where h.id=m.id AND rnum between ? and ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, "%" + postTitle + "%");
 			pstmt.setString(2,hobbyboardNo);
@@ -587,6 +587,7 @@ public class PostDAO {
 				pvo.setPostTitle(rs.getString(2));
 				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString(3));
+				mvo.setNickname(rs.getString(6));
 				pvo.setMemberVO(mvo);
 				pvo.setPostDate(rs.getString(4));
 				pvo.setViewCount(rs.getInt(5));

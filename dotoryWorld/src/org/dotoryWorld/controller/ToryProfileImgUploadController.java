@@ -33,7 +33,7 @@ public class ToryProfileImgUploadController extends HttpServlet {
 		if(session == null || session.getAttribute("mvo")==null) response.sendRedirect("front?command=main");
 
 		 String path = request.getSession().getServletContext().getRealPath("/resources/img/profile/");// 최종 주소
-
+		//MultipartRequest(request,저장고간,최대용량,한글인코딩,같은이름파일 처리방법 -- cos 라이브러리 사용
 		MultipartRequest mutipartRequest = new MultipartRequest(request, path, 10 * 1024 * 1024, "UTF-8",
 				new DefaultFileRenamePolicy());
 		File profileImg = mutipartRequest.getFile("profileImg");
