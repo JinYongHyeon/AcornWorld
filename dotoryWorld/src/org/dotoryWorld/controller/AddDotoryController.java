@@ -10,12 +10,13 @@ import org.dotoryWorld.model.MemberDAO;
 import org.dotoryWorld.model.MemberVO;
 
 public class AddDotoryController implements Controller {
-	/**
-	 * ajax을 이용 친구 아이디, 내 아이디를 가져와 추가 하기전 중복 확인 후 이상 없을 시 추가 name : responsebody 로
-	 * value : message 중복 시 중복알림 아닐 시 추가 알림
-	 */
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		/**
+		 * ajax을 이용 친구 아이디, 내 아이디를 가져와 추가 하기전 중복 확인 후 이상 없을 시 추가 name : responsebody 로
+		 * value : message 중복 시 중복알림 아닐 시 추가 알림
+		 */
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("mvo") == null)
 			return "redirect:front?command=main";
