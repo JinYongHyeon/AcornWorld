@@ -384,10 +384,10 @@ public class MemberDAO {
 	   try {
 		  con = dataSource.getConnection();
 		  StringBuilder sb = new StringBuilder();
-		  sb.append("SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title FROM(");
-		  sb.append("SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no DESC) as no,link FROM bookmark ");
-		  sb.append("WHERE id= ? AND bookmark_divide = ?)b,hobby_post h,hobbyboard ho ");
-		  sb.append("WHERE b.link =h.hobbypost_no AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN ? AND ?");
+		  sb.append("SELECT no,b.link,h.hobby_title,h.id,ho.hobbyboard_title,m.nickname FROM(");
+		  sb.append("SELECT ROW_NUMBER() OVER(ORDER BY bookmark_no DESC) as no,link,id FROM bookmark ");
+		  sb.append("WHERE id= ? AND bookmark_divide = ?)b,hobby_post h,hobbyboard ho,member m ");
+		  sb.append("WHERE b.link =h.hobbypost_no AND m.id = b.id AND h.hobbyboard_no = ho.hobbyboard_no AND no BETWEEN ? AND ?");
 		  sb.append(" ORDER BY no ASC");
 		  pstmt = con.prepareStatement(sb.toString());
 		  pstmt.setString(1, id);
@@ -406,6 +406,7 @@ public class MemberDAO {
 			  
 			  MemberVO mvo = new MemberVO();
 			  mvo.setId(rs.getString("id"));
+			  mvo.setNickname(rs.getString("nickname"));
 			  bookVO.setMemberVO(mvo);
 			  
 			  bookVO.setBookmarkLink(rs.getString("link"));
