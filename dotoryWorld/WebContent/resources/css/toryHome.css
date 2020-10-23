@@ -246,9 +246,12 @@
 	font-size: x-large;
 }
 
+#toryLetterWriteForm textarea {
+	border: 1px solid #000000;
+}
+
 /*미니홈피 방명록 리스트*/
 #toryLetterList {
-	border: 2px solid #ffffff;
 	padding: 10px;
 	width: 90%;
 }

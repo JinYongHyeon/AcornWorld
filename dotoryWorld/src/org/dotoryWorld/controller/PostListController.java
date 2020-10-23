@@ -4,10 +4,8 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.dotoryWorld.model.ListVO;
-import org.dotoryWorld.model.MemberVO;
 import org.dotoryWorld.model.PagingBean;
 import org.dotoryWorld.model.PostDAO;
 import org.dotoryWorld.model.PostVO;
@@ -32,6 +30,7 @@ public class PostListController implements Controller {
 		}
 		ArrayList<PostVO> postinglist = PostDAO.getInstance().getPostingList(pagingBean, hobbyBoardNo);		
 		ListVO postingListPaging = new ListVO(postinglist, pagingBean);
+		
 		request.setAttribute("postingListPaging", postingListPaging);
 		request.setAttribute("url", "/views/board/post-list.jsp");
 		request.setAttribute("hobbyBoardNo", hobbyBoardNo);

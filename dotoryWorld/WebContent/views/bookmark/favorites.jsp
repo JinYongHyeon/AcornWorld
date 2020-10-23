@@ -8,8 +8,8 @@
 				<li>
 					<form action="${pageContext.request.contextPath}/front"
 						id="favoriteForm">
-						<img
-							src="${pageContext.request.contextPath}/resources/img/${mark.boardVO.boardImage}">
+						<a href="${pageContext.request.contextPath}/front?command=postList&hobbyBoardNo=${mark.bookmarkLink}"><img
+							src="${pageContext.request.contextPath}/resources/img/${mark.boardVO.boardImage}"></a>
 						<input type="button" value="${mark.boardVO.boardTitle}"
 							onclick="location.href='${pageContext.request.contextPath}/front?command=postList&hobbyBoardNo=${mark.bookmarkLink}'">
 					</form>
@@ -47,8 +47,7 @@
 				<c:if test="${requestScope.bookmarkPagin.nextPageGroup}">
 					<li class="page-item"><a class="page-link"
 						href="${pageContext.request.contextPath}/front?command=favoritesList&nowPage=${requestScope.bookmarkPagin.endPageOfPageGroup+1}&id=${sessionScope.mvo.id}&bookmark=즐겨찾기"
-						"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
 				</c:if>
 			</ul>

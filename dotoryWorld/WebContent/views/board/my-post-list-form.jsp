@@ -7,8 +7,7 @@ tr:hover {background-color:#E4F7BA;}
 </style>
 <!-- 게시물 검색-->
 <h2><img src="resources/img/myPost.png" id="mypostImg"></h2>
-
-<form action="${pageContext.request.contextPath }/front" id="boardTable">
+<form action="${pageContext.request.contextPath }/front" id="boardTable" onsubmit="return searchTextCheck()">
 	<input type="hidden" name="command" value="searchMyPost">
 	<input type="hidden" name="id" value="${sessionScope.mvo.id}">
 			<div class="form-group row"  style= "margin-left:670px">
@@ -16,7 +15,7 @@ tr:hover {background-color:#E4F7BA;}
 					<option value="title">제목</option>
 					<option value="id">작성자</option>
 				</select>&emsp;
-	<input type="text" name="keyword" size="20">
+	<input type="text" name="keyword" id="keyWord" size="20">
             &emsp;<input type="submit" value="검색">
             </div>
             <hr>

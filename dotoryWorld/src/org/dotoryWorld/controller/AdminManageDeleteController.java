@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.dotoryWorld.model.MemberDAO;
 import org.dotoryWorld.model.MemberVO;
 import org.dotoryWorld.model.PostDAO;
 
@@ -22,9 +23,9 @@ public class AdminManageDeleteController implements Controller {
 			
 		}
 		String no[] = request.getParameterValues("postNo");
-		System.out.println(request.getParameterValues("postNo"));
 		for(int i=0;i<no.length;i++) {
 			PostDAO.getInstance().deletePostingsByNo(Integer.parseInt(no[i]));
+			MemberDAO.getInstance().bookmarkRemove((no[i]));
 		}
 		
 		return "redirect:front?command=adminManage";

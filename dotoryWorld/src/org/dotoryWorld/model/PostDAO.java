@@ -56,7 +56,7 @@ public class PostDAO {
 		try {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted,M.id,M.name FROM( ");
+			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted,M.id,M.name,M.nickname FROM( ");
 			sql.append("SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
 			sql.append("to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post WHERE hobbyboard_no = ? ");
 			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ? ");
@@ -77,8 +77,8 @@ public class PostDAO {
 				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString(5));
 				mvo.setName(rs.getString(6));
+				mvo.setNickname(rs.getString(7));
 				pvo.setMemberVO(mvo);
-
 				list.add(pvo);
 			}
 		} finally {
@@ -96,8 +96,7 @@ public class PostDAO {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT B.reportpost_no,B.report_title,B.time_posted,M.id,M.name ");
-			sql.append(
-					"FROM(SELECT row_number() over(ORDER BY reportpost_no DESC) as rnum,reportpost_no,report_title,to_char(reportpost_date,'YYYY.MM.DD') as time_posted,id,category_no FROM report_post where category_no=?");
+			sql.append("FROM(SELECT row_number() over(ORDER BY reportpost_no DESC) as rnum,reportpost_no,report_title,to_char(reportpost_date,'YYYY.MM.DD') as time_posted,id,category_no FROM report_post where category_no=?");
 			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ?");
 			pstmt = con.prepareStatement(sql.toString());
 			// start, endRowNumber를 할당한다
@@ -118,8 +117,6 @@ public class PostDAO {
 				pvo.setMemberVO(mvo);
 				list.add(pvo);
 			}
-			System.out.println("postDAO");
-			System.out.println(list);
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
@@ -216,9 +213,9 @@ public class PostDAO {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append("select b.hobby_title,to_char(b.hobbypost_date,'YYYY.MM.DD  HH24:MI:SS') as time_posted, c.category_name");
-			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name,b.hobbyboard_no,h.category_no, b.hobby_like, h.hobbyboard_title");
+			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name,m.nickname,b.hobbyboard_no,h.category_no, b.hobby_like, h.hobbyboard_title");
 			sql.append(" from hobby_post b,member m,hobbyboard h, category c");
-			sql.append(" where b.id=m.id and b.hobbypost_no=? and b.hobbyboard_no = h.hobbyboard_no");
+			sql.append(" where b.id=m.id and b.hobbypost_no=? and b.hobbyboard_no = h.hobbyboard_no and c.category_no = h.category_no");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, no);
 			rs = pstmt.executeQuery();
@@ -241,6 +238,7 @@ public class PostDAO {
 				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString("id"));
 				mvo.setName(rs.getString("name"));
+				mvo.setNickname(rs.getString("nickname"));
 				
 				pvo.setMemberVO(mvo);
 			}

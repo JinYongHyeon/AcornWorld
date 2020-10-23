@@ -1,24 +1,24 @@
 ------------------------------------------------------------
 ---------------------------- 차례 ----------------------------
 
---line ~ TABLE SELECT 모음
---line ~ CREATE TABLE 모음
---line ~ DROP TABLE 모음
---line ~ DROP SEQUENCE 모음
---line ~ SAMPLE DATA 모음
-	--line ~ id
-	--line ~ category
-	--line ~ category board
-	--line ~ 취미게시판 샘플데이터
-	--line ~ 공지게시판(17번 게시판) 샘플 데이터
-	--line ~ 신고게시판(18번 게시판) 샘플 데이터
-	--line ~ 내 도토리 목록 데이터
-	--line ~ 취미 게시판 대문 사진
-	--line ~ 카테고리 소개글
-	--line ~ 방명록 샘플 데이터
---line ~ 사용하지 않는 테이블
---line ~ 삭제된 테이블
---line ~ 테이블 변경사항 (적용함)
+--line 24  ~ TABLE SELECT 모음
+--line 37  ~ CREATE TABLE 모음
+--line 157 ~ DROP TABLE 모음
+--line 171 ~ DROP SEQUENCE 모음
+--line 182 ~ SAMPLE DATA 모음
+	--line 184 ~ id
+	--line 209 ~ category
+	--line 216 ~ category board
+	--line 244 ~ 취미게시판 샘플데이터
+	--line 294 ~ 공지게시판(17번 게시판) 샘플 데이터
+	--line 298 ~ 신고게시판(18번 게시판) 샘플 데이터
+	--line 306 ~ 내 도토리 목록 데이터
+	--line 314 ~ 취미 게시판 대문 사진
+	--line 336 ~ 카테고리 소개글
+	--line 354 ~ 방명록 샘플 데이터
+--line 369 ~ 사용하지 않는 테이블
+--line 387 ~ 삭제된 테이블
+--line 433 ~ 테이블 변경사항 (적용함)
 
 ------------------------------------------------------------
 --------------------- TABLE SELECT 모음 ---------------------
@@ -27,7 +27,7 @@ SELECT * FROM user_sequences; -- 전체 시퀀스 조회
 SELECT * FROM member -- 회원/관리자 정보 테이블 조회
 SELECT * FROM category -- 취미 카테고리(큰항목) 테이블 조회 (공지/신고 포함)
 SELECT * FROM hobbyboard -- 취미 게시판(작은항목) 테이블 조회 (공지/신고 포함)
-SELECT * FROM hobbypost -- 취미 게시판 커뮤니티글 테이블 조회 (공지/신고 게시글 포함)
+SELECT * FROM hobby_post -- 취미 게시판 커뮤니티글 테이블 조회 (공지/신고 게시글 포함)
 SELECT * FROM dotorylist -- 친구리스트 정보 테이블 조회
 SELECT * FROM bookmark -- 커뮤니티글/게시판 즐겨찾기 정보 테이블 조회
 SELECT * FROM toryhome_board -- 개인 미니홈페이지(토리홈) 정보 테이블 조회
@@ -123,11 +123,9 @@ CREATE TABLE bookmark(
 	link VARCHAR2(2000) NOT NULL,
 	bookmark_divide VARCHAR2(300) NOT NULL,
 	id VARCHAR2(300) NOT NULL,
-	bookmark_title VARCHAR2(300)NOT NULL, /* 추가 */
 	CONSTRAINT FK_bookmark_id FOREIGN KEY (id) REFERENCES member (id)
 	ON DELETE CASCADE
 )
--- 커뮤니티글 즐겨찾기(북마크)와 게시판 즐겨찾기(즐겨찾기) 를 한 테이블에서 구분하기 위해 추가함.
 
 -- 커뮤니티글/게시판 즐겨찾기 정보 테이블 bookmark_no 시퀀스 생성 (비정상 종료로 인해 시퀀스가 증가하는 것을 방지하기 위해 NOCACHE 추가)
 CREATE SEQUENCE bookmark_no_seq NOCACHE;
@@ -169,7 +167,11 @@ DROP TABLE toryhome_board -- 개인 미니홈페이지(토리홈) 정보 테이�
 DROP TABLE report_post -- 신고 게시물 테이블 삭제
 DROP TABLE notice_post -- 공지 게시물 테이블 삭제
 DROP TABLE photobook -- 사진첩 테이블 삭제
+<<<<<<< HEAD
 DROP TABLE hobbypostlike
+=======
+DROP TABLE hobbypostlike -- 좋아요 테이블 삭제
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 ------------------------------------------------------------
 --------------------- DROP SEQUENCE 모음 ---------------------
 DROP SEQUENCE category_no_seq -- 취미 카테고리(큰항목) 테이블 시퀀스 삭제 (공지/신고 포함)
@@ -280,62 +282,106 @@ VALUES(hobbypost_no_seq.NEXTVAL,'여기는 야구 게시판입니다.','야구~~
 
 -- category2 board1
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+<<<<<<< HEAD
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 일식 게시판입니다.','일식~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),5,'sorrykim');
 
+=======
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 일식 게시판입니다.','일식~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),5,'sorrykim');
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 -- category2 board2
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+<<<<<<< HEAD
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 양식 게시판입니다.','양식~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),6,'quiett');
 
+=======
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 양식 게시판입니다.','양식~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),6,'quiett');
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 -- category2 board3
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+<<<<<<< HEAD
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 중식 게시판입니다.','중식~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),7,'gang');
 
+=======
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 중식 게시판입니다.','중식~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),7,'gang');
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 -- category2 board4
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+<<<<<<< HEAD
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 한식 게시판입니다.','한식~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),8,'daewee');
 
+=======
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 한식 게시판입니다.','한식~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),8,'daewee');
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 -- category3 board1
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+<<<<<<< HEAD
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 로맨스 게시판입니다.','로맨스~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),9,'baebae');
 
+=======
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 로맨스 게시판입니다.','로맨스~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),9,'baebae');
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 -- category3 board2
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+<<<<<<< HEAD
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 스릴러 게시판입니다.','스릴러~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),10,'dragon');
 
+=======
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 스릴러 게시판입니다.','스릴러~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),10,'dragon');
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 -- category3 board3
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+<<<<<<< HEAD
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 공포 게시판입니다.','공포~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),11,'ddol');
 
+=======
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 공포 게시판입니다.','공포~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),11,'ddol');
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 -- category3 board4
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+<<<<<<< HEAD
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 액션 게시판입니다.','액션~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),12,'wool');
 
+=======
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 액션 게시판입니다.','액션~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),12,'wool');
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 -- category4 board1
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+<<<<<<< HEAD
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 댄스 게시판입니다.','댄스~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),13,'ssang');
 
+=======
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 댄스 게시판입니다.','댄스~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),13,'ssang');
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 -- category4 board2
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+<<<<<<< HEAD
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 클래식 게시판입니다.','클래식~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),14,'sungsik');
 
+=======
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 클래식 게시판입니다.','클래식~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),14,'sungsik');
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 -- category4 board3
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+<<<<<<< HEAD
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 발라드 게시판입니다.','발라드~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),15,'richi');
 
+=======
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 발라드 게시판입니다.','발라드~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),15,'richi');
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 -- category4 board4
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'여기는 팝 게시판입니다.','팝~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),16,'jungwoo');
+VALUES(hobbypost_no_seq.NEXTVAL,'여기는 팝 게시판입니다.','팝~~',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),16,'jungwoo');
 
 -- 공지게시판(17번 게시판) 샘플 데이터
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'이제 술안마시기로 한 배베로가 술마시는 모습을 목격하면 신고해주세요','공지',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),17,'ddol');
+VALUES(hobbypost_no_seq.NEXTVAL,'이제 술안마시기로 한 배베로가 술마시는 모습을 목격하면 신고해주세요','공지',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),17,'ddol');
 
 -- 신고게시판(18번 게시판) 샘플 데이터
 
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'어젯밤 술마시고 지각한 정깡을 신고합니다','신고',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),18,'ddol');
+VALUES(hobbypost_no_seq.NEXTVAL,'어젯밤 술마시고 지각한 정깡을 신고합니다','신고',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),18,'ddol');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'11시까지 기능 구현을 완료하기로 거짓말한 정콰이엇을 신고합니다','신고',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),18,'ddol');
+VALUES(hobbypost_no_seq.NEXTVAL,'11시까지 기능 구현을 완료하기로 거짓말한 정콰이엇을 신고합니다','신고',TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),18,'ddol');
 
 
 -- 내 도토리 목록 데이터
@@ -493,10 +539,4 @@ VALUES(toryhome_no_seq.nextval,'방명록','테스트 중user5', SYSDATE, 'drago
  *	ALTER TABLE HOBBYBOARD ADD(hobbyboard_imgName VARCHAR2(500));
  */
 
---북마크 제목 추가
-/*
- *	ALTER TABLE bookmark ADD(bookmark_title VARCHAR2(300)NOT NULL);
- */
-
 ------------------------------------------------------------
-
