@@ -51,11 +51,13 @@
                 document.getElementById("sample6_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("sample6_detailAddress").focus();
+                
+                // 상세주소 입력 가능 상태로 변경
+                $("input[name=updateAddressDetail]").attr('readonly', false);
             }
         }).open();
         
-        // 상세주소 입력 가능 상태로 변경
-        $("input[name=updateAddressDetail]").attr('readonly', false);
+       
 	}
 	
 	// submit 실행
