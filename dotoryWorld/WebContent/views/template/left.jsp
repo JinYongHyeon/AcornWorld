@@ -54,7 +54,7 @@
 </c:choose>
 <form id="leftLink">
 <c:if test="${sessionScope.mvo != null}">
-	<a href = "${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}">내 미니홈피 가기</a> <br>
+	<a href = "${pageContext.request.contextPath}/front?command=toryHome&id=${sessionScope.mvo.id}">내 토리홈피 가기</a> <br>
 	<a href="${pageContext.request.contextPath }/front?command=myDotoryList&id=${sessionScope.mvo.id}">내 도토리 리스트</a><br>
 <br>
 	<c:if test="${sessionScope.mvo.grade == '다람쥐'}">
