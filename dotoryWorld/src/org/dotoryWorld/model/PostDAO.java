@@ -922,6 +922,11 @@ public class PostDAO {
 		return betsList;
 	}
 	
+	/**
+	 * 핫 베스트 가져오기
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<BoardVO> hotBoardList() throws SQLException{
 		ArrayList<BoardVO>  betsList = new ArrayList<BoardVO>();
 		Connection con =null;

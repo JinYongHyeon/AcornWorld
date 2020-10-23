@@ -1,40 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-
-						$(document)
-								.on(
-										"click",
-										"#bookMarkImgIcon",
-										function() {
-											$
-													.ajax({
-														type : "post", //전송방식
-														url : "${pageContext.request.contextPath}/front", //주소
-														dataType : "text", //받는 타입
-														data : "command=bookmark&link=${requestScope.pvo.postNo}&id=${sessionScope.mvo.id}&bookmark=북마크&title=${requestScope.pvo.postTitle}", //보내는 값
-														success : function(data) {//성공
-
-															if (data == '성공') {
-																alert("북마크 추가");
-																if (confirm("북마크 리스트로 가시겠습니까?"))
-																	location.href = "${pageContext.request.contextPath}/front?command=bookmarkList&id=${sessionScope.mvo.id}&bookmark=북마크";
-																$(
-																		"#bookMarkImgIcon")
-																		.attr(
-																				'src',
-																				'${pageContext.request.contextPath}/resources/img/icon/bookmark2.png');
-															} else if (data == '중복') {
-																alert("이미 추가된 북마크 입니다.");
-															} else {
-																location.href = "${pageContext.request.contextPath}/views/error.jsp";
-															}
-														}
-													});
-										});
+	$(document).ready(function() {
+		$(document).on("click","#bookMarkImgIcon",function() {
+					$.ajax({
+								type : "post", //전송방식
+								url : "${pageContext.request.contextPath}/front", //주소
+								dataType : "text", //받는 타입
+								data : "command=bookmark&link=${requestScope.pvo.postNo}&id=${sessionScope.mvo.id}&bookmark=북마크&title=${requestScope.pvo.postTitle}", //보내는 값
+								success : function(data) {//성공
+									if (data == '성공') {
+										alert("북마크 추가");
+										if (confirm("북마크 리스트로 가시겠습니까?"))
+											location.href = "${pageContext.request.contextPath}/front?command=bookmarkList&id=${sessionScope.mvo.id}&bookmark=북마크";
+										$("#bookMarkImgIcon").attr('src','${pageContext.request.contextPath}/resources/img/icon/bookmark2.png');
+									} else if (data == '중복') {
+										alert("이미 추가된 북마크 입니다.");
+									} else {
+										location.href = "${pageContext.request.contextPath}/views/error.jsp";
+									}
+								}
+							});
+						});
 					});
 
 	function sendList() {
