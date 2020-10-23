@@ -182,6 +182,12 @@ DROP SEQUENCE noticepost_no_seq -- 공지 게시물 테이블 시퀀스 삭제
 DROP SEQUENCE photobook_no_seq -- 사진첩 테이블 시퀀스 삭제
 
 ------------------------------------------------------------
+
+insert into DOTORYLIST (dotory_id, id) values('gang','baebae');
+insert into DOTORYLIST (dotory_id, id) values('quiett','baebae');
+insert into DOTORYLIST (dotory_id, id) values('daewee','baebae');
+insert into DOTORYLIST (dotory_id, id) values('jungwoo','baebae');
+insert into DOTORYLIST (dotory_id, id) values('hellchang','baebae');
 ---------------------- SAMPLE DATA 모음 ----------------------
 
 -- id 
@@ -248,48 +254,74 @@ INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyb
 -- category1 board1
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 축구 게시판입니다.','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'chukku');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'세상에서 제일예쁜 예','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'wool');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'저는 진짜 왕년에 슛돌이었어요','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'jungwoo');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'지금 시간이 메시죠?','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'dragon');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'야야야야야 길막지마 야','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'sungsik');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'춤추고싶다갑자기','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'quiett');
+
+
 -- category1 board2
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 배드민턴 게시판입니다.','배드민턴~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),2,'badbad');
+
 -- category1 board3
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 농구 게시판입니다.','농구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),3,'hellchang');
+
 -- category1 board4
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 야구 게시판입니다.','야구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),4,'kimdudu');
+
 -- category2 board1
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 일식 게시판입니다.','일식~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),5,'sorrykim');
+
 -- category2 board2
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 양식 게시판입니다.','양식~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),6,'quiett');
+
 -- category2 board3
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 중식 게시판입니다.','중식~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),7,'gang');
+
 -- category2 board4
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 한식 게시판입니다.','한식~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),8,'daewee');
+
 -- category3 board1
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 로맨스 게시판입니다.','로맨스~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),9,'baebae');
+
 -- category3 board2
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 스릴러 게시판입니다.','스릴러~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),10,'dragon');
+
 -- category3 board3
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 공포 게시판입니다.','공포~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),11,'ddol');
+
 -- category3 board4
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 액션 게시판입니다.','액션~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),12,'wool');
+
 -- category4 board1
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 댄스 게시판입니다.','댄스~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),13,'ssang');
+
 -- category4 board2
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 클래식 게시판입니다.','클래식~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),14,'sungsik');
+
 -- category4 board3
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 발라드 게시판입니다.','발라드~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),15,'richi');
+
 -- category4 board4
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
 VALUES(hobbypost_no_seq.NEXTVAL,'여기는 팝 게시판입니다.','팝~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),16,'jungwoo');
