@@ -5,6 +5,7 @@
 <style>
 tr:hover {background-color:#E4F7BA;}
 </style>
+
 <!-- 게시물 검색-->
 <h2><img src="resources/img/myPost.png" id="mypostImg"></h2>
 <form action="${pageContext.request.contextPath }/front" id="boardTable" onsubmit="return searchTextCheck()">
@@ -61,27 +62,29 @@ tr:hover {background-color:#E4F7BA;}
 		</c:forEach>
 		<tr>
 			<td colspan="6">
-				<input type="submit" value="삭제">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-		<tr>
+				<input type="submit" value="삭제">
+			</td>
+		</tr>
 	</tbody>
 </table>
 </form>
 <%-- paging 처리 --%>
 <c:set var="pb" value="${requestScope.postingListPaging.pagingBean}"/>
 <div class="pagingArea">
+	<nav aria-label="Page navigation example">
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">
-			<li>
+			<li class="page-item">
 				<a href="front?command=myPostList&pageNo=${pb.startPageOfPageGroup-1}&hobbyBoardNo=${requestScope.hobbyBoardNo}">&laquo;</a>
 			</li>
 		</c:if>
 		<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
 			<c:choose>
 				<c:when test="${i != pb.nowPage}">
-					<li><a href="front?command=myPostList&pageNo=${i}&hobbyBoardNo=${requestScope.hobbyBoardNo}&keyword=${requestScope.keyword}&id=${sessionScope.mvo.id}">${i}</a></li>
+					<li class="page-item"><a class="page-link" href="front?command=myPostList&pageNo=${i}&hobbyBoardNo=${requestScope.hobbyBoardNo}&keyword=${requestScope.keyword}&id=${sessionScope.mvo.id}">${i}</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="active"><a href="#">${i}</a></li>
+					<li class="page-item active"><a class="page-link" href="#">${i}</a></li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -91,6 +94,8 @@ tr:hover {background-color:#E4F7BA;}
 			</li>
 		</c:if>
 	</ul>
+	</nav>
+  
 </div> <!-- pagingArea -->
 </div> <!-- col-sm-10 -->
 </div> <!-- row boardMain -->

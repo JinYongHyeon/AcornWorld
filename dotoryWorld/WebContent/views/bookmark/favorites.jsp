@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<form id="favoriteLogo">
+	<img src="${pageContext.request.contextPath}/resources/img/favorite_logo.png">
+</form>
 <div class="row" id="favoriteList">
 	<div class="col-sm-12">
 		<ul>
