@@ -22,7 +22,7 @@ tr:hover {background-color:#E4F7BA;}
 			<tr>
 				<td>${mark.bookmarkNo}</td>
 				<td><a href="${pageContext.request.contextPath}/front?command=postDetail&no=${mark.bookmarkLink}">${mark.postVO.postTitle}</a></td>
-				<td>${mark.memberVO.id}</td>
+				<td>${mark.memberVO.nickname}</td>
 				<td>${mark.boardVO.boardTitle }</td>
 			</tr>
 		</c:forEach>

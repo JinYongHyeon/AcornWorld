@@ -168,6 +168,11 @@ DROP TABLE report_post -- 신고 게시물 테이블 삭제
 DROP TABLE notice_post -- 공지 게시물 테이블 삭제
 DROP TABLE photobook -- 사진첩 테이블 삭제
 DROP TABLE hobbypostlike -- 좋아요 테이블 삭제
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
+
+=======
+>>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
 
 ------------------------------------------------------------
 --------------------- DROP SEQUENCE 모음 ---------------------

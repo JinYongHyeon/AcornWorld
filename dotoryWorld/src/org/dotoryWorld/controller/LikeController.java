@@ -7,7 +7,10 @@ import javax.servlet.http.HttpSession;
 import org.dotoryWorld.model.PostDAO;
 
 public class LikeController implements Controller {
-
+	/**
+	 * 좋아요 기능
+	 * 커뮤니티 게시물 번호와 아이디를 가지고 좋아요 여부를 체크 후 좋아요 상태면 마이너스 그렇지 않을경우 플러스
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
@@ -15,6 +18,7 @@ public class LikeController implements Controller {
 		
 		String id = request.getParameter("id");
 		String no = request.getParameter("no");
+		//커뮤니티 게시물 번호와 아이디를 가지고 좋아요 여부를 체크
 		int count = PostDAO.getInstance().postLikeCheck(id,no);
 		String like = null;
 		if(count == 1) {
@@ -33,3 +37,4 @@ public class LikeController implements Controller {
 	}
 
 }
+
