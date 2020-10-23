@@ -172,6 +172,8 @@ DROP TABLE hobbypostlike
 =======
 DROP TABLE hobbypostlike -- 좋아요 테이블 삭제
 >>>>>>> branch 'master' of https://github.com/JinYongHyeon/DotoryWorld.git
+
+
 ------------------------------------------------------------
 --------------------- DROP SEQUENCE 모음 ---------------------
 DROP SEQUENCE category_no_seq -- 취미 카테고리(큰항목) 테이블 시퀀스 삭제 (공지/신고 포함)

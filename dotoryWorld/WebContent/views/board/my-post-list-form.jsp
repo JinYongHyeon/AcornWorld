@@ -24,7 +24,7 @@ tr:hover {background-color:#E4F7BA;}
 <div class="row boardMain">
 <div class="col-sm-1"></div><!-- 빈공간 -->
 <div class="col-sm-10">
-<form action="${pageContext.request.contextPath}/front" id="myPostDeleteFrom" onsubmit="return myPostDelete()">
+<form action="${pageContext.request.contextPath}/front" id="boardTable" onsubmit="return myPostDelete()">
 	<table class="table table-bordered  table-hover boardlist">
 	<thead>
 		<tr class="success">
@@ -61,7 +61,7 @@ tr:hover {background-color:#E4F7BA;}
 		</c:forEach>
 		<tr>
 			<td colspan="6">
-				<input type="submit" value="삭제">
+				<input type="submit" value="삭제">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 		<tr>
 	</tbody>
 </table>
