@@ -661,7 +661,7 @@ public class PostDAO {
 	}
 	
 
-	// 소카테고리 리스트(운동-축구,복싱 등) 불러오는 메서드 - 지윤
+	// 소카테고리 리스트(운동-축구,복싱 등) 불러오는 메서드
 	public ArrayList<BoardVO> getBoardList(String categoryNo) throws SQLException {
 		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
 		Connection con = null;
@@ -669,7 +669,8 @@ public class PostDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT h.hobbyboard_title,h.hobbyboard_no,h.hobbyboard_imgName,c.category_content FROM hobbyboard h, category c WHERE h.category_no=c.category_no AND c.category_no=?";
+			String sql = "SELECT h.hobbyboard_title,h.hobbyboard_no,h.hobbyboard_imgName,c.category_content FROM hobbyboard h, category c "
+					+ "WHERE h.category_no=c.category_no AND c.category_no=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, categoryNo);
 			rs = pstmt.executeQuery();
