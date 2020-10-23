@@ -135,10 +135,10 @@ tr:hover {background-color:#E4F7BA;}
 				<td>
 					<c:choose>
 						<c:when test="${sessionScope.mvo!=null}">
-							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
+							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.nickname}</a>
 						</c:when>
 						<c:otherwise>
-						${pvo.memberVO.id }
+						${pvo.memberVO.nickname}
 						</c:otherwise>
 					</c:choose>
 				</td>
@@ -178,9 +178,9 @@ tr:hover {background-color:#E4F7BA;}
 				<td>
 					<c:choose>
 						<c:when test="${sessionScope.mvo!=null}">
-							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.id }</a>
+							<a href="${pageContext.request.contextPath}/front?command=toryHome&id=${pvo.memberVO.id }">${pvo.memberVO.nickname}</a>
 						</c:when>
-						<c:otherwise>${pvo.memberVO.id }</c:otherwise>
+						<c:otherwise>${pvo.memberVO.nickname}</c:otherwise>
 					</c:choose>					
 				</td>
 				<td>${pvo.postDate }</td>				

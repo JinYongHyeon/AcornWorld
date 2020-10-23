@@ -56,7 +56,7 @@ public class PostDAO {
 		try {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted,M.id,M.name FROM( ");
+			sql.append("SELECT B.hobbypost_no,B.hobby_title,B.hobbypost_viewcount,B.time_posted,M.id,M.name,M.nickname FROM( ");
 			sql.append("SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
 			sql.append("to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post WHERE hobbyboard_no = ? ");
 			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ? ");
@@ -77,6 +77,7 @@ public class PostDAO {
 				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString(5));
 				mvo.setName(rs.getString(6));
+				mvo.setNickname(rs.getString(7));
 				pvo.setMemberVO(mvo);
 				list.add(pvo);
 			}
@@ -212,7 +213,7 @@ public class PostDAO {
 			con = getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append("select b.hobby_title,to_char(b.hobbypost_date,'YYYY.MM.DD  HH24:MI:SS') as time_posted, c.category_name");
-			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name,b.hobbyboard_no,h.category_no, b.hobby_like, h.hobbyboard_title");
+			sql.append(",b.hobby_content,b.hobbypost_viewcount,b.id,m.name,m.nickname,b.hobbyboard_no,h.category_no, b.hobby_like, h.hobbyboard_title");
 			sql.append(" from hobby_post b,member m,hobbyboard h, category c");
 			sql.append(" where b.id=m.id and b.hobbypost_no=? and b.hobbyboard_no = h.hobbyboard_no and c.category_no = h.category_no");
 			pstmt = con.prepareStatement(sql.toString());
@@ -237,6 +238,7 @@ public class PostDAO {
 				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString("id"));
 				mvo.setName(rs.getString("name"));
+				mvo.setNickname(rs.getString("nickname"));
 				
 				pvo.setMemberVO(mvo);
 			}
@@ -661,7 +663,7 @@ public class PostDAO {
 	}
 	
 
-	// 소카테고리 리스트(운동-축구,복싱 등) 불러오는 메서드 - 지윤
+	// 소카테고리 리스트(운동-축구,복싱 등) 불러오는 메서드
 	public ArrayList<BoardVO> getBoardList(String categoryNo) throws SQLException {
 		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
 		Connection con = null;
@@ -669,7 +671,8 @@ public class PostDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT h.hobbyboard_title,h.hobbyboard_no,h.hobbyboard_imgName,c.category_content FROM hobbyboard h, category c WHERE h.category_no=c.category_no AND c.category_no=?";
+			String sql = "SELECT h.hobbyboard_title,h.hobbyboard_no,h.hobbyboard_imgName,c.category_content FROM hobbyboard h, category c "
+					+ "WHERE h.category_no=c.category_no AND c.category_no=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, categoryNo);
 			rs = pstmt.executeQuery();

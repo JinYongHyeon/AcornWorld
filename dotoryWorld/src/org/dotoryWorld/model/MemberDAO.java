@@ -73,7 +73,7 @@ public class MemberDAO {
 		return memberVO;
 	}
 
-	// 회원가입 - 지윤
+	// 회원가입
 	public void registerMember(MemberVO memberVO) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -81,7 +81,8 @@ public class MemberDAO {
 			con = dataSource.getConnection();
 			// 회원가입 시 아이디,패스워드,이름,주소,이메일,닉네임,소개글을 입력받고 등급은 도토리로 고정
 			// 관리자인 다람쥐는 DB상에 한 사람으로 고정되어 있음
-			String sql = "INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) VALUES(?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO member(id,password,name,address,email,nickname,profile_content,grade) "
+					+ "VALUES(?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberVO.getId());
 			pstmt.setString(2, memberVO.getPassword());
@@ -213,17 +214,11 @@ public class MemberDAO {
 			while (rs.next()) {
 				MemberVO mvo = new MemberVO();
 				mvo.setId(rs.getString("dotory_id"));
-				
-				/*
-				 * mvo.setId(rs.getString("grade")); mvo.setId(rs.getString("name"));
-				 * mvo.setId(rs.getString("email"));
-				 */
 				list.add(mvo);
 			}
 			System.out.println(list.size());
 		} finally {
 			closeAll(rs, pstmt, con);
-			// TODO: handle finally clause
 		}
 		return list;
 	}
