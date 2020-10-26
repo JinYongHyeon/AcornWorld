@@ -58,7 +58,7 @@
 		</tr>   
 		<tr>
 			<td colspan="4">     
-				<textarea cols="126" rows="20" id="postContent" name="content" required="required" >${pvo.postContent }</textarea>
+				<textarea cols="167" rows="20" id="postContent" name="content" required="required" >${pvo.postContent }</textarea>
 			</td>
 		</tr> 
 	</table>    

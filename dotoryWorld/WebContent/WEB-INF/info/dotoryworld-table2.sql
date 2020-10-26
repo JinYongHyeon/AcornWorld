@@ -259,17 +259,58 @@ INSERT INTO hobbyboard(hobbyboard_no,hobbyboard_title,category_no) VALUES(hobbyb
 -- 취미게시판 샘플데이터
 -- category1 board1
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'여기는 축구 게시판입니다.','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'chukku');
+VALUES(hobbypost_no_seq.NEXTVAL,'시소코 산체스 토비 다이어 전부다 버려야함','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'chukku');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'세상에서 제일예쁜 예','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'wool');
+VALUES(hobbypost_no_seq.NEXTVAL,'이강인이 존조쉘비만큼은 한다 솔직히','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'wool');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'저는 진짜 왕년에 슛돌이었어요','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'jungwoo');
+VALUES(hobbypost_no_seq.NEXTVAL,'EPL 역사상 최초로 첫 6라운드에서 모든 팀이 패배를 기록함','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'jungwoo');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'지금 시간이 메시죠?','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'dragon');
+VALUES(hobbypost_no_seq.NEXTVAL,'이승우 그냥 베트남 리그가서 다 씹어먹었으면 ㅋ','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'dragon');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'야야야야야 길막지마 야','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'sungsik');
+VALUES(hobbypost_no_seq.NEXTVAL,'손흥민 작년리그 11골, 올해 벌써 7골....','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'sungsik');
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
-VALUES(hobbypost_no_seq.NEXTVAL,'춤추고싶다갑자기','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'quiett');
+VALUES(hobbypost_no_seq.NEXTVAL,'그냥 지금 유럽축구가 수준이다떨어진건 팩트야','축구~~',TO_DATE(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),1,'quiett');
+
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'현실적인 이승우 다음 이적리그 ','축구~~',SYSDATE,1,'chukku');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'번리는 텐백할거같지않냐??','축구~~',SYSDATE,1,'wool');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'손 위기인게','축구~~',SYSDATE,1,'jungwoo');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'손흥민 연습량 보면 그런 말 못하는데 ㅋㅋ','축구~~',SYSDATE,1,'dragon');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'손까들 내로남불인점 하나있음','축구~~',SYSDATE,1,'baebae');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'진짜 pk는 얻은놈이 차게 규칙 바껴야됨','축구~~',SYSDATE,1,'chukku');
+
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'야 라리가 어시 왤케 없음? 얘네만 기준 엄격하냐?','축구~~',SYSDATE,1,'sleep');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'일본 축구팬들이 대단한거지','축구~~',SYSDATE,1,'back');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'펩은 경질 앵간하면 안당하려나','축구~~',SYSDATE,1,'june');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'샤키라 라라라 듣는데 팔카오 존잘이네','축구~~',SYSDATE,1,'sungsik');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'본인 축알못인데 버기타임이라는 용어가있는줄','축구~~',SYSDATE,1,'sungsik');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'내일 번리전 결과 예측','축구~~',SYSDATE,1,'wool');
+
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'초콜릿 메달 이거 뭐냐??? ㅋㅋㅋㅋㅋㅋ','축구~~',SYSDATE,1,'ssang');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'시소코 사태로 본 손흥민 인성 유추','축구~~',SYSDATE,1,'quiett');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'근본+화력까지포함해서 뮌헨보다 쎈팀은없는듯','축구~~',SYSDATE,1,'richi');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'토트넘 우승하는법','축구~~',SYSDATE,1,'dragon');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'토트넘리그우승보다 베트남월드컵가는게 ㄹㅇ더빠를듯','축구~~',SYSDATE,1,'sagi');
+INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)
+VALUES(hobbypost_no_seq.NEXTVAL,'국뽕멸망 쿠보 활약상 ㄷㄷㄷ','축구~~',SYSDATE,1,'badbad');
+
+
 
 -- category1 board2
 INSERT INTO hobby_post(hobbypost_no,hobby_title,hobby_content,hobbypost_date,hobbyboard_no,id)

@@ -359,8 +359,8 @@ body {
 	width: 50%;
 }
 
-#boardListMainForm img{
-	width:100%;
+#boardListMainForm img {
+	width: 100%;
 }
 
 /*게시판 정보*/
@@ -559,4 +559,8 @@ body {
 
 .content {
 	min-height: 72.8vh;
+}
+
+#boardTable table tr td pre img {
+	width:100%;
 }

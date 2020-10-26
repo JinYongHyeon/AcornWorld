@@ -20,7 +20,7 @@
 			varStatus="index">
 			<tr>
 				<td>${list.postNo}</td>
-				<td>${list.postTitle}</td>
+				<td><a href="${pageContext.request.contextPath}/front?command=postDetail&no=${list.postNo}">${list.postTitle}</td>
 				<td>${list.memberVO.id}</td>
 				<td>${list.postDate}</td>
 				<td>${list.viewCount}</td>

@@ -60,6 +60,7 @@ public class PostDAO {
 			sql.append("SELECT row_number() over(ORDER BY hobbypost_no DESC) as rnum,hobbypost_no,hobby_title,hobbypost_viewcount, ");
 			sql.append("to_char(hobbypost_date,'YYYY.MM.DD') as time_posted,id,hobbyboard_no FROM hobby_post WHERE hobbyboard_no = ? ");
 			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ? ");
+			sql.append(" ORDER BY time_posted DESC");
 			pstmt = con.prepareStatement(sql.toString());
 			// start, endRowNumber를 할당한다
 			pstmt.setString(1, hobbyBoardNo);
@@ -134,7 +135,7 @@ public class PostDAO {
 			StringBuilder sql=new StringBuilder();		
 			sql.append("SELECT B.noticepost_no,B.notice_title,B.time_posted,M.id,M.name ");
 			sql.append("FROM(SELECT row_number() over(ORDER BY noticepost_no DESC) as rnum,noticepost_no,notice_title,to_char(noticepost_date,'YYYY.MM.DD') as time_posted,id,category_no FROM notice_post where category_no=?");
-			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ?");	
+			sql.append(")B, member M WHERE B.id=M.id AND rnum BETWEEN ? AND ?");
 			pstmt=con.prepareStatement(sql.toString());	
 			//start, endRowNumber를 할당한다
 			pstmt.setString(1, categoryNo);

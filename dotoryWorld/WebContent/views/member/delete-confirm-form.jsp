@@ -7,8 +7,7 @@
         <input type="hidden" name="command" value="deleteMember">
 <%--         <input type="hidden" name="id" value="${sessionScope.mvo.id}" readonly="readonly">     
  --%><%--   <input type="hidden" name="passCheckComp" value="${sessionScope.mvo.password}">
- --%>        <h6>회원탈퇴</h6>
-        <h6>비밀번호를 입력하세요</h6>
+ --%>       
 <%--         <input type="hidden" name="id" value="${sessionScope.mvo.id}" readonly="readonly">
  --%>       
 <%--   <input type="hidden" name="passCheckComp" value="${sessionScope.mvo.password}">
