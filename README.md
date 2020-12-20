@@ -1,13 +1,6 @@
 # AcornWorld
 # 프로젝트 요약서
 ![도토리월드-프로젝트요약서](https://user-images.githubusercontent.com/14232708/100535112-39e94880-3259-11eb-9823-0bb2bd173985.JPG)
-# UseCase Diagram
-![도토리-usecase](https://user-images.githubusercontent.com/14232708/100534696-18865d80-3255-11eb-9f20-e429cb0870e1.png)
-# Class Diagram
-![도토리classdiagram](https://user-images.githubusercontent.com/14232708/100534701-1ae8b780-3255-11eb-9a6d-6b57b6acb31e.png)
-# ERD
-![도토리논리](https://user-images.githubusercontent.com/14232708/100534697-1a502100-3255-11eb-90ca-415584067dde.png)
-![도토리물리](https://user-images.githubusercontent.com/14232708/100534699-1a502100-3255-11eb-89fb-07050dfc6ea7.png)
 # UI
 ![도토리-메인](https://user-images.githubusercontent.com/14232708/100535071-d9f2a200-3258-11eb-9493-95d1c0dc50f1.png)
 ![도토리-미니홈피](https://user-images.githubusercontent.com/14232708/100535067-d828de80-3258-11eb-9c14-4f474416df79.png)
